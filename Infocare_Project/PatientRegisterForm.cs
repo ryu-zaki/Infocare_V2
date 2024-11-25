@@ -10,23 +10,21 @@ using System.Windows.Forms;
 
 namespace Infocare_Project
 {
-    public partial class HomeForm : Form
+    public partial class PatientRegisterForm : Form
     {
-        public HomeForm()
+        public PatientRegisterForm()
         {
             InitializeComponent();
+        }
+
+        private void PatientRegisterForm_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void EnterButton_Click(object sender, EventArgs e)
-        {
-            PatientLoginForm loginForm = new PatientLoginForm();
-            loginForm.Show();
-            this.Hide();
         }
     }
 }
