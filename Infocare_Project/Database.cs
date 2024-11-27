@@ -13,73 +13,72 @@ namespace Infocare_Project
 {
     internal class Database
     {
+        private string connectionString = "Server=127.0.0.1; Database=db_infocare_project;User ID=root; Password=;"; // Your MySQL connection string
 
-
-        MySqlConnection connection = new MySqlConnection("Server=127.0.0.1; Database=patient;User ID=root;Password=");
-
-        public string getFname(string un)
+        // Method to connect to the database
+        private MySqlConnection GetConnection()
         {
-            string query = "select P_FirstName from tb_patientinfo where Username='" + un + "'";
-
-            connection.Open();
-
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-
-            try
-            {
-                MySqlDataReader dr = cmd.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(dr);
-                connection.Close();
-                return dt.Rows[0].ItemArray[0].ToString();
-
-            }
-
-            catch { throw; }
+            return new MySqlConnection(connectionString);
         }
 
-        public string getLname(string un)
+        // Method to insert a User (common method for all User types)
+        public void PatientReg1(User user)
         {
-            string query = "select P_Lastname from tb_patientinfo where Username='" + un + "'";
-
-            connection.Open();
-
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-
-            try
+            using (var connection = GetConnection())
             {
-                MySqlDataReader dr = cmd.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(dr);
-                connection.Close();
-                return dt.Rows[0].ItemArray[0].ToString();
+                try
+                {
+                    // SQL query to insert data into the patient info table
+                    string query = "INSERT INTO tb_patientinfo (p_FirstName, p_LastName, p_middlename, p_Suffix, p_Username, P_Password, P_ContactNumber, P_Bdate, P_Sex) " +
+                                   "VALUES (@FirstName, @LastName, @MiddleName, @Suffix, @Username, @Password, @ContactNumber, @Bdate, @Sex)";
 
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                    command.Parameters.AddWithValue("@LastName", user.LastName);
+                    command.Parameters.AddWithValue("@MiddleName", user.MiddleName);
+                    command.Parameters.AddWithValue("@Suffix", user.Suffix);
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Password); // You can change this to hashed password if needed
+                    command.Parameters.AddWithValue("@ContactNumber", user.ContactNumber);
+
+                    // Convert DateTime to MySQL date format (YYYY-MM-DD) if needed
+                    command.Parameters.AddWithValue("@Bdate", user.Bdate.ToString("yyyy-MM-dd"));  // Ensures correct format
+                    command.Parameters.AddWithValue("@Sex", user.Sex);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    // Handle any database errors
+                    throw new Exception("Error inserting patient data: " + ex.Message);
+                }
             }
-
-            catch { throw; }
         }
 
-        public string getMname(string un)
+       
+        public bool PatientLogin(string username, string password)
         {
-            string query = "select P_Middlename from tb_patientinfo where Username='" + un + "'";
-
-            connection.Open();
-
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-
-            try
+            using (var connection = GetConnection()) 
             {
-                MySqlDataReader dr = cmd.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(dr);
-                connection.Close();
-                return dt.Rows[0].ItemArray[0].ToString();
+                try
+                {
+                    string query = "SELECT COUNT(*) FROM tb_patientinfo WHERE p_Username = @Username AND P_Password = @Password";
 
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    connection.Open();                   
+                    int result = Convert.ToInt32(command.ExecuteScalar());
+                    
+                    return result == 1;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error validating login: " + ex.Message);
+                }
             }
-
-            catch { throw; }
         }
-
-
     }
 }

@@ -81,8 +81,8 @@
             guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
-            guna2TextBox4 = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            UsernameTxtbox = new Guna.UI2.WinForms.Guna2TextBox();
+            PasswordTxtbox = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox3).BeginInit();
@@ -210,6 +210,7 @@
             EnterButton.Size = new Size(112, 53);
             EnterButton.TabIndex = 3;
             EnterButton.Text = "Log in";
+            EnterButton.Click += EnterButton_Click;
             // 
             // guna2CustomGradientPanel1
             // 
@@ -338,6 +339,7 @@
             guna2Button1.Size = new Size(149, 53);
             guna2Button1.TabIndex = 3;
             guna2Button1.Text = "Register";
+            guna2Button1.Click += guna2Button1_Click;
             // 
             // HomeButton
             // 
@@ -415,53 +417,53 @@
             ExitButton.Text = "X";
             ExitButton.Click += ExitButton_Click;
             // 
-            // guna2TextBox4
+            // UsernameTxtbox
             // 
-            guna2TextBox4.BorderColor = Color.FromArgb(93, 202, 209);
-            guna2TextBox4.BorderRadius = 8;
-            guna2TextBox4.CustomizableEdges = customizableEdges53;
-            guna2TextBox4.DefaultText = "";
-            guna2TextBox4.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox4.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox4.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox4.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox4.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox4.ForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox4.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox4.Location = new Point(143, 341);
-            guna2TextBox4.Name = "guna2TextBox4";
-            guna2TextBox4.PasswordChar = '\0';
-            guna2TextBox4.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox4.PlaceholderText = "Username";
-            guna2TextBox4.SelectedText = "";
-            guna2TextBox4.ShadowDecoration.CustomizableEdges = customizableEdges54;
-            guna2TextBox4.Size = new Size(200, 36);
-            guna2TextBox4.TabIndex = 90;
+            UsernameTxtbox.BorderColor = Color.FromArgb(93, 202, 209);
+            UsernameTxtbox.BorderRadius = 8;
+            UsernameTxtbox.CustomizableEdges = customizableEdges53;
+            UsernameTxtbox.DefaultText = "";
+            UsernameTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            UsernameTxtbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            UsernameTxtbox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            UsernameTxtbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            UsernameTxtbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            UsernameTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            UsernameTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
+            UsernameTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            UsernameTxtbox.Location = new Point(143, 341);
+            UsernameTxtbox.Name = "UsernameTxtbox";
+            UsernameTxtbox.PasswordChar = '\0';
+            UsernameTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
+            UsernameTxtbox.PlaceholderText = "Username";
+            UsernameTxtbox.SelectedText = "";
+            UsernameTxtbox.ShadowDecoration.CustomizableEdges = customizableEdges54;
+            UsernameTxtbox.Size = new Size(200, 36);
+            UsernameTxtbox.TabIndex = 90;
             // 
-            // guna2TextBox1
+            // PasswordTxtbox
             // 
-            guna2TextBox1.BorderColor = Color.FromArgb(93, 202, 209);
-            guna2TextBox1.BorderRadius = 8;
-            guna2TextBox1.CustomizableEdges = customizableEdges55;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox1.ForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(143, 395);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PasswordChar = '\0';
-            guna2TextBox1.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox1.PlaceholderText = "Password";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges56;
-            guna2TextBox1.Size = new Size(200, 36);
-            guna2TextBox1.TabIndex = 91;
+            PasswordTxtbox.BorderColor = Color.FromArgb(93, 202, 209);
+            PasswordTxtbox.BorderRadius = 8;
+            PasswordTxtbox.CustomizableEdges = customizableEdges55;
+            PasswordTxtbox.DefaultText = "";
+            PasswordTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            PasswordTxtbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            PasswordTxtbox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            PasswordTxtbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            PasswordTxtbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            PasswordTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
+            PasswordTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            PasswordTxtbox.Location = new Point(143, 395);
+            PasswordTxtbox.Name = "PasswordTxtbox";
+            PasswordTxtbox.PasswordChar = '\0';
+            PasswordTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
+            PasswordTxtbox.PlaceholderText = "Password";
+            PasswordTxtbox.SelectedText = "";
+            PasswordTxtbox.ShadowDecoration.CustomizableEdges = customizableEdges56;
+            PasswordTxtbox.Size = new Size(200, 36);
+            PasswordTxtbox.TabIndex = 91;
             // 
             // PatientLoginForm
             // 
@@ -470,8 +472,8 @@
             BackColor = Color.FromArgb(47, 89, 114);
             ClientSize = new Size(894, 574);
             ControlBox = false;
-            Controls.Add(guna2TextBox1);
-            Controls.Add(guna2TextBox4);
+            Controls.Add(PasswordTxtbox);
+            Controls.Add(UsernameTxtbox);
             Controls.Add(ExitButton);
             Controls.Add(guna2CustomGradientPanel3);
             Controls.Add(HomeButton);
@@ -536,7 +538,7 @@
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel3;
         private Guna.UI2.WinForms.Guna2Button ExitButton;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox4;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2TextBox UsernameTxtbox;
+        private Guna.UI2.WinForms.Guna2TextBox PasswordTxtbox;
     }
 }

@@ -21,5 +21,39 @@ namespace Infocare_Project
         {
             this.Close();
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
+            patientRegisterForm.Show();
+
+            this.Hide();
+        }
+
+        private void EnterButton_Click(object sender, EventArgs e)
+        {
+            
+            string username = UsernameTxtbox.Text;
+            string password = PasswordTxtbox.Text;
+
+            
+            Database db = new Database();
+
+           
+            bool validPatient = db.PatientLogin(username, password);
+
+            if (validPatient)
+            {
+                
+                MessageBox.Show("Login successful!");
+
+               
+            }
+            else
+            {
+                
+                MessageBox.Show("Invalid username or password.");
+            }
+        }
     }
 }

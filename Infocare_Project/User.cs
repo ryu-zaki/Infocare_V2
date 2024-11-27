@@ -7,65 +7,59 @@ using System.Threading.Tasks;
 
 namespace Infocare_Project
 {
+    // Base class for User information
     public class User
     {
-        //info
+        // Info
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string MiddleName { get; set; }
         public string ContactNumber { get; set; }
-        public string Gender { get; set; }
+        public string Sex { get; set; }
         public string Suffix { get; set; }
-        public string Bdate { get; set; }
+        public DateTime Bdate { get; set; }
 
-        //accounts
-
+        // Account info
         public string Username { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
 
         // Default constructor
-        public static User u;
-        public User() { u = this; }
+        public User() { }
 
         // Parameterized constructor for common user properties
-        public User(string firstName, string lastName, string contactNumber, string gender, string suffix, string username, string password, string confirmPassword, string bdate)
+        public User(string firstName, string lastName, string middleName, string contactNumber, string sex, string suffix, string username, string password, string confirmPassword, DateTime bdate)
         {
             FirstName = firstName;
             LastName = lastName;
+            MiddleName = middleName;
             ContactNumber = contactNumber;
-            Gender = gender;
+            Sex = sex;
             Suffix = suffix;
             Username = username;
             Password = password;
-            ConfirmPassword = confirmPassword;  
+            ConfirmPassword = confirmPassword;
             Bdate = bdate;
         }
     }
 
+    // Patient class inheriting from User
     public class Patient : User
     {
-        public string MiddleName { get; set; }
-        public DateTime BirthDate { get; set; }
+        // No need to add BirthDate here, as it is already in the base User class
 
         // Default constructor
-        public static Patient p;
-        public Patient() { p = this; }
+        public Patient() { }
 
         // Parameterized constructor for Patient-specific properties
-        public Patient(string firstName, string lastName, string middleName, string contactNumber, DateTime birthDate, string gender)
+        public Patient(string firstName, string lastName, string middleName, string contactNumber, string sex, string suffix, string username, string password, string confirmPassword, DateTime bdate)
+            : base(firstName, lastName, middleName, contactNumber, sex, suffix, username, password, confirmPassword, bdate)
         {
-            // Manually initialize inherited properties
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.ContactNumber = contactNumber;
-            this.Gender = gender;
-
-            // Initialize Patient-specific properties
-            this.MiddleName = middleName;
-            this.BirthDate = birthDate;
+            // Patient-specific initialization (if needed)
         }
     }
 
+    // Doctor class inheriting from User
     public class Doctor : User
     {
         public string Specialty { get; set; }
@@ -75,41 +69,24 @@ namespace Infocare_Project
         public Doctor() { }
 
         // Parameterized constructor for Doctor-specific properties
-        public Doctor(string firstName, string lastName, string contactNumber, string gender, string specialty, double consultationFee)
+        public Doctor(string firstName, string lastName, string contactNumber, string sex, string specialty, double consultationFee, string username, string password)
+            : base(firstName, lastName, string.Empty, contactNumber, sex, string.Empty, username, password, string.Empty, DateTime.MinValue)
         {
-            // Manually initialize inherited properties
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.ContactNumber = contactNumber;
-            this.Gender = gender;
-
-            // Initialize Doctor-specific properties
-            this.Specialty = specialty;
-            this.ConsultationFee = consultationFee;
+            Specialty = specialty;
+            ConsultationFee = consultationFee;
         }
     }
 
+    // Admin class inheriting from User
     public class Admin : User
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-
         // Default constructor
         public Admin() { }
 
         // Parameterized constructor for Admin-specific properties
-        public Admin(string firstName, string lastName, string contactNumber, string gender, string username, string password)
+        public Admin(string firstName, string lastName, string contactNumber, string sex, string username, string password)
+            : base(firstName, lastName, string.Empty, contactNumber, sex, string.Empty, username, password, string.Empty, DateTime.MinValue)
         {
-            // Manually initialize inherited properties
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.ContactNumber = contactNumber;
-            this.Gender = gender;
-
-            // Initialize Admin-specific properties
-            this.Username = username;
-            this.Password = password;
         }
     }
-
 }
