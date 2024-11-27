@@ -7,140 +7,109 @@ using System.Threading.Tasks;
 
 namespace Infocare_Project
 {
-    class User
+    public class User
     {
+        //info
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string ContactNumber { get; set; }
+        public string Gender { get; set; }
+        public string Suffix { get; set; }
+        public string Bdate { get; set; }
+
+        //accounts
+
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+
+        // Default constructor
         public static User u;
         public User() { u = this; }
 
-
-        //Patient Fields
-        public string patientID;
-        public string patientFirstName;
-        public string patientLastName;
-        public string patientUserName;
-        public string patientPassword;
-        public string patientAge;
-        public string patientContact;
-        public string patientBloodType;
-        public string patientGender;
-        public string patientAddress;
-
-        //Doctor Fields
-        public string DocID;
-        public string DocFirstName;
-        public string DocLastName;
-        public string DocUserName;
-        public string DocPassword;
-        public string DocAge;
-        public string DocContact;
-        public string DocGender;
-        public string DocSpecialization;
-
-        //Patient Properties
-        public string PatientID
+        // Parameterized constructor for common user properties
+        public User(string firstName, string lastName, string contactNumber, string gender, string suffix, string username, string password, string confirmPassword, string bdate)
         {
-            set { this.patientID = value;}
-            get { return this.patientID; }
-        }
-        public string PatientFirstName
-        {
-            set { this.patientFirstName = value; }
-            get { return this.patientFirstName; }
-        }
-        public string PatientLastName
-        {
-            set { this.patientLastName = value; }
-            get { return this.patientLastName; }
-        }
-        public string PatientUserName
-        {
-            set { this.patientUserName = value; }
-            get { return this.patientUserName; }
-        }
-        public string PatientPassword
-        {
-            set { this.patientPassword = value; } 
-            get { return this.patientPassword; }
-        }
-        public string PatientAge
-        {
-            set { this.patientAge = value; }
-            get
-            {
-                return this.patientAge;
-            }
-        }
-        public string PatientContact
-        {
-            set { this.patientContact = value; }
-            get { return this.patientUserName; }
-        }
-        public string PatientBloodType
-        {
-            set { this.patientBloodType = value; }
-            get { return this.patientBloodType; }
-        }
-        public string PatientGender
-        {
-            set { this.patientGender = value; }
-            get { return this.patientGender; }
-        }
-        public string PatientAddress
-        {
-            set { this.patientAddress = value; }
-            get { return this.patientAddress; }
-        }
-
-        //Doctor Properties
-        public string docID
-        {
-            set { this.DocID = value; }
-            get { return this.DocID; }
-        }
-        public string docFirstName
-        {
-            set { this.DocFirstName = value; }
-            get { return this.DocID; }
-        }
-        public string docLastName
-        {
-            set { this.DocID = value; }
-            get { return this.DocID; }
-        }
-        public string docUserName
-        {
-            set { this.DocUserName = value; }
-            get { return this.DocUserName; }
-        }
-        public string docPassword
-        {
-            set { this.DocPassword = value; }
-            get { return this.DocPassword; }
-        }
-        public string docAge
-        {
-            set { this.DocAge = value; }
-            get { return this.DocAge; }
-        }
-        public string docContact
-        {
-            set { this.DocContact = value; }
-            get { return this.DocContact; }
-        }
-        public string docGender
-        {
-            set { this.DocGender = value; }
-            get { return this.DocGender; }
-        }
-        public string docSpecialization
-        {
-            set { this.DocSpecialization = value; }
-            get { return this.DocSpecialization; }
-        }
-        //
-        public int logIn(string user, string pass)
-        {
-            Ty
+            FirstName = firstName;
+            LastName = lastName;
+            ContactNumber = contactNumber;
+            Gender = gender;
+            Suffix = suffix;
+            Username = username;
+            Password = password;
+            ConfirmPassword = confirmPassword;  
+            Bdate = bdate;
         }
     }
+
+    public class Patient : User
+    {
+        public string MiddleName { get; set; }
+        public DateTime BirthDate { get; set; }
+
+        // Default constructor
+        public static Patient p;
+        public Patient() { p = this; }
+
+        // Parameterized constructor for Patient-specific properties
+        public Patient(string firstName, string lastName, string middleName, string contactNumber, DateTime birthDate, string gender)
+        {
+            // Manually initialize inherited properties
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.ContactNumber = contactNumber;
+            this.Gender = gender;
+
+            // Initialize Patient-specific properties
+            this.MiddleName = middleName;
+            this.BirthDate = birthDate;
+        }
+    }
+
+    public class Doctor : User
+    {
+        public string Specialty { get; set; }
+        public double ConsultationFee { get; set; }
+
+        // Default constructor
+        public Doctor() { }
+
+        // Parameterized constructor for Doctor-specific properties
+        public Doctor(string firstName, string lastName, string contactNumber, string gender, string specialty, double consultationFee)
+        {
+            // Manually initialize inherited properties
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.ContactNumber = contactNumber;
+            this.Gender = gender;
+
+            // Initialize Doctor-specific properties
+            this.Specialty = specialty;
+            this.ConsultationFee = consultationFee;
+        }
+    }
+
+    public class Admin : User
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+
+        // Default constructor
+        public Admin() { }
+
+        // Parameterized constructor for Admin-specific properties
+        public Admin(string firstName, string lastName, string contactNumber, string gender, string username, string password)
+        {
+            // Manually initialize inherited properties
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.ContactNumber = contactNumber;
+            this.Gender = gender;
+
+            // Initialize Admin-specific properties
+            this.Username = username;
+            this.Password = password;
+        }
+    }
+
 }

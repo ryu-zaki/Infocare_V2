@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Infocare_Project
 {
@@ -25,6 +26,23 @@ namespace Infocare_Project
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void EnterButton_Click(object sender, EventArgs e)
+        {
+            //
+            User.u.FirstName = FirstnameTxtbox.Text;
+            User.u.LastName = LastNameTxtbox.Text;
+            Patient.p.MiddleName = MiddleNameTxtbox.Text;
+            User.u.Suffix = SuffixTxtbox.Text;
+            User.u.Bdate= SexTxtbox.Text;
+            
+            User.u.Username = UsernameTxtbox.Text;
+            User.u.Password = PasswordTxtbox.Text;
+            User.u.ConfirmPassword = ConfirmPasswordTxtbox.Text;
+            
+
+
         }
     }
 }
