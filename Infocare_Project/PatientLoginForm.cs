@@ -32,28 +32,51 @@ namespace Infocare_Project
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
+
+
             
             string username = UsernameTxtbox.Text;
             string password = PasswordTxtbox.Text;
 
             
+
+            LoginEmpty loginEmpty = new LoginEmpty();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+
+                LoginEmpty nullLogin = new LoginEmpty(username, password);
+
+                FieldsEmptyLogin emptyLogin = new FieldsEmptyLogin();
+                emptyLogin.EmptyLogin(nullLogin);
+
+                this.Hide();
+                return;
+
+            }
+
             Database db = new Database();
 
            
             bool validPatient = db.PatientLogin(username, password);
+           
 
             if (validPatient)
             {
                 
                 MessageBox.Show("Login successful!");
-
-               
+                this.Hide();
             }
+
             else
             {
                 
                 MessageBox.Show("Invalid username or password.");
+                
+                
             }
+
+            
         }
     }
 }
