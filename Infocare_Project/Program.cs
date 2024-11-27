@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace Infocare_Project
 {
     internal static class Program
