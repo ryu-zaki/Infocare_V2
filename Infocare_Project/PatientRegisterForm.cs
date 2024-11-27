@@ -30,19 +30,33 @@ namespace Infocare_Project
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            //
-            User.u.FirstName = FirstnameTxtbox.Text;
-            User.u.LastName = LastNameTxtbox.Text;
-            Patient.p.MiddleName = MiddleNameTxtbox.Text;
-            User.u.Suffix = SuffixTxtbox.Text;
-            User.u.Bdate= SexTxtbox.Text;
-            
-            User.u.Username = UsernameTxtbox.Text;
-            User.u.Password = PasswordTxtbox.Text;
-            User.u.ConfirmPassword = ConfirmPasswordTxtbox.Text;
-            
+            // Initialize User object
+            User newUser = new User()
+            {
+                FirstName = FirstnameTxtbox.Text,
+                LastName = LastNameTxtbox.Text,
+                MiddleName = MiddleNameTxtbox.Text,
+                Suffix = SuffixTxtbox.Text,
+                Bdate = BdayDateTimePicker.Value,  // Assuming Bdate is a DateTime picker
+                Sex = SexCombobox.SelectedItem.ToString(),
+                Username = UsernameTxtbox.Text,
+                Password = PasswordTxtbox.Text,
+                ConfirmPassword = ConfirmPasswordTxtbox.Text,
+                ContactNumber = ContactNumberTxtbox.Text
+            };
 
+            // Validate Passwords
+            if (newUser.Password != newUser.ConfirmPassword)
+            {
+                MessageBox.Show("Passwords do not match.");
+                return;
+            }
 
+            // Register the user (e.g., in the database)
+            Database db = new Database();
+            db.PatientReg1(newUser);  // Assuming PatientReg1 can handle a User object
+
+            MessageBox.Show("Registration successful!");
         }
     }
 }
