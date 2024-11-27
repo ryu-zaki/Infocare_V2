@@ -17,35 +17,69 @@ namespace Infocare_Project
 
         MySqlConnection connection = new MySqlConnection("Server=127.0.0.1; Database=patient;User ID=root;Password=");
 
-        public int getType(string un, string pw)
+        public string getFname(string un)
         {
+            string query = "select P_FirstName from tb_patientinfo where Username='" + un + "'";
 
-            string query = "select Type from UserTable where Username ='" + un + "' AND Password ='" + pw + "'";
             connection.Open();
 
             MySqlCommand cmd = new MySqlCommand(query, connection);
 
             try
             {
-
                 MySqlDataReader dr = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(dr);
                 connection.Close();
-
-                return Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-
+                return dt.Rows[0].ItemArray[0].ToString();
 
             }
-            catch
-            {
-                //Login.l.Error();
-                throw;
-            }
 
-
-
+            catch { throw; }
         }
+
+        public string getLname(string un)
+        {
+            string query = "select P_Lastname from tb_patientinfo where Username='" + un + "'";
+
+            connection.Open();
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+
+            try
+            {
+                MySqlDataReader dr = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+                connection.Close();
+                return dt.Rows[0].ItemArray[0].ToString();
+
+            }
+
+            catch { throw; }
+        }
+
+        public string getMname(string un)
+        {
+            string query = "select P_Middlename from tb_patientinfo where Username='" + un + "'";
+
+            connection.Open();
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+
+            try
+            {
+                MySqlDataReader dr = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+                connection.Close();
+                return dt.Rows[0].ItemArray[0].ToString();
+
+            }
+
+            catch { throw; }
+        }
+
 
     }
 }
