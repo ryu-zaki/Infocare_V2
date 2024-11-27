@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -46,6 +47,7 @@
             guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
             MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
+            guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
             SuspendLayout();
@@ -78,7 +80,7 @@
             EnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
             EnterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             EnterButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            EnterButton.FillColor = Color.FromArgb(108, 221, 183);
+            EnterButton.FillColor = Color.FromArgb(110, 177, 247);
             EnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
             EnterButton.ForeColor = SystemColors.Control;
             EnterButton.Location = new Point(169, 354);
@@ -185,17 +187,25 @@
             MinimizeButton.Size = new Size(43, 26);
             MinimizeButton.TabIndex = 2;
             // 
+            // guna2BorderlessForm1
+            // 
+            guna2BorderlessForm1.BorderRadius = 15;
+            guna2BorderlessForm1.ContainerControl = this;
+            guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            guna2BorderlessForm1.DragStartTransparencyValue = 1D;
+            guna2BorderlessForm1.TransparentWhileDrag = true;
+            // 
             // LandForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(47, 89, 114);
+            BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(894, 574);
             ControlBox = false;
             Controls.Add(MinimizeButton);
             Controls.Add(ExitButton);
             Controls.Add(guna2CustomGradientPanel1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "LandForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -216,5 +226,6 @@
         private Guna.UI2.WinForms.Guna2Button EnterButton;
         private Guna.UI2.WinForms.Guna2Button ExitButton;
         private Guna.UI2.WinForms.Guna2ImageButton MinimizeButton;
+        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
     }
 }
