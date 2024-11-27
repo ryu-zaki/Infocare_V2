@@ -37,7 +37,7 @@ namespace Infocare_Project
                 LastName = LastNameTxtbox.Text,
                 MiddleName = MiddleNameTxtbox.Text,
                 Suffix = SuffixTxtbox.Text,
-                Bdate = BdayDateTimePicker.Value,  // Assuming Bdate is a DateTime picker
+                Bdate = BdayDateTimePicker.Value,
                 Sex = SexCombobox.SelectedItem.ToString(),
                 Username = UsernameTxtbox.Text,
                 Password = PasswordTxtbox.Text,
@@ -57,6 +57,8 @@ namespace Infocare_Project
             db.PatientReg1(newUser);  // Assuming PatientReg1 can handle a User object
 
             MessageBox.Show("Registration successful!");
+
+
         }
     }
 }

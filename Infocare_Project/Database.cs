@@ -42,7 +42,7 @@ namespace Infocare_Project
                     command.Parameters.AddWithValue("@ContactNumber", user.ContactNumber);
 
                     // Convert DateTime to MySQL date format (YYYY-MM-DD) if needed
-                    command.Parameters.AddWithValue("@Bdate", user.Bdate.ToString("yyyy-MM-dd"));  // Ensures correct format
+                    command.Parameters.AddWithValue("@Bdate", user.Bdate.ToString("MM-dd-yyyy"));  // Ensures correct format
                     command.Parameters.AddWithValue("@Sex", user.Sex);
 
                     connection.Open();
