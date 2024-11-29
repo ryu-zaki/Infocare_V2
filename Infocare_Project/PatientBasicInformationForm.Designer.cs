@@ -41,54 +41,34 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             WeightTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             HeightTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
             BmiTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            BloodTypeComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             TreatmentTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             preConditionTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            DateSurgeryTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            EmeNumberTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            EmeRelationshipTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            EmeAddressTextbox = new Guna.UI2.WinForms.Guna2TextBox();
-            EmeNameTextbox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             RegisterButton = new Guna.UI2.WinForms.Guna2Button();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             PreviousSurgeryTextBox = new Guna.UI2.WinForms.Guna2TextBox();
+            NameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            BloodTypeComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2CustomGradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -195,18 +175,6 @@
             BmiTextBox.Size = new Size(211, 46);
             BmiTextBox.TabIndex = 96;
             // 
-            // guna2HtmlLabel1
-            // 
-            guna2HtmlLabel1.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel1.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel1.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel1.Location = new Point(536, 147);
-            guna2HtmlLabel1.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(276, 35);
-            guna2HtmlLabel1.TabIndex = 101;
-            guna2HtmlLabel1.Text = "Emergency Contact";
-            // 
             // guna2HtmlLabel3
             // 
             guna2HtmlLabel3.BackColor = Color.FromArgb(110, 177, 247);
@@ -230,23 +198,6 @@
             guna2HtmlLabel4.Size = new Size(48, 19);
             guna2HtmlLabel4.TabIndex = 107;
             guna2HtmlLabel4.Text = "Weight";
-            // 
-            // BloodTypeComboBox
-            // 
-            BloodTypeComboBox.BackColor = Color.Transparent;
-            BloodTypeComboBox.CustomizableEdges = customizableEdges9;
-            BloodTypeComboBox.DrawMode = DrawMode.OwnerDrawFixed;
-            BloodTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            BloodTypeComboBox.FocusedColor = Color.FromArgb(94, 148, 255);
-            BloodTypeComboBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            BloodTypeComboBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            BloodTypeComboBox.ForeColor = Color.FromArgb(68, 88, 112);
-            BloodTypeComboBox.ItemHeight = 30;
-            BloodTypeComboBox.Location = new Point(242, 259);
-            BloodTypeComboBox.Name = "BloodTypeComboBox";
-            BloodTypeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            BloodTypeComboBox.Size = new Size(211, 36);
-            BloodTypeComboBox.TabIndex = 108;
             // 
             // guna2HtmlLabel5
             // 
@@ -284,18 +235,6 @@
             guna2HtmlLabel6.TabIndex = 118;
             guna2HtmlLabel6.Text = "Previous Surgery";
             // 
-            // guna2HtmlLabel8
-            // 
-            guna2HtmlLabel8.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel8.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel8.Location = new Point(242, 417);
-            guna2HtmlLabel8.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            guna2HtmlLabel8.Size = new Size(100, 19);
-            guna2HtmlLabel8.TabIndex = 117;
-            guna2HtmlLabel8.Text = "Date of Surgery";
-            // 
             // guna2HtmlLabel9
             // 
             guna2HtmlLabel9.BackColor = Color.FromArgb(110, 177, 247);
@@ -324,7 +263,7 @@
             // 
             TreatmentTextBox.BorderColor = Color.FromArgb(93, 202, 209);
             TreatmentTextBox.BorderRadius = 8;
-            TreatmentTextBox.CustomizableEdges = customizableEdges11;
+            TreatmentTextBox.CustomizableEdges = customizableEdges9;
             TreatmentTextBox.DefaultText = "";
             TreatmentTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             TreatmentTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -340,7 +279,7 @@
             TreatmentTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             TreatmentTextBox.PlaceholderText = "";
             TreatmentTextBox.SelectedText = "";
-            TreatmentTextBox.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            TreatmentTextBox.ShadowDecoration.CustomizableEdges = customizableEdges10;
             TreatmentTextBox.Size = new Size(211, 46);
             TreatmentTextBox.TabIndex = 112;
             // 
@@ -348,7 +287,7 @@
             // 
             preConditionTextBox.BorderColor = Color.FromArgb(93, 202, 209);
             preConditionTextBox.BorderRadius = 8;
-            preConditionTextBox.CustomizableEdges = customizableEdges13;
+            preConditionTextBox.CustomizableEdges = customizableEdges11;
             preConditionTextBox.DefaultText = "";
             preConditionTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             preConditionTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -364,191 +303,23 @@
             preConditionTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             preConditionTextBox.PlaceholderText = "";
             preConditionTextBox.SelectedText = "";
-            preConditionTextBox.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            preConditionTextBox.ShadowDecoration.CustomizableEdges = customizableEdges12;
             preConditionTextBox.Size = new Size(211, 46);
             preConditionTextBox.TabIndex = 111;
-            // 
-            // DateSurgeryTextBox
-            // 
-            DateSurgeryTextBox.BorderColor = Color.FromArgb(93, 202, 209);
-            DateSurgeryTextBox.BorderRadius = 8;
-            DateSurgeryTextBox.CustomizableEdges = customizableEdges15;
-            DateSurgeryTextBox.DefaultText = "";
-            DateSurgeryTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            DateSurgeryTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            DateSurgeryTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            DateSurgeryTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            DateSurgeryTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            DateSurgeryTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DateSurgeryTextBox.ForeColor = Color.FromArgb(47, 89, 114);
-            DateSurgeryTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            DateSurgeryTextBox.Location = new Point(242, 437);
-            DateSurgeryTextBox.Name = "DateSurgeryTextBox";
-            DateSurgeryTextBox.PasswordChar = '\0';
-            DateSurgeryTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            DateSurgeryTextBox.PlaceholderText = "";
-            DateSurgeryTextBox.SelectedText = "";
-            DateSurgeryTextBox.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            DateSurgeryTextBox.Size = new Size(211, 46);
-            DateSurgeryTextBox.TabIndex = 119;
-            // 
-            // EmeNumberTextBox
-            // 
-            EmeNumberTextBox.BorderColor = Color.FromArgb(93, 202, 209);
-            EmeNumberTextBox.BorderRadius = 8;
-            EmeNumberTextBox.CustomizableEdges = customizableEdges17;
-            EmeNumberTextBox.DefaultText = "";
-            EmeNumberTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            EmeNumberTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            EmeNumberTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            EmeNumberTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            EmeNumberTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeNumberTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EmeNumberTextBox.ForeColor = Color.FromArgb(47, 89, 114);
-            EmeNumberTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeNumberTextBox.Location = new Point(671, 298);
-            EmeNumberTextBox.Name = "EmeNumberTextBox";
-            EmeNumberTextBox.PasswordChar = '\0';
-            EmeNumberTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            EmeNumberTextBox.PlaceholderText = "";
-            EmeNumberTextBox.SelectedText = "";
-            EmeNumberTextBox.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            EmeNumberTextBox.Size = new Size(211, 46);
-            EmeNumberTextBox.TabIndex = 127;
-            // 
-            // guna2HtmlLabel11
-            // 
-            guna2HtmlLabel11.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel11.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel11.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel11.Location = new Point(475, 278);
-            guna2HtmlLabel11.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            guna2HtmlLabel11.Size = new Size(80, 19);
-            guna2HtmlLabel11.TabIndex = 126;
-            guna2HtmlLabel11.Text = "Relationship";
-            // 
-            // guna2HtmlLabel12
-            // 
-            guna2HtmlLabel12.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel12.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel12.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel12.Location = new Point(671, 278);
-            guna2HtmlLabel12.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            guna2HtmlLabel12.Size = new Size(96, 19);
-            guna2HtmlLabel12.TabIndex = 125;
-            guna2HtmlLabel12.Text = "Phone Number";
-            // 
-            // guna2HtmlLabel13
-            // 
-            guna2HtmlLabel13.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel13.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel13.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel13.Location = new Point(671, 198);
-            guna2HtmlLabel13.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            guna2HtmlLabel13.Size = new Size(52, 19);
-            guna2HtmlLabel13.TabIndex = 124;
-            guna2HtmlLabel13.Text = "Address";
-            // 
-            // guna2HtmlLabel14
-            // 
-            guna2HtmlLabel14.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel14.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel14.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel14.Location = new Point(475, 198);
-            guna2HtmlLabel14.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            guna2HtmlLabel14.Size = new Size(39, 19);
-            guna2HtmlLabel14.TabIndex = 123;
-            guna2HtmlLabel14.Text = "Name";
-            // 
-            // EmeRelationshipTextBox
-            // 
-            EmeRelationshipTextBox.BorderColor = Color.FromArgb(93, 202, 209);
-            EmeRelationshipTextBox.BorderRadius = 8;
-            EmeRelationshipTextBox.CustomizableEdges = customizableEdges19;
-            EmeRelationshipTextBox.DefaultText = "";
-            EmeRelationshipTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            EmeRelationshipTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            EmeRelationshipTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            EmeRelationshipTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            EmeRelationshipTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeRelationshipTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EmeRelationshipTextBox.ForeColor = Color.FromArgb(47, 89, 114);
-            EmeRelationshipTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeRelationshipTextBox.Location = new Point(475, 298);
-            EmeRelationshipTextBox.Name = "EmeRelationshipTextBox";
-            EmeRelationshipTextBox.PasswordChar = '\0';
-            EmeRelationshipTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            EmeRelationshipTextBox.PlaceholderText = "";
-            EmeRelationshipTextBox.SelectedText = "";
-            EmeRelationshipTextBox.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            EmeRelationshipTextBox.Size = new Size(177, 46);
-            EmeRelationshipTextBox.TabIndex = 122;
-            // 
-            // EmeAddressTextbox
-            // 
-            EmeAddressTextbox.BorderColor = Color.FromArgb(93, 202, 209);
-            EmeAddressTextbox.BorderRadius = 8;
-            EmeAddressTextbox.CustomizableEdges = customizableEdges21;
-            EmeAddressTextbox.DefaultText = "";
-            EmeAddressTextbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            EmeAddressTextbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            EmeAddressTextbox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            EmeAddressTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            EmeAddressTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeAddressTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EmeAddressTextbox.ForeColor = Color.FromArgb(47, 89, 114);
-            EmeAddressTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeAddressTextbox.Location = new Point(671, 218);
-            EmeAddressTextbox.Name = "EmeAddressTextbox";
-            EmeAddressTextbox.PasswordChar = '\0';
-            EmeAddressTextbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            EmeAddressTextbox.PlaceholderText = "";
-            EmeAddressTextbox.SelectedText = "";
-            EmeAddressTextbox.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            EmeAddressTextbox.Size = new Size(211, 46);
-            EmeAddressTextbox.TabIndex = 121;
-            // 
-            // EmeNameTextbox
-            // 
-            EmeNameTextbox.BorderColor = Color.FromArgb(93, 202, 209);
-            EmeNameTextbox.BorderRadius = 8;
-            EmeNameTextbox.CustomizableEdges = customizableEdges23;
-            EmeNameTextbox.DefaultText = "";
-            EmeNameTextbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            EmeNameTextbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            EmeNameTextbox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            EmeNameTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            EmeNameTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeNameTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EmeNameTextbox.ForeColor = Color.FromArgb(47, 89, 114);
-            EmeNameTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            EmeNameTextbox.Location = new Point(475, 218);
-            EmeNameTextbox.Name = "EmeNameTextbox";
-            EmeNameTextbox.PasswordChar = '\0';
-            EmeNameTextbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            EmeNameTextbox.PlaceholderText = "";
-            EmeNameTextbox.SelectedText = "";
-            EmeNameTextbox.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            EmeNameTextbox.Size = new Size(177, 46);
-            EmeNameTextbox.TabIndex = 120;
             // 
             // guna2CustomGradientPanel1
             // 
             guna2CustomGradientPanel1.BackColor = Color.Transparent;
             guna2CustomGradientPanel1.BorderRadius = 15;
             guna2CustomGradientPanel1.Controls.Add(RegisterButton);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges27;
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges15;
             guna2CustomGradientPanel1.FillColor = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel1.FillColor3 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel1.FillColor4 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel1.Location = new Point(497, 484);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2CustomGradientPanel1.Size = new Size(105, 44);
             guna2CustomGradientPanel1.TabIndex = 128;
             // 
@@ -556,7 +327,7 @@
             // 
             RegisterButton.BackColor = Color.Transparent;
             RegisterButton.BorderRadius = 15;
-            RegisterButton.CustomizableEdges = customizableEdges25;
+            RegisterButton.CustomizableEdges = customizableEdges13;
             RegisterButton.DisabledState.BorderColor = Color.DarkGray;
             RegisterButton.DisabledState.CustomBorderColor = Color.DarkGray;
             RegisterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -567,10 +338,11 @@
             RegisterButton.Location = new Point(0, 0);
             RegisterButton.Margin = new Padding(3, 2, 3, 2);
             RegisterButton.Name = "RegisterButton";
-            RegisterButton.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            RegisterButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
             RegisterButton.Size = new Size(102, 40);
             RegisterButton.TabIndex = 3;
             RegisterButton.Text = "Register";
+            RegisterButton.Click += RegisterButton_Click;
             // 
             // guna2BorderlessForm1
             // 
@@ -584,7 +356,7 @@
             // 
             PreviousSurgeryTextBox.BorderColor = Color.FromArgb(93, 202, 209);
             PreviousSurgeryTextBox.BorderRadius = 8;
-            PreviousSurgeryTextBox.CustomizableEdges = customizableEdges29;
+            PreviousSurgeryTextBox.CustomizableEdges = customizableEdges19;
             PreviousSurgeryTextBox.DefaultText = "";
             PreviousSurgeryTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             PreviousSurgeryTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -600,9 +372,37 @@
             PreviousSurgeryTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             PreviousSurgeryTextBox.PlaceholderText = "";
             PreviousSurgeryTextBox.SelectedText = "";
-            PreviousSurgeryTextBox.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            PreviousSurgeryTextBox.ShadowDecoration.CustomizableEdges = customizableEdges20;
             PreviousSurgeryTextBox.Size = new Size(211, 46);
             PreviousSurgeryTextBox.TabIndex = 129;
+            // 
+            // NameLabel
+            // 
+            NameLabel.BackColor = Color.Transparent;
+            NameLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            NameLabel.Location = new Point(335, 32);
+            NameLabel.Name = "NameLabel";
+            NameLabel.Size = new Size(63, 34);
+            NameLabel.TabIndex = 130;
+            NameLabel.Text = "name";
+            // 
+            // BloodTypeComboBox
+            // 
+            BloodTypeComboBox.BackColor = Color.Transparent;
+            BloodTypeComboBox.CustomizableEdges = customizableEdges17;
+            BloodTypeComboBox.DrawMode = DrawMode.OwnerDrawFixed;
+            BloodTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            BloodTypeComboBox.FocusedColor = Color.FromArgb(94, 148, 255);
+            BloodTypeComboBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            BloodTypeComboBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            BloodTypeComboBox.ForeColor = Color.FromArgb(68, 88, 112);
+            BloodTypeComboBox.ItemHeight = 30;
+            BloodTypeComboBox.Items.AddRange(new object[] { "A+", "A", "B+", "B", "O+", "O", "AB", "AB. " });
+            BloodTypeComboBox.Location = new Point(242, 253);
+            BloodTypeComboBox.Name = "BloodTypeComboBox";
+            BloodTypeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            BloodTypeComboBox.Size = new Size(140, 36);
+            BloodTypeComboBox.TabIndex = 132;
             // 
             // PatientBasicInformationForm
             // 
@@ -611,29 +411,19 @@
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(894, 574);
             ControlBox = false;
+            Controls.Add(BloodTypeComboBox);
+            Controls.Add(NameLabel);
             Controls.Add(PreviousSurgeryTextBox);
             Controls.Add(guna2CustomGradientPanel1);
-            Controls.Add(EmeNumberTextBox);
-            Controls.Add(guna2HtmlLabel11);
-            Controls.Add(guna2HtmlLabel12);
-            Controls.Add(guna2HtmlLabel13);
-            Controls.Add(guna2HtmlLabel14);
-            Controls.Add(EmeRelationshipTextBox);
-            Controls.Add(EmeAddressTextbox);
-            Controls.Add(EmeNameTextbox);
-            Controls.Add(DateSurgeryTextBox);
             Controls.Add(guna2HtmlLabel6);
-            Controls.Add(guna2HtmlLabel8);
             Controls.Add(guna2HtmlLabel9);
             Controls.Add(guna2HtmlLabel10);
             Controls.Add(TreatmentTextBox);
             Controls.Add(preConditionTextBox);
             Controls.Add(guna2HtmlLabel7);
             Controls.Add(guna2HtmlLabel5);
-            Controls.Add(BloodTypeComboBox);
             Controls.Add(guna2HtmlLabel4);
             Controls.Add(guna2HtmlLabel3);
-            Controls.Add(guna2HtmlLabel1);
             Controls.Add(BmiTextBox);
             Controls.Add(ExitButton);
             Controls.Add(guna2HtmlLabel2);
@@ -648,36 +438,25 @@
         }
 
         #endregion
-
         private Guna.UI2.WinForms.Guna2TextBox WeightTextBox;
         private Guna.UI2.WinForms.Guna2TextBox HeightTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2Button ExitButton;
         private Guna.UI2.WinForms.Guna2TextBox BmiTextBox;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
-        private Guna.UI2.WinForms.Guna2ComboBox BloodTypeComboBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
         private Guna.UI2.WinForms.Guna2TextBox TreatmentTextBox;
         private Guna.UI2.WinForms.Guna2TextBox preConditionTextBox;
-        private Guna.UI2.WinForms.Guna2TextBox DateSurgeryTextBox;
-        private Guna.UI2.WinForms.Guna2TextBox EmeNumberTextBox;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
-        private Guna.UI2.WinForms.Guna2TextBox EmeRelationshipTextBox;
-        private Guna.UI2.WinForms.Guna2TextBox EmeAddressTextbox;
-        private Guna.UI2.WinForms.Guna2TextBox EmeNameTextbox;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private Guna.UI2.WinForms.Guna2Button RegisterButton;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2TextBox PreviousSurgeryTextBox;
+        private Guna.UI2.WinForms.Guna2HtmlLabel NameLabel;
+        private Guna.UI2.WinForms.Guna2ComboBox BloodTypeComboBox;
     }
 }
