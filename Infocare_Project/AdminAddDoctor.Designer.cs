@@ -103,7 +103,7 @@
             UserNameTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             UserNameTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             UserNameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            UserNameTextBox.Location = new Point(63, 202);
+            UserNameTextBox.Location = new Point(69, 202);
             UserNameTextBox.Name = "UserNameTextBox";
             UserNameTextBox.PasswordChar = '\0';
             UserNameTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -128,7 +128,7 @@
             FirstNameTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FirstNameTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             FirstNameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            FirstNameTextBox.Location = new Point(63, 135);
+            FirstNameTextBox.Location = new Point(69, 135);
             FirstNameTextBox.Name = "FirstNameTextBox";
             FirstNameTextBox.PasswordChar = '\0';
             FirstNameTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -144,7 +144,7 @@
             guna2HtmlLabel1.BackColor = Color.FromArgb(13, 41, 80);
             guna2HtmlLabel1.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             guna2HtmlLabel1.ForeColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel1.Location = new Point(237, 30);
+            guna2HtmlLabel1.Location = new Point(243, 26);
             guna2HtmlLabel1.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(114, 35);
@@ -156,7 +156,7 @@
             guna2HtmlLabel2.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             guna2HtmlLabel2.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel2.Location = new Point(247, 82);
+            guna2HtmlLabel2.Location = new Point(253, 78);
             guna2HtmlLabel2.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(98, 26);
@@ -169,7 +169,7 @@
             guna2PictureBox4.CustomizableEdges = customizableEdges18;
             guna2PictureBox4.FillColor = Color.FromArgb(13, 41, 80);
             guna2PictureBox4.ImageRotate = 0F;
-            guna2PictureBox4.Location = new Point(224, 15);
+            guna2PictureBox4.Location = new Point(230, 11);
             guna2PictureBox4.Name = "guna2PictureBox4";
             guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges19;
             guna2PictureBox4.Size = new Size(140, 64);
@@ -190,7 +190,7 @@
             ConfirmPasswordTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ConfirmPasswordTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             ConfirmPasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ConfirmPasswordTextBox.Location = new Point(63, 325);
+            ConfirmPasswordTextBox.Location = new Point(69, 325);
             ConfirmPasswordTextBox.Name = "ConfirmPasswordTextBox";
             ConfirmPasswordTextBox.PasswordChar = '\0';
             ConfirmPasswordTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -215,7 +215,7 @@
             PasswordTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             PasswordTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             PasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            PasswordTextBox.Location = new Point(63, 264);
+            PasswordTextBox.Location = new Point(69, 264);
             PasswordTextBox.Name = "PasswordTextBox";
             PasswordTextBox.PasswordChar = '\0';
             PasswordTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -240,7 +240,7 @@
             ConsultationTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ConsultationTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             ConsultationTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ConsultationTextBox.Location = new Point(305, 202);
+            ConsultationTextBox.Location = new Point(311, 202);
             ConsultationTextBox.Name = "ConsultationTextBox";
             ConsultationTextBox.PasswordChar = '\0';
             ConsultationTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -265,7 +265,7 @@
             LastNameTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             LastNameTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             LastNameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            LastNameTextBox.Location = new Point(305, 135);
+            LastNameTextBox.Location = new Point(311, 135);
             LastNameTextBox.Name = "LastNameTextBox";
             LastNameTextBox.PasswordChar = '\0';
             LastNameTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -295,7 +295,7 @@
             SpecializationComboBox.ItemsAppearance.ForeColor = Color.FromArgb(68, 88, 112);
             SpecializationComboBox.ItemsAppearance.SelectedBackColor = Color.Transparent;
             SpecializationComboBox.ItemsAppearance.SelectedForeColor = Color.FromArgb(68, 88, 112);
-            SpecializationComboBox.Location = new Point(305, 280);
+            SpecializationComboBox.Location = new Point(311, 280);
             SpecializationComboBox.Name = "SpecializationComboBox";
             SpecializationComboBox.ShadowDecoration.BorderRadius = 15;
             SpecializationComboBox.ShadowDecoration.Color = Color.Transparent;
@@ -315,7 +315,7 @@
             TimeComboBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             TimeComboBox.ForeColor = Color.FromArgb(68, 88, 112);
             TimeComboBox.ItemHeight = 30;
-            TimeComboBox.Location = new Point(305, 335);
+            TimeComboBox.Location = new Point(311, 335);
             TimeComboBox.Name = "TimeComboBox";
             TimeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges7;
             TimeComboBox.Size = new Size(211, 36);
@@ -326,7 +326,7 @@
             SLabel.BackColor = Color.FromArgb(110, 177, 247);
             SLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             SLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            SLabel.Location = new Point(305, 264);
+            SLabel.Location = new Point(311, 264);
             SLabel.Margin = new Padding(3, 2, 3, 2);
             SLabel.Name = "SLabel";
             SLabel.Size = new Size(74, 15);
@@ -338,7 +338,7 @@
             TALabel.BackColor = Color.FromArgb(110, 177, 247);
             TALabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             TALabel.ForeColor = Color.FromArgb(13, 41, 80);
-            TALabel.Location = new Point(305, 321);
+            TALabel.Location = new Point(311, 321);
             TALabel.Margin = new Padding(3, 2, 3, 2);
             TALabel.Name = "TALabel";
             TALabel.Size = new Size(87, 15);
@@ -350,7 +350,7 @@
             FNLabel.BackColor = Color.FromArgb(110, 177, 247);
             FNLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             FNLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            FNLabel.Location = new Point(66, 119);
+            FNLabel.Location = new Point(72, 119);
             FNLabel.Margin = new Padding(3, 2, 3, 2);
             FNLabel.Name = "FNLabel";
             FNLabel.Size = new Size(57, 15);
@@ -363,7 +363,7 @@
             LNLabel.BackColor = Color.FromArgb(110, 177, 247);
             LNLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             LNLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            LNLabel.Location = new Point(308, 120);
+            LNLabel.Location = new Point(314, 120);
             LNLabel.Margin = new Padding(3, 2, 3, 2);
             LNLabel.Name = "LNLabel";
             LNLabel.Size = new Size(56, 15);
@@ -376,7 +376,7 @@
             UNlabel.BackColor = Color.FromArgb(110, 177, 247);
             UNlabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             UNlabel.ForeColor = Color.FromArgb(13, 41, 80);
-            UNlabel.Location = new Point(63, 186);
+            UNlabel.Location = new Point(69, 186);
             UNlabel.Margin = new Padding(3, 2, 3, 2);
             UNlabel.Name = "UNlabel";
             UNlabel.Size = new Size(58, 15);
@@ -389,7 +389,7 @@
             PLabel.BackColor = Color.FromArgb(110, 177, 247);
             PLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             PLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            PLabel.Location = new Point(63, 249);
+            PLabel.Location = new Point(69, 249);
             PLabel.Margin = new Padding(3, 2, 3, 2);
             PLabel.Name = "PLabel";
             PLabel.Size = new Size(53, 15);
@@ -402,7 +402,7 @@
             CPLabel.BackColor = Color.FromArgb(110, 177, 247);
             CPLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             CPLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            CPLabel.Location = new Point(63, 311);
+            CPLabel.Location = new Point(69, 311);
             CPLabel.Margin = new Padding(3, 2, 3, 2);
             CPLabel.Name = "CPLabel";
             CPLabel.Size = new Size(98, 15);
@@ -415,7 +415,7 @@
             CFLabel.BackColor = Color.FromArgb(110, 177, 247);
             CFLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             CFLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            CFLabel.Location = new Point(307, 186);
+            CFLabel.Location = new Point(313, 186);
             CFLabel.Margin = new Padding(3, 2, 3, 2);
             CFLabel.Name = "CFLabel";
             CFLabel.Size = new Size(89, 15);
@@ -433,7 +433,7 @@
             guna2CustomGradientPanel2.FillColor2 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor3 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor4 = Color.FromArgb(53, 93, 134);
-            guna2CustomGradientPanel2.Location = new Point(237, 397);
+            guna2CustomGradientPanel2.Location = new Point(243, 397);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
             guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges5;
             guna2CustomGradientPanel2.Size = new Size(107, 44);

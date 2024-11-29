@@ -161,7 +161,7 @@
   <data name="guna2PictureBox5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAGNJREFUeF7t0KENwEAMBEF3k15SzfdPEmJoQ79kaUZaeOQCAAAAAAAAAAAAAAAA
+        DAAACwwBP0AiyAAAAGNJREFUeF7t0KENwEAMBEF3k15SzfdPEmJoQ79kaUZaeOQCAAAAAAAAAAAAAAAA
         AAAAAAAANnne8+leeXuvGmmuvL1XjTRX3t6rRporbwcAAAAAAAAAAAAAAAAAAAAAAIAFIn4SsLIf22EO
         7QAAAABJRU5ErkJggg==
 </value>
@@ -180,6 +180,14 @@
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
+  <data name="MinimizeButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAGdJREFUeF7t0CESA0EQxLD9/6cTYjq064CEjfwAAAAAAAAAAAAAAAAAAAAAAICv
+        +THV9lsdI22/1THS9lsdI22/1THS9lsdI22/1THS9lsdI20HAAAAAAAAAAAAAAAAAAAAAAA+4r0/gjV1
+        JoKzuGwAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="guna2PictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

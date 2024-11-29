@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Infocare_Project.Classes;
+using static Infocare_Project.Classes.Database_DataGridView;
 
 namespace Infocare_Project
 {
@@ -25,7 +26,19 @@ namespace Infocare_Project
 
         private void PatientListButton_Click(object sender, EventArgs e)
         {
+            PatientList patientList = new PatientList();
+            try
+            {
+                // Fetch the patient list
+                DataTable patientTable = patientList.GetPatientList();
 
+                // Bind the DataTable to the DataGridView
+                DataGridViewList.DataSource = patientTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
 
         private void DoctorListButton_Click(object sender, EventArgs e)
@@ -48,6 +61,9 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
+            MessageForm messageForm = new MessageForm();
+
+           // messageForm.
             this.Close();
         }
     }

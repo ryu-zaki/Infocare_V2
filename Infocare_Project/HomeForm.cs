@@ -28,5 +28,12 @@ namespace Infocare_Project
             loginForm.Show();
             this.Hide();
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            LandForm landForm = new LandForm();
+            landForm.Show();
+            this.Close();
+        }
     }
 }

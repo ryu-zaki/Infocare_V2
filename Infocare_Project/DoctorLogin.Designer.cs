@@ -56,8 +56,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
@@ -86,6 +87,7 @@
             guna2PictureBox6 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
+            MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox2).BeginInit();
             guna2CustomGradientPanel1.SuspendLayout();
@@ -462,7 +464,7 @@
             guna2PictureBox6.Location = new Point(12, -32);
             guna2PictureBox6.Name = "guna2PictureBox6";
             guna2PictureBox6.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2PictureBox6.Size = new Size(862, 72);
+            guna2PictureBox6.Size = new Size(818, 72);
             guna2PictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox6.TabIndex = 135;
             guna2PictureBox6.TabStop = false;
@@ -477,16 +479,34 @@
             // 
             // guna2PictureBox4
             // 
-            guna2PictureBox4.CustomizableEdges = customizableEdges27;
+            guna2PictureBox4.CustomizableEdges = customizableEdges28;
             guna2PictureBox4.Image = (Image)resources.GetObject("guna2PictureBox4.Image");
             guna2PictureBox4.ImageRotate = 0F;
             guna2PictureBox4.Location = new Point(-25, 35);
             guna2PictureBox4.Name = "guna2PictureBox4";
-            guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges29;
             guna2PictureBox4.Size = new Size(63, 531);
             guna2PictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox4.TabIndex = 136;
             guna2PictureBox4.TabStop = false;
+            // 
+            // MinimizeButton
+            // 
+            MinimizeButton.BackColor = Color.Silver;
+            MinimizeButton.CheckedState.ImageSize = new Size(64, 64);
+            MinimizeButton.Cursor = Cursors.Hand;
+            MinimizeButton.HoverState.ImageSize = new Size(20, 30);
+            MinimizeButton.Image = (Image)resources.GetObject("MinimizeButton.Image");
+            MinimizeButton.ImageOffset = new Point(0, 0);
+            MinimizeButton.ImageRotate = 0F;
+            MinimizeButton.ImageSize = new Size(20, 30);
+            MinimizeButton.Location = new Point(806, 0);
+            MinimizeButton.Margin = new Padding(3, 2, 3, 2);
+            MinimizeButton.Name = "MinimizeButton";
+            MinimizeButton.PressedState.ImageSize = new Size(20, 30);
+            MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges27;
+            MinimizeButton.Size = new Size(43, 26);
+            MinimizeButton.TabIndex = 160;
             // 
             // DoctorLogin
             // 
@@ -495,6 +515,7 @@
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(894, 574);
             ControlBox = false;
+            Controls.Add(MinimizeButton);
             Controls.Add(guna2HtmlLabel4);
             Controls.Add(ExitButton);
             Controls.Add(HomeButton);
@@ -569,5 +590,6 @@
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox6;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
+        private Guna.UI2.WinForms.Guna2ImageButton MinimizeButton;
     }
 }

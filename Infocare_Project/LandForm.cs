@@ -18,5 +18,10 @@ namespace Infocare_Project
         {
             this.Close();
         }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

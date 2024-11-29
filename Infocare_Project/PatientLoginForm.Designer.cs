@@ -53,11 +53,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2CirclePictureBox3 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             EnterButton = new Guna.UI2.WinForms.Guna2Button();
@@ -71,7 +71,6 @@
             guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
@@ -82,6 +81,9 @@
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2CirclePictureBox2 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
+            guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox3).BeginInit();
             guna2CustomGradientPanel1.SuspendLayout();
@@ -105,18 +107,6 @@
             guna2HtmlLabel2.TabIndex = 4;
             guna2HtmlLabel2.Text = "Patient Login ";
             // 
-            // guna2HtmlLabel3
-            // 
-            guna2HtmlLabel3.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel3.Font = new Font("Impact", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2HtmlLabel3.ForeColor = Color.White;
-            guna2HtmlLabel3.Location = new Point(50, 11);
-            guna2HtmlLabel3.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(49, 27);
-            guna2HtmlLabel3.TabIndex = 7;
-            guna2HtmlLabel3.Text = "Home";
-            // 
             // guna2PictureBox2
             // 
             guna2PictureBox2.CustomizableEdges = customizableEdges1;
@@ -132,12 +122,15 @@
             // 
             // guna2CirclePictureBox3
             // 
+            guna2CirclePictureBox3.ErrorImage = null;
+            guna2CirclePictureBox3.Image = (Image)resources.GetObject("guna2CirclePictureBox3.Image");
             guna2CirclePictureBox3.ImageRotate = 0F;
-            guna2CirclePictureBox3.Location = new Point(167, 180);
+            guna2CirclePictureBox3.Location = new Point(130, 166);
             guna2CirclePictureBox3.Name = "guna2CirclePictureBox3";
             guna2CirclePictureBox3.ShadowDecoration.CustomizableEdges = customizableEdges3;
             guna2CirclePictureBox3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            guna2CirclePictureBox3.Size = new Size(142, 136);
+            guna2CirclePictureBox3.Size = new Size(214, 169);
+            guna2CirclePictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2CirclePictureBox3.TabIndex = 16;
             guna2CirclePictureBox3.TabStop = false;
             // 
@@ -299,22 +292,6 @@
             guna2Button1.Text = "Register";
             guna2Button1.Click += guna2Button1_Click;
             // 
-            // HomeButton
-            // 
-            HomeButton.DisabledState.BorderColor = Color.DarkGray;
-            HomeButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            HomeButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            HomeButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            HomeButton.FillColor = Color.FromArgb(13, 41, 80);
-            HomeButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            HomeButton.ForeColor = Color.White;
-            HomeButton.Location = new Point(5, 4);
-            HomeButton.Name = "HomeButton";
-            HomeButton.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            HomeButton.Size = new Size(43, 43);
-            HomeButton.TabIndex = 69;
-            // 
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.FromArgb(13, 41, 80);
@@ -330,19 +307,19 @@
             // guna2PictureBox4
             // 
             guna2PictureBox4.BorderRadius = 20;
-            guna2PictureBox4.CustomizableEdges = customizableEdges13;
+            guna2PictureBox4.CustomizableEdges = customizableEdges12;
             guna2PictureBox4.FillColor = Color.FromArgb(13, 41, 80);
             guna2PictureBox4.ImageRotate = 0F;
             guna2PictureBox4.Location = new Point(284, 11);
             guna2PictureBox4.Name = "guna2PictureBox4";
-            guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges13;
             guna2PictureBox4.Size = new Size(279, 95);
             guna2PictureBox4.TabIndex = 70;
             guna2PictureBox4.TabStop = false;
             // 
             // ExitButton
             // 
-            ExitButton.CustomizableEdges = customizableEdges15;
+            ExitButton.CustomizableEdges = customizableEdges14;
             ExitButton.DisabledState.BorderColor = Color.DarkGray;
             ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
             ExitButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -353,7 +330,7 @@
             ExitButton.Location = new Point(851, 0);
             ExitButton.Margin = new Padding(3, 2, 3, 2);
             ExitButton.Name = "ExitButton";
-            ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges15;
             ExitButton.Size = new Size(43, 26);
             ExitButton.TabIndex = 72;
             ExitButton.Text = "X";
@@ -363,7 +340,7 @@
             // 
             UsernameTxtbox.BorderColor = Color.FromArgb(93, 202, 209);
             UsernameTxtbox.BorderRadius = 8;
-            UsernameTxtbox.CustomizableEdges = customizableEdges17;
+            UsernameTxtbox.CustomizableEdges = customizableEdges16;
             UsernameTxtbox.DefaultText = "";
             UsernameTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             UsernameTxtbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -379,7 +356,7 @@
             UsernameTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             UsernameTxtbox.PlaceholderText = "Username";
             UsernameTxtbox.SelectedText = "";
-            UsernameTxtbox.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            UsernameTxtbox.ShadowDecoration.CustomizableEdges = customizableEdges17;
             UsernameTxtbox.Size = new Size(211, 46);
             UsernameTxtbox.TabIndex = 90;
             // 
@@ -387,7 +364,7 @@
             // 
             PasswordTxtbox.BorderColor = Color.FromArgb(93, 202, 209);
             PasswordTxtbox.BorderRadius = 8;
-            PasswordTxtbox.CustomizableEdges = customizableEdges19;
+            PasswordTxtbox.CustomizableEdges = customizableEdges18;
             PasswordTxtbox.DefaultText = "";
             PasswordTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             PasswordTxtbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -403,18 +380,18 @@
             PasswordTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             PasswordTxtbox.PlaceholderText = "Password";
             PasswordTxtbox.SelectedText = "";
-            PasswordTxtbox.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            PasswordTxtbox.ShadowDecoration.CustomizableEdges = customizableEdges19;
             PasswordTxtbox.Size = new Size(211, 46);
             PasswordTxtbox.TabIndex = 91;
             // 
             // guna2PictureBox1
             // 
-            guna2PictureBox1.CustomizableEdges = customizableEdges21;
+            guna2PictureBox1.CustomizableEdges = customizableEdges20;
             guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
             guna2PictureBox1.ImageRotate = 0F;
             guna2PictureBox1.Location = new Point(381, 166);
             guna2PictureBox1.Name = "guna2PictureBox1";
-            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges21;
             guna2PictureBox1.Size = new Size(71, 149);
             guna2PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox1.TabIndex = 92;
@@ -422,12 +399,12 @@
             // 
             // guna2PictureBox3
             // 
-            guna2PictureBox3.CustomizableEdges = customizableEdges23;
+            guna2PictureBox3.CustomizableEdges = customizableEdges22;
             guna2PictureBox3.Image = (Image)resources.GetObject("guna2PictureBox3.Image");
             guna2PictureBox3.ImageRotate = 0F;
             guna2PictureBox3.Location = new Point(381, 443);
             guna2PictureBox3.Name = "guna2PictureBox3";
-            guna2PictureBox3.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            guna2PictureBox3.ShadowDecoration.CustomizableEdges = customizableEdges23;
             guna2PictureBox3.Size = new Size(71, 149);
             guna2PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox3.TabIndex = 93;
@@ -465,6 +442,55 @@
             guna2CirclePictureBox1.TabIndex = 100;
             guna2CirclePictureBox1.TabStop = false;
             // 
+            // guna2CircleButton1
+            // 
+            guna2CircleButton1.DisabledState.BorderColor = Color.DarkGray;
+            guna2CircleButton1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2CircleButton1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2CircleButton1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2CircleButton1.FillColor = Color.Empty;
+            guna2CircleButton1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            guna2CircleButton1.ForeColor = Color.White;
+            guna2CircleButton1.Image = (Image)resources.GetObject("guna2CircleButton1.Image");
+            guna2CircleButton1.ImageSize = new Size(60, 60);
+            guna2CircleButton1.Location = new Point(0, 0);
+            guna2CircleButton1.Margin = new Padding(3, 2, 3, 2);
+            guna2CircleButton1.Name = "guna2CircleButton1";
+            guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges27;
+            guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            guna2CircleButton1.Size = new Size(44, 38);
+            guna2CircleButton1.TabIndex = 102;
+            // 
+            // guna2HtmlLabel11
+            // 
+            guna2HtmlLabel11.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel11.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel11.Location = new Point(37, 11);
+            guna2HtmlLabel11.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel11.Name = "guna2HtmlLabel11";
+            guna2HtmlLabel11.Size = new Size(50, 22);
+            guna2HtmlLabel11.TabIndex = 145;
+            guna2HtmlLabel11.Text = "Home";
+            // 
+            // MinimizeButton
+            // 
+            MinimizeButton.BackColor = Color.Silver;
+            MinimizeButton.CheckedState.ImageSize = new Size(64, 64);
+            MinimizeButton.Cursor = Cursors.Hand;
+            MinimizeButton.HoverState.ImageSize = new Size(20, 30);
+            MinimizeButton.Image = (Image)resources.GetObject("MinimizeButton.Image");
+            MinimizeButton.ImageOffset = new Point(0, 0);
+            MinimizeButton.ImageRotate = 0F;
+            MinimizeButton.ImageSize = new Size(20, 30);
+            MinimizeButton.Location = new Point(808, 0);
+            MinimizeButton.Margin = new Padding(3, 2, 3, 2);
+            MinimizeButton.Name = "MinimizeButton";
+            MinimizeButton.PressedState.ImageSize = new Size(20, 30);
+            MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            MinimizeButton.Size = new Size(43, 26);
+            MinimizeButton.TabIndex = 160;
+            // 
             // PatientLoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -472,6 +498,8 @@
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(894, 574);
             ControlBox = false;
+            Controls.Add(MinimizeButton);
+            Controls.Add(guna2HtmlLabel11);
             Controls.Add(guna2CirclePictureBox2);
             Controls.Add(guna2CirclePictureBox1);
             Controls.Add(guna2HtmlLabel1);
@@ -480,7 +508,6 @@
             Controls.Add(PasswordTxtbox);
             Controls.Add(UsernameTxtbox);
             Controls.Add(ExitButton);
-            Controls.Add(HomeButton);
             Controls.Add(guna2CustomGradientPanel2);
             Controls.Add(guna2HtmlLabel10);
             Controls.Add(guna2HtmlLabel8);
@@ -492,9 +519,9 @@
             Controls.Add(guna2CirclePictureBox3);
             Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(guna2PictureBox2);
-            Controls.Add(guna2HtmlLabel3);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(guna2PictureBox4);
+            Controls.Add(guna2CircleButton1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PatientLoginForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -513,7 +540,6 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox3;
         private Guna.UI2.WinForms.Guna2Button EnterButton;
@@ -527,7 +553,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2CircleButton HomeButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
         private Guna.UI2.WinForms.Guna2Button ExitButton;
@@ -538,5 +563,8 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox2;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
+        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
+        private Guna.UI2.WinForms.Guna2ImageButton MinimizeButton;
     }
 }

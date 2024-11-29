@@ -45,10 +45,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientBasicInformationForm));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             WeightTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             HeightTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -69,6 +71,7 @@
             PreviousSurgeryTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             NameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             BloodTypeComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2CustomGradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -356,7 +359,7 @@
             // 
             PreviousSurgeryTextBox.BorderColor = Color.FromArgb(93, 202, 209);
             PreviousSurgeryTextBox.BorderRadius = 8;
-            PreviousSurgeryTextBox.CustomizableEdges = customizableEdges19;
+            PreviousSurgeryTextBox.CustomizableEdges = customizableEdges20;
             PreviousSurgeryTextBox.DefaultText = "";
             PreviousSurgeryTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             PreviousSurgeryTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -372,7 +375,7 @@
             PreviousSurgeryTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             PreviousSurgeryTextBox.PlaceholderText = "";
             PreviousSurgeryTextBox.SelectedText = "";
-            PreviousSurgeryTextBox.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            PreviousSurgeryTextBox.ShadowDecoration.CustomizableEdges = customizableEdges21;
             PreviousSurgeryTextBox.Size = new Size(211, 46);
             PreviousSurgeryTextBox.TabIndex = 129;
             // 
@@ -389,7 +392,7 @@
             // BloodTypeComboBox
             // 
             BloodTypeComboBox.BackColor = Color.Transparent;
-            BloodTypeComboBox.CustomizableEdges = customizableEdges17;
+            BloodTypeComboBox.CustomizableEdges = customizableEdges18;
             BloodTypeComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             BloodTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             BloodTypeComboBox.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -400,9 +403,27 @@
             BloodTypeComboBox.Items.AddRange(new object[] { "A+", "A", "B+", "B", "O+", "O", "AB", "AB. " });
             BloodTypeComboBox.Location = new Point(242, 253);
             BloodTypeComboBox.Name = "BloodTypeComboBox";
-            BloodTypeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            BloodTypeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges19;
             BloodTypeComboBox.Size = new Size(140, 36);
             BloodTypeComboBox.TabIndex = 132;
+            // 
+            // MinimizeButton
+            // 
+            MinimizeButton.BackColor = Color.Silver;
+            MinimizeButton.CheckedState.ImageSize = new Size(64, 64);
+            MinimizeButton.Cursor = Cursors.Hand;
+            MinimizeButton.HoverState.ImageSize = new Size(20, 30);
+            MinimizeButton.Image = (Image)resources.GetObject("MinimizeButton.Image");
+            MinimizeButton.ImageOffset = new Point(0, 0);
+            MinimizeButton.ImageRotate = 0F;
+            MinimizeButton.ImageSize = new Size(20, 30);
+            MinimizeButton.Location = new Point(808, 0);
+            MinimizeButton.Margin = new Padding(3, 2, 3, 2);
+            MinimizeButton.Name = "MinimizeButton";
+            MinimizeButton.PressedState.ImageSize = new Size(20, 30);
+            MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges17;
+            MinimizeButton.Size = new Size(43, 26);
+            MinimizeButton.TabIndex = 160;
             // 
             // PatientBasicInformationForm
             // 
@@ -411,6 +432,7 @@
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(894, 574);
             ControlBox = false;
+            Controls.Add(MinimizeButton);
             Controls.Add(BloodTypeComboBox);
             Controls.Add(NameLabel);
             Controls.Add(PreviousSurgeryTextBox);
@@ -458,5 +480,6 @@
         private Guna.UI2.WinForms.Guna2TextBox PreviousSurgeryTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel NameLabel;
         private Guna.UI2.WinForms.Guna2ComboBox BloodTypeComboBox;
+        private Guna.UI2.WinForms.Guna2ImageButton MinimizeButton;
     }
 }
