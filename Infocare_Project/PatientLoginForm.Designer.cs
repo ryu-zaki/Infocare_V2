@@ -53,10 +53,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2CirclePictureBox3 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -83,7 +82,6 @@
             guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox3).BeginInit();
             guna2CustomGradientPanel1.SuspendLayout();
@@ -424,7 +422,7 @@
             guna2CirclePictureBox2.ImageRotate = 0F;
             guna2CirclePictureBox2.Location = new Point(81, 393);
             guna2CirclePictureBox2.Name = "guna2CirclePictureBox2";
-            guna2CirclePictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges25;
+            guna2CirclePictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges24;
             guna2CirclePictureBox2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             guna2CirclePictureBox2.Size = new Size(56, 54);
             guna2CirclePictureBox2.TabIndex = 101;
@@ -436,7 +434,7 @@
             guna2CirclePictureBox1.ImageRotate = 0F;
             guna2CirclePictureBox1.Location = new Point(81, 335);
             guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges25;
             guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             guna2CirclePictureBox1.Size = new Size(56, 54);
             guna2CirclePictureBox1.TabIndex = 100;
@@ -456,7 +454,7 @@
             guna2CircleButton1.Location = new Point(0, 0);
             guna2CircleButton1.Margin = new Padding(3, 2, 3, 2);
             guna2CircleButton1.Name = "guna2CircleButton1";
-            guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges27;
+            guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges26;
             guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             guna2CircleButton1.Size = new Size(44, 38);
             guna2CircleButton1.TabIndex = 102;
@@ -473,24 +471,6 @@
             guna2HtmlLabel11.TabIndex = 145;
             guna2HtmlLabel11.Text = "Home";
             // 
-            // MinimizeButton
-            // 
-            MinimizeButton.BackColor = Color.Silver;
-            MinimizeButton.CheckedState.ImageSize = new Size(64, 64);
-            MinimizeButton.Cursor = Cursors.Hand;
-            MinimizeButton.HoverState.ImageSize = new Size(20, 30);
-            MinimizeButton.Image = (Image)resources.GetObject("MinimizeButton.Image");
-            MinimizeButton.ImageOffset = new Point(0, 0);
-            MinimizeButton.ImageRotate = 0F;
-            MinimizeButton.ImageSize = new Size(20, 30);
-            MinimizeButton.Location = new Point(808, 0);
-            MinimizeButton.Margin = new Padding(3, 2, 3, 2);
-            MinimizeButton.Name = "MinimizeButton";
-            MinimizeButton.PressedState.ImageSize = new Size(20, 30);
-            MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            MinimizeButton.Size = new Size(43, 26);
-            MinimizeButton.TabIndex = 160;
-            // 
             // PatientLoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -498,7 +478,6 @@
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(894, 574);
             ControlBox = false;
-            Controls.Add(MinimizeButton);
             Controls.Add(guna2HtmlLabel11);
             Controls.Add(guna2CirclePictureBox2);
             Controls.Add(guna2CirclePictureBox1);
@@ -565,6 +544,5 @@
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
-        private Guna.UI2.WinForms.Guna2ImageButton MinimizeButton;
     }
 }
