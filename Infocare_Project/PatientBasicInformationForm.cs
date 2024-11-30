@@ -54,9 +54,9 @@ namespace Infocare_Project
         private void ExitButton_Click(object sender, EventArgs e)
         {
 
-            DialogResult YesNO = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (YesNO == DialogResult.Yes)
+            if (confirm == DialogResult.Yes)
             {
                 try
                 {
@@ -127,6 +127,38 @@ namespace Infocare_Project
         {
             PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
             patientRegisterForm.Show();
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+
+            
+            //DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            //if (confirm == DialogResult.Yes)
+            //{
+            //    try
+            //    {
+            //        Database db = new Database();
+            //        db.DeletePatientByUsername(LoggedInUsername);
+
+            //        MessageBox.Show("Your data has been deleted.");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Error deleting data: " + ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        this.Close();
+            //    }
+            //}
+           
         }
     }
 }

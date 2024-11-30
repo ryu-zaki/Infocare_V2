@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infocare_Project.NewFolder;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +14,14 @@ namespace Infocare_Project
 {
     public partial class PatientRegisterForm : Form
     {
+        private PlaceHolderHandler _placeHolderHandler;
         int houseNo;
         int zipCode;
         int zone;
         public PatientRegisterForm()
         {
             InitializeComponent();
+            _placeHolderHandler = new PlaceHolderHandler();
         }
 
         private void PatientRegisterForm_Load(object sender, EventArgs e)
@@ -105,6 +108,93 @@ namespace Infocare_Project
             {
                 // Display error message
                 MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        //TEXTBOX PLACE HOLDER BRO!!!
+
+        private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(UsernameTxtbox, UserNameLabel, "Username");
+        }
+
+        private void PasswordTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(PasswordTxtbox, PasswordLabel, "Password");
+        }
+
+        private void ContactNumberTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(ContactNumberTxtbox, ContactNumberLabel, "Contact Number");
+        }
+
+        private void ConfirmPasswordTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(ConfirmPasswordTxtbox, ConfirmPasswordLabel, "Confirm Password");
+        }
+
+        private void FirstnameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(FirstnameTxtbox, FirstNameLabel, "First name");
+        }
+
+        private void LastNameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(LastNameTxtbox, LastNameLabel, "Last name");
+        }
+
+        private void HouseNoTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(HouseNoTxtbox, HouseLabel, "House No.");
+        }
+
+        private void ZipCodeTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(ZipCodeTxtbox, ZipCodeLabel, "Zip Code");
+        }
+
+        private void ZoneTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(ZoneTxtbox, ZoneLabel, "Zone");
+        }
+
+        private void MiddleNameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(MiddleNameTxtbox, MiddleNameLabel, "Middle name");
+        }
+
+        private void SuffixTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(SuffixTxtbox, SuffixLabel, "Suffix");
+        }
+
+        private void StreetTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(StreetTxtbox, StreetLabel, "Street");
+        }
+
+        private void BarangayTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(BarangayTxtbox, BarangayLabel, "Barangay");
+        }
+
+        private void CityTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(CityTxtbox, CityLabel, "City");
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Unsaved changes may be lost.", "Confirmation", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                PatientLoginForm patientLoginForm = new PatientLoginForm();
+                patientLoginForm.Show();
+                this.Hide();
+            }
+            else
+            {
             }
         }
     }

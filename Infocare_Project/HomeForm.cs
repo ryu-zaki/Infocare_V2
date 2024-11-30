@@ -42,5 +42,10 @@ namespace Infocare_Project
             adminLogin.Show();
             this.Hide();
         }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
