@@ -136,29 +136,24 @@ namespace Infocare_Project
 
         private void BackButton_Click(object sender, EventArgs e)
         {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Your progress will be lost.", "Back to Page 1", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            
-            //DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    Database db = new Database();
+                    db.DeletePatientReg1Data(LoggedInUsername);
 
-            //if (confirm == DialogResult.Yes)
-            //{
-            //    try
-            //    {
-            //        Database db = new Database();
-            //        db.DeletePatientByUsername(LoggedInUsername);
-
-            //        MessageBox.Show("Your data has been deleted.");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Error deleting data: " + ex.Message);
-            //    }
-            //    finally
-            //    {
-            //        this.Close();
-            //    }
-            //}
-           
+                    var patientInfoForm = new PatientRegisterForm();
+                    patientInfoForm.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
     }
 }

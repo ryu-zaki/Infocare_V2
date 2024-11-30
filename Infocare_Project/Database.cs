@@ -155,6 +155,41 @@ namespace Infocare_Project
             }
         }
 
+        public User GetUserByUsername(string username)
+        {
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT * FROM tb_patientinfo WHERE p_Username = @Username";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+
+                try
+                {
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User
+                            {
+                                FirstName = reader["P_FirstName"].ToString(),
+                                LastName = reader["P_LastName"].ToString(),
+                                Username = reader["P_Username"].ToString(),
+                            };
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error fetching user data: " + ex.Message);
+                }
+            }
+        }
+
 
         public bool PatientLogin(string username, string password)
         {
@@ -297,6 +332,72 @@ namespace Infocare_Project
                 catch (Exception ex)
                 {
                     throw new Exception("Error inserting doctor data: " + ex.Message);
+                }
+            }
+        }
+
+        public void NullPatientReg2Data(string username)
+        {
+            string query = @"
+        UPDATE tb_patientinfo
+        SET 
+            P_Height = NULL,
+            P_Weight = NULL,
+            P_BMI = NULL,
+            P_Blood_Type = NULL,
+            P_Precondition = NULL,
+            P_Treatment = NULL,
+            P_PrevSurgery = NULL,
+            P_Alergy = NULL,
+            P_Medication = NULL
+        WHERE P_Username = @Username";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@Username", username);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No records were found to update.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error deleting patient data: " + ex.Message);
+                }
+            }
+        }
+
+        public void DeletePatientReg1Data(string username)
+        {
+            string query = @"
+                Delete from tb_patientinfo
+                WHERE P_Username = @Username";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@Username", username);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No records were found to update.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error deleting patient data: " + ex.Message);
                 }
             }
         }
