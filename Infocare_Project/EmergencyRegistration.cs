@@ -17,13 +17,16 @@ namespace Infocare_Project
     {
         private PlaceHolderHandler _placeHolderHandler;
         private string LoggedInUsername;
-
+        private string Firstname;
+        private string Lastname;
         public EmergencyRegistration(string usrnm, string firstName, string lastName)
         {
             InitializeComponent();
             _placeHolderHandler = new PlaceHolderHandler();
             LoggedInUsername = usrnm;
             NameLabel.Text = $"{lastName}, {firstName}";
+            Firstname = firstName;
+            Lastname = lastName;
         }
 
 
@@ -197,6 +200,29 @@ namespace Infocare_Project
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Your progress will be lost.", "Back to Page 2", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    Database db = new Database();
+                    db.NullPatientReg2Data(LoggedInUsername); 
+
+                    var patientInfoForm = new PatientBasicInformationForm(LoggedInUsername, Firstname, Lastname);
+                    patientInfoForm.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
     }
 }
 
