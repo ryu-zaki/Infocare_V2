@@ -34,11 +34,11 @@ namespace Infocare_Project
         {
 
 
-            
+
             string username = UsernameTxtbox.Text;
             string password = PasswordTxtbox.Text;
 
-            
+
 
             LoginEmpty loginEmpty = new LoginEmpty();
 
@@ -57,26 +57,43 @@ namespace Infocare_Project
 
             Database db = new Database();
 
-           
+
             bool validPatient = db.PatientLogin(username, password);
-           
+
 
             if (validPatient)
             {
-                
+
                 MessageBox.Show("Login successful!");
                 this.Hide();
             }
 
             else
             {
-                
+
                 MessageBox.Show("Invalid username or password.");
-                
-                
+
+
             }
 
-            
+
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            HomeForm homeForm = new HomeForm();
+            homeForm.Show();
+            this.Hide();
+        }
+
+        private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

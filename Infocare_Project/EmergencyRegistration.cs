@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infocare_Project.NewFolder;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +15,13 @@ namespace Infocare_Project
 {
     public partial class EmergencyRegistration : Form
     {
+        private PlaceHolderHandler _placeHolderHandler;
         private string LoggedInUsername;
 
         public EmergencyRegistration(string usrnm, string firstName, string lastName)
         {
             InitializeComponent();
+            _placeHolderHandler = new PlaceHolderHandler();
             LoggedInUsername = usrnm;
             NameLabel.Text = $"{lastName}, {firstName}";
         }
@@ -139,6 +142,61 @@ namespace Infocare_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        private void FirstnameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(FirstnameTxtbox, FirstNameLabel, "Firstname");
+        }
+
+        private void LastNameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(LastNameTxtbox, LastNameLabel, "Lastname");
+        }
+
+        private void MiddleNameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(MiddleNameTxtbox, MiddleNameLabel, "Middlename");
+        }
+
+        private void SuffixTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(SuffixTxtbox, SuffixLabel, "Suffix");
+        }
+
+        private void HouseNoTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(HouseNoTxtbox, HouseLabel, "House No.");
+        }
+
+        private void ZipCodeTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(ZipCodeTxtbox, ZipCodeLabel, "Zip code");
+        }
+
+        private void ZoneTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(ZoneTxtbox, ZoneLabel, "Zone");
+        }
+
+        private void StreetTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(StreetTxtbox, StreetLabel, "Street");
+        }
+
+        private void BarangayTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(BarangayTxtbox, BarangayLabel, "Barangay");
+        }
+
+        private void CityTxtbox_TextChanged(object sender, EventArgs e)
+        {
+            _placeHolderHandler.HandleTextBoxPlaceholder(CityTxtbox, CityLabel, "City");
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
-    }
+}
 
