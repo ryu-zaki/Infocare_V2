@@ -61,7 +61,7 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            MessageForm messageForm = new MessageForm();
+           
 
            // messageForm.
             this.Close();

@@ -66,10 +66,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            EnterButton = new Guna.UI2.WinForms.Guna2Button();
+            PatientEnterButton = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            DoctorEnterButton = new Guna.UI2.WinForms.Guna2Button();
+            AdminEnterButton = new Guna.UI2.WinForms.Guna2Button();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2PictureBox6 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -115,27 +115,27 @@
             guna2HtmlLabel1.TabIndex = 2;
             guna2HtmlLabel1.Text = "Choose as";
             // 
-            // EnterButton
+            // PatientEnterButton
             // 
-            EnterButton.BackColor = Color.Transparent;
-            EnterButton.BorderRadius = 35;
-            EnterButton.Cursor = Cursors.Hand;
-            EnterButton.CustomizableEdges = customizableEdges1;
-            EnterButton.DisabledState.BorderColor = Color.DarkGray;
-            EnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            EnterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            EnterButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            EnterButton.FillColor = Color.FromArgb(13, 41, 80);
-            EnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            EnterButton.ForeColor = SystemColors.Control;
-            EnterButton.Location = new Point(0, 0);
-            EnterButton.Margin = new Padding(3, 2, 3, 2);
-            EnterButton.Name = "EnterButton";
-            EnterButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            EnterButton.Size = new Size(149, 72);
-            EnterButton.TabIndex = 3;
-            EnterButton.Text = "Patient";
-            EnterButton.Click += EnterButton_Click;
+            PatientEnterButton.BackColor = Color.Transparent;
+            PatientEnterButton.BorderRadius = 35;
+            PatientEnterButton.Cursor = Cursors.Hand;
+            PatientEnterButton.CustomizableEdges = customizableEdges1;
+            PatientEnterButton.DisabledState.BorderColor = Color.DarkGray;
+            PatientEnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            PatientEnterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            PatientEnterButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            PatientEnterButton.FillColor = Color.FromArgb(13, 41, 80);
+            PatientEnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            PatientEnterButton.ForeColor = SystemColors.Control;
+            PatientEnterButton.Location = new Point(0, 0);
+            PatientEnterButton.Margin = new Padding(3, 2, 3, 2);
+            PatientEnterButton.Name = "PatientEnterButton";
+            PatientEnterButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            PatientEnterButton.Size = new Size(149, 72);
+            PatientEnterButton.TabIndex = 3;
+            PatientEnterButton.Text = "Patient";
+            PatientEnterButton.Click += EnterButton_Click;
             // 
             // guna2HtmlLabel2
             // 
@@ -149,47 +149,48 @@
             guna2HtmlLabel2.TabIndex = 6;
             guna2HtmlLabel2.Text = "Back";
             // 
-            // guna2Button1
+            // DoctorEnterButton
             // 
-            guna2Button1.BackColor = Color.Transparent;
-            guna2Button1.BorderRadius = 35;
-            guna2Button1.Cursor = Cursors.Hand;
-            guna2Button1.CustomizableEdges = customizableEdges3;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.FromArgb(13, 41, 80);
-            guna2Button1.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2Button1.ForeColor = SystemColors.Control;
-            guna2Button1.Location = new Point(0, 0);
-            guna2Button1.Margin = new Padding(3, 2, 3, 2);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2Button1.Size = new Size(149, 72);
-            guna2Button1.TabIndex = 3;
-            guna2Button1.Text = "Doctor";
+            DoctorEnterButton.BackColor = Color.Transparent;
+            DoctorEnterButton.BorderRadius = 35;
+            DoctorEnterButton.Cursor = Cursors.Hand;
+            DoctorEnterButton.CustomizableEdges = customizableEdges3;
+            DoctorEnterButton.DisabledState.BorderColor = Color.DarkGray;
+            DoctorEnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            DoctorEnterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            DoctorEnterButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            DoctorEnterButton.FillColor = Color.FromArgb(13, 41, 80);
+            DoctorEnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            DoctorEnterButton.ForeColor = SystemColors.Control;
+            DoctorEnterButton.Location = new Point(0, 0);
+            DoctorEnterButton.Margin = new Padding(3, 2, 3, 2);
+            DoctorEnterButton.Name = "DoctorEnterButton";
+            DoctorEnterButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            DoctorEnterButton.Size = new Size(149, 72);
+            DoctorEnterButton.TabIndex = 3;
+            DoctorEnterButton.Text = "Doctor";
             // 
-            // guna2Button2
+            // AdminEnterButton
             // 
-            guna2Button2.BackColor = Color.Transparent;
-            guna2Button2.BorderRadius = 35;
-            guna2Button2.Cursor = Cursors.Hand;
-            guna2Button2.CustomizableEdges = customizableEdges5;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = Color.FromArgb(13, 41, 80);
-            guna2Button2.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2Button2.ForeColor = SystemColors.Control;
-            guna2Button2.Location = new Point(0, 0);
-            guna2Button2.Margin = new Padding(3, 2, 3, 2);
-            guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Button2.Size = new Size(149, 72);
-            guna2Button2.TabIndex = 3;
-            guna2Button2.Text = "Admin";
+            AdminEnterButton.BackColor = Color.Transparent;
+            AdminEnterButton.BorderRadius = 35;
+            AdminEnterButton.Cursor = Cursors.Hand;
+            AdminEnterButton.CustomizableEdges = customizableEdges5;
+            AdminEnterButton.DisabledState.BorderColor = Color.DarkGray;
+            AdminEnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            AdminEnterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            AdminEnterButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            AdminEnterButton.FillColor = Color.FromArgb(13, 41, 80);
+            AdminEnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            AdminEnterButton.ForeColor = SystemColors.Control;
+            AdminEnterButton.Location = new Point(0, 0);
+            AdminEnterButton.Margin = new Padding(3, 2, 3, 2);
+            AdminEnterButton.Name = "AdminEnterButton";
+            AdminEnterButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            AdminEnterButton.Size = new Size(149, 72);
+            AdminEnterButton.TabIndex = 3;
+            AdminEnterButton.Text = "Admin";
+            AdminEnterButton.Click += AdminEnterButton_Click;
             // 
             // ExitButton
             // 
@@ -275,7 +276,7 @@
             // 
             guna2CustomGradientPanel2.BackColor = Color.Transparent;
             guna2CustomGradientPanel2.BorderRadius = 35;
-            guna2CustomGradientPanel2.Controls.Add(EnterButton);
+            guna2CustomGradientPanel2.Controls.Add(PatientEnterButton);
             guna2CustomGradientPanel2.CustomizableEdges = customizableEdges26;
             guna2CustomGradientPanel2.FillColor = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor2 = Color.FromArgb(53, 93, 134);
@@ -291,7 +292,7 @@
             // 
             guna2CustomGradientPanel1.BackColor = Color.Transparent;
             guna2CustomGradientPanel1.BorderRadius = 35;
-            guna2CustomGradientPanel1.Controls.Add(guna2Button1);
+            guna2CustomGradientPanel1.Controls.Add(DoctorEnterButton);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges24;
             guna2CustomGradientPanel1.FillColor = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(53, 93, 134);
@@ -307,7 +308,7 @@
             // 
             guna2CustomGradientPanel3.BackColor = Color.Transparent;
             guna2CustomGradientPanel3.BorderRadius = 35;
-            guna2CustomGradientPanel3.Controls.Add(guna2Button2);
+            guna2CustomGradientPanel3.Controls.Add(AdminEnterButton);
             guna2CustomGradientPanel3.CustomizableEdges = customizableEdges22;
             guna2CustomGradientPanel3.FillColor = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel3.FillColor2 = Color.FromArgb(53, 93, 134);
@@ -416,12 +417,12 @@
             // guna2HtmlLabel4
             // 
             guna2HtmlLabel4.BackColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            guna2HtmlLabel4.Font = new Font("Microsoft Sans Serif", 13.5F, FontStyle.Regular, GraphicsUnit.Point);
             guna2HtmlLabel4.ForeColor = Color.FromArgb(93, 202, 209);
-            guna2HtmlLabel4.Location = new Point(503, 164);
+            guna2HtmlLabel4.Location = new Point(509, 165);
             guna2HtmlLabel4.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            guna2HtmlLabel4.Size = new Size(210, 26);
+            guna2HtmlLabel4.Size = new Size(203, 24);
             guna2HtmlLabel4.TabIndex = 157;
             guna2HtmlLabel4.Text = "Your health is our priority";
             // 
@@ -489,10 +490,10 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2Button EnterButton;
+        private Guna.UI2.WinForms.Guna2Button PatientEnterButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button DoctorEnterButton;
+        private Guna.UI2.WinForms.Guna2Button AdminEnterButton;
         private Guna.UI2.WinForms.Guna2Button ExitButton;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;

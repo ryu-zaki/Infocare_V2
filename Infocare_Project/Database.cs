@@ -22,56 +22,65 @@ namespace Infocare_Project
             return new MySqlConnection(connectionString);
         }
 
-        // Method to insert a User (common method for all User types)
+        /*PATIENT
+         * DATABASE  
+         */
+
+
         public void PatientReg1(User user)
         {
             using (var connection = GetConnection())
             {
                 try
                 {
-                    // SQL query to insert data into the patient info table
-                    string query = "INSERT INTO tb_patientinfo (p_FirstName, p_LastName, p_middlename, p_Suffix, p_Username, P_Password, P_ContactNumber, P_Bdate, P_Sex) " +
-                                   "VALUES (@FirstName, @LastName, @MiddleName, @Suffix, @Username, @Password, @ContactNumber, @Bdate, @Sex)";
+                    string query = @"INSERT INTO tb_patientinfo (p_FirstName, p_LastName, p_MiddleName, p_Suffix, p_Username, P_Password, P_ContactNumber, P_Bdate, P_Sex, P_Address) " +
+                                   "VALUES (@FirstName, @LastName, @MiddleName, @Suffix, @Username, @Password, @ContactNumber, @Bdate, @Sex, @Address)";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
+
                     command.Parameters.AddWithValue("@FirstName", user.FirstName);
                     command.Parameters.AddWithValue("@LastName", user.LastName);
                     command.Parameters.AddWithValue("@MiddleName", user.MiddleName);
                     command.Parameters.AddWithValue("@Suffix", user.Suffix);
                     command.Parameters.AddWithValue("@Username", user.Username);
-                    command.Parameters.AddWithValue("@Password", user.Password); // You can change this to hashed password if needed
+                    command.Parameters.AddWithValue("@Password", user.Password);
                     command.Parameters.AddWithValue("@ContactNumber", user.ContactNumber);
 
-                    // Convert DateTime to MySQL date format (YYYY-MM-DD) if needed
-                    command.Parameters.AddWithValue("@Bdate", user.Bdate.ToString("MM-dd-yyyy"));  // Ensures correct format
+                    command.Parameters.AddWithValue("@Bdate", user.Bdate.ToString("dd-MM-yyyy"));
                     command.Parameters.AddWithValue("@Sex", user.Sex);
+
+                    string fullAddress = $"{user.HouseNo},{user.ZipCode}, {user.Zone}, {user.Street} street, Brgy. {user.Barangay}, {user.City}";
+                    command.Parameters.AddWithValue("@Address", fullAddress);
 
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
-                    // Handle any database errors
                     throw new Exception("Error inserting patient data: " + ex.Message);
                 }
             }
         }
 
-        public void PatientReg2(Patient patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg)
+
+        public void PatientReg2(Patient patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string allergy, string medication)
         {
             // SQL query to insert or update the patient's record
             string query = @"
-                INSERT INTO tb_patientinfo (P_Height, P_Weight, P_BMI, P_Blood_Type, P_Precondition, P_Treatment, P_PrevSurgery, P_username)
-                VALUES (@Height, @Weight, @BMI, @BloodType, @PreCon, @Treatment, @PrevSurg, @Username)
-                ON DUPLICATE KEY UPDATE 
-                P_Height = IFNULL(@Height, P_Height),
-                P_Weight = IFNULL(@Weight, P_Weight),
-                P_BMI = IFNULL(@BMI, P_BMI),
-                P_Blood_Type = IFNULL(@BloodType, P_Blood_Type),
-                P_Precondition = IFNULL(@PreCon, P_Precondition),
-                P_Treatment = IFNULL(@Treatment, P_Treatment),
-                P_PrevSurgery = IFNULL(@PrevSurg, P_PrevSurgery);";
-
+        INSERT INTO tb_patientinfo 
+        (P_Height, P_Weight, P_BMI, P_Blood_Type, P_Precondition, P_Treatment, P_PrevSurgery, P_Username, P_Alergy, P_Medication)
+        VALUES 
+        (@Height, @Weight, @BMI, @BloodType, @PreCon, @Treatment, @PrevSurg, @Username, @Allergy, @Medication)
+        ON DUPLICATE KEY UPDATE 
+        P_Height = IFNULL(@Height, P_Height),
+        P_Weight = IFNULL(@Weight, P_Weight),
+        P_BMI = IFNULL(@BMI, P_BMI),
+        P_Blood_Type = IFNULL(@BloodType, P_Blood_Type),
+        P_Precondition = IFNULL(@PreCon, P_Precondition),
+        P_Treatment = IFNULL(@Treatment, P_Treatment),
+        P_PrevSurgery = IFNULL(@PrevSurg, P_PrevSurgery),
+        P_Alergy = IFNULL(@Allergy, P_Alergy),
+        P_Medication = IFNULL(@Medication, P_Medication);";
 
             using (var connection = GetConnection())
             {
@@ -85,6 +94,8 @@ namespace Infocare_Project
                 cmd.Parameters.AddWithValue("@PreCon", string.IsNullOrEmpty(preCon) ? DBNull.Value : preCon);
                 cmd.Parameters.AddWithValue("@Treatment", string.IsNullOrEmpty(treatment) ? DBNull.Value : treatment);
                 cmd.Parameters.AddWithValue("@PrevSurg", string.IsNullOrEmpty(prevSurg) ? DBNull.Value : prevSurg);
+                cmd.Parameters.AddWithValue("@Allergy", string.IsNullOrEmpty(allergy) ? DBNull.Value : allergy);
+                cmd.Parameters.AddWithValue("@Medication", string.IsNullOrEmpty(medication) ? DBNull.Value : medication);
                 cmd.Parameters.AddWithValue("@Username", username);
 
                 try
@@ -99,14 +110,55 @@ namespace Infocare_Project
             }
         }
 
+        public void PatientReg3(EmergencyContact Emergency, string username, string firstName, string lastName, string middleName, string suffix, int houseNo, string street, string barangay, string city, int zipCode, int zone)
+        {
+
+            string query = @"
+                INSERT INTO tb_patientinfo 
+                (P_username, Eme_Firstname, Eme_Middlename, Eme_Lastname, Eme_Suffix, Eme_Address)
+                VALUES 
+                (@P_username, @Eme_Firstname, @Eme_Middlename, @Eme_Lastname, @Eme_Suffix, @Eme_Address)
+                ON DUPLICATE KEY UPDATE 
+                Eme_Firstname = @Eme_Firstname,
+                Eme_Middlename = @Eme_Middlename,
+                Eme_Lastname = @Eme_Lastname,
+                Eme_Suffix = @Eme_Suffix,
+                Eme_Address = @Eme_Address;";
 
 
+            using (var connection = GetConnection())
+            {
+                try
+                {
 
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    // Personal details
+                    command.Parameters.AddWithValue("@P_username", username);
+                    command.Parameters.AddWithValue("@Eme_Firstname", string.IsNullOrEmpty(firstName) ? DBNull.Value : firstName);
+                    command.Parameters.AddWithValue("@Eme_Middlename", string.IsNullOrEmpty(middleName) ? DBNull.Value : middleName);
+                    command.Parameters.AddWithValue("@Eme_Lastname", string.IsNullOrEmpty(lastName) ? DBNull.Value : lastName);
+                    command.Parameters.AddWithValue("@Eme_Suffix", string.IsNullOrEmpty(suffix) ? DBNull.Value : suffix);
+
+                    // Address concatenation
+                    string fullAddress = $"{houseNo},{zipCode}, {zone}, {street} street, Brgy. {barangay}, {city}";
+                    command.Parameters.AddWithValue("@Eme_Address", string.IsNullOrEmpty(fullAddress) ? DBNull.Value : fullAddress);
+
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error updating patient data: " + ex.Message);
+                }
+            }
+        }
 
 
         public bool PatientLogin(string username, string password)
         {
-            using (var connection = GetConnection()) 
+            using (var connection = GetConnection())
             {
                 try
                 {
@@ -116,9 +168,9 @@ namespace Infocare_Project
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
 
-                    connection.Open();                   
+                    connection.Open();
                     int result = Convert.ToInt32(command.ExecuteScalar());
-                    
+
                     return result == 1;
                 }
                 catch (Exception ex)
@@ -189,5 +241,34 @@ namespace Infocare_Project
             }
         }
 
+        //ADMIN LOGIN
+        public bool AdminLogin(string username, string password)
+        {
+
+            using (var connection = GetConnection())
+            {
+                try
+                {
+                    string query = "SELECT COUNT(*) FROM tb_adminlogin WHERE a_Username = @Username AND a_Password = @Password";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    connection.Open();
+                    int result = Convert.ToInt32(command.ExecuteScalar());
+
+                    return result == 1;
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error validating login: " + ex.Message);
+                }
+            }
+
+        }
+
     }
+
 }

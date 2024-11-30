@@ -35,5 +35,12 @@ namespace Infocare_Project
             landForm.Show();
             this.Close();
         }
+
+        private void AdminEnterButton_Click(object sender, EventArgs e)
+        {
+            AdminLogin adminLogin = new AdminLogin();
+            adminLogin.Show();
+            this.Hide();
+        }
     }
 }

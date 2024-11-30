@@ -1,11 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infocare_Project
 {
+    // Emergency Contact Class
+    public class EmergencyContact
+    {
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Suffix { get; set; }
+        public int HouseNo { get; set; }
+        public string Street { get; set; }
+        public string Barangay { get; set; }
+        public string City { get; set; }
+        public int ZipCode { get; set; }
+        public int Zone { get; set; }
+
+        // Default Constructor
+        public EmergencyContact() { }
+
+        // Parameterized Constructor
+        public EmergencyContact(string firstName, string lastName, string middleName, string suffix, int houseNo, string street, string barangay, string city, int zipCode, int zone)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            MiddleName = middleName;
+            Suffix = suffix;
+            HouseNo = houseNo;
+            Street = street;
+            Barangay = barangay;
+            City = city;
+            ZipCode = zipCode;
+            Zone = zone;
+        }
+    }
+
+    // User Class
     public class User
     {
         // Personal Information
@@ -23,15 +53,20 @@ namespace Infocare_Project
         public string ConfirmPassword { get; set; }
 
         // Address Components
-        public string HouseNo { get; set; }
+        public int HouseNo { get; set; }
         public string Street { get; set; }
         public string Barangay { get; set; }
         public string City { get; set; }
+        public int ZipCode { get; set; }
+        public int Zone { get; set; }
+
+        // Emergency Contact
+        public EmergencyContact EmergencyContact { get; set; }
 
         // Default Constructor
         public User() { }
 
-        // Parameterized Constructor (without address)
+        // Parameterized Constructor (without emergency contact)
         public User(string firstName, string lastName, string middleName, string contactNumber, string sex, string suffix, string username, string password, string confirmPassword, DateTime bdate)
         {
             FirstName = firstName;
@@ -46,8 +81,9 @@ namespace Infocare_Project
             Bdate = bdate;
         }
 
-        // Parameterized Constructor (with address)
-        public User(string firstName, string lastName, string middleName, string contactNumber, string sex, string suffix, string username, string password, string confirmPassword, DateTime bdate, string houseNo, string street, string barangay, string city)
+        // Parameterized Constructor (with address and emergency contact)
+        public User(string firstName, string lastName, string middleName, string contactNumber, string sex, string suffix, string username, string password, string confirmPassword, DateTime bdate,
+            int houseNo, int zipcode, int zone, string street, string barangay, string city, EmergencyContact emergencyContact)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -60,31 +96,37 @@ namespace Infocare_Project
             ConfirmPassword = confirmPassword;
             Bdate = bdate;
             HouseNo = houseNo;
+            ZipCode = zipcode;
+            Zone = zone;
             Street = street;
             Barangay = barangay;
             City = city;
+
+            EmergencyContact = emergencyContact; // Assign emergency contact object
         }
     }
 
-
+    // Patient Class
     public class Patient : User
     {
         // BasicHealthInfo
         public double Height { get; set; }
         public double Weight { get; set; }
         public double BMI { get; set; }
-        public string BloodType { get; set; }  // Fixed typo
+        public string BloodType { get; set; }
         public string PreCon { get; set; }
         public string Treatment { get; set; }
         public string PrevSurg { get; set; }
         public string NameLbl { get; set; }
+        public string Alergy { get; set; }
+        public string Medication { get; set; }
 
         public Patient() { }
 
         // Patient Constructor
         public Patient(string firstName, string lastName, string middleName, string contactNumber, string sex, string suffix, string username, string password, string confirmPassword, DateTime bdate,
-                       double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string nameLbl)
-            : base(firstName, lastName, middleName, contactNumber, sex, suffix, username, password, confirmPassword, bdate)
+                       double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string nameLbl, string alergy, string medication, EmergencyContact emergencyContact)
+            : base(firstName, lastName, middleName, contactNumber, sex, suffix, username, password, confirmPassword, bdate, 0, 0, 0, "", "", "", emergencyContact)
         {
             Height = height;
             Weight = weight;
@@ -94,9 +136,12 @@ namespace Infocare_Project
             Treatment = treatment;
             PrevSurg = prevSurg;
             NameLbl = nameLbl;
+            Alergy = alergy;
+            Medication = medication;
         }
     }
 
+    // Doctor Class
     public class Doctor : User
     {
         public string Specialty { get; set; }
@@ -112,6 +157,7 @@ namespace Infocare_Project
         }
     }
 
+    // Admin Class
     public class Admin : User
     {
         public Admin() { }

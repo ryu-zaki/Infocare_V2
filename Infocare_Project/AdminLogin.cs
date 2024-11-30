@@ -16,5 +16,51 @@ namespace Infocare_Project
         {
             InitializeComponent();
         }
+
+        private void EnterButton_Click(object sender, EventArgs e)
+        {
+
+            string username = UsernameTxtbox.Text;
+            string password = PasswordTxtbox.Text;
+
+
+            Database db = new Database();
+
+            bool valid = db.AdminLogin(username, password);
+
+            if (valid)
+            {
+
+
+                MessageBox.Show("Log in Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var adminDashboard = new AdminDashboard();
+                adminDashboard.Show();
+                this.Hide();
+
+            }
+            else
+            {
+
+                MessageBox.Show("Invalid Username or Password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+            }
+
+
+
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+
+                LoginEmpty nullLogin = new LoginEmpty(username, password);
+
+                MessageBox.Show("Username or Password can't be missing", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                this.Hide();
+                return;
+
+            }
+
+        }
     }
 }
