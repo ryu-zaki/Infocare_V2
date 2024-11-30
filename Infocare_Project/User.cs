@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Cms;
+using System;
 
 namespace Infocare_Project
 {
@@ -141,21 +142,26 @@ namespace Infocare_Project
         }
     }
 
-    // Doctor Class
+    //Doctor Class
     public class Doctor : User
     {
         public string Specialty { get; set; }
         public double ConsultationFee { get; set; }
+        public TimeSpan TimeAvailability { get; set; }
+        public string DayAvailability { get; set; }
 
         public Doctor() { }
 
-        public Doctor(string firstName, string lastName, string contactNumber, string sex, string specialty, double consultationFee, string username, string password)
+        public Doctor(string firstName, string lastName, string contactNumber, string sex, string specialty, double consultationFee, string username, string password, TimeSpan timeAvailability, string dayAvailability)
             : base(firstName, lastName, string.Empty, contactNumber, sex, string.Empty, username, password, string.Empty, DateTime.MinValue)
         {
             Specialty = specialty;
             ConsultationFee = consultationFee;
+            TimeAvailability = timeAvailability;
+            DayAvailability = dayAvailability;
         }
     }
+
 
     // Admin Class
     public class Admin : User

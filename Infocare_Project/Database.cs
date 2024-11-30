@@ -269,6 +269,36 @@ namespace Infocare_Project
 
         }
 
-    }
+        public void AddDoctor(Doctor doctor)
+        {
+            using (var connection = GetConnection())
+            {
+                try
+                {
+                    string query = @"INSERT INTO tb_doctorinfo 
+                             (firstname, middlename, lastname, username, password, consultationfee, specialization, time_availability, day_availability) 
+                             VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @Specialization, @TimeAvailability, @DayAvailability)";
 
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
+                    command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
+                    command.Parameters.AddWithValue("@LastName", doctor.LastName);
+                    command.Parameters.AddWithValue("@Username", doctor.Username);
+                    command.Parameters.AddWithValue("@Password", doctor.Password);
+                    command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
+                    command.Parameters.AddWithValue("@Specialization", doctor.Specialty);
+                    command.Parameters.AddWithValue("@TimeAvailability", doctor.TimeAvailability);
+                    command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error inserting doctor data: " + ex.Message);
+                }
+            }
+        }
+    }
 }
