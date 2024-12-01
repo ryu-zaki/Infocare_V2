@@ -43,6 +43,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -55,12 +61,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -297,9 +297,9 @@
             // 
             // BookAppPanel
             // 
-            BookAppPanel.Controls.Add(SpecPanel);
             BookAppPanel.Controls.Add(BookingPanel);
             BookAppPanel.Controls.Add(pd_DoctorPanel);
+            BookAppPanel.Controls.Add(SpecPanel);
             BookAppPanel.CustomizableEdges = customizableEdges31;
             BookAppPanel.Location = new Point(205, 107);
             BookAppPanel.Name = "BookAppPanel";
@@ -313,14 +313,14 @@
             pd_DoctorPanel.Controls.Add(guna2HtmlLabel6);
             pd_DoctorPanel.Controls.Add(pd_DocBtn);
             pd_DoctorPanel.Controls.Add(pd_DocBox);
-            pd_DoctorPanel.CustomizableEdges = customizableEdges29;
+            pd_DoctorPanel.CustomizableEdges = customizableEdges23;
             pd_DoctorPanel.FillColor = Color.FromArgb(13, 41, 80);
             pd_DoctorPanel.FillColor2 = Color.FromArgb(13, 41, 80);
             pd_DoctorPanel.FillColor3 = Color.FromArgb(13, 41, 80);
             pd_DoctorPanel.FillColor4 = Color.FromArgb(110, 177, 247);
             pd_DoctorPanel.Location = new Point(13, 15);
             pd_DoctorPanel.Name = "pd_DoctorPanel";
-            pd_DoctorPanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            pd_DoctorPanel.ShadowDecoration.CustomizableEdges = customizableEdges24;
             pd_DoctorPanel.Size = new Size(652, 358);
             pd_DoctorPanel.TabIndex = 139;
             pd_DoctorPanel.Visible = false;
@@ -339,7 +339,7 @@
             // 
             // pd_DocBtn
             // 
-            pd_DocBtn.CustomizableEdges = customizableEdges25;
+            pd_DocBtn.CustomizableEdges = customizableEdges19;
             pd_DocBtn.DisabledState.BorderColor = Color.DarkGray;
             pd_DocBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             pd_DocBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -348,7 +348,7 @@
             pd_DocBtn.ForeColor = Color.White;
             pd_DocBtn.Location = new Point(229, 212);
             pd_DocBtn.Name = "pd_DocBtn";
-            pd_DocBtn.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            pd_DocBtn.ShadowDecoration.CustomizableEdges = customizableEdges20;
             pd_DocBtn.Size = new Size(180, 45);
             pd_DocBtn.TabIndex = 0;
             pd_DocBtn.Text = "Confirm";
@@ -357,7 +357,7 @@
             // pd_DocBox
             // 
             pd_DocBox.BackColor = Color.Transparent;
-            pd_DocBox.CustomizableEdges = customizableEdges27;
+            pd_DocBox.CustomizableEdges = customizableEdges21;
             pd_DocBox.DrawMode = DrawMode.OwnerDrawFixed;
             pd_DocBox.DropDownStyle = ComboBoxStyle.DropDownList;
             pd_DocBox.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -368,7 +368,7 @@
             pd_DocBox.Items.AddRange(new object[] { "Balmond", "Nana", "Mentos" });
             pd_DocBox.Location = new Point(196, 170);
             pd_DocBox.Name = "pd_DocBox";
-            pd_DocBox.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            pd_DocBox.ShadowDecoration.CustomizableEdges = customizableEdges22;
             pd_DocBox.Size = new Size(235, 36);
             pd_DocBox.TabIndex = 0;
             pd_DocBox.SelectedIndexChanged += pd_DocBox_SelectedIndexChanged;
@@ -378,14 +378,14 @@
             SpecPanel.Controls.Add(guna2HtmlLabel5);
             SpecPanel.Controls.Add(pd_SpecBtn);
             SpecPanel.Controls.Add(pd_SpecBox);
-            SpecPanel.CustomizableEdges = customizableEdges17;
+            SpecPanel.CustomizableEdges = customizableEdges29;
             SpecPanel.FillColor = Color.FromArgb(13, 41, 80);
             SpecPanel.FillColor2 = Color.FromArgb(13, 41, 80);
             SpecPanel.FillColor3 = Color.FromArgb(13, 41, 80);
             SpecPanel.FillColor4 = Color.FromArgb(110, 177, 247);
             SpecPanel.Location = new Point(13, 15);
             SpecPanel.Name = "SpecPanel";
-            SpecPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            SpecPanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
             SpecPanel.Size = new Size(652, 358);
             SpecPanel.TabIndex = 137;
             SpecPanel.Visible = false;
@@ -404,7 +404,7 @@
             // 
             // pd_SpecBtn
             // 
-            pd_SpecBtn.CustomizableEdges = customizableEdges13;
+            pd_SpecBtn.CustomizableEdges = customizableEdges25;
             pd_SpecBtn.DisabledState.BorderColor = Color.DarkGray;
             pd_SpecBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             pd_SpecBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -413,7 +413,7 @@
             pd_SpecBtn.ForeColor = Color.White;
             pd_SpecBtn.Location = new Point(229, 212);
             pd_SpecBtn.Name = "pd_SpecBtn";
-            pd_SpecBtn.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            pd_SpecBtn.ShadowDecoration.CustomizableEdges = customizableEdges26;
             pd_SpecBtn.Size = new Size(180, 45);
             pd_SpecBtn.TabIndex = 0;
             pd_SpecBtn.Text = "Confirm";
@@ -422,7 +422,7 @@
             // pd_SpecBox
             // 
             pd_SpecBox.BackColor = Color.Transparent;
-            pd_SpecBox.CustomizableEdges = customizableEdges15;
+            pd_SpecBox.CustomizableEdges = customizableEdges27;
             pd_SpecBox.DrawMode = DrawMode.OwnerDrawFixed;
             pd_SpecBox.DropDownStyle = ComboBoxStyle.DropDownList;
             pd_SpecBox.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -433,7 +433,7 @@
             pd_SpecBox.Items.AddRange(new object[] { "Balmond", "Nana", "Mentos" });
             pd_SpecBox.Location = new Point(196, 170);
             pd_SpecBox.Name = "pd_SpecBox";
-            pd_SpecBox.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            pd_SpecBox.ShadowDecoration.CustomizableEdges = customizableEdges28;
             pd_SpecBox.Size = new Size(235, 36);
             pd_SpecBox.TabIndex = 0;
             pd_SpecBox.SelectedIndexChanged += pd_SpecBox_SelectedIndexChanged;
@@ -444,14 +444,14 @@
             BookingPanel.Controls.Add(guna2HtmlLabel7);
             BookingPanel.Controls.Add(guna2Button1);
             BookingPanel.Controls.Add(TimeCombobox);
-            BookingPanel.CustomizableEdges = customizableEdges23;
+            BookingPanel.CustomizableEdges = customizableEdges17;
             BookingPanel.FillColor = Color.FromArgb(13, 41, 80);
             BookingPanel.FillColor2 = Color.FromArgb(13, 41, 80);
             BookingPanel.FillColor3 = Color.FromArgb(13, 41, 80);
             BookingPanel.FillColor4 = Color.FromArgb(110, 177, 247);
             BookingPanel.Location = new Point(13, 15);
             BookingPanel.Name = "BookingPanel";
-            BookingPanel.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            BookingPanel.ShadowDecoration.CustomizableEdges = customizableEdges18;
             BookingPanel.Size = new Size(652, 358);
             BookingPanel.TabIndex = 140;
             BookingPanel.Visible = false;
@@ -476,7 +476,7 @@
             // 
             // guna2Button1
             // 
-            guna2Button1.CustomizableEdges = customizableEdges19;
+            guna2Button1.CustomizableEdges = customizableEdges13;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -485,7 +485,7 @@
             guna2Button1.ForeColor = Color.White;
             guna2Button1.Location = new Point(451, 296);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2Button1.Size = new Size(180, 45);
             guna2Button1.TabIndex = 0;
             guna2Button1.Text = "Confirm";
@@ -493,7 +493,7 @@
             // TimeCombobox
             // 
             TimeCombobox.BackColor = Color.Transparent;
-            TimeCombobox.CustomizableEdges = customizableEdges21;
+            TimeCombobox.CustomizableEdges = customizableEdges15;
             TimeCombobox.DrawMode = DrawMode.OwnerDrawFixed;
             TimeCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
             TimeCombobox.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -503,7 +503,7 @@
             TimeCombobox.ItemHeight = 30;
             TimeCombobox.Location = new Point(36, 79);
             TimeCombobox.Name = "TimeCombobox";
-            TimeCombobox.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            TimeCombobox.ShadowDecoration.CustomizableEdges = customizableEdges16;
             TimeCombobox.Size = new Size(227, 36);
             TimeCombobox.TabIndex = 0;
             // 

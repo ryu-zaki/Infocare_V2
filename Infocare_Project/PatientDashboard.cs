@@ -92,7 +92,6 @@ namespace Infocare_Project_1
                 List<string> doctorNames = db.GetDoctorNames(selectedSpecialization);
 
                 pd_DocBox.Items.Clear();
-
                 pd_DocBox.Items.Add("Select");
 
                 foreach (var doctorName in doctorNames)
@@ -109,8 +108,6 @@ namespace Infocare_Project_1
             }
         }
 
-
-
         private void pd_DocBtn_Click(object sender, EventArgs e)
         {
             if (pd_DocBox.SelectedItem == null || pd_DocBox.SelectedItem.ToString() == "Select")
@@ -118,10 +115,34 @@ namespace Infocare_Project_1
                 MessageBox.Show("Please select a doctor.");
                 return;
             }
-            BookingPanel.Visible = true;
-            BookAppPanel.Visible=true;
 
+            string selectedDoctor = pd_DocBox.SelectedItem.ToString();
+            Database db = new Database();
+
+            var timeSlots = db.GetDoctorAvailableTimes(selectedDoctor);
+
+            if (timeSlots.Count > 0)
+            {
+                pd_DoctorPanel.Visible = false;
+                BookingPanel.Visible = true;
+                BookAppPanel.Visible = true;
+
+                TimeCombobox.Items.Clear();
+                TimeCombobox.Items.Add("Select a Time Slot");
+
+                foreach (var timeSlot in timeSlots)
+                {
+                    TimeCombobox.Items.Add(timeSlot);
+                }
+
+                TimeCombobox.SelectedIndex = 0;
+            }
+            else
+            {
+                MessageBox.Show("No time slots found for this doctor.");
+            }
         }
+
 
         private void SpclztnComboBox()
         {

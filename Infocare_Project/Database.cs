@@ -472,9 +472,43 @@ namespace Infocare_Project
             return doctorNames;
         }
 
-        public void GetDoctorTimeAvailability()
+        public List<string> GetDoctorAvailableTimes(string doctorName)
         {
+            List<string> timeSlots = new List<string>();
 
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                    string query = @"SELECT Start_Time, End_Time FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) = @doctorName";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@doctorName", doctorName);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string startTime = reader["Start_Time"].ToString();
+                            string endTime = reader["End_Time"].ToString();
+
+                            if (!string.IsNullOrEmpty(startTime) && !string.IsNullOrEmpty(endTime))
+                            {
+                                TimeSpan start = TimeSpan.Parse(startTime);
+                                TimeSpan end = TimeSpan.Parse(endTime);
+
+                                for (TimeSpan currentTime = start; currentTime < end; currentTime = currentTime.Add(TimeSpan.FromHours(1)))
+                                {
+                                    timeSlots.Add(currentTime.ToString(@"hh\:mm"));
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            return timeSlots;
         }
     }
 }
