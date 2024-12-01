@@ -1,4 +1,6 @@
-﻿using Infocare_Project.NewFolder;
+﻿using Guna.UI2.WinForms;
+using Infocare_Project.NewFolder;
+using Infocare_Project_1.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +28,7 @@ namespace Infocare_Project
 
         private void PatientRegisterForm_Load(object sender, EventArgs e)
         {
-
+            BdayDateTimePicker.MaxDate = DateTime.Today;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -36,32 +38,52 @@ namespace Infocare_Project
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
+            Guna2TextBox[] requiredTextBoxes = {
+                FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
+                ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, UsernameTxtbox, PasswordTxtbox, ConfirmPasswordTxtbox
+            };
 
-            // Declare variables to hold the converted values
-            int houseNo;
+            if (!InputValidator.ValidateAllFieldsFilled(requiredTextBoxes, "Please fill out all fields."))
+            {
+                return;
+            }
+
+            if (!InputValidator.ValidateAlphabetic(FirstnameTxtbox, "First name must contain only letters. ex. (Juan)") ||
+                !InputValidator.ValidateAlphabetic(LastNameTxtbox, "Last name must contain only letters. ex. (Dela Cruz)") ||
+                !InputValidator.ValidateAlphabetic(CityTxtbox, "City must contain only letters. ex. (Caloocan)"))
+            {
+                return;
+            }
+
+            if (!InputValidator.ValidateNumeric(ContactNumberTxtbox, "Contact number must contain only numbers. ex.(09777864220)") ||
+                !InputValidator.ValidateNumeric(ZipCodeTxtbox, "Zip Code must contain only numbers. ex. (1400)") ||
+                !InputValidator.ValidateNumeric(ZoneTxtbox, "Zone must contain only numbers. ex. (1)"))
+            {
+                return;
+            }
+
+            // int houseNo;
             int zipCode;
             int zone;
 
-            // Try to parse the values from the text boxes into integers
-            if (!int.TryParse(HouseNoTxtbox.Text, out houseNo))
-            {
-                MessageBox.Show("Please enter a valid number for House No.");
-                return; // Stop further execution if conversion fails
-            }
+            //if (!int.TryParse(HouseNoTxtbox.Text, out houseNo))
+            //{
+            //    MessageBox.Show("Please enter a valid number for House No.");
+            //    return; 
+            //}
 
             if (!int.TryParse(ZipCodeTxtbox.Text, out zipCode))
             {
                 MessageBox.Show("Please enter a valid number for Zip Code.");
-                return; // Stop further execution if conversion fails
+                return;
             }
 
             if (!int.TryParse(ZoneTxtbox.Text, out zone))
             {
                 MessageBox.Show("Please enter a valid number for Zone.");
-                return; // Stop further execution if conversion fails
+                return;
             }
 
-            // Create a new User object with all fields, including address components
             User newUser = new User
             {
                 FirstName = FirstnameTxtbox.Text,
@@ -75,7 +97,6 @@ namespace Infocare_Project
                 ConfirmPassword = ConfirmPasswordTxtbox.Text,
                 ContactNumber = ContactNumberTxtbox.Text,
 
-                // New Address Components (use the parsed integer values)
                 HouseNo = houseNo,
                 ZipCode = zipCode,
                 Zone = zone,
@@ -84,7 +105,6 @@ namespace Infocare_Project
                 City = CityTxtbox.Text
             };
 
-            // Validate the password and confirm password match
             if (newUser.Password != newUser.ConfirmPassword)
             {
                 MessageBox.Show("Passwords do not match.");
@@ -93,20 +113,16 @@ namespace Infocare_Project
 
             try
             {
-                // Save the new user to the database
                 Database db = new Database();
                 db.PatientReg1(newUser);
 
-                // Open the PatientBasicInformationForm and pass relevant data
                 var patientInfoForm = new PatientBasicInformationForm(newUser.Username, newUser.FirstName, newUser.LastName);
                 patientInfoForm.Show();
 
-                // Hide the current form
                 this.Hide();
             }
             catch (Exception ex)
             {
-                // Display error message
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
@@ -186,15 +202,34 @@ namespace Infocare_Project
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Unsaved changes may be lost.", "Confirmation", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            if (confirm == DialogResult.Yes)
+            // Add all textboxes to the Control array
+            Control[] textBoxes = {
+                                    UsernameTxtbox, FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
+                                    ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, PasswordTxtbox, ConfirmPasswordTxtbox
+                                  };
+
+            // Check if all textboxes are empty
+            if (textBoxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)))
             {
-                PatientLoginForm patientLoginForm = new PatientLoginForm();
-                patientLoginForm.Show();
-                this.Hide();
+                DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    PatientLoginForm patientLoginForm = new PatientLoginForm();
+                    patientLoginForm.Show();
+                    this.Hide();
+                }
             }
-            else
+            // Check if any textbox is filled
+            else if (textBoxes.Any(tb => !string.IsNullOrWhiteSpace(tb.Text)))
             {
+                DialogResult confirm = MessageBox.Show("Some fields are filled. Are you sure you want to go back? Unsaved changes may be lost.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (confirm == DialogResult.Yes)
+                {
+                    PatientLoginForm patientLoginForm = new PatientLoginForm();
+                    patientLoginForm.Show();
+                    this.Hide();
+
+                }
             }
         }
     }
