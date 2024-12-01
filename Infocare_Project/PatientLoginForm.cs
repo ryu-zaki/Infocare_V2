@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infocare_Project_1;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,10 +46,7 @@ namespace Infocare_Project
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
 
-                LoginEmpty nullLogin = new LoginEmpty(username, password);
-
-                FieldsEmptyLogin emptyLogin = new FieldsEmptyLogin();
-                emptyLogin.EmptyLogin(nullLogin);
+                MessageBox.Show("Credentials are empty", "Empty FIelds", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 this.Hide();
                 return;
@@ -63,8 +61,12 @@ namespace Infocare_Project
 
             if (validPatient)
             {
+                (string firstName, string lastName) = db.GetPatientNameDetails(username);
 
                 MessageBox.Show("Login successful!");
+
+                var patientDashboard = new PatientDashboard(username, firstName, lastName);
+                patientDashboard.Show();
                 this.Hide();
             }
 

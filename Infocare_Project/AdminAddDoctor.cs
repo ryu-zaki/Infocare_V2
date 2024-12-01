@@ -14,23 +14,21 @@ namespace Infocare_Project
     {
         private PlaceHolderHandler _placeHolderHandler;
 
-        // Dictionary to hold specialization and their respective fees
         private Dictionary<string, int> specializationFees = new Dictionary<string, int>
-    {
-        { "General", 500 },
-        { "Pediatrics", 800 },
-        { "Obstetrics and Gynecology(OB / GYN)", 1000 },
-        { "Cardiology", 1500 },
-        { "Orthopedics", 1200 },
-        { "Radiology", 900 }
-    };
+        {
+            { "General", 500 },
+            { "Pediatrics", 800 },
+            { "Obstetrics and Gynecology(OB / GYN)", 1000 },
+            { "Cardiology", 1500 },
+            { "Orthopedics", 1200 },
+            { "Radiology", 900 }
+        };
 
         public AdminAddDoctor()
         {
             InitializeComponent();
             _placeHolderHandler = new PlaceHolderHandler();
 
-            // Attach event handler for specialization selection
             SpecializationComboBox.SelectedIndexChanged += SpecializationComboBox_SelectedIndexChanged;
         }
 
@@ -48,13 +46,12 @@ namespace Infocare_Project
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            // Input validation
             if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(LastNameTextbox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(UserNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(PasswordTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(ConfirmPasswordTextBox.Text.Trim()) ||
-                TimeComboBox.SelectedIndex == 0 ||
+                TimeComboBox.SelectedIndex == 0 ||  // Check if no time is selected
                 DayAvailabilityCombobox.SelectedIndex == 0 ||
                 SpecializationComboBox.SelectedIndex == 0)
             {
@@ -74,32 +71,42 @@ namespace Infocare_Project
                 Specialty = SpecializationComboBox.SelectedItem?.ToString() ?? string.Empty,
             };
 
+            string selectedTimeSlot = TimeComboBox.SelectedItem.ToString();
+            if (!string.IsNullOrEmpty(selectedTimeSlot) && selectedTimeSlot != "Select a time slot")
+            {
+                string[] timeSlots = selectedTimeSlot.Split('-');
+                if (timeSlots.Length == 2)
+                {
+                    string startTimeString = timeSlots[0].Trim();
+                    string endTimeString = timeSlots[1].Trim();
 
-            // Time validation
-            if (DateTime.TryParseExact(TimeComboBox.SelectedItem?.ToString(),
-                                       "hh:mm tt",
-                                       CultureInfo.InvariantCulture,
-                                       DateTimeStyles.None,
-                                       out DateTime parsedTime))
-            {
-                newDoctor.TimeAvailability = parsedTime.TimeOfDay;
-            }
-            else
-            {
-                MessageBox.Show("Please select a valid time.");
-                return;
+                    if (DateTime.TryParseExact(startTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime startTime) &&
+                        DateTime.TryParseExact(endTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime endTime))
+                    {
+                        newDoctor.StartTime = startTime.TimeOfDay;
+                        newDoctor.EndTime = endTime.TimeOfDay;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a valid time.");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid time slot.");
+                    return;
+                }
             }
 
             newDoctor.DayAvailability = DayAvailabilityCombobox.SelectedItem?.ToString() ?? string.Empty;
 
-            // Password validation
             if (newDoctor.Password != newDoctor.ConfirmPassword)
             {
                 MessageBox.Show("Passwords do not match.");
                 return;
             }
 
-            // Save to database
             try
             {
                 Database db = new Database();
@@ -112,23 +119,31 @@ namespace Infocare_Project
             }
         }
 
+
+
+
+
         private void TimeCombobox()
         {
             TimeComboBox.Items.Clear();
             TimeComboBox.Items.Add("Select a time slot");
 
             TimeSpan startTime = TimeSpan.FromHours(8);
-            TimeSpan endTime = TimeSpan.FromHours(20);
-            TimeSpan interval = TimeSpan.FromHours(4);
+            TimeSpan endTime = TimeSpan.FromHours(20); 
+            TimeSpan interval = TimeSpan.FromHours(4); 
 
             for (TimeSpan time = startTime; time < endTime; time += interval)
             {
-                string formattedTime = (DateTime.Today + time).ToString("hh:mm tt", CultureInfo.InvariantCulture);
+                TimeSpan slotEndTime = time + interval;
+
+                string formattedTime = $"{(DateTime.Today + time):hh:mm tt} - {(DateTime.Today + slotEndTime):hh:mm tt}";
+
                 TimeComboBox.Items.Add(formattedTime);
             }
 
             TimeComboBox.SelectedIndex = 0;
         }
+
 
         private void DayAvComboBox()
         {
@@ -144,9 +159,8 @@ namespace Infocare_Project
         private void SpclztnComboBox()
         {
             SpecializationComboBox.Items.Clear();
-            SpecializationComboBox.Items.Add("Select Specialization"); // Placeholder
+            SpecializationComboBox.Items.Add("Select Specialization");
 
-            // Add specializations from the dictionary
             foreach (var specialization in specializationFees.Keys)
             {
                 SpecializationComboBox.Items.Add(specialization);
@@ -155,20 +169,19 @@ namespace Infocare_Project
             SpecializationComboBox.SelectedIndex = 0;
         }
 
-        // Event handler to update consultation fee label automatically
         private void SpecializationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SpecializationComboBox.SelectedIndex > 0) // Ignore placeholder
+            if (SpecializationComboBox.SelectedIndex > 0)
             {
                 string selectedSpecialization = SpecializationComboBox.SelectedItem.ToString();
                 if (specializationFees.TryGetValue(selectedSpecialization, out int fee))
                 {
-                    ConsFeeLbl.Text = fee.ToString(); // Update label
+                    ConsFeeLbl.Text = fee.ToString();
                 }
             }
             else
             {
-                ConsFeeLbl.Text = "0"; // Reset label if placeholder is selected
+                ConsFeeLbl.Text = "0";
             }
         }
 
