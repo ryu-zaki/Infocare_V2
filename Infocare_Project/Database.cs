@@ -9,6 +9,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.VisualBasic.Logging;
 using System.Drawing;
 using Microsoft.VisualBasic.ApplicationServices;
+using Infocare_Project.NewFolder;
 
 namespace Infocare_Project
 {
@@ -305,36 +306,39 @@ namespace Infocare_Project
         }
 
         public void AddDoctor(Doctor doctor)
+{
+    using (var connection = GetConnection())
+    {
+        try
         {
-            using (var connection = GetConnection())
-            {
-                try
-                {
-                    string query = @"INSERT INTO tb_doctorinfo 
-                             (firstname, middlename, lastname, username, password, consultationfee, specialization, time_availability, day_availability) 
-                             VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @Specialization, @TimeAvailability, @DayAvailability)";
+            string query = @"INSERT INTO tb_doctorinfo 
+                             (firstname, middlename, lastname, username, password, consultationfee, specialization, start_time, end_time, day_availability) 
+                             VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @Specialization, @StartTime, @EndTime, @DayAvailability)";
 
-                    MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlCommand command = new MySqlCommand(query, connection);
 
-                    command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
-                    command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
-                    command.Parameters.AddWithValue("@LastName", doctor.LastName);
-                    command.Parameters.AddWithValue("@Username", doctor.Username);
-                    command.Parameters.AddWithValue("@Password", doctor.Password);
-                    command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
-                    command.Parameters.AddWithValue("@Specialization", doctor.Specialty);
-                    command.Parameters.AddWithValue("@TimeAvailability", doctor.TimeAvailability);
-                    command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
+            command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
+            command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
+            command.Parameters.AddWithValue("@LastName", doctor.LastName);
+            command.Parameters.AddWithValue("@Username", doctor.Username);
+            command.Parameters.AddWithValue("@Password", doctor.Password);
+            command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
+            command.Parameters.AddWithValue("@Specialization", doctor.Specialty);
+            command.Parameters.AddWithValue("@StartTime", doctor.StartTime);
+            command.Parameters.AddWithValue("@EndTime", doctor.EndTime);
+            command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error inserting doctor data: " + ex.Message);
-                }
-            }
+            connection.Open();
+            command.ExecuteNonQuery();
         }
+        catch (Exception ex)
+        {
+            throw new Exception("Error inserting doctor data: " + ex.Message);
+        }
+    }
+}
+
+
 
         public void NullPatientReg2Data(string username)
         {
@@ -400,6 +404,77 @@ namespace Infocare_Project
                     throw new Exception("Error deleting patient data: " + ex.Message);
                 }
             }
+        }
+
+        public (string firstName, string lastName) GetPatientNameDetails(string username)
+        {
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT P_Firstname, P_Lastname FROM tb_patientinfo WHERE P_Username = @Username";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+
+                try
+                {
+                    connection.Open();
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string firstName = reader["P_Firstname"].ToString();
+                            string lastName = reader["P_Lastname"].ToString();
+
+                            return (firstName, lastName);
+                        }
+                        else
+                        {
+                            throw new Exception("No patient found with the given username.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error fetching patient name details: " + ex.Message);
+                }
+            }
+        }
+        public List<string> GetDoctorNames(string specialization)
+        {
+            List<string> doctorNames = new List<string>();
+
+            string query = @"SELECT CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) AS doctor_name
+                     FROM tb_doctorinfo
+                     WHERE specialization = @Specialization";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Specialization", specialization);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctorNames.Add(reader["doctor_name"].ToString());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error getting doctor data: " + ex.Message);
+                }
+            }
+            return doctorNames;
+        }
+
+        public void GetDoctorTimeAvailability()
+        {
+
         }
     }
 }
