@@ -1,26 +1,17 @@
 ﻿using Infocare_Project;
-using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace Infocare_Project_1
 {
     public partial class PatientDashboard : Form
     {
-        private string connectionString = "Server=127.0.0.1; Database=db_infocare_project;User ID=root; Password=;";
         private string LoggedInUsername;
         private string FirstName;
         private string LastName;
 
-        private Dictionary<string, int> specializationFees = new Dictionary<string, int>
+        private readonly Dictionary<string, int> specializationFees = new Dictionary<string, int>
         {
             { "General", 500 },
             { "Pediatrics", 800 },
@@ -40,6 +31,7 @@ namespace Infocare_Project_1
 
             NameLabel.Text = $"{firstName}!";
         }
+
         private void PatientDashboard_Load(object sender, EventArgs e)
         {
             SpclztnComboBox();
@@ -48,25 +40,18 @@ namespace Infocare_Project_1
 
         private void pd_BookAppointment_Click(object sender, EventArgs e)
         {
-
             SpecPanel.Visible = true;
             BookAppPanel.Visible = true;
-
+            pd_DoctorPanel.Visible = false;
+            BookingPanel.Visible = false;
         }
+
         private void pd_ViewAppointment_Click(object sender, EventArgs e)
         {
-
         }
-
 
         private void pd_EditInfo_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void pd_SpecBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void pd_SpecBtn_Click(object sender, EventArgs e)
@@ -85,6 +70,7 @@ namespace Infocare_Project_1
 
             if (result == DialogResult.Yes)
             {
+                BookingPanel.Visible = false;
                 SpecPanel.Visible = false;
                 pd_DoctorPanel.Visible = true;
                 BookAppPanel.Visible = true;
@@ -121,12 +107,13 @@ namespace Infocare_Project_1
 
             var timeSlots = db.GetDoctorAvailableTimes(selectedDoctor);
 
+            SpecPanel.Visible = false; 
+            pd_DoctorPanel.Visible = false;
+            BookAppPanel.Visible = true;
+            BookingPanel.Visible = true;
+
             if (timeSlots.Count > 0)
             {
-                pd_DoctorPanel.Visible = false;
-                BookingPanel.Visible = true;
-                BookAppPanel.Visible = true;
-
                 TimeCombobox.Items.Clear();
                 TimeCombobox.Items.Add("Select a Time Slot");
 
@@ -140,6 +127,29 @@ namespace Infocare_Project_1
             else
             {
                 MessageBox.Show("No time slots found for this doctor.");
+            }
+        }
+
+
+        private void pd_DocBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pd_DocBox.SelectedItem != null && pd_DocBox.SelectedItem.ToString() != "Select")
+            {
+                string selectedDoctor = pd_DocBox.SelectedItem.ToString();
+                Database db = new Database();
+
+                string availability = db.GetDoctorAvailability(selectedDoctor);
+
+                if (!string.IsNullOrEmpty(availability))
+                {
+                    List<DayOfWeek> availableDays = ParseDayAvailability(availability);
+
+                    ConfigureMonthCalendar(AppointmentDatePicker, availableDays);
+                }
+                else
+                {
+                    MessageBox.Show("No date availability data found for the selected doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -158,15 +168,36 @@ namespace Infocare_Project_1
             pd_SpecBox.SelectedIndex = 0;
         }
 
-        private void pd_DocBox_SelectedIndexChanged(object sender, EventArgs e)
+        private List<DayOfWeek> ParseDayAvailability(string availability)
         {
-            if (pd_DocBox.SelectedItem != null && pd_DocBox.SelectedItem.ToString() != "Select")
+            List<DayOfWeek> days = new List<DayOfWeek>();
+            string[] dayNames = availability.Split(new[] { '-', ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string day in dayNames)
             {
-                string selectedDoctor = pd_DocBox.SelectedItem.ToString();
+                if (Enum.TryParse(day.Trim(), true, out DayOfWeek dayOfWeek))
+                {
+                    days.Add(dayOfWeek);
+                }
             }
-            else
+
+            return days;
+        }
+
+        private void ConfigureMonthCalendar(MonthCalendar calendar, List<DayOfWeek> availableDays)
+        {
+            calendar.MinDate = DateTime.Today;
+            calendar.MaxSelectionCount = 1;
+
+            calendar.DateChanged += (s, e) =>
             {
-            }
+                if (!availableDays.Contains(e.Start.DayOfWeek))
+                {
+                    MessageBox.Show("The selected date is unavailable for the doctor.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    calendar.SetDate(DateTime.Today);
+                }
+            };
         }
     }
 }

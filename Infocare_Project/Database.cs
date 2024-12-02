@@ -510,5 +510,30 @@ namespace Infocare_Project
 
             return timeSlots;
         }
+
+        public string GetDoctorAvailability(string doctorName)
+        {
+            string query = @"SELECT day_availability 
+                     FROM tb_doctorinfo 
+                     WHERE CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) = @DoctorName";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@DoctorName", doctorName);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    return result != null ? result.ToString() : string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error fetching doctor availability: " + ex.Message);
+                }
+            }
+        }
+
     }
 }

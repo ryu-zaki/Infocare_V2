@@ -186,7 +186,7 @@ namespace Infocare_Project
         }
 
         private void StreetTxtbox_TextChanged(object sender, EventArgs e)
-        {
+        {   
             _placeHolderHandler.HandleTextBoxPlaceholder(StreetTxtbox, StreetLabel, "Street");
         }
 
@@ -202,13 +202,11 @@ namespace Infocare_Project
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            // Add all textboxes to the Control array
             Control[] textBoxes = {
                                     UsernameTxtbox, FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
                                     ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, PasswordTxtbox, ConfirmPasswordTxtbox
                                   };
 
-            // Check if all textboxes are empty
             if (textBoxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)))
             {
                 DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -219,7 +217,6 @@ namespace Infocare_Project
                     this.Hide();
                 }
             }
-            // Check if any textbox is filled
             else if (textBoxes.Any(tb => !string.IsNullOrWhiteSpace(tb.Text)))
             {
                 DialogResult confirm = MessageBox.Show("Some fields are filled. Are you sure you want to go back? Unsaved changes may be lost.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
