@@ -43,8 +43,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -53,6 +51,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -75,7 +75,6 @@
             pd_HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             BookAppPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            pd_DoctorPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             BookingPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             AppointmentDatePicker = new MonthCalendar();
             guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -86,6 +85,7 @@
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             TimeCombobox = new Guna.UI2.WinForms.Guna2ComboBox();
+            pd_DoctorPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pd_DocBtn = new Guna.UI2.WinForms.Guna2Button();
             pd_DocBox = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -99,8 +99,8 @@
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             BookAppPanel.SuspendLayout();
-            pd_DoctorPanel.SuspendLayout();
             BookingPanel.SuspendLayout();
+            pd_DoctorPanel.SuspendLayout();
             SpecPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -315,23 +315,6 @@
             BookAppPanel.TabIndex = 136;
             BookAppPanel.Visible = false;
             // 
-            // pd_DoctorPanel
-            // 
-            pd_DoctorPanel.Controls.Add(guna2HtmlLabel6);
-            pd_DoctorPanel.Controls.Add(pd_DocBtn);
-            pd_DoctorPanel.Controls.Add(pd_DocBox);
-            pd_DoctorPanel.CustomizableEdges = customizableEdges25;
-            pd_DoctorPanel.FillColor = Color.FromArgb(13, 41, 80);
-            pd_DoctorPanel.FillColor2 = Color.FromArgb(13, 41, 80);
-            pd_DoctorPanel.FillColor3 = Color.FromArgb(13, 41, 80);
-            pd_DoctorPanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            pd_DoctorPanel.Location = new Point(13, 15);
-            pd_DoctorPanel.Name = "pd_DoctorPanel";
-            pd_DoctorPanel.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            pd_DoctorPanel.Size = new Size(652, 358);
-            pd_DoctorPanel.TabIndex = 139;
-            pd_DoctorPanel.Visible = false;
-            // 
             // BookingPanel
             // 
             BookingPanel.Controls.Add(AppointmentDatePicker);
@@ -469,6 +452,23 @@
             TimeCombobox.ShadowDecoration.CustomizableEdges = customizableEdges18;
             TimeCombobox.Size = new Size(227, 36);
             TimeCombobox.TabIndex = 0;
+            // 
+            // pd_DoctorPanel
+            // 
+            pd_DoctorPanel.Controls.Add(guna2HtmlLabel6);
+            pd_DoctorPanel.Controls.Add(pd_DocBtn);
+            pd_DoctorPanel.Controls.Add(pd_DocBox);
+            pd_DoctorPanel.CustomizableEdges = customizableEdges25;
+            pd_DoctorPanel.FillColor = Color.FromArgb(13, 41, 80);
+            pd_DoctorPanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            pd_DoctorPanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            pd_DoctorPanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            pd_DoctorPanel.Location = new Point(13, 15);
+            pd_DoctorPanel.Name = "pd_DoctorPanel";
+            pd_DoctorPanel.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            pd_DoctorPanel.Size = new Size(652, 358);
+            pd_DoctorPanel.TabIndex = 139;
+            pd_DoctorPanel.Visible = false;
             // 
             // guna2HtmlLabel6
             // 
@@ -628,10 +628,10 @@
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             BookAppPanel.ResumeLayout(false);
-            pd_DoctorPanel.ResumeLayout(false);
-            pd_DoctorPanel.PerformLayout();
             BookingPanel.ResumeLayout(false);
             BookingPanel.PerformLayout();
+            pd_DoctorPanel.ResumeLayout(false);
+            pd_DoctorPanel.PerformLayout();
             SpecPanel.ResumeLayout(false);
             SpecPanel.PerformLayout();
             ResumeLayout(false);

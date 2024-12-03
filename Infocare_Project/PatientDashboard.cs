@@ -107,7 +107,7 @@ namespace Infocare_Project_1
 
             var timeSlots = db.GetDoctorAvailableTimes(selectedDoctor);
 
-            SpecPanel.Visible = false; 
+            SpecPanel.Visible = false;
             pd_DoctorPanel.Visible = false;
             BookAppPanel.Visible = true;
             BookingPanel.Visible = true;
