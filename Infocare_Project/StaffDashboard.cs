@@ -156,7 +156,7 @@ namespace Infocare_Project_1
 
         private void pd_DocBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (pd_DocBox.SelectedItem != null && pd_DocBox.SelectedItem.ToString() != "Select")
             {
                 string selectedDoctor = pd_DocBox.SelectedItem.ToString();
@@ -312,14 +312,14 @@ namespace Infocare_Project_1
                     DateTime appointmentDate = AppointmentDatePicker.SelectionStart;
                     string specialization = pd_SpecBox.SelectedItem.ToString();
 
-                    string feeText = ConsFeeLbl.Text.Trim();  
+                    string feeText = ConsFeeLbl.Text.Trim();
 
                     decimal consultationFee = 0;
 
                     if (!decimal.TryParse(feeText, out consultationFee))
                     {
                         MessageBox.Show("Invalid consultation fee.");
-                        return;  
+                        return;
                     }
 
                     bool appointmentSaved = db.SaveAppointment(selectedPatient, specialization, selectedDoctor, selectedTimeSlot, appointmentDate, consultationFee);
@@ -362,8 +362,43 @@ namespace Infocare_Project_1
             }
         }
 
+        private void Staff_ExitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to close? Unsaved changes will be lost.", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            if (confirm == DialogResult.Yes)
 
+            {
+                this.Close();
+            }
+        }
+
+        private void Staff_MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pd_logoutlabel_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                StaffLogin patientLoginForm = new StaffLogin();
+                patientLoginForm.Show();
+                this.Hide();
+            }
+        }
+
+        private void LogOutButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                StaffLogin patientLoginForm = new StaffLogin();
+                patientLoginForm.Show();
+                this.Hide();
+            }
+        }
     }
 
 

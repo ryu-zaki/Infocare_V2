@@ -114,7 +114,7 @@
             doctor_MinimizeButton.ImageOffset = new Point(0, 0);
             doctor_MinimizeButton.ImageRotate = 0F;
             doctor_MinimizeButton.ImageSize = new Size(20, 30);
-            doctor_MinimizeButton.Location = new Point(834, 17);
+            doctor_MinimizeButton.Location = new Point(828, 16);
             doctor_MinimizeButton.Margin = new Padding(3, 2, 3, 2);
             doctor_MinimizeButton.Name = "doctor_MinimizeButton";
             doctor_MinimizeButton.PressedState.ImageSize = new Size(20, 30);
@@ -138,6 +138,7 @@
             // doctor_ExitButton
             // 
             doctor_ExitButton.BackColor = Color.Transparent;
+            doctor_ExitButton.Cursor = Cursors.Hand;
             doctor_ExitButton.CustomizableEdges = customizableEdges2;
             doctor_ExitButton.DisabledState.BorderColor = Color.DarkGray;
             doctor_ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -146,7 +147,7 @@
             doctor_ExitButton.FillColor = Color.Transparent;
             doctor_ExitButton.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             doctor_ExitButton.ForeColor = Color.White;
-            doctor_ExitButton.Location = new Point(869, 16);
+            doctor_ExitButton.Location = new Point(871, 16);
             doctor_ExitButton.Margin = new Padding(3, 2, 3, 2);
             doctor_ExitButton.Name = "doctor_ExitButton";
             doctor_ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges3;
@@ -219,6 +220,7 @@
             // 
             doctor_EnterButton.BackColor = Color.Transparent;
             doctor_EnterButton.BorderRadius = 25;
+            doctor_EnterButton.Cursor = Cursors.Hand;
             doctor_EnterButton.CustomizableEdges = customizableEdges7;
             doctor_EnterButton.DisabledState.BorderColor = Color.DarkGray;
             doctor_EnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -234,10 +236,12 @@
             doctor_EnterButton.Size = new Size(262, 53);
             doctor_EnterButton.TabIndex = 3;
             doctor_EnterButton.Text = "Log in";
+            doctor_EnterButton.Click += doctor_EnterButton_Click;
             // 
             // doctor_showpass
             // 
             doctor_showpass.AutoSize = true;
+            doctor_showpass.Cursor = Cursors.Hand;
             doctor_showpass.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             doctor_showpass.Location = new Point(67, 381);
             doctor_showpass.Name = "doctor_showpass";
@@ -245,6 +249,7 @@
             doctor_showpass.TabIndex = 147;
             doctor_showpass.Text = "show password";
             doctor_showpass.UseVisualStyleBackColor = true;
+            doctor_showpass.CheckedChanged += doctor_showpass_CheckedChanged;
             // 
             // PasswordLabel
             // 
@@ -288,11 +293,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Rounded MT Bold", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
             label1.Location = new Point(26, 165);
             label1.Name = "label1";
-            label1.Size = new Size(112, 37);
+            label1.Size = new Size(106, 37);
             label1.TabIndex = 145;
             label1.Text = "Log In";
             // 
@@ -336,7 +341,7 @@
             doctor_PasswordTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             doctor_PasswordTxtbox.Location = new Point(69, 326);
             doctor_PasswordTxtbox.Name = "doctor_PasswordTxtbox";
-            doctor_PasswordTxtbox.PasswordChar = '\0';
+            doctor_PasswordTxtbox.PasswordChar = '●';
             doctor_PasswordTxtbox.PlaceholderForeColor = Color.Black;
             doctor_PasswordTxtbox.PlaceholderText = "Password";
             doctor_PasswordTxtbox.SelectedText = "";
@@ -378,10 +383,10 @@
             guna2PictureBox5.CustomizableEdges = customizableEdges15;
             guna2PictureBox5.Image = (Image)resources.GetObject("guna2PictureBox5.Image");
             guna2PictureBox5.ImageRotate = 0F;
-            guna2PictureBox5.Location = new Point(102, 12);
+            guna2PictureBox5.Location = new Point(111, 12);
             guna2PictureBox5.Name = "guna2PictureBox5";
             guna2PictureBox5.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2PictureBox5.Size = new Size(188, 159);
+            guna2PictureBox5.Size = new Size(148, 174);
             guna2PictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox5.TabIndex = 166;
             guna2PictureBox5.TabStop = false;

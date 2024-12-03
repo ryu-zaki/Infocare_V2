@@ -122,7 +122,7 @@ namespace Infocare_Project_1
             addstaff.Show();
         }
 
-        
+
         private void ShowStaffList()
         {
 
@@ -154,7 +154,7 @@ namespace Infocare_Project_1
                 DataTable DoctorData = db.DoctorList();
                 if (DoctorData.Rows.Count > 0)
                 {
-                    DoctorDataGridViewList.DataSource = DoctorData; 
+                    DoctorDataGridViewList.DataSource = DoctorData;
                 }
                 else
                 {
@@ -211,6 +211,43 @@ namespace Infocare_Project_1
             }
         }
 
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to close?", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+
+        }
+
+        private void ad_logoutlabel_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                AdminLogin AdminLoginForm = new AdminLogin();
+                AdminLoginForm.Show();
+                this.Hide();
+            }
+        }
+
+        private void LogOutButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                AdminLogin AdminLoginForm = new AdminLogin();
+                AdminLoginForm.Show();
+                this.Hide();
+            }
+        }
     }
 }

@@ -24,9 +24,13 @@ namespace Infocare_Project
 
         private void staff_HomeButton_Click(object sender, EventArgs e)
         {
-            HomeForm homeForm = new HomeForm();
-            homeForm.Show();
-            this.Hide();
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                HomeForm homeForm = new HomeForm();
+                homeForm.Show();
+                this.Hide();
+            }
         }
 
         private void doctor_MinimizeButton_Click(object sender, EventArgs e)
@@ -36,7 +40,33 @@ namespace Infocare_Project
 
         private void doctor_ExitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult confirm = MessageBox.Show("Are you sure you want to close?", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
+        }
+
+        private void doctor_showpass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (doctor_showpass.Checked)
+            {
+                doctor_PasswordTxtbox.PasswordChar = '\0';
+                doctor_PasswordTxtbox.UseSystemPasswordChar = false;
+
+            }
+            else
+            {
+                doctor_PasswordTxtbox.PasswordChar = '●';
+                doctor_PasswordTxtbox.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void doctor_EnterButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

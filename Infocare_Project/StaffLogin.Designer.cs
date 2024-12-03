@@ -81,6 +81,7 @@
             // 
             EnterButton.BackColor = Color.Transparent;
             EnterButton.BorderRadius = 25;
+            EnterButton.Cursor = Cursors.Hand;
             EnterButton.CustomizableEdges = customizableEdges1;
             EnterButton.DisabledState.BorderColor = Color.DarkGray;
             EnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -94,13 +95,14 @@
             EnterButton.Name = "EnterButton";
             EnterButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
             EnterButton.Size = new Size(262, 53);
-            EnterButton.TabIndex = 3;
+            EnterButton.TabIndex = 4;
             EnterButton.Text = "Log in";
             EnterButton.Click += EnterButton_Click;
             // 
             // ExitButton
             // 
             ExitButton.BackColor = Color.Transparent;
+            ExitButton.Cursor = Cursors.Hand;
             ExitButton.CustomizableEdges = customizableEdges3;
             ExitButton.DisabledState.BorderColor = Color.DarkGray;
             ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -109,7 +111,7 @@
             ExitButton.FillColor = Color.Transparent;
             ExitButton.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             ExitButton.ForeColor = Color.White;
-            ExitButton.Location = new Point(869, 16);
+            ExitButton.Location = new Point(871, 16);
             ExitButton.Margin = new Padding(3, 2, 3, 2);
             ExitButton.Name = "ExitButton";
             ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
@@ -159,7 +161,7 @@
             PasswordTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             PasswordTxtbox.Location = new Point(69, 326);
             PasswordTxtbox.Name = "PasswordTxtbox";
-            PasswordTxtbox.PasswordChar = '\0';
+            PasswordTxtbox.PasswordChar = '●';
             PasswordTxtbox.PlaceholderForeColor = Color.Black;
             PasswordTxtbox.PlaceholderText = "Password";
             PasswordTxtbox.SelectedText = "";
@@ -214,7 +216,7 @@
             MinimizeButton.ImageOffset = new Point(0, 0);
             MinimizeButton.ImageRotate = 0F;
             MinimizeButton.ImageSize = new Size(20, 30);
-            MinimizeButton.Location = new Point(834, 17);
+            MinimizeButton.Location = new Point(828, 16);
             MinimizeButton.Margin = new Padding(3, 2, 3, 2);
             MinimizeButton.Name = "MinimizeButton";
             MinimizeButton.PressedState.ImageSize = new Size(20, 30);
@@ -286,6 +288,7 @@
             // 
             // staff_HomeButton
             // 
+            staff_HomeButton.Cursor = Cursors.Hand;
             staff_HomeButton.CustomizableEdges = customizableEdges11;
             staff_HomeButton.DisabledState.BorderColor = Color.DarkGray;
             staff_HomeButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -309,13 +312,15 @@
             // staff_showpass
             // 
             staff_showpass.AutoSize = true;
+            staff_showpass.Cursor = Cursors.Hand;
             staff_showpass.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             staff_showpass.Location = new Point(67, 381);
             staff_showpass.Name = "staff_showpass";
             staff_showpass.Size = new Size(117, 19);
-            staff_showpass.TabIndex = 147;
+            staff_showpass.TabIndex = 3;
             staff_showpass.Text = "show password";
             staff_showpass.UseVisualStyleBackColor = true;
+            staff_showpass.CheckedChanged += staff_showpass_CheckedChanged;
             // 
             // label2
             // 
@@ -333,11 +338,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Rounded MT Bold", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
             label1.Location = new Point(26, 165);
             label1.Name = "label1";
-            label1.Size = new Size(112, 37);
+            label1.Size = new Size(106, 37);
             label1.TabIndex = 145;
             label1.Text = "Log In";
             // 
@@ -388,7 +393,7 @@
             guna2CirclePictureBox3.TabIndex = 143;
             guna2CirclePictureBox3.TabStop = false;
             // 
-            // PatientLoginForm
+            // StaffLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -397,7 +402,7 @@
             ControlBox = false;
             Controls.Add(guna2CustomGradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "PatientLoginForm";
+            Name = "StaffLogin";
             StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();

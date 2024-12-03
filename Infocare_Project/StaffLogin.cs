@@ -20,7 +20,13 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult confirm = MessageBox.Show("Are you sure you want to close?", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -58,7 +64,7 @@ namespace Infocare_Project
             {
                 (string firstName, string lastName) = db.GetStaffNameDetails(username);
 
-                MessageBox.Show("Login successful!");
+                MessageBox.Show("Log in Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 var staffdashboard = new StaffDashboard(username, firstName, lastName);
                 staffdashboard.Show();
@@ -68,7 +74,8 @@ namespace Infocare_Project
             else
             {
 
-                MessageBox.Show("Invalid username or password.");
+                MessageBox.Show("Invalid Username or Password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
 
 
             }
@@ -95,9 +102,28 @@ namespace Infocare_Project
 
         private void staff_HomeButton_Click(object sender, EventArgs e)
         {
-            HomeForm homeForm = new HomeForm();
-            homeForm.Show();
-            this.Hide();
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                HomeForm homeForm = new HomeForm();
+                homeForm.Show();
+                this.Hide();
+            }
+        }
+
+        private void staff_showpass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (staff_showpass.Checked)
+            {
+                PasswordTxtbox.PasswordChar = '\0';
+                PasswordTxtbox.UseSystemPasswordChar = false;
+
+            }
+            else
+            {
+                PasswordTxtbox.PasswordChar = '●';
+                PasswordTxtbox.UseSystemPasswordChar = true;
+            }
         }
     }
 }

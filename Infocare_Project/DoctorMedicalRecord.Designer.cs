@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -91,6 +92,7 @@
             doctor_ExitButton = new Guna.UI2.WinForms.Guna2Button();
             BackButton = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2CustomGradientPanel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -580,6 +582,7 @@
             // doctor_ExitButton
             // 
             doctor_ExitButton.BackColor = Color.FromArgb(110, 177, 247);
+            doctor_ExitButton.Cursor = Cursors.Hand;
             doctor_ExitButton.CustomizableEdges = customizableEdges30;
             doctor_ExitButton.DisabledState.BorderColor = Color.DarkGray;
             doctor_ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -626,6 +629,14 @@
             guna2HtmlLabel12.TabIndex = 209;
             guna2HtmlLabel12.Text = "Back";
             // 
+            // guna2BorderlessForm1
+            // 
+            guna2BorderlessForm1.BorderRadius = 15;
+            guna2BorderlessForm1.ContainerControl = this;
+            guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            guna2BorderlessForm1.DragStartTransparencyValue = 1D;
+            guna2BorderlessForm1.TransparentWhileDrag = true;
+            // 
             // DoctorMedicalRecord
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -661,7 +672,7 @@
             Controls.Add(guna2TextBox1);
             Controls.Add(FNLabel);
             Controls.Add(FirstNameTextBox);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Name = "DoctorMedicalRecord";
             StartPosition = FormStartPosition.CenterScreen;
             guna2CustomGradientPanel2.ResumeLayout(false);
@@ -701,5 +712,6 @@
         private Guna.UI2.WinForms.Guna2Button doctor_ExitButton;
         private Guna.UI2.WinForms.Guna2ImageButton BackButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
+        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
     }
 }

@@ -124,6 +124,14 @@
     <value>25</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="MinimizeButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAGdJREFUeF7t0CESA0EQxLD9/6cTYjq064CEjfwAAAAAAAAAAAAAAAAAAAAAAICv
+        +THV9lsdI22/1THS9lsdI22/1THS9lsdI22/1THS9lsdI20HAAAAAAAAAAAAAAAAAAAAAAA+4r0/gjV1
+        JoKzuGwAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="guna2CirclePictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAZgAAAGYCAYAAAB/O/RVAAAABGdBTUEAALGPC/xhBQAAId5JREFUeF7t

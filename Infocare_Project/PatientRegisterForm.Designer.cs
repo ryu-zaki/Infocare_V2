@@ -484,6 +484,7 @@
             // 
             // ExitButton
             // 
+            ExitButton.Cursor = Cursors.Hand;
             ExitButton.CustomizableEdges = customizableEdges21;
             ExitButton.DisabledState.BorderColor = Color.DarkGray;
             ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -916,6 +917,7 @@
             MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges28;
             MinimizeButton.Size = new Size(43, 26);
             MinimizeButton.TabIndex = 125;
+            MinimizeButton.Click += MinimizeButton_Click;
             // 
             // guna2PictureBox8
             // 

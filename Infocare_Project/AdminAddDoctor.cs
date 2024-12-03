@@ -14,7 +14,7 @@ namespace Infocare_Project
     {
         private PlaceHolderHandler _placeHolderHandler;
 
-    
+
 
         public AdminAddDoctor()
         {
@@ -44,7 +44,7 @@ namespace Infocare_Project
                 string.IsNullOrWhiteSpace(SpecializationTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(ConsultationFeeTextBox.Text.Trim()) ||
 
-                TimeComboBox.SelectedIndex == 0 || 
+                TimeComboBox.SelectedIndex == 0 ||
                 DayAvailabilityCombobox.SelectedIndex == 0)
             {
                 MessageBox.Show("Please fill out all fields and select valid options.");
@@ -121,8 +121,8 @@ namespace Infocare_Project
             TimeComboBox.Items.Add("Select a time slot");
 
             TimeSpan startTime = TimeSpan.FromHours(8);
-            TimeSpan endTime = TimeSpan.FromHours(20); 
-            TimeSpan interval = TimeSpan.FromHours(4); 
+            TimeSpan endTime = TimeSpan.FromHours(20);
+            TimeSpan interval = TimeSpan.FromHours(4);
 
             for (TimeSpan time = startTime; time < endTime; time += interval)
             {
@@ -148,9 +148,9 @@ namespace Infocare_Project
             DayAvailabilityCombobox.SelectedIndex = 0;
         }
 
-        
 
-  
+
+
 
         private void FirstNameTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -167,7 +167,7 @@ namespace Infocare_Project
             _placeHolderHandler.HandleTextBoxPlaceholder(UserNameTextBox, UNlabel, "User name");
         }
 
-      
+
 
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -177,6 +177,23 @@ namespace Infocare_Project
         private void ConfirmPasswordTextBox_TextChanged(object sender, EventArgs e)
         {
             _placeHolderHandler.HandleTextBoxPlaceholder(ConfirmPasswordTextBox, CPLabel, "Confirm Password");
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+
         }
     }
 }

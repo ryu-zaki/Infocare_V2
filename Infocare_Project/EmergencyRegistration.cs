@@ -210,7 +210,7 @@ namespace Infocare_Project
                 try
                 {
                     Database db = new Database();
-                    db.NullPatientReg2Data(LoggedInUsername); 
+                    db.NullPatientReg2Data(LoggedInUsername);
 
                     var patientInfoForm = new PatientBasicInformationForm(LoggedInUsername, Firstname, Lastname);
                     patientInfoForm.Show();
@@ -223,6 +223,29 @@ namespace Infocare_Project
             }
         }
 
+        private void ExitButton_Click_1(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    Database db = new Database();
+                    db.DeletePatientByUsername(LoggedInUsername);
+
+                    MessageBox.Show("Your data has been deleted.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting data: " + ex.Message);
+                }
+                finally
+                {
+                    this.Close();
+                }
+            }
+        }
     }
 }
 

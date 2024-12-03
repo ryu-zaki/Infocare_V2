@@ -25,7 +25,13 @@ namespace Infocare_Project_1
 
         private void doctor_ExitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult confirm = MessageBox.Show("Are you sure you want to close?", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
         }
 
         private void doctor_MinimizeButton_Click(object sender, EventArgs e)

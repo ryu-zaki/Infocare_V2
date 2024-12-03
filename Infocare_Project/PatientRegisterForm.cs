@@ -33,7 +33,13 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
@@ -179,7 +185,7 @@ namespace Infocare_Project
         }
 
         private void StreetTxtbox_TextChanged(object sender, EventArgs e)
-        {   
+        {
             _placeHolderHandler.HandleTextBoxPlaceholder(StreetTxtbox, StreetLabel, "Street");
         }
 
@@ -221,6 +227,12 @@ namespace Infocare_Project
 
                 }
             }
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+
         }
     }
 }

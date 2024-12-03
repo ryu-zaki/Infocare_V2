@@ -296,6 +296,7 @@
             // 
             // ExitButton
             // 
+            ExitButton.Cursor = Cursors.Hand;
             ExitButton.CustomizableEdges = customizableEdges27;
             ExitButton.DisabledState.BorderColor = Color.DarkGray;
             ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -311,6 +312,7 @@
             ExitButton.Size = new Size(43, 26);
             ExitButton.TabIndex = 150;
             ExitButton.Text = "X";
+            ExitButton.Click += ExitButton_Click_1;
             // 
             // FirstnameTxtbox
             // 

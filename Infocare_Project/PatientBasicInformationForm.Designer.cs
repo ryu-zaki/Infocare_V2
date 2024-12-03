@@ -165,6 +165,7 @@
             // 
             // ExitButton
             // 
+            ExitButton.Cursor = Cursors.Hand;
             ExitButton.CustomizableEdges = customizableEdges5;
             ExitButton.DisabledState.BorderColor = Color.DarkGray;
             ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;

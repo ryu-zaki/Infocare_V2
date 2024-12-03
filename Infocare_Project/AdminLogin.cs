@@ -67,7 +67,17 @@ namespace Infocare_Project
 
         private void admin_showpass_CheckedChanged(object sender, EventArgs e)
         {
+            if (admin_showpass.Checked)
+            {
+                PasswordTxtbox.PasswordChar = '\0';
+                PasswordTxtbox.UseSystemPasswordChar = false;
 
+            }
+            else
+            {
+                PasswordTxtbox.PasswordChar = '●';
+                PasswordTxtbox.UseSystemPasswordChar = true;
+            }
         }
 
         private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
@@ -77,9 +87,29 @@ namespace Infocare_Project
 
         private void ad_HomeButton_Click(object sender, EventArgs e)
         {
-            HomeForm homeForm = new HomeForm();
-            homeForm.Show();
-            this.Hide();
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                HomeForm homeForm = new HomeForm();
+                homeForm.Show();
+                this.Hide();
+            }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to close?", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
