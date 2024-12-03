@@ -28,31 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard2));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard2));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            ad_patientBtn = new Guna.UI2.WinForms.Guna2Button();
             ad_appointment = new Guna.UI2.WinForms.Guna2Button();
             ad_doctor = new Guna.UI2.WinForms.Guna2Button();
             ad_guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -67,21 +96,51 @@
             ad_guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             ad_staffpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            DataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            BackButton = new Guna.UI2.WinForms.Guna2ImageButton();
+            StaffDataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
             AddStaffLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_docpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            BackButton = new Guna.UI2.WinForms.Guna2ImageButton();
+            AddDoctor = new Guna.UI2.WinForms.Guna2CircleButton();
+            guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2CustomGradientPanel4 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            DoctorDataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2ImageButton2 = new Guna.UI2.WinForms.Guna2ImageButton();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            ad_patientpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            PatientDataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2ImageButton1 = new Guna.UI2.WinForms.Guna2ImageButton();
+            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            ad_AppointmentPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2CustomGradientPanel5 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            AppointmentDataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2ImageButton3 = new Guna.UI2.WinForms.Guna2ImageButton();
+            guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ad_guna2CirclePictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             ad_staffpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewList).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)StaffDataGridViewList).BeginInit();
+            ad_docpanel.SuspendLayout();
+            guna2CustomGradientPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DoctorDataGridViewList).BeginInit();
+            ad_patientpanel.SuspendLayout();
+            guna2CustomGradientPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PatientDataGridViewList).BeginInit();
+            ad_AppointmentPanel.SuspendLayout();
+            guna2CustomGradientPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AppointmentDataGridViewList).BeginInit();
             SuspendLayout();
             // 
             // guna2CustomGradientPanel1
             // 
             guna2CustomGradientPanel1.BackColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel1.Controls.Add(ad_patientBtn);
             guna2CustomGradientPanel1.Controls.Add(ad_appointment);
             guna2CustomGradientPanel1.Controls.Add(ad_doctor);
             guna2CustomGradientPanel1.Controls.Add(ad_guna2HtmlLabel1);
@@ -91,22 +150,46 @@
             guna2CustomGradientPanel1.Controls.Add(ad_Staff);
             guna2CustomGradientPanel1.Controls.Add(ad_logoutlabel);
             guna2CustomGradientPanel1.Controls.Add(ad_HomeButton);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges9;
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges11;
             guna2CustomGradientPanel1.FillColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor3 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor4 = Color.FromArgb(110, 177, 247);
             guna2CustomGradientPanel1.Location = new Point(-1, -2);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges12;
             guna2CustomGradientPanel1.Size = new Size(185, 604);
             guna2CustomGradientPanel1.TabIndex = 1;
+            // 
+            // ad_patientBtn
+            // 
+            ad_patientBtn.BackColor = Color.Transparent;
+            ad_patientBtn.BorderRadius = 25;
+            ad_patientBtn.CustomizableEdges = customizableEdges1;
+            ad_patientBtn.DisabledState.BorderColor = Color.DarkGray;
+            ad_patientBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            ad_patientBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            ad_patientBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            ad_patientBtn.FillColor = SystemColors.ButtonFace;
+            ad_patientBtn.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            ad_patientBtn.ForeColor = Color.Black;
+            ad_patientBtn.ImageAlign = HorizontalAlignment.Left;
+            ad_patientBtn.ImageSize = new Size(40, 40);
+            ad_patientBtn.Location = new Point(13, 190);
+            ad_patientBtn.Margin = new Padding(3, 2, 3, 2);
+            ad_patientBtn.Name = "ad_patientBtn";
+            ad_patientBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            ad_patientBtn.Size = new Size(160, 53);
+            ad_patientBtn.TabIndex = 142;
+            ad_patientBtn.Text = "PATIENTS";
+            ad_patientBtn.TextFormatNoPrefix = true;
+            ad_patientBtn.Click += ad_patientBtn_Click;
             // 
             // ad_appointment
             // 
             ad_appointment.BackColor = Color.Transparent;
             ad_appointment.BorderRadius = 25;
-            ad_appointment.CustomizableEdges = customizableEdges1;
+            ad_appointment.CustomizableEdges = customizableEdges3;
             ad_appointment.DisabledState.BorderColor = Color.DarkGray;
             ad_appointment.DisabledState.CustomBorderColor = Color.DarkGray;
             ad_appointment.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -117,20 +200,21 @@
             ad_appointment.ImageAlign = HorizontalAlignment.Left;
             ad_appointment.ImageOffset = new Point(2, 0);
             ad_appointment.ImageSize = new Size(40, 40);
-            ad_appointment.Location = new Point(16, 360);
+            ad_appointment.Location = new Point(16, 424);
             ad_appointment.Margin = new Padding(3, 2, 3, 2);
             ad_appointment.Name = "ad_appointment";
-            ad_appointment.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            ad_appointment.ShadowDecoration.CustomizableEdges = customizableEdges4;
             ad_appointment.Size = new Size(160, 53);
             ad_appointment.TabIndex = 137;
             ad_appointment.Text = "APPOINTMENTS";
             ad_appointment.TextFormatNoPrefix = true;
+            ad_appointment.Click += ad_appointment_Click;
             // 
             // ad_doctor
             // 
             ad_doctor.BackColor = Color.Transparent;
             ad_doctor.BorderRadius = 25;
-            ad_doctor.CustomizableEdges = customizableEdges3;
+            ad_doctor.CustomizableEdges = customizableEdges5;
             ad_doctor.DisabledState.BorderColor = Color.DarkGray;
             ad_doctor.DisabledState.CustomBorderColor = Color.DarkGray;
             ad_doctor.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -141,10 +225,10 @@
             ad_doctor.ImageAlign = HorizontalAlignment.Left;
             ad_doctor.ImageOffset = new Point(2, 0);
             ad_doctor.ImageSize = new Size(40, 40);
-            ad_doctor.Location = new Point(12, 280);
+            ad_doctor.Location = new Point(12, 344);
             ad_doctor.Margin = new Padding(3, 2, 3, 2);
             ad_doctor.Name = "ad_doctor";
-            ad_doctor.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            ad_doctor.ShadowDecoration.CustomizableEdges = customizableEdges6;
             ad_doctor.Size = new Size(160, 53);
             ad_doctor.TabIndex = 137;
             ad_doctor.Text = "DOCTORS";
@@ -172,7 +256,7 @@
             ad_guna2CirclePictureBox1.InitialImage = (Image)resources.GetObject("ad_guna2CirclePictureBox1.InitialImage");
             ad_guna2CirclePictureBox1.Location = new Point(12, 18);
             ad_guna2CirclePictureBox1.Name = "ad_guna2CirclePictureBox1";
-            ad_guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            ad_guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges7;
             ad_guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             ad_guna2CirclePictureBox1.Size = new Size(50, 53);
             ad_guna2CirclePictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -207,7 +291,7 @@
             // 
             ad_Staff.BackColor = Color.Transparent;
             ad_Staff.BorderRadius = 25;
-            ad_Staff.CustomizableEdges = customizableEdges6;
+            ad_Staff.CustomizableEdges = customizableEdges8;
             ad_Staff.DisabledState.BorderColor = Color.DarkGray;
             ad_Staff.DisabledState.CustomBorderColor = Color.DarkGray;
             ad_Staff.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -217,10 +301,10 @@
             ad_Staff.ForeColor = Color.Black;
             ad_Staff.ImageAlign = HorizontalAlignment.Left;
             ad_Staff.ImageSize = new Size(40, 40);
-            ad_Staff.Location = new Point(12, 201);
+            ad_Staff.Location = new Point(12, 265);
             ad_Staff.Margin = new Padding(3, 2, 3, 2);
             ad_Staff.Name = "ad_Staff";
-            ad_Staff.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            ad_Staff.ShadowDecoration.CustomizableEdges = customizableEdges9;
             ad_Staff.Size = new Size(160, 53);
             ad_Staff.TabIndex = 136;
             ad_Staff.Text = "STAFFS";
@@ -252,19 +336,19 @@
             ad_HomeButton.Image = (Image)resources.GetObject("ad_HomeButton.Image");
             ad_HomeButton.Location = new Point(16, 534);
             ad_HomeButton.Name = "ad_HomeButton";
-            ad_HomeButton.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            ad_HomeButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
             ad_HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             ad_HomeButton.Size = new Size(34, 33);
             ad_HomeButton.TabIndex = 107;
             // 
             // guna2PictureBox1
             // 
-            guna2PictureBox1.CustomizableEdges = customizableEdges11;
+            guna2PictureBox1.CustomizableEdges = customizableEdges13;
             guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
             guna2PictureBox1.ImageRotate = 0F;
             guna2PictureBox1.Location = new Point(165, -26);
             guna2PictureBox1.Name = "guna2PictureBox1";
-            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2PictureBox1.Size = new Size(49, 628);
             guna2PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox1.TabIndex = 136;
@@ -296,12 +380,12 @@
             // 
             // guna2PictureBox2
             // 
-            guna2PictureBox2.CustomizableEdges = customizableEdges13;
+            guna2PictureBox2.CustomizableEdges = customizableEdges15;
             guna2PictureBox2.Image = (Image)resources.GetObject("guna2PictureBox2.Image");
             guna2PictureBox2.ImageRotate = 0F;
             guna2PictureBox2.Location = new Point(190, 28);
             guna2PictureBox2.Name = "guna2PictureBox2";
-            guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2PictureBox2.Size = new Size(63, 61);
             guna2PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox2.TabIndex = 141;
@@ -310,114 +394,33 @@
             // ad_staffpanel
             // 
             ad_staffpanel.BackColor = Color.FromArgb(13, 41, 80);
+            ad_staffpanel.Controls.Add(guna2HtmlLabel3);
             ad_staffpanel.Controls.Add(BackButton);
-            ad_staffpanel.Controls.Add(DataGridViewList);
+            ad_staffpanel.Controls.Add(StaffDataGridViewList);
             ad_staffpanel.Controls.Add(AddStaffLabel);
-            ad_staffpanel.Controls.Add(ad_docpanel);
             ad_staffpanel.CustomizableEdges = customizableEdges18;
             ad_staffpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_staffpanel.FillColor2 = Color.FromArgb(13, 41, 80);
             ad_staffpanel.FillColor3 = Color.FromArgb(13, 41, 80);
             ad_staffpanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            ad_staffpanel.Location = new Point(210, 110);
+            ad_staffpanel.Location = new Point(220, 108);
             ad_staffpanel.Name = "ad_staffpanel";
             ad_staffpanel.ShadowDecoration.CustomizableEdges = customizableEdges19;
             ad_staffpanel.Size = new Size(662, 448);
             ad_staffpanel.TabIndex = 142;
+            ad_staffpanel.Visible = false;
             // 
-            // DataGridViewList
+            // guna2HtmlLabel3
             // 
-            DataGridViewList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = SystemColors.ControlDark;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.FromArgb(13, 41, 80);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            DataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            DataGridViewList.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(13, 41, 80);
-            dataGridViewCellStyle2.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.Control;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(13, 41, 80);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            DataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            DataGridViewList.ColumnHeadersHeight = 39;
-            DataGridViewList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DataGridViewList.Cursor = Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(13, 48, 80);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(13, 48, 80);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            DataGridViewList.DefaultCellStyle = dataGridViewCellStyle3;
-            DataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
-            DataGridViewList.Location = new Point(12, 40);
-            DataGridViewList.Name = "DataGridViewList";
-            DataGridViewList.ReadOnly = true;
-            DataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.Silver;
-            dataGridViewCellStyle4.Font = new Font("Impact", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Silver;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            DataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            DataGridViewList.RowHeadersVisible = false;
-            DataGridViewList.RowTemplate.Height = 35;
-            DataGridViewList.Size = new Size(638, 394);
-            DataGridViewList.TabIndex = 145;
-            DataGridViewList.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            DataGridViewList.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DataGridViewList.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
-            DataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            DataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            DataGridViewList.ThemeStyle.BackColor = SystemColors.Control;
-            DataGridViewList.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            DataGridViewList.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            DataGridViewList.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            DataGridViewList.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DataGridViewList.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            DataGridViewList.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            DataGridViewList.ThemeStyle.HeaderStyle.Height = 39;
-            DataGridViewList.ThemeStyle.ReadOnly = true;
-            DataGridViewList.ThemeStyle.RowsStyle.BackColor = Color.White;
-            DataGridViewList.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DataGridViewList.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DataGridViewList.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            DataGridViewList.ThemeStyle.RowsStyle.Height = 35;
-            DataGridViewList.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            DataGridViewList.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
-            // AddStaffLabel
-            // 
-            AddStaffLabel.BackColor = Color.Transparent;
-            AddStaffLabel.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            AddStaffLabel.ForeColor = SystemColors.Control;
-            AddStaffLabel.Location = new Point(524, 11);
-            AddStaffLabel.Margin = new Padding(3, 2, 3, 2);
-            AddStaffLabel.Name = "AddStaffLabel";
-            AddStaffLabel.Size = new Size(87, 24);
-            AddStaffLabel.TabIndex = 174;
-            AddStaffLabel.Text = "Add Staff";
-            // 
-            // ad_docpanel
-            // 
-            ad_docpanel.BackColor = Color.FromArgb(13, 41, 80);
-            ad_docpanel.CustomizableEdges = customizableEdges16;
-            ad_docpanel.FillColor = Color.FromArgb(13, 41, 80);
-            ad_docpanel.FillColor2 = Color.FromArgb(13, 41, 80);
-            ad_docpanel.FillColor3 = Color.FromArgb(13, 41, 80);
-            ad_docpanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            ad_docpanel.Location = new Point(0, 0);
-            ad_docpanel.Name = "ad_docpanel";
-            ad_docpanel.ShadowDecoration.CustomizableEdges = customizableEdges17;
-            ad_docpanel.Size = new Size(662, 448);
-            ad_docpanel.TabIndex = 143;
+            guna2HtmlLabel3.BackColor = Color.Transparent;
+            guna2HtmlLabel3.Font = new Font("Tahoma", 15.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel3.ForeColor = SystemColors.Control;
+            guna2HtmlLabel3.Location = new Point(20, 8);
+            guna2HtmlLabel3.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            guna2HtmlLabel3.Size = new Size(116, 26);
+            guna2HtmlLabel3.TabIndex = 143;
+            guna2HtmlLabel3.Text = "Patient List";
             // 
             // BackButton
             // 
@@ -428,13 +431,550 @@
             BackButton.ImageOffset = new Point(0, 0);
             BackButton.ImageRotate = 0F;
             BackButton.ImageSize = new Size(40, 45);
-            BackButton.Location = new Point(492, 5);
+            BackButton.Location = new Point(517, 5);
             BackButton.Name = "BackButton";
             BackButton.PressedState.ImageSize = new Size(64, 64);
-            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges17;
             BackButton.Size = new Size(26, 29);
             BackButton.TabIndex = 173;
             BackButton.Click += BackButton_Click_1;
+            // 
+            // StaffDataGridViewList
+            // 
+            StaffDataGridViewList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            StaffDataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            StaffDataGridViewList.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle2.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.Control;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            StaffDataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            StaffDataGridViewList.ColumnHeadersHeight = 39;
+            StaffDataGridViewList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            StaffDataGridViewList.Cursor = Cursors.Hand;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            StaffDataGridViewList.DefaultCellStyle = dataGridViewCellStyle3;
+            StaffDataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
+            StaffDataGridViewList.Location = new Point(12, 40);
+            StaffDataGridViewList.Name = "StaffDataGridViewList";
+            StaffDataGridViewList.ReadOnly = true;
+            StaffDataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.Silver;
+            dataGridViewCellStyle4.Font = new Font("Impact", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            StaffDataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            StaffDataGridViewList.RowHeadersVisible = false;
+            StaffDataGridViewList.RowTemplate.Height = 35;
+            StaffDataGridViewList.Size = new Size(638, 394);
+            StaffDataGridViewList.TabIndex = 145;
+            StaffDataGridViewList.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            StaffDataGridViewList.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            StaffDataGridViewList.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
+            StaffDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            StaffDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            StaffDataGridViewList.ThemeStyle.BackColor = SystemColors.Control;
+            StaffDataGridViewList.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            StaffDataGridViewList.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            StaffDataGridViewList.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            StaffDataGridViewList.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            StaffDataGridViewList.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            StaffDataGridViewList.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            StaffDataGridViewList.ThemeStyle.HeaderStyle.Height = 39;
+            StaffDataGridViewList.ThemeStyle.ReadOnly = true;
+            StaffDataGridViewList.ThemeStyle.RowsStyle.BackColor = Color.White;
+            StaffDataGridViewList.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            StaffDataGridViewList.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            StaffDataGridViewList.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            StaffDataGridViewList.ThemeStyle.RowsStyle.Height = 35;
+            StaffDataGridViewList.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            StaffDataGridViewList.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
+            // AddStaffLabel
+            // 
+            AddStaffLabel.BackColor = Color.Transparent;
+            AddStaffLabel.Font = new Font("Arial", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
+            AddStaffLabel.ForeColor = SystemColors.Control;
+            AddStaffLabel.Location = new Point(559, 11);
+            AddStaffLabel.Margin = new Padding(3, 2, 3, 2);
+            AddStaffLabel.Name = "AddStaffLabel";
+            AddStaffLabel.Size = new Size(73, 21);
+            AddStaffLabel.TabIndex = 174;
+            AddStaffLabel.Text = "Add Staff";
+            // 
+            // ad_docpanel
+            // 
+            ad_docpanel.BackColor = Color.FromArgb(13, 41, 80);
+            ad_docpanel.Controls.Add(AddDoctor);
+            ad_docpanel.Controls.Add(guna2HtmlLabel4);
+            ad_docpanel.Controls.Add(guna2HtmlLabel1);
+            ad_docpanel.Controls.Add(guna2CustomGradientPanel4);
+            ad_docpanel.CustomizableEdges = customizableEdges24;
+            ad_docpanel.FillColor = Color.FromArgb(13, 41, 80);
+            ad_docpanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            ad_docpanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            ad_docpanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            ad_docpanel.Location = new Point(220, 108);
+            ad_docpanel.Name = "ad_docpanel";
+            ad_docpanel.ShadowDecoration.CustomizableEdges = customizableEdges25;
+            ad_docpanel.Size = new Size(662, 448);
+            ad_docpanel.TabIndex = 177;
+            // 
+            // AddDoctor
+            // 
+            AddDoctor.DisabledState.BorderColor = Color.DarkGray;
+            AddDoctor.DisabledState.CustomBorderColor = Color.DarkGray;
+            AddDoctor.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            AddDoctor.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            AddDoctor.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AddDoctor.ForeColor = Color.White;
+            AddDoctor.Location = new Point(516, 9);
+            AddDoctor.Name = "AddDoctor";
+            AddDoctor.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            AddDoctor.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            AddDoctor.Size = new Size(29, 28);
+            AddDoctor.TabIndex = 176;
+            AddDoctor.Text = "guna2CircleButton1";
+            AddDoctor.Click += AddDoctor_Click;
+            // 
+            // guna2HtmlLabel4
+            // 
+            guna2HtmlLabel4.BackColor = Color.Transparent;
+            guna2HtmlLabel4.Font = new Font("Arial", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel4.ForeColor = SystemColors.Control;
+            guna2HtmlLabel4.Location = new Point(554, 14);
+            guna2HtmlLabel4.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel4.Name = "guna2HtmlLabel4";
+            guna2HtmlLabel4.Size = new Size(90, 21);
+            guna2HtmlLabel4.TabIndex = 175;
+            guna2HtmlLabel4.Text = "Add Doctor";
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Tahoma", 15.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel1.ForeColor = SystemColors.Control;
+            guna2HtmlLabel1.Location = new Point(13, 8);
+            guna2HtmlLabel1.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(111, 26);
+            guna2HtmlLabel1.TabIndex = 142;
+            guna2HtmlLabel1.Text = "Doctor List";
+            // 
+            // guna2CustomGradientPanel4
+            // 
+            guna2CustomGradientPanel4.BackColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel4.Controls.Add(DoctorDataGridViewList);
+            guna2CustomGradientPanel4.Controls.Add(guna2ImageButton2);
+            guna2CustomGradientPanel4.Controls.Add(guna2HtmlLabel2);
+            guna2CustomGradientPanel4.CustomizableEdges = customizableEdges22;
+            guna2CustomGradientPanel4.FillColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel4.FillColor2 = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel4.FillColor3 = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel4.FillColor4 = Color.FromArgb(110, 177, 247);
+            guna2CustomGradientPanel4.Location = new Point(3, 42);
+            guna2CustomGradientPanel4.Name = "guna2CustomGradientPanel4";
+            guna2CustomGradientPanel4.ShadowDecoration.CustomizableEdges = customizableEdges23;
+            guna2CustomGradientPanel4.Size = new Size(662, 448);
+            guna2CustomGradientPanel4.TabIndex = 142;
+            // 
+            // DoctorDataGridViewList
+            // 
+            DoctorDataGridViewList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle5.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            DoctorDataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            DoctorDataGridViewList.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle6.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.Control;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            DoctorDataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            DoctorDataGridViewList.ColumnHeadersHeight = 39;
+            DoctorDataGridViewList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DoctorDataGridViewList.Cursor = Cursors.Hand;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle7.SelectionForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            DoctorDataGridViewList.DefaultCellStyle = dataGridViewCellStyle7;
+            DoctorDataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
+            DoctorDataGridViewList.Location = new Point(10, 4);
+            DoctorDataGridViewList.Name = "DoctorDataGridViewList";
+            DoctorDataGridViewList.ReadOnly = true;
+            DoctorDataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.Silver;
+            dataGridViewCellStyle8.Font = new Font("Impact", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            DoctorDataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            DoctorDataGridViewList.RowHeadersVisible = false;
+            DoctorDataGridViewList.RowTemplate.Height = 35;
+            DoctorDataGridViewList.Size = new Size(644, 394);
+            DoctorDataGridViewList.TabIndex = 175;
+            DoctorDataGridViewList.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            DoctorDataGridViewList.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DoctorDataGridViewList.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
+            DoctorDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            DoctorDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            DoctorDataGridViewList.ThemeStyle.BackColor = SystemColors.Control;
+            DoctorDataGridViewList.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            DoctorDataGridViewList.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            DoctorDataGridViewList.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            DoctorDataGridViewList.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DoctorDataGridViewList.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            DoctorDataGridViewList.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DoctorDataGridViewList.ThemeStyle.HeaderStyle.Height = 39;
+            DoctorDataGridViewList.ThemeStyle.ReadOnly = true;
+            DoctorDataGridViewList.ThemeStyle.RowsStyle.BackColor = Color.White;
+            DoctorDataGridViewList.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DoctorDataGridViewList.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DoctorDataGridViewList.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            DoctorDataGridViewList.ThemeStyle.RowsStyle.Height = 35;
+            DoctorDataGridViewList.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            DoctorDataGridViewList.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            DoctorDataGridViewList.Visible = false;
+            // 
+            // guna2ImageButton2
+            // 
+            guna2ImageButton2.CheckedState.ImageSize = new Size(64, 64);
+            guna2ImageButton2.Cursor = Cursors.Hand;
+            guna2ImageButton2.HoverState.ImageSize = new Size(64, 64);
+            guna2ImageButton2.Image = (Image)resources.GetObject("guna2ImageButton2.Image");
+            guna2ImageButton2.ImageOffset = new Point(0, 0);
+            guna2ImageButton2.ImageRotate = 0F;
+            guna2ImageButton2.ImageSize = new Size(40, 45);
+            guna2ImageButton2.Location = new Point(492, 5);
+            guna2ImageButton2.Name = "guna2ImageButton2";
+            guna2ImageButton2.PressedState.ImageSize = new Size(64, 64);
+            guna2ImageButton2.ShadowDecoration.CustomizableEdges = customizableEdges21;
+            guna2ImageButton2.Size = new Size(26, 29);
+            guna2ImageButton2.TabIndex = 173;
+            // 
+            // guna2HtmlLabel2
+            // 
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel2.ForeColor = SystemColors.Control;
+            guna2HtmlLabel2.Location = new Point(524, 11);
+            guna2HtmlLabel2.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(87, 24);
+            guna2HtmlLabel2.TabIndex = 174;
+            guna2HtmlLabel2.Text = "Add Staff";
+            // 
+            // ad_patientpanel
+            // 
+            ad_patientpanel.BackColor = Color.FromArgb(13, 41, 80);
+            ad_patientpanel.Controls.Add(guna2HtmlLabel6);
+            ad_patientpanel.Controls.Add(guna2CustomGradientPanel3);
+            ad_patientpanel.CustomizableEdges = customizableEdges29;
+            ad_patientpanel.FillColor = Color.FromArgb(13, 41, 80);
+            ad_patientpanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            ad_patientpanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            ad_patientpanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            ad_patientpanel.Location = new Point(220, 108);
+            ad_patientpanel.Name = "ad_patientpanel";
+            ad_patientpanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            ad_patientpanel.Size = new Size(662, 448);
+            ad_patientpanel.TabIndex = 178;
+            // 
+            // guna2HtmlLabel6
+            // 
+            guna2HtmlLabel6.BackColor = Color.Transparent;
+            guna2HtmlLabel6.Font = new Font("Tahoma", 15.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel6.ForeColor = SystemColors.Control;
+            guna2HtmlLabel6.Location = new Point(13, 8);
+            guna2HtmlLabel6.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            guna2HtmlLabel6.Size = new Size(116, 26);
+            guna2HtmlLabel6.TabIndex = 142;
+            guna2HtmlLabel6.Text = "Patient List";
+            // 
+            // guna2CustomGradientPanel3
+            // 
+            guna2CustomGradientPanel3.BackColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel3.Controls.Add(PatientDataGridViewList);
+            guna2CustomGradientPanel3.Controls.Add(guna2ImageButton1);
+            guna2CustomGradientPanel3.Controls.Add(guna2HtmlLabel7);
+            guna2CustomGradientPanel3.CustomizableEdges = customizableEdges27;
+            guna2CustomGradientPanel3.FillColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel3.FillColor2 = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel3.FillColor3 = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel3.FillColor4 = Color.FromArgb(110, 177, 247);
+            guna2CustomGradientPanel3.Location = new Point(3, 42);
+            guna2CustomGradientPanel3.Name = "guna2CustomGradientPanel3";
+            guna2CustomGradientPanel3.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2CustomGradientPanel3.Size = new Size(662, 448);
+            guna2CustomGradientPanel3.TabIndex = 142;
+            // 
+            // PatientDataGridViewList
+            // 
+            PatientDataGridViewList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle9.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            PatientDataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            PatientDataGridViewList.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle10.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.Control;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            PatientDataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            PatientDataGridViewList.ColumnHeadersHeight = 39;
+            PatientDataGridViewList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            PatientDataGridViewList.Cursor = Cursors.Hand;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle11.SelectionForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            PatientDataGridViewList.DefaultCellStyle = dataGridViewCellStyle11;
+            PatientDataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
+            PatientDataGridViewList.Location = new Point(10, 4);
+            PatientDataGridViewList.Name = "PatientDataGridViewList";
+            PatientDataGridViewList.ReadOnly = true;
+            PatientDataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.Silver;
+            dataGridViewCellStyle12.Font = new Font("Impact", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            PatientDataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            PatientDataGridViewList.RowHeadersVisible = false;
+            PatientDataGridViewList.RowTemplate.Height = 35;
+            PatientDataGridViewList.Size = new Size(644, 394);
+            PatientDataGridViewList.TabIndex = 175;
+            PatientDataGridViewList.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            PatientDataGridViewList.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PatientDataGridViewList.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
+            PatientDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            PatientDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            PatientDataGridViewList.ThemeStyle.BackColor = SystemColors.Control;
+            PatientDataGridViewList.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            PatientDataGridViewList.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            PatientDataGridViewList.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            PatientDataGridViewList.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PatientDataGridViewList.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            PatientDataGridViewList.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            PatientDataGridViewList.ThemeStyle.HeaderStyle.Height = 39;
+            PatientDataGridViewList.ThemeStyle.ReadOnly = true;
+            PatientDataGridViewList.ThemeStyle.RowsStyle.BackColor = Color.White;
+            PatientDataGridViewList.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            PatientDataGridViewList.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PatientDataGridViewList.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            PatientDataGridViewList.ThemeStyle.RowsStyle.Height = 35;
+            PatientDataGridViewList.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            PatientDataGridViewList.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            PatientDataGridViewList.Visible = false;
+            // 
+            // guna2ImageButton1
+            // 
+            guna2ImageButton1.CheckedState.ImageSize = new Size(64, 64);
+            guna2ImageButton1.Cursor = Cursors.Hand;
+            guna2ImageButton1.HoverState.ImageSize = new Size(64, 64);
+            guna2ImageButton1.Image = (Image)resources.GetObject("guna2ImageButton1.Image");
+            guna2ImageButton1.ImageOffset = new Point(0, 0);
+            guna2ImageButton1.ImageRotate = 0F;
+            guna2ImageButton1.ImageSize = new Size(40, 45);
+            guna2ImageButton1.Location = new Point(492, 5);
+            guna2ImageButton1.Name = "guna2ImageButton1";
+            guna2ImageButton1.PressedState.ImageSize = new Size(64, 64);
+            guna2ImageButton1.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2ImageButton1.Size = new Size(26, 29);
+            guna2ImageButton1.TabIndex = 173;
+            // 
+            // guna2HtmlLabel7
+            // 
+            guna2HtmlLabel7.BackColor = Color.Transparent;
+            guna2HtmlLabel7.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel7.ForeColor = SystemColors.Control;
+            guna2HtmlLabel7.Location = new Point(524, 11);
+            guna2HtmlLabel7.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            guna2HtmlLabel7.Size = new Size(87, 24);
+            guna2HtmlLabel7.TabIndex = 174;
+            guna2HtmlLabel7.Text = "Add Staff";
+            // 
+            // ad_AppointmentPanel
+            // 
+            ad_AppointmentPanel.BackColor = Color.FromArgb(13, 41, 80);
+            ad_AppointmentPanel.Controls.Add(guna2HtmlLabel5);
+            ad_AppointmentPanel.Controls.Add(guna2CustomGradientPanel5);
+            ad_AppointmentPanel.CustomizableEdges = customizableEdges34;
+            ad_AppointmentPanel.FillColor = Color.FromArgb(13, 41, 80);
+            ad_AppointmentPanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            ad_AppointmentPanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            ad_AppointmentPanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            ad_AppointmentPanel.Location = new Point(217, 105);
+            ad_AppointmentPanel.Name = "ad_AppointmentPanel";
+            ad_AppointmentPanel.ShadowDecoration.CustomizableEdges = customizableEdges35;
+            ad_AppointmentPanel.Size = new Size(662, 448);
+            ad_AppointmentPanel.TabIndex = 179;
+            // 
+            // guna2HtmlLabel5
+            // 
+            guna2HtmlLabel5.BackColor = Color.Transparent;
+            guna2HtmlLabel5.Font = new Font("Tahoma", 15.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel5.ForeColor = SystemColors.Control;
+            guna2HtmlLabel5.Location = new Point(13, 8);
+            guna2HtmlLabel5.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            guna2HtmlLabel5.Size = new Size(175, 26);
+            guna2HtmlLabel5.TabIndex = 142;
+            guna2HtmlLabel5.Text = "Appointment List";
+            // 
+            // guna2CustomGradientPanel5
+            // 
+            guna2CustomGradientPanel5.BackColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel5.Controls.Add(AppointmentDataGridViewList);
+            guna2CustomGradientPanel5.Controls.Add(guna2ImageButton3);
+            guna2CustomGradientPanel5.Controls.Add(guna2HtmlLabel8);
+            guna2CustomGradientPanel5.CustomizableEdges = customizableEdges32;
+            guna2CustomGradientPanel5.FillColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel5.FillColor2 = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel5.FillColor3 = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel5.FillColor4 = Color.FromArgb(110, 177, 247);
+            guna2CustomGradientPanel5.Location = new Point(3, 42);
+            guna2CustomGradientPanel5.Name = "guna2CustomGradientPanel5";
+            guna2CustomGradientPanel5.ShadowDecoration.CustomizableEdges = customizableEdges33;
+            guna2CustomGradientPanel5.Size = new Size(662, 448);
+            guna2CustomGradientPanel5.TabIndex = 142;
+            // 
+            // AppointmentDataGridViewList
+            // 
+            AppointmentDataGridViewList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle13.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle13.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle13.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            AppointmentDataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            AppointmentDataGridViewList.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle14.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = SystemColors.Control;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
+            AppointmentDataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            AppointmentDataGridViewList.ColumnHeadersHeight = 39;
+            AppointmentDataGridViewList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            AppointmentDataGridViewList.Cursor = Cursors.Hand;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Control;
+            dataGridViewCellStyle15.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle15.SelectionForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.False;
+            AppointmentDataGridViewList.DefaultCellStyle = dataGridViewCellStyle15;
+            AppointmentDataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
+            AppointmentDataGridViewList.Location = new Point(10, 4);
+            AppointmentDataGridViewList.Name = "AppointmentDataGridViewList";
+            AppointmentDataGridViewList.ReadOnly = true;
+            AppointmentDataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = Color.Silver;
+            dataGridViewCellStyle16.Font = new Font("Impact", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            AppointmentDataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            AppointmentDataGridViewList.RowHeadersVisible = false;
+            AppointmentDataGridViewList.RowTemplate.Height = 35;
+            AppointmentDataGridViewList.Size = new Size(644, 394);
+            AppointmentDataGridViewList.TabIndex = 175;
+            AppointmentDataGridViewList.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            AppointmentDataGridViewList.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AppointmentDataGridViewList.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
+            AppointmentDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            AppointmentDataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            AppointmentDataGridViewList.ThemeStyle.BackColor = SystemColors.Control;
+            AppointmentDataGridViewList.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            AppointmentDataGridViewList.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            AppointmentDataGridViewList.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            AppointmentDataGridViewList.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AppointmentDataGridViewList.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            AppointmentDataGridViewList.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            AppointmentDataGridViewList.ThemeStyle.HeaderStyle.Height = 39;
+            AppointmentDataGridViewList.ThemeStyle.ReadOnly = true;
+            AppointmentDataGridViewList.ThemeStyle.RowsStyle.BackColor = Color.White;
+            AppointmentDataGridViewList.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            AppointmentDataGridViewList.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AppointmentDataGridViewList.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            AppointmentDataGridViewList.ThemeStyle.RowsStyle.Height = 35;
+            AppointmentDataGridViewList.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            AppointmentDataGridViewList.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            AppointmentDataGridViewList.Visible = false;
+            // 
+            // guna2ImageButton3
+            // 
+            guna2ImageButton3.CheckedState.ImageSize = new Size(64, 64);
+            guna2ImageButton3.Cursor = Cursors.Hand;
+            guna2ImageButton3.HoverState.ImageSize = new Size(64, 64);
+            guna2ImageButton3.Image = (Image)resources.GetObject("guna2ImageButton3.Image");
+            guna2ImageButton3.ImageOffset = new Point(0, 0);
+            guna2ImageButton3.ImageRotate = 0F;
+            guna2ImageButton3.ImageSize = new Size(40, 45);
+            guna2ImageButton3.Location = new Point(492, 5);
+            guna2ImageButton3.Name = "guna2ImageButton3";
+            guna2ImageButton3.PressedState.ImageSize = new Size(64, 64);
+            guna2ImageButton3.ShadowDecoration.CustomizableEdges = customizableEdges31;
+            guna2ImageButton3.Size = new Size(26, 29);
+            guna2ImageButton3.TabIndex = 173;
+            // 
+            // guna2HtmlLabel8
+            // 
+            guna2HtmlLabel8.BackColor = Color.Transparent;
+            guna2HtmlLabel8.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel8.ForeColor = SystemColors.Control;
+            guna2HtmlLabel8.Location = new Point(524, 11);
+            guna2HtmlLabel8.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            guna2HtmlLabel8.Size = new Size(87, 24);
+            guna2HtmlLabel8.TabIndex = 174;
+            guna2HtmlLabel8.Text = "Add Staff";
             // 
             // AdminDashboard2
             // 
@@ -442,6 +982,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(894, 574);
             ControlBox = false;
+            Controls.Add(ad_AppointmentPanel);
+            Controls.Add(ad_patientpanel);
+            Controls.Add(ad_docpanel);
             Controls.Add(ad_staffpanel);
             Controls.Add(ad_guna2HtmlLabel3);
             Controls.Add(guna2CustomGradientPanel1);
@@ -451,6 +994,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "AdminDashboard2";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += AdminDashboard2_Load;
             guna2CustomGradientPanel1.ResumeLayout(false);
             guna2CustomGradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ad_guna2CirclePictureBox1).EndInit();
@@ -458,7 +1002,22 @@
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();
             ad_staffpanel.ResumeLayout(false);
             ad_staffpanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewList).EndInit();
+            ((System.ComponentModel.ISupportInitialize)StaffDataGridViewList).EndInit();
+            ad_docpanel.ResumeLayout(false);
+            ad_docpanel.PerformLayout();
+            guna2CustomGradientPanel4.ResumeLayout(false);
+            guna2CustomGradientPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DoctorDataGridViewList).EndInit();
+            ad_patientpanel.ResumeLayout(false);
+            ad_patientpanel.PerformLayout();
+            guna2CustomGradientPanel3.ResumeLayout(false);
+            guna2CustomGradientPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PatientDataGridViewList).EndInit();
+            ad_AppointmentPanel.ResumeLayout(false);
+            ad_AppointmentPanel.PerformLayout();
+            guna2CustomGradientPanel5.ResumeLayout(false);
+            guna2CustomGradientPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)AppointmentDataGridViewList).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -480,9 +1039,30 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel ad_guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_staffpanel;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_docpanel;
-        private Guna.UI2.WinForms.Guna2DataGridView DataGridViewList;
+        private Guna.UI2.WinForms.Guna2DataGridView StaffDataGridViewList;
         private Guna.UI2.WinForms.Guna2HtmlLabel AddStaffLabel;
         private Guna.UI2.WinForms.Guna2ImageButton BackButton;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_docpanel;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel4;
+        private Guna.UI2.WinForms.Guna2DataGridView DoctorDataGridViewList;
+        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2CircleButton AddDoctor;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
+        private Guna.UI2.WinForms.Guna2Button ad_patientBtn;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_patientpanel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel3;
+        private Guna.UI2.WinForms.Guna2DataGridView PatientDataGridViewList;
+        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_AppointmentPanel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel5;
+        private Guna.UI2.WinForms.Guna2DataGridView AppointmentDataGridViewList;
+        private Guna.UI2.WinForms.Guna2ImageButton guna2ImageButton3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
     }
 }

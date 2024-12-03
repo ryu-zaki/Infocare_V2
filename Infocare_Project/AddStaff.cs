@@ -42,6 +42,8 @@ namespace Infocare_Project_1
                 FirstName = FirstNameTextBox.Text,
                 LastName = LastNameTextbox.Text,
                 MiddleName = MiddleNameTextbox.Text,
+                Email = EmailTextbox.Text,
+                ContactNumber = ConatactNumberTextbox.Text,
                 Username = UserNameTextBox.Text,
                 Password = PasswordTextBox.Text,
                 ConfirmPassword = ConfirmPasswordTextBox.Text,
@@ -64,6 +66,11 @@ namespace Infocare_Project_1
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void AddStaff_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

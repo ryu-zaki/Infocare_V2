@@ -1,6 +1,8 @@
 ﻿using Infocare_Project;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Infocare_Project_1
@@ -10,16 +12,6 @@ namespace Infocare_Project_1
         private string LoggedInUsername;
         private string FirstName;
         private string LastName;
-
-        private readonly Dictionary<string, int> specializationFees = new Dictionary<string, int>
-        {
-            { "General", 500 },
-            { "Pediatrics", 800 },
-            { "Obstetrics and Gynecology(OB / GYN)", 1000 },
-            { "Cardiology", 1500 },
-            { "Orthopedics", 1200 },
-            { "Radiology", 900 }
-        };
 
         public StaffDashboard(string usrnm, string firstName, string lastName)
         {
@@ -34,7 +26,7 @@ namespace Infocare_Project_1
 
         private void PatientDashboard_Load(object sender, EventArgs e)
         {
-            SpclztnComboBox();
+            LoadSpecializations();
             AppointmentDatePicker.MinDate = DateTime.Today;
         }
 
@@ -45,8 +37,10 @@ namespace Infocare_Project_1
             SpecPanel.Visible = false;
             pd_DoctorPanel.Visible = false;
             BookingPanel.Visible = false;
+            ViewAppointmentPanel.Visible = false;
 
             Database db = new Database();
+
             List<string> patientNames = db.GetPatientNames();
 
             PatientComboBox.Items.Clear();
@@ -58,11 +52,20 @@ namespace Infocare_Project_1
             }
 
             PatientComboBox.SelectedIndex = 0;
-
         }
+
 
         private void pd_ViewAppointment_Click(object sender, EventArgs e)
         {
+            ViewAppointmentPanel.Visible = true;
+
+            SelectPatientPanel.Visible = false;
+            BookAppPanel.Visible = true;
+            SpecPanel.Visible = false;
+            pd_DoctorPanel.Visible = false;
+            BookingPanel.Visible = false;
+
+            ShowAppointmentList();
         }
 
         private void pd_EditInfo_Click(object sender, EventArgs e)
@@ -107,6 +110,8 @@ namespace Infocare_Project_1
                 SpecPanel.Visible = true;
                 BookAppPanel.Visible = true;
             }
+
+            LoadConsFee();
         }
 
         private void pd_DocBtn_Click(object sender, EventArgs e)
@@ -144,11 +149,14 @@ namespace Infocare_Project_1
             {
                 MessageBox.Show("No time slots found for this doctor.");
             }
+
+
         }
 
 
         private void pd_DocBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (pd_DocBox.SelectedItem != null && pd_DocBox.SelectedItem.ToString() != "Select")
             {
                 string selectedDoctor = pd_DocBox.SelectedItem.ToString();
@@ -167,21 +175,6 @@ namespace Infocare_Project_1
                     MessageBox.Show("No date availability data found for the selected doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-
-        private void SpclztnComboBox()
-        {
-            pd_SpecBox.Items.Clear();
-
-            pd_SpecBox.Items.Add("Select");
-
-            foreach (var specialization in specializationFees.Keys)
-            {
-                pd_SpecBox.Items.Add(specialization);
-            }
-
-            pd_SpecBox.SelectedIndex = 0;
         }
 
         private List<DayOfWeek> ParseDayAvailability(string availability)
@@ -220,6 +213,12 @@ namespace Infocare_Project_1
         {
             string selectedpatient = PatientComboBox.SelectedItem.ToString();
 
+            if (PatientComboBox.SelectedItem == null || PatientComboBox.SelectedItem.ToString() == "Select")
+            {
+                MessageBox.Show("Please select a valid patient.");
+                return;
+            }
+
             DialogResult result = MessageBox.Show($"You selected '{selectedpatient}' as the patient. Would you like to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -228,6 +227,8 @@ namespace Infocare_Project_1
                 BookAppPanel.Visible = true;
                 pd_DoctorPanel.Visible = false;
                 BookingPanel.Visible = false;
+
+                LoadSpecializations();
             }
             else if (result == DialogResult.No)
             {
@@ -236,5 +237,135 @@ namespace Infocare_Project_1
             }
         }
 
+        private void LoadSpecializations()
+        {
+            try
+            {
+                Database db = new Database();
+
+                var Specialties = db.GetSpecialization();
+
+                pd_SpecBox.Items.Clear();
+
+                pd_SpecBox.Items.Add("Select");
+
+                // Add doctor names to the ComboBox
+                pd_SpecBox.Items.AddRange(Specialties.ToArray());
+                pd_SpecBox.SelectedIndex = 0; // Set default selection
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadConsFee()
+        {
+            try
+            {
+                Database db = new Database();
+
+                string selectedSpecialization = pd_SpecBox.SelectedItem?.ToString();
+
+                if (string.IsNullOrEmpty(selectedSpecialization) || selectedSpecialization == "Select")
+                {
+                    MessageBox.Show("Please select a valid specialization.");
+                    return;
+                }
+
+                decimal? consultationFee = db.GetConsultationFee(selectedSpecialization);
+
+                if (consultationFee.HasValue)
+                {
+                    ConsFeeLbl.Text = $"{consultationFee}";
+                }
+                else
+                {
+                    ConsFeeLbl.Text = "Consultation Fee: Not Available";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading consultation fee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ConfirmBookBtn_Click(object sender, EventArgs e)
+        {
+            // Confirm booking details
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to confirm this booking?",
+                "Confirm Booking",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    Database db = new Database();
+
+                    string selectedPatient = PatientComboBox.SelectedItem.ToString();
+                    string selectedDoctor = pd_DocBox.SelectedItem.ToString();
+                    string selectedTimeSlot = TimeCombobox.SelectedItem.ToString();
+                    DateTime appointmentDate = AppointmentDatePicker.SelectionStart;
+                    string specialization = pd_SpecBox.SelectedItem.ToString();
+
+                    string feeText = ConsFeeLbl.Text.Trim();  
+
+                    decimal consultationFee = 0;
+
+                    if (!decimal.TryParse(feeText, out consultationFee))
+                    {
+                        MessageBox.Show("Invalid consultation fee.");
+                        return;  
+                    }
+
+                    bool appointmentSaved = db.SaveAppointment(selectedPatient, specialization, selectedDoctor, selectedTimeSlot, appointmentDate, consultationFee);
+
+                    if (appointmentSaved)
+                    {
+                        MessageBox.Show("Appointment saved successfully.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to save appointment.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
+
+        private void ShowAppointmentList()
+        {
+
+            Database db = new Database();
+            try
+            {
+                DataTable AppointmentData = db.AppointmentList();
+                if (AppointmentData.Rows.Count > 0)
+                {
+                    AppointmentDataGridViewList.DataSource = AppointmentData;
+                }
+                else
+                {
+                    MessageBox.Show("No Appointment History data found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading Appointment History data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
     }
+
+
+
 }

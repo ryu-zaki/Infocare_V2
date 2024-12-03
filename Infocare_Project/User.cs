@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.Cms;
-using System;
+﻿using System;
 
 namespace Infocare_Project
 {
@@ -61,6 +60,9 @@ namespace Infocare_Project
         public int ZipCode { get; set; }
         public int Zone { get; set; }
 
+        // Additional Information
+        public string Email { get; set; } // Added Email property
+
         // Emergency Contact
         public EmergencyContact EmergencyContact { get; set; }
 
@@ -110,7 +112,7 @@ namespace Infocare_Project
     // Patient Class
     public class Patient : User
     {
-        // BasicHealthInfo
+        // Basic Health Info
         public double Height { get; set; }
         public double Weight { get; set; }
         public double BMI { get; set; }
@@ -142,7 +144,7 @@ namespace Infocare_Project
         }
     }
 
-    //Doctor Class
+    // Doctor Class
     public class Doctor : User
     {
         public string Specialty { get; set; }
@@ -164,26 +166,17 @@ namespace Infocare_Project
         }
     }
 
-
-    //Staff Class
     // Staff Class
     public class Staff : User
     {
-        // Constructor
         public Staff() { }
 
-        // Parameterized Constructor
-        public Staff(string firstName, string middleName, string lastName, string username, string password)
-            : base(firstName, lastName, middleName, string.Empty, string.Empty, string.Empty, username, password, string.Empty, DateTime.MinValue)
+        public Staff(string firstName, string middleName, string lastName, string suffix, string email, string contactNumber, string username, string password)
+            : base(firstName, lastName, middleName, contactNumber, string.Empty, suffix, username, password, string.Empty, DateTime.MinValue)
         {
-            FirstName = firstName;
-            MiddleName = middleName;
-            LastName = lastName;
-            Username = username;
-            Password = password;
+            Email = email; // Correctly assigning to Email property
         }
     }
-
 
     // Admin Class
     public class Admin : User
