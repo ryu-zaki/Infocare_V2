@@ -62,5 +62,23 @@ namespace Infocare_Project
             }
 
         }
+
+
+        private void admin_showpass_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ad_HomeButton_Click(object sender, EventArgs e)
+        {
+            HomeForm homeForm = new HomeForm();
+            homeForm.Show();
+            this.Hide();
+        }
     }
 }

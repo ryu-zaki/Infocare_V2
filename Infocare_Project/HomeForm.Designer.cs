@@ -171,6 +171,7 @@
             DoctorEnterButton.Size = new Size(149, 72);
             DoctorEnterButton.TabIndex = 3;
             DoctorEnterButton.Text = "Doctor";
+            DoctorEnterButton.Click += DoctorEnterButton_Click;
             // 
             // AdminEnterButton
             // 

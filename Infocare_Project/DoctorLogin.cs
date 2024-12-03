@@ -21,5 +21,22 @@ namespace Infocare_Project
         {
 
         }
+
+        private void staff_HomeButton_Click(object sender, EventArgs e)
+        {
+            HomeForm homeForm = new HomeForm();
+            homeForm.Show();
+            this.Hide();
+        }
+
+        private void doctor_MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void doctor_ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

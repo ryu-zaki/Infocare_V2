@@ -47,5 +47,12 @@ namespace Infocare_Project
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void DoctorEnterButton_Click(object sender, EventArgs e)
+        {
+            DoctorLogin doctorLogin = new DoctorLogin();
+            doctorLogin.Show();
+            this.Hide();
+        }
     }
 }
