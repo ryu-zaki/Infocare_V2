@@ -24,7 +24,7 @@ namespace Infocare_Project
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            PatientLoginForm loginForm = new PatientLoginForm();
+            StaffLogin loginForm = new StaffLogin();
             loginForm.Show();
             this.Hide();
         }

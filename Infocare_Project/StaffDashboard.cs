@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Infocare_Project_1
 {
-    public partial class PatientDashboard : Form
+    public partial class StaffDashboard : Form
     {
         private string LoggedInUsername;
         private string FirstName;
@@ -21,7 +21,7 @@ namespace Infocare_Project_1
             { "Radiology", 900 }
         };
 
-        public PatientDashboard(string usrnm, string firstName, string lastName)
+        public StaffDashboard(string usrnm, string firstName, string lastName)
         {
             InitializeComponent();
 
