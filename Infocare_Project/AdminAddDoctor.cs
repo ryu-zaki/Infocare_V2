@@ -14,29 +14,19 @@ namespace Infocare_Project
     {
         private PlaceHolderHandler _placeHolderHandler;
 
-        private Dictionary<string, int> specializationFees = new Dictionary<string, int>
-        {
-            { "General", 500 },
-            { "Pediatrics", 800 },
-            { "Obstetrics and Gynecology(OB / GYN)", 1000 },
-            { "Cardiology", 1500 },
-            { "Orthopedics", 1200 },
-            { "Radiology", 900 }
-        };
+    
 
         public AdminAddDoctor()
         {
             InitializeComponent();
             _placeHolderHandler = new PlaceHolderHandler();
 
-            SpecializationComboBox.SelectedIndexChanged += SpecializationComboBox_SelectedIndexChanged;
         }
 
         private void AdminAddDoctor_Load(object sender, EventArgs e)
         {
             TimeCombobox();
             DayAvComboBox();
-            SpclztnComboBox();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -51,9 +41,11 @@ namespace Infocare_Project
                 string.IsNullOrWhiteSpace(UserNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(PasswordTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(ConfirmPasswordTextBox.Text.Trim()) ||
-                TimeComboBox.SelectedIndex == 0 ||  // Check if no time is selected
-                DayAvailabilityCombobox.SelectedIndex == 0 ||
-                SpecializationComboBox.SelectedIndex == 0)
+                string.IsNullOrWhiteSpace(SpecializationTextBox.Text.Trim()) ||
+                string.IsNullOrWhiteSpace(ConsultationFeeTextBox.Text.Trim()) ||
+
+                TimeComboBox.SelectedIndex == 0 || 
+                DayAvailabilityCombobox.SelectedIndex == 0)
             {
                 MessageBox.Show("Please fill out all fields and select valid options.");
                 return;
@@ -67,8 +59,8 @@ namespace Infocare_Project
                 Username = UserNameTextBox.Text.Trim(),
                 Password = PasswordTextBox.Text.Trim(),
                 ConfirmPassword = ConfirmPasswordTextBox.Text.Trim(),
-                ConsultationFee = int.TryParse(ConsFeeLbl.Text, out int consultationFee) ? consultationFee : 0,
-                Specialty = SpecializationComboBox.SelectedItem?.ToString() ?? string.Empty,
+                ConsultationFee = int.TryParse(ConsultationFeeTextBox.Text, out int consultationFee) ? consultationFee : 0,
+                Specialty = SpecializationTextBox.Text.Trim(),
             };
 
             string selectedTimeSlot = TimeComboBox.SelectedItem.ToString();
@@ -156,40 +148,9 @@ namespace Infocare_Project
             DayAvailabilityCombobox.SelectedIndex = 0;
         }
 
-        private void SpclztnComboBox()
-        {
-            SpecializationComboBox.Items.Clear();
-            SpecializationComboBox.Items.Add("Select Specialization");
+        
 
-            foreach (var specialization in specializationFees.Keys)
-            {
-                SpecializationComboBox.Items.Add(specialization);
-            }
-
-            SpecializationComboBox.SelectedIndex = 0;
-        }
-
-        private void SpecializationComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (SpecializationComboBox.SelectedIndex > 0)
-            {
-                string selectedSpecialization = SpecializationComboBox.SelectedItem.ToString();
-                if (specializationFees.TryGetValue(selectedSpecialization, out int fee))
-                {
-                    ConsFeeLbl.Text = fee.ToString();
-                }
-            }
-            else
-            {
-                ConsFeeLbl.Text = "0";
-            }
-        }
-
-
-
-
-
-
+  
 
         private void FirstNameTextBox_TextChanged(object sender, EventArgs e)
         {

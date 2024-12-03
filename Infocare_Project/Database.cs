@@ -10,6 +10,7 @@ using Microsoft.VisualBasic.Logging;
 using System.Drawing;
 using Microsoft.VisualBasic.ApplicationServices;
 using Infocare_Project.NewFolder;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Infocare_Project
 {
@@ -196,8 +197,8 @@ namespace Infocare_Project
             {
                 try
                 {
-                    string query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, s_Username, s_Password) " +
-                                   "VALUES (@FirstName, @LastName, @MiddleName, @Username, @Password)";
+                    string query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, s_Username, s_Password, s_suffix, s_contactNumber, s_email) " +
+                                   "VALUES (@FirstName, @LastName, @MiddleName, @Username, @Password, @suffix, @ContactNumber, @email)";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
 
@@ -206,6 +207,11 @@ namespace Infocare_Project
                     command.Parameters.AddWithValue("@MiddleName", staff.MiddleName);
                     command.Parameters.AddWithValue("@Username", staff.Username);
                     command.Parameters.AddWithValue("@Password", staff.Password);
+                    command.Parameters.AddWithValue("@suffix", staff.Suffix);
+                    command.Parameters.AddWithValue("@ContactNumber", staff.ContactNumber);
+                    command.Parameters.AddWithValue("@email", staff.Email);
+
+
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -495,14 +501,14 @@ namespace Infocare_Project
             return patientNames;
         }
 
-
+       
         public List<string> GetDoctorNames(string specialization)
         {
             List<string> doctorNames = new List<string>();
 
             string query = @"SELECT CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) AS doctor_name
                      FROM tb_doctorinfo
-                     WHERE specialization = @Specialization";
+                    WHERE specialization = @Specialization";
 
             using (var connection = GetConnection())
             {
@@ -590,6 +596,221 @@ namespace Infocare_Project
                 }
             }
         }
+
+        public DataTable StaffList()
+        {
+            string query = @"SELECT s_Firstname AS 'First Name', s_middleName AS 'Middle Name', s_lastname AS 'Last Name', s_suffix AS 'Suffix', s_contactnumber AS 'Contact Number', s_email AS 'Email' FROM tb_staffinfo";
+
+            DataTable staffTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(staffTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving staff list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return staffTable;
+        }
+
+        public DataTable DoctorList()
+        {
+            string query = @"SELECT Firstname AS 'First Name', middleName AS 'Middle Name', lastname AS 'Last Name', specialization AS 'Specialization', day_availability AS 'Day Available' FROM tb_doctorinfo";
+
+            DataTable DoctorTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(DoctorTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving staff list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return DoctorTable;
+        }
+
+        public DataTable PatientList()
+        {
+            string query = @"SELECT p_Firstname AS 'First Name', p_middleName AS 'Middle Name', P_lastname AS 'Last Name', p_suffix AS 'Suffix', p_sex AS 'Sex', P_bdate AS 'Birth Date', p_address AS 'Full Address' FROM tb_patientinfo";
+
+            DataTable PatientTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(PatientTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving staff list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return PatientTable;
+        }
+
+
+        public List<string> GetSpecialization()
+        {
+            List<string> specialization = new List<string>();
+
+            string query = @"select Specialization from tb_doctorinfo group by Specialization";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string spec = reader["Specialization"].ToString();
+                            if (!string.IsNullOrEmpty(spec))
+                            {
+                                specialization.Add(spec);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error getting specialization: " + ex.Message);
+                }
+            }
+            return specialization;
+        }
+
+        public decimal? GetConsultationFee(string specialization)
+        {
+            using (var connection = GetConnection())
+            {
+                // Corrected SQL query
+                string query = @"SELECT consultationfee FROM tb_doctorinfo WHERE Specialization = @specialization";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@specialization", specialization);
+
+                try
+                {
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Return the consultation fee from the database
+                            return reader.IsDBNull(reader.GetOrdinal("consultationfee")) ? (decimal?)null : reader.GetDecimal("consultationfee");
+                        }
+                        else
+                        {
+                            return null; // No data found
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error fetching consultation fee: " + ex.Message);
+                }
+            }
+        }
+
+        public bool SaveAppointment(string patientName, string specialization, string doctorName, string timeSlot, DateTime appointmentDate, decimal consFee)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"INSERT INTO tb_appointmenthistory (ah_Patient_Name, ah_Specialization, ah_Doctor_Name, ah_time, ah_date, ah_consfee) 
+                             VALUES (@PatientName, @Specialization, @DoctorName, @TimeSlot, @AppointmentDate, @ConsFee)";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PatientName", patientName);
+                        command.Parameters.AddWithValue("@Specialization", specialization);
+                        command.Parameters.AddWithValue("@DoctorName", doctorName);
+                        command.Parameters.AddWithValue("@TimeSlot", timeSlot);
+                        command.Parameters.AddWithValue("@AppointmentDate", appointmentDate);
+                        command.Parameters.AddWithValue("@ConsFee", consFee); 
+
+                        connection.Open();
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while saving the appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public DataTable AppointmentList()
+        {
+            string query = @"select ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee' From tb_appointmenthistory";
+
+            DataTable AppointmentTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(AppointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving staff list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return AppointmentTable;
+        }
+
+
+
+
 
     }
 }
