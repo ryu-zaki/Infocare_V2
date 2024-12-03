@@ -25,16 +25,11 @@ namespace Infocare_Project
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
-            patientRegisterForm.Show();
 
-            this.Hide();
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-
-
 
             string username = UsernameTxtbox.Text;
             string password = PasswordTxtbox.Text;
@@ -56,17 +51,17 @@ namespace Infocare_Project
             Database db = new Database();
 
 
-            bool validPatient = db.StaffLogin(username, password);
+            bool validStaff = db.StaffLogin(username, password);
 
 
-            if (validPatient)
+            if (validStaff)
             {
-                (string firstName, string lastName) = db.GetPatientNameDetails(username);
+                (string firstName, string lastName) = db.GetStaffNameDetails(username);
 
                 MessageBox.Show("Login successful!");
 
-                var patientDashboard = new StaffDashboard(username, firstName, lastName);
-                patientDashboard.Show();
+                var staffdashboard = new StaffDashboard(username, firstName, lastName);
+                staffdashboard.Show();
                 this.Hide();
             }
 

@@ -216,6 +216,7 @@
             EnterButton.Size = new Size(115, 42);
             EnterButton.TabIndex = 3;
             EnterButton.Text = "Register";
+            EnterButton.Click += EnterButton_Click;
             // 
             // guna2CustomGradientPanel2
             // 
@@ -468,6 +469,7 @@
             Controls.Add(FirstNameTextBox);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AddStaff";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AddStaff";
             guna2CustomGradientPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox4).EndInit();

@@ -62,15 +62,8 @@ namespace Infocare_Project
                 return;
             }
 
-            // int houseNo;
             int zipCode;
             int zone;
-
-            //if (!int.TryParse(HouseNoTxtbox.Text, out houseNo))
-            //{
-            //    MessageBox.Show("Please enter a valid number for House No.");
-            //    return; 
-            //}
 
             if (!int.TryParse(ZipCodeTxtbox.Text, out zipCode))
             {

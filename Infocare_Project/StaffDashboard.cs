@@ -40,10 +40,25 @@ namespace Infocare_Project_1
 
         private void pd_BookAppointment_Click(object sender, EventArgs e)
         {
-            SpecPanel.Visible = true;
+            SelectPatientPanel.Visible = true;
             BookAppPanel.Visible = true;
+            SpecPanel.Visible = false;
             pd_DoctorPanel.Visible = false;
             BookingPanel.Visible = false;
+
+            Database db = new Database();
+            List<string> patientNames = db.GetPatientNames();
+
+            PatientComboBox.Items.Clear();
+            PatientComboBox.Items.Add("Select");
+
+            foreach (var patientName in patientNames)
+            {
+                PatientComboBox.Items.Add(patientName);
+            }
+
+            PatientComboBox.SelectedIndex = 0;
+
         }
 
         private void pd_ViewAppointment_Click(object sender, EventArgs e)
@@ -70,7 +85,7 @@ namespace Infocare_Project_1
 
             if (result == DialogResult.Yes)
             {
-                BookingPanel.Visible = false;
+                SelectPatientPanel.Visible = false;
                 SpecPanel.Visible = false;
                 pd_DoctorPanel.Visible = true;
                 BookAppPanel.Visible = true;
@@ -107,6 +122,7 @@ namespace Infocare_Project_1
 
             var timeSlots = db.GetDoctorAvailableTimes(selectedDoctor);
 
+            SelectPatientPanel.Visible = false;
             SpecPanel.Visible = false;
             pd_DoctorPanel.Visible = false;
             BookAppPanel.Visible = true;
@@ -199,5 +215,26 @@ namespace Infocare_Project_1
                 }
             };
         }
+
+        private void EnterPatientButton_Click(object sender, EventArgs e)
+        {
+            string selectedpatient = PatientComboBox.SelectedItem.ToString();
+
+            DialogResult result = MessageBox.Show($"You selected '{selectedpatient}' as the patient. Would you like to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                SelectPatientPanel.Visible = false;
+                SpecPanel.Visible = true;
+                BookAppPanel.Visible = true;
+                pd_DoctorPanel.Visible = false;
+                BookingPanel.Visible = false;
+            }
+            else if (result == DialogResult.No)
+            {
+                SelectPatientPanel.Visible = true;
+                BookAppPanel.Visible = true;
+            }
+        }
+
     }
 }

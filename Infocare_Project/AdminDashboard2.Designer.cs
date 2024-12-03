@@ -43,18 +43,15 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             ad_appointment = new Guna.UI2.WinForms.Guna2Button();
             ad_doctor = new Guna.UI2.WinForms.Guna2Button();
@@ -70,17 +67,16 @@
             ad_guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             ad_staffpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            DataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
+            AddStaffLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_docpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            BackButton = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ad_guna2CirclePictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             ad_staffpanel.SuspendLayout();
-            ad_docpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewList).BeginInit();
             SuspendLayout();
             // 
             // guna2CustomGradientPanel1
@@ -234,12 +230,12 @@
             // ad_logoutlabel
             // 
             ad_logoutlabel.BackColor = Color.Transparent;
-            ad_logoutlabel.Font = new Font("Montserrat SemiBold", 9.749999F, FontStyle.Bold, GraphicsUnit.Point);
+            ad_logoutlabel.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Bold, GraphicsUnit.Point);
             ad_logoutlabel.ForeColor = SystemColors.ActiveCaptionText;
             ad_logoutlabel.Location = new Point(48, 540);
             ad_logoutlabel.Margin = new Padding(3, 2, 3, 2);
             ad_logoutlabel.Name = "ad_logoutlabel";
-            ad_logoutlabel.Size = new Size(58, 20);
+            ad_logoutlabel.Size = new Size(56, 18);
             ad_logoutlabel.TabIndex = 108;
             ad_logoutlabel.Text = "Log Out";
             // 
@@ -314,130 +310,131 @@
             // ad_staffpanel
             // 
             ad_staffpanel.BackColor = Color.FromArgb(13, 41, 80);
-            ad_staffpanel.Controls.Add(guna2Button2);
-            ad_staffpanel.Controls.Add(guna2Button1);
-            ad_staffpanel.CustomizableEdges = customizableEdges19;
+            ad_staffpanel.Controls.Add(BackButton);
+            ad_staffpanel.Controls.Add(DataGridViewList);
+            ad_staffpanel.Controls.Add(AddStaffLabel);
+            ad_staffpanel.Controls.Add(ad_docpanel);
+            ad_staffpanel.CustomizableEdges = customizableEdges18;
             ad_staffpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_staffpanel.FillColor2 = Color.FromArgb(13, 41, 80);
             ad_staffpanel.FillColor3 = Color.FromArgb(13, 41, 80);
             ad_staffpanel.FillColor4 = Color.FromArgb(110, 177, 247);
             ad_staffpanel.Location = new Point(210, 110);
             ad_staffpanel.Name = "ad_staffpanel";
-            ad_staffpanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            ad_staffpanel.ShadowDecoration.CustomizableEdges = customizableEdges19;
             ad_staffpanel.Size = new Size(662, 448);
             ad_staffpanel.TabIndex = 142;
             // 
-            // guna2Button2
+            // DataGridViewList
             // 
-            guna2Button2.BackColor = Color.Transparent;
-            guna2Button2.BorderRadius = 25;
-            guna2Button2.CustomizableEdges = customizableEdges15;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = SystemColors.ButtonFace;
-            guna2Button2.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button2.ForeColor = Color.Black;
-            guna2Button2.ImageAlign = HorizontalAlignment.Left;
-            guna2Button2.ImageOffset = new Point(2, 0);
-            guna2Button2.ImageSize = new Size(40, 40);
-            guna2Button2.Location = new Point(19, 206);
-            guna2Button2.Margin = new Padding(3, 2, 3, 2);
-            guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2Button2.Size = new Size(121, 53);
-            guna2Button2.TabIndex = 138;
-            guna2Button2.Text = "ADD STAFF";
-            guna2Button2.TextFormatNoPrefix = true;
+            DataGridViewList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            DataGridViewList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            DataGridViewList.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle2.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.Control;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            DataGridViewList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            DataGridViewList.ColumnHeadersHeight = 39;
+            DataGridViewList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DataGridViewList.Cursor = Cursors.Hand;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(13, 48, 80);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            DataGridViewList.DefaultCellStyle = dataGridViewCellStyle3;
+            DataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
+            DataGridViewList.Location = new Point(12, 40);
+            DataGridViewList.Name = "DataGridViewList";
+            DataGridViewList.ReadOnly = true;
+            DataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.Silver;
+            dataGridViewCellStyle4.Font = new Font("Impact", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Silver;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            DataGridViewList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            DataGridViewList.RowHeadersVisible = false;
+            DataGridViewList.RowTemplate.Height = 35;
+            DataGridViewList.Size = new Size(638, 394);
+            DataGridViewList.TabIndex = 145;
+            DataGridViewList.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            DataGridViewList.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DataGridViewList.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
+            DataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            DataGridViewList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            DataGridViewList.ThemeStyle.BackColor = SystemColors.Control;
+            DataGridViewList.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            DataGridViewList.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            DataGridViewList.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            DataGridViewList.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DataGridViewList.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            DataGridViewList.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            DataGridViewList.ThemeStyle.HeaderStyle.Height = 39;
+            DataGridViewList.ThemeStyle.ReadOnly = true;
+            DataGridViewList.ThemeStyle.RowsStyle.BackColor = Color.White;
+            DataGridViewList.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DataGridViewList.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DataGridViewList.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            DataGridViewList.ThemeStyle.RowsStyle.Height = 35;
+            DataGridViewList.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            DataGridViewList.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
-            // guna2Button1
+            // AddStaffLabel
             // 
-            guna2Button1.BackColor = Color.Transparent;
-            guna2Button1.BorderRadius = 25;
-            guna2Button1.CustomizableEdges = customizableEdges17;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = SystemColors.ButtonFace;
-            guna2Button1.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button1.ForeColor = Color.Black;
-            guna2Button1.ImageAlign = HorizontalAlignment.Left;
-            guna2Button1.ImageOffset = new Point(2, 0);
-            guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(19, 123);
-            guna2Button1.Margin = new Padding(3, 2, 3, 2);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            guna2Button1.Size = new Size(121, 53);
-            guna2Button1.TabIndex = 137;
-            guna2Button1.Text = "STAFFS LIST";
-            guna2Button1.TextFormatNoPrefix = true;
+            AddStaffLabel.BackColor = Color.Transparent;
+            AddStaffLabel.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            AddStaffLabel.ForeColor = SystemColors.Control;
+            AddStaffLabel.Location = new Point(524, 11);
+            AddStaffLabel.Margin = new Padding(3, 2, 3, 2);
+            AddStaffLabel.Name = "AddStaffLabel";
+            AddStaffLabel.Size = new Size(87, 24);
+            AddStaffLabel.TabIndex = 174;
+            AddStaffLabel.Text = "Add Staff";
             // 
             // ad_docpanel
             // 
             ad_docpanel.BackColor = Color.FromArgb(13, 41, 80);
-            ad_docpanel.Controls.Add(guna2Button3);
-            ad_docpanel.Controls.Add(guna2Button4);
-            ad_docpanel.CustomizableEdges = customizableEdges25;
+            ad_docpanel.CustomizableEdges = customizableEdges16;
             ad_docpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_docpanel.FillColor2 = Color.FromArgb(13, 41, 80);
             ad_docpanel.FillColor3 = Color.FromArgb(13, 41, 80);
             ad_docpanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            ad_docpanel.Location = new Point(210, 110);
+            ad_docpanel.Location = new Point(0, 0);
             ad_docpanel.Name = "ad_docpanel";
-            ad_docpanel.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            ad_docpanel.ShadowDecoration.CustomizableEdges = customizableEdges17;
             ad_docpanel.Size = new Size(662, 448);
             ad_docpanel.TabIndex = 143;
             // 
-            // guna2Button3
+            // BackButton
             // 
-            guna2Button3.BackColor = Color.Transparent;
-            guna2Button3.BorderRadius = 25;
-            guna2Button3.CustomizableEdges = customizableEdges21;
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.FillColor = SystemColors.ButtonFace;
-            guna2Button3.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button3.ForeColor = Color.Black;
-            guna2Button3.ImageAlign = HorizontalAlignment.Left;
-            guna2Button3.ImageOffset = new Point(2, 0);
-            guna2Button3.ImageSize = new Size(40, 40);
-            guna2Button3.Location = new Point(19, 206);
-            guna2Button3.Margin = new Padding(3, 2, 3, 2);
-            guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            guna2Button3.Size = new Size(121, 53);
-            guna2Button3.TabIndex = 138;
-            guna2Button3.Text = "ADD DOCTOR";
-            guna2Button3.TextFormatNoPrefix = true;
-            // 
-            // guna2Button4
-            // 
-            guna2Button4.BackColor = Color.Transparent;
-            guna2Button4.BorderRadius = 25;
-            guna2Button4.CustomizableEdges = customizableEdges23;
-            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button4.FillColor = SystemColors.ButtonFace;
-            guna2Button4.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button4.ForeColor = Color.Black;
-            guna2Button4.ImageAlign = HorizontalAlignment.Left;
-            guna2Button4.ImageOffset = new Point(2, 0);
-            guna2Button4.ImageSize = new Size(40, 40);
-            guna2Button4.Location = new Point(19, 123);
-            guna2Button4.Margin = new Padding(3, 2, 3, 2);
-            guna2Button4.Name = "guna2Button4";
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            guna2Button4.Size = new Size(121, 53);
-            guna2Button4.TabIndex = 137;
-            guna2Button4.Text = "DOCTOR LIST";
-            guna2Button4.TextFormatNoPrefix = true;
+            BackButton.CheckedState.ImageSize = new Size(64, 64);
+            BackButton.Cursor = Cursors.Hand;
+            BackButton.HoverState.ImageSize = new Size(64, 64);
+            BackButton.Image = (Image)resources.GetObject("BackButton.Image");
+            BackButton.ImageOffset = new Point(0, 0);
+            BackButton.ImageRotate = 0F;
+            BackButton.ImageSize = new Size(40, 45);
+            BackButton.Location = new Point(492, 5);
+            BackButton.Name = "BackButton";
+            BackButton.PressedState.ImageSize = new Size(64, 64);
+            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            BackButton.Size = new Size(26, 29);
+            BackButton.TabIndex = 173;
+            BackButton.Click += BackButton_Click_1;
             // 
             // AdminDashboard2
             // 
@@ -445,7 +442,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(894, 574);
             ControlBox = false;
-            Controls.Add(ad_docpanel);
             Controls.Add(ad_staffpanel);
             Controls.Add(ad_guna2HtmlLabel3);
             Controls.Add(guna2CustomGradientPanel1);
@@ -461,7 +457,8 @@
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();
             ad_staffpanel.ResumeLayout(false);
-            ad_docpanel.ResumeLayout(false);
+            ad_staffpanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewList).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -483,10 +480,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel ad_guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_staffpanel;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_docpanel;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private Guna.UI2.WinForms.Guna2DataGridView DataGridViewList;
+        private Guna.UI2.WinForms.Guna2HtmlLabel AddStaffLabel;
+        private Guna.UI2.WinForms.Guna2ImageButton BackButton;
     }
 }

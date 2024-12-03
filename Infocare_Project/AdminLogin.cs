@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infocare_Project_1;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,7 +34,7 @@ namespace Infocare_Project
 
 
                 MessageBox.Show("Log in Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                var adminDashboard = new AdminDashboard();
+                AdminDashboard2 adminDashboard = new AdminDashboard2();
                 adminDashboard.Show();
                 this.Hide();
 

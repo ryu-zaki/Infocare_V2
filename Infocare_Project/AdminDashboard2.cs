@@ -37,5 +37,16 @@ namespace Infocare_Project_1
         {
 
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BackButton_Click_1(object sender, EventArgs e)
+        {
+            AddStaff addstaff = new AddStaff();
+            addstaff.Show();
+        }
     }
 }

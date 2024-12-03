@@ -41,8 +41,20 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -51,18 +63,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -75,6 +81,14 @@
             pd_HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             BookAppPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            SpecPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            pd_DoctorPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            pd_DocBtn = new Guna.UI2.WinForms.Guna2Button();
+            pd_DocBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            pd_SpecBtn = new Guna.UI2.WinForms.Guna2Button();
+            pd_SpecBox = new Guna.UI2.WinForms.Guna2ComboBox();
             BookingPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             AppointmentDatePicker = new MonthCalendar();
             guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -85,23 +99,20 @@
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             TimeCombobox = new Guna.UI2.WinForms.Guna2ComboBox();
-            pd_DoctorPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            pd_DocBtn = new Guna.UI2.WinForms.Guna2Button();
-            pd_DocBox = new Guna.UI2.WinForms.Guna2ComboBox();
-            SpecPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            pd_SpecBtn = new Guna.UI2.WinForms.Guna2Button();
-            pd_SpecBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            SelectPatientPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            EnterPatientButton = new Guna.UI2.WinForms.Guna2Button();
+            PatientComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             BookAppPanel.SuspendLayout();
-            BookingPanel.SuspendLayout();
-            pd_DoctorPanel.SuspendLayout();
             SpecPanel.SuspendLayout();
+            pd_DoctorPanel.SuspendLayout();
+            BookingPanel.SuspendLayout();
+            SelectPatientPanel.SuspendLayout();
             SuspendLayout();
             // 
             // guna2CustomGradientPanel1
@@ -305,15 +316,145 @@
             // BookAppPanel
             // 
             BookAppPanel.Controls.Add(BookingPanel);
-            BookAppPanel.Controls.Add(pd_DoctorPanel);
             BookAppPanel.Controls.Add(SpecPanel);
-            BookAppPanel.CustomizableEdges = customizableEdges33;
+            BookAppPanel.Controls.Add(pd_DoctorPanel);
+            BookAppPanel.Controls.Add(SelectPatientPanel);
+            BookAppPanel.CustomizableEdges = customizableEdges39;
             BookAppPanel.Location = new Point(205, 107);
             BookAppPanel.Name = "BookAppPanel";
-            BookAppPanel.ShadowDecoration.CustomizableEdges = customizableEdges34;
-            BookAppPanel.Size = new Size(677, 383);
+            BookAppPanel.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            BookAppPanel.Size = new Size(677, 393);
             BookAppPanel.TabIndex = 136;
             BookAppPanel.Visible = false;
+            // 
+            // SpecPanel
+            // 
+            SpecPanel.Controls.Add(guna2HtmlLabel5);
+            SpecPanel.Controls.Add(pd_SpecBtn);
+            SpecPanel.Controls.Add(pd_SpecBox);
+            SpecPanel.CustomizableEdges = customizableEdges25;
+            SpecPanel.FillColor = Color.FromArgb(13, 41, 80);
+            SpecPanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            SpecPanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            SpecPanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            SpecPanel.Location = new Point(10, 18);
+            SpecPanel.Name = "SpecPanel";
+            SpecPanel.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            SpecPanel.Size = new Size(652, 358);
+            SpecPanel.TabIndex = 137;
+            SpecPanel.Visible = false;
+            // 
+            // pd_DoctorPanel
+            // 
+            pd_DoctorPanel.Controls.Add(guna2HtmlLabel6);
+            pd_DoctorPanel.Controls.Add(pd_DocBtn);
+            pd_DoctorPanel.Controls.Add(pd_DocBox);
+            pd_DoctorPanel.CustomizableEdges = customizableEdges31;
+            pd_DoctorPanel.FillColor = Color.FromArgb(13, 41, 80);
+            pd_DoctorPanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            pd_DoctorPanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            pd_DoctorPanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            pd_DoctorPanel.Location = new Point(10, 15);
+            pd_DoctorPanel.Name = "pd_DoctorPanel";
+            pd_DoctorPanel.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            pd_DoctorPanel.Size = new Size(655, 361);
+            pd_DoctorPanel.TabIndex = 139;
+            pd_DoctorPanel.Visible = false;
+            // 
+            // guna2HtmlLabel6
+            // 
+            guna2HtmlLabel6.BackColor = Color.Transparent;
+            guna2HtmlLabel6.Font = new Font("Tahoma", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            guna2HtmlLabel6.ForeColor = SystemColors.Control;
+            guna2HtmlLabel6.Location = new Point(242, 98);
+            guna2HtmlLabel6.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            guna2HtmlLabel6.Size = new Size(145, 27);
+            guna2HtmlLabel6.TabIndex = 140;
+            guna2HtmlLabel6.Text = "Select a Doctor";
+            // 
+            // pd_DocBtn
+            // 
+            pd_DocBtn.CustomizableEdges = customizableEdges27;
+            pd_DocBtn.DisabledState.BorderColor = Color.DarkGray;
+            pd_DocBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            pd_DocBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            pd_DocBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            pd_DocBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            pd_DocBtn.ForeColor = Color.White;
+            pd_DocBtn.Location = new Point(229, 212);
+            pd_DocBtn.Name = "pd_DocBtn";
+            pd_DocBtn.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            pd_DocBtn.Size = new Size(180, 45);
+            pd_DocBtn.TabIndex = 0;
+            pd_DocBtn.Text = "Confirm";
+            pd_DocBtn.Click += pd_DocBtn_Click;
+            // 
+            // pd_DocBox
+            // 
+            pd_DocBox.BackColor = Color.Transparent;
+            pd_DocBox.CustomizableEdges = customizableEdges29;
+            pd_DocBox.DrawMode = DrawMode.OwnerDrawFixed;
+            pd_DocBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            pd_DocBox.FocusedColor = Color.FromArgb(94, 148, 255);
+            pd_DocBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            pd_DocBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            pd_DocBox.ForeColor = Color.FromArgb(68, 88, 112);
+            pd_DocBox.ItemHeight = 30;
+            pd_DocBox.Items.AddRange(new object[] { "Balmond", "Nana", "Mentos" });
+            pd_DocBox.Location = new Point(196, 170);
+            pd_DocBox.Name = "pd_DocBox";
+            pd_DocBox.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            pd_DocBox.Size = new Size(235, 36);
+            pd_DocBox.TabIndex = 0;
+            pd_DocBox.SelectedIndexChanged += pd_DocBox_SelectedIndexChanged;
+            // 
+            // guna2HtmlLabel5
+            // 
+            guna2HtmlLabel5.BackColor = Color.Transparent;
+            guna2HtmlLabel5.Font = new Font("Tahoma", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            guna2HtmlLabel5.ForeColor = SystemColors.Control;
+            guna2HtmlLabel5.Location = new Point(169, 101);
+            guna2HtmlLabel5.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            guna2HtmlLabel5.Size = new Size(316, 27);
+            guna2HtmlLabel5.TabIndex = 140;
+            guna2HtmlLabel5.Text = "Select your doctor's specialization";
+            // 
+            // pd_SpecBtn
+            // 
+            pd_SpecBtn.CustomizableEdges = customizableEdges21;
+            pd_SpecBtn.DisabledState.BorderColor = Color.DarkGray;
+            pd_SpecBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            pd_SpecBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            pd_SpecBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            pd_SpecBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            pd_SpecBtn.ForeColor = Color.White;
+            pd_SpecBtn.Location = new Point(229, 212);
+            pd_SpecBtn.Name = "pd_SpecBtn";
+            pd_SpecBtn.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            pd_SpecBtn.Size = new Size(180, 45);
+            pd_SpecBtn.TabIndex = 0;
+            pd_SpecBtn.Text = "Confirm";
+            pd_SpecBtn.Click += pd_SpecBtn_Click;
+            // 
+            // pd_SpecBox
+            // 
+            pd_SpecBox.BackColor = Color.Transparent;
+            pd_SpecBox.CustomizableEdges = customizableEdges23;
+            pd_SpecBox.DrawMode = DrawMode.OwnerDrawFixed;
+            pd_SpecBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            pd_SpecBox.FocusedColor = Color.FromArgb(94, 148, 255);
+            pd_SpecBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            pd_SpecBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            pd_SpecBox.ForeColor = Color.FromArgb(68, 88, 112);
+            pd_SpecBox.ItemHeight = 30;
+            pd_SpecBox.Items.AddRange(new object[] { "Balmond", "Nana", "Mentos" });
+            pd_SpecBox.Location = new Point(196, 170);
+            pd_SpecBox.Name = "pd_SpecBox";
+            pd_SpecBox.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            pd_SpecBox.Size = new Size(235, 36);
+            pd_SpecBox.TabIndex = 0;
             // 
             // BookingPanel
             // 
@@ -331,10 +472,10 @@
             BookingPanel.FillColor2 = Color.FromArgb(13, 41, 80);
             BookingPanel.FillColor3 = Color.FromArgb(13, 41, 80);
             BookingPanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            BookingPanel.Location = new Point(13, 15);
+            BookingPanel.Location = new Point(10, 15);
             BookingPanel.Name = "BookingPanel";
             BookingPanel.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            BookingPanel.Size = new Size(652, 358);
+            BookingPanel.Size = new Size(655, 365);
             BookingPanel.TabIndex = 140;
             BookingPanel.Visible = false;
             // 
@@ -453,134 +594,68 @@
             TimeCombobox.Size = new Size(227, 36);
             TimeCombobox.TabIndex = 0;
             // 
-            // pd_DoctorPanel
+            // SelectPatientPanel
             // 
-            pd_DoctorPanel.Controls.Add(guna2HtmlLabel6);
-            pd_DoctorPanel.Controls.Add(pd_DocBtn);
-            pd_DoctorPanel.Controls.Add(pd_DocBox);
-            pd_DoctorPanel.CustomizableEdges = customizableEdges25;
-            pd_DoctorPanel.FillColor = Color.FromArgb(13, 41, 80);
-            pd_DoctorPanel.FillColor2 = Color.FromArgb(13, 41, 80);
-            pd_DoctorPanel.FillColor3 = Color.FromArgb(13, 41, 80);
-            pd_DoctorPanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            pd_DoctorPanel.Location = new Point(13, 15);
-            pd_DoctorPanel.Name = "pd_DoctorPanel";
-            pd_DoctorPanel.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            pd_DoctorPanel.Size = new Size(652, 358);
-            pd_DoctorPanel.TabIndex = 139;
-            pd_DoctorPanel.Visible = false;
+            SelectPatientPanel.Controls.Add(guna2HtmlLabel11);
+            SelectPatientPanel.Controls.Add(EnterPatientButton);
+            SelectPatientPanel.Controls.Add(PatientComboBox);
+            SelectPatientPanel.CustomizableEdges = customizableEdges37;
+            SelectPatientPanel.FillColor = Color.FromArgb(13, 41, 80);
+            SelectPatientPanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            SelectPatientPanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            SelectPatientPanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            SelectPatientPanel.Location = new Point(10, 15);
+            SelectPatientPanel.Name = "SelectPatientPanel";
+            SelectPatientPanel.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            SelectPatientPanel.Size = new Size(652, 358);
+            SelectPatientPanel.TabIndex = 140;
+            SelectPatientPanel.Visible = false;
             // 
-            // guna2HtmlLabel6
+            // guna2HtmlLabel11
             // 
-            guna2HtmlLabel6.BackColor = Color.Transparent;
-            guna2HtmlLabel6.Font = new Font("Tahoma", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2HtmlLabel6.ForeColor = SystemColors.Control;
-            guna2HtmlLabel6.Location = new Point(242, 98);
-            guna2HtmlLabel6.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(145, 27);
-            guna2HtmlLabel6.TabIndex = 140;
-            guna2HtmlLabel6.Text = "Select a Doctor";
+            guna2HtmlLabel11.BackColor = Color.Transparent;
+            guna2HtmlLabel11.Font = new Font("Tahoma", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            guna2HtmlLabel11.ForeColor = SystemColors.Control;
+            guna2HtmlLabel11.Location = new Point(242, 98);
+            guna2HtmlLabel11.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel11.Name = "guna2HtmlLabel11";
+            guna2HtmlLabel11.Size = new Size(149, 27);
+            guna2HtmlLabel11.TabIndex = 140;
+            guna2HtmlLabel11.Text = "Select a Patient";
             // 
-            // pd_DocBtn
+            // EnterPatientButton
             // 
-            pd_DocBtn.CustomizableEdges = customizableEdges21;
-            pd_DocBtn.DisabledState.BorderColor = Color.DarkGray;
-            pd_DocBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            pd_DocBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            pd_DocBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            pd_DocBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            pd_DocBtn.ForeColor = Color.White;
-            pd_DocBtn.Location = new Point(229, 212);
-            pd_DocBtn.Name = "pd_DocBtn";
-            pd_DocBtn.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            pd_DocBtn.Size = new Size(180, 45);
-            pd_DocBtn.TabIndex = 0;
-            pd_DocBtn.Text = "Confirm";
-            pd_DocBtn.Click += pd_DocBtn_Click;
+            EnterPatientButton.CustomizableEdges = customizableEdges33;
+            EnterPatientButton.DisabledState.BorderColor = Color.DarkGray;
+            EnterPatientButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            EnterPatientButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            EnterPatientButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            EnterPatientButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            EnterPatientButton.ForeColor = Color.White;
+            EnterPatientButton.Location = new Point(229, 212);
+            EnterPatientButton.Name = "EnterPatientButton";
+            EnterPatientButton.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            EnterPatientButton.Size = new Size(180, 45);
+            EnterPatientButton.TabIndex = 0;
+            EnterPatientButton.Text = "Confirm";
+            EnterPatientButton.Click += EnterPatientButton_Click;
             // 
-            // pd_DocBox
+            // PatientComboBox
             // 
-            pd_DocBox.BackColor = Color.Transparent;
-            pd_DocBox.CustomizableEdges = customizableEdges23;
-            pd_DocBox.DrawMode = DrawMode.OwnerDrawFixed;
-            pd_DocBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            pd_DocBox.FocusedColor = Color.FromArgb(94, 148, 255);
-            pd_DocBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            pd_DocBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            pd_DocBox.ForeColor = Color.FromArgb(68, 88, 112);
-            pd_DocBox.ItemHeight = 30;
-            pd_DocBox.Items.AddRange(new object[] { "Balmond", "Nana", "Mentos" });
-            pd_DocBox.Location = new Point(196, 170);
-            pd_DocBox.Name = "pd_DocBox";
-            pd_DocBox.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            pd_DocBox.Size = new Size(235, 36);
-            pd_DocBox.TabIndex = 0;
-            pd_DocBox.SelectedIndexChanged += pd_DocBox_SelectedIndexChanged;
-            // 
-            // SpecPanel
-            // 
-            SpecPanel.Controls.Add(guna2HtmlLabel5);
-            SpecPanel.Controls.Add(pd_SpecBtn);
-            SpecPanel.Controls.Add(pd_SpecBox);
-            SpecPanel.CustomizableEdges = customizableEdges31;
-            SpecPanel.FillColor = Color.FromArgb(13, 41, 80);
-            SpecPanel.FillColor2 = Color.FromArgb(13, 41, 80);
-            SpecPanel.FillColor3 = Color.FromArgb(13, 41, 80);
-            SpecPanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            SpecPanel.Location = new Point(13, 15);
-            SpecPanel.Name = "SpecPanel";
-            SpecPanel.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            SpecPanel.Size = new Size(652, 358);
-            SpecPanel.TabIndex = 137;
-            SpecPanel.Visible = false;
-            // 
-            // guna2HtmlLabel5
-            // 
-            guna2HtmlLabel5.BackColor = Color.Transparent;
-            guna2HtmlLabel5.Font = new Font("Tahoma", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2HtmlLabel5.ForeColor = SystemColors.Control;
-            guna2HtmlLabel5.Location = new Point(169, 101);
-            guna2HtmlLabel5.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            guna2HtmlLabel5.Size = new Size(316, 27);
-            guna2HtmlLabel5.TabIndex = 140;
-            guna2HtmlLabel5.Text = "Select your doctor's specialization";
-            // 
-            // pd_SpecBtn
-            // 
-            pd_SpecBtn.CustomizableEdges = customizableEdges27;
-            pd_SpecBtn.DisabledState.BorderColor = Color.DarkGray;
-            pd_SpecBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            pd_SpecBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            pd_SpecBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            pd_SpecBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            pd_SpecBtn.ForeColor = Color.White;
-            pd_SpecBtn.Location = new Point(229, 212);
-            pd_SpecBtn.Name = "pd_SpecBtn";
-            pd_SpecBtn.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            pd_SpecBtn.Size = new Size(180, 45);
-            pd_SpecBtn.TabIndex = 0;
-            pd_SpecBtn.Text = "Confirm";
-            pd_SpecBtn.Click += pd_SpecBtn_Click;
-            // 
-            // pd_SpecBox
-            // 
-            pd_SpecBox.BackColor = Color.Transparent;
-            pd_SpecBox.CustomizableEdges = customizableEdges29;
-            pd_SpecBox.DrawMode = DrawMode.OwnerDrawFixed;
-            pd_SpecBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            pd_SpecBox.FocusedColor = Color.FromArgb(94, 148, 255);
-            pd_SpecBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            pd_SpecBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            pd_SpecBox.ForeColor = Color.FromArgb(68, 88, 112);
-            pd_SpecBox.ItemHeight = 30;
-            pd_SpecBox.Items.AddRange(new object[] { "Balmond", "Nana", "Mentos" });
-            pd_SpecBox.Location = new Point(196, 170);
-            pd_SpecBox.Name = "pd_SpecBox";
-            pd_SpecBox.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            pd_SpecBox.Size = new Size(235, 36);
-            pd_SpecBox.TabIndex = 0;
+            PatientComboBox.BackColor = Color.Transparent;
+            PatientComboBox.CustomizableEdges = customizableEdges35;
+            PatientComboBox.DrawMode = DrawMode.OwnerDrawFixed;
+            PatientComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            PatientComboBox.FocusedColor = Color.FromArgb(94, 148, 255);
+            PatientComboBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            PatientComboBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            PatientComboBox.ForeColor = Color.FromArgb(68, 88, 112);
+            PatientComboBox.ItemHeight = 30;
+            PatientComboBox.Location = new Point(196, 170);
+            PatientComboBox.Name = "PatientComboBox";
+            PatientComboBox.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            PatientComboBox.Size = new Size(235, 36);
+            PatientComboBox.TabIndex = 0;
             // 
             // guna2HtmlLabel3
             // 
@@ -590,9 +665,9 @@
             guna2HtmlLabel3.Location = new Point(207, 33);
             guna2HtmlLabel3.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(83, 24);
+            guna2HtmlLabel3.Size = new Size(61, 24);
             guna2HtmlLabel3.TabIndex = 137;
-            guna2HtmlLabel3.Text = "Patient's";
+            guna2HtmlLabel3.Text = "Staff's";
             // 
             // guna2HtmlLabel4
             // 
@@ -628,12 +703,14 @@
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             BookAppPanel.ResumeLayout(false);
-            BookingPanel.ResumeLayout(false);
-            BookingPanel.PerformLayout();
-            pd_DoctorPanel.ResumeLayout(false);
-            pd_DoctorPanel.PerformLayout();
             SpecPanel.ResumeLayout(false);
             SpecPanel.PerformLayout();
+            pd_DoctorPanel.ResumeLayout(false);
+            pd_DoctorPanel.PerformLayout();
+            BookingPanel.ResumeLayout(false);
+            BookingPanel.PerformLayout();
+            SelectPatientPanel.ResumeLayout(false);
+            SelectPatientPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -672,5 +749,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel ConsFeeLbl;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private MonthCalendar AppointmentDatePicker;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel SelectPatientPanel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
+        private Guna.UI2.WinForms.Guna2Button EnterPatientButton;
+        private Guna.UI2.WinForms.Guna2ComboBox PatientComboBox;
     }
 }

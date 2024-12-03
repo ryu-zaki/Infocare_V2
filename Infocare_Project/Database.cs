@@ -196,7 +196,7 @@ namespace Infocare_Project
             {
                 try
                 {
-                    string query = @"INSERT INTO tb_patientinfo (s_FirstName, s_LastName, s_MiddleName, s_Username, s_Password) " +
+                    string query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, s_Username, s_Password) " +
                                    "VALUES (@FirstName, @LastName, @MiddleName, @Username, @Password)";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
@@ -223,7 +223,7 @@ namespace Infocare_Project
             {
                 try
                 {
-                    string query = "SELECT COUNT(*) FROM tb_stafftinfo WHERE s_Username = @Username AND s_Password = @Password";
+                    string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE s_Username = @Username AND s_Password = @Password";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
@@ -431,11 +431,11 @@ namespace Infocare_Project
             }
         }
 
-        public (string firstName, string lastName) GetPatientNameDetails(string username)
+        public (string firstName, string lastName) GetStaffNameDetails(string username)
         {
             using (var connection = GetConnection())
             {
-                string query = "SELECT P_Firstname, P_Lastname FROM tb_patientinfo WHERE P_Username = @Username";
+                string query = "SELECT s_Firstname, s_Lastname FROM tb_staffinfo WHERE s_Username = @Username";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Username", username);
@@ -448,8 +448,8 @@ namespace Infocare_Project
                     {
                         if (reader.Read())
                         {
-                            string firstName = reader["P_Firstname"].ToString();
-                            string lastName = reader["P_Lastname"].ToString();
+                            string firstName = reader["s_Firstname"].ToString();
+                            string lastName = reader["s_Lastname"].ToString();
 
                             return (firstName, lastName);
                         }
@@ -465,6 +465,37 @@ namespace Infocare_Project
                 }
             }
         }
+        public List<string> GetPatientNames()
+        {
+            List<string> patientNames = new List<string>();
+
+            string query = @"SELECT CONCAT(P_Lastname, ', ', P_Firstname, ' ', LEFT(P_Middlename, 1), '.') AS patient_name
+                     FROM tb_patientinfo";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            patientNames.Add(reader["patient_name"].ToString());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error getting patient data: " + ex.Message);
+                }
+            }
+            return patientNames;
+        }
+
+
         public List<string> GetDoctorNames(string specialization)
         {
             List<string> doctorNames = new List<string>();
