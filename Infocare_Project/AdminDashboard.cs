@@ -53,17 +53,17 @@ namespace Infocare_Project
 
         private void AddDoctorButton_Click(object sender, EventArgs e)
         {
-             // Replace "Infocare_Project.AdminAddDoctors" with the fully qualified name of the form you want to open
+            // Replace "Infocare_Project.AdminAddDoctors" with the fully qualified name of the form you want to open
             FormOpener.OpenForm("Infocare_Project.AdminAddDoctor");
-          
+
 
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-           
 
-           // messageForm.
+
+            // messageForm.
             this.Close();
         }
     }
