@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Infocare_Project
 {
-    public partial class PatientLoginForm : Form
+    public partial class StaffLogin : Form
     {
-        public PatientLoginForm()
+        public StaffLogin()
         {
             InitializeComponent();
         }
@@ -56,7 +56,7 @@ namespace Infocare_Project
             Database db = new Database();
 
 
-            bool validPatient = db.PatientLogin(username, password);
+            bool validPatient = db.StaffLogin(username, password);
 
 
             if (validPatient)
@@ -65,7 +65,7 @@ namespace Infocare_Project
 
                 MessageBox.Show("Login successful!");
 
-                var patientDashboard = new PatientDashboard(username, firstName, lastName);
+                var patientDashboard = new StaffDashboard(username, firstName, lastName);
                 patientDashboard.Show();
                 this.Hide();
             }

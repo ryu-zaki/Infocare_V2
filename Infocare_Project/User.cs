@@ -165,6 +165,26 @@ namespace Infocare_Project
     }
 
 
+    //Staff Class
+    // Staff Class
+    public class Staff : User
+    {
+        // Constructor
+        public Staff() { }
+
+        // Parameterized Constructor
+        public Staff(string firstName, string middleName, string lastName, string username, string password)
+            : base(firstName, lastName, middleName, string.Empty, string.Empty, string.Empty, username, password, string.Empty, DateTime.MinValue)
+        {
+            FirstName = firstName;
+            MiddleName = middleName;
+            LastName = lastName;
+            Username = username;
+            Password = password;
+        }
+    }
+
+
     // Admin Class
     public class Admin : User
     {

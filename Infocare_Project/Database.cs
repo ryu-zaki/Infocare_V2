@@ -66,28 +66,26 @@ namespace Infocare_Project
 
         public void PatientReg2(Patient patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string allergy, string medication)
         {
-            // SQL query to insert or update the patient's record
-            string query = @"
-        INSERT INTO tb_patientinfo 
-        (P_Height, P_Weight, P_BMI, P_Blood_Type, P_Precondition, P_Treatment, P_PrevSurgery, P_Username, P_Alergy, P_Medication)
-        VALUES 
-        (@Height, @Weight, @BMI, @BloodType, @PreCon, @Treatment, @PrevSurg, @Username, @Allergy, @Medication)
-        ON DUPLICATE KEY UPDATE 
-        P_Height = IFNULL(@Height, P_Height),
-        P_Weight = IFNULL(@Weight, P_Weight),
-        P_BMI = IFNULL(@BMI, P_BMI),
-        P_Blood_Type = IFNULL(@BloodType, P_Blood_Type),
-        P_Precondition = IFNULL(@PreCon, P_Precondition),
-        P_Treatment = IFNULL(@Treatment, P_Treatment),
-        P_PrevSurgery = IFNULL(@PrevSurg, P_PrevSurgery),
-        P_Alergy = IFNULL(@Allergy, P_Alergy),
-        P_Medication = IFNULL(@Medication, P_Medication);";
+        string query =
+                        @"INSERT INTO tb_patientinfo 
+                        (P_Height, P_Weight, P_BMI, P_Blood_Type, P_Precondition, P_Treatment, P_PrevSurgery, P_Username, P_Alergy, P_Medication)
+                        VALUES 
+                        (@Height, @Weight, @BMI, @BloodType, @PreCon, @Treatment, @PrevSurg, @Username, @Allergy, @Medication)
+                        ON DUPLICATE KEY UPDATE 
+                        P_Height = IFNULL(@Height, P_Height),
+                        P_Weight = IFNULL(@Weight, P_Weight),
+                        P_BMI = IFNULL(@BMI, P_BMI),
+                        P_Blood_Type = IFNULL(@BloodType, P_Blood_Type),
+                        P_Precondition = IFNULL(@PreCon, P_Precondition),
+                        P_Treatment = IFNULL(@Treatment, P_Treatment),
+                        P_PrevSurgery = IFNULL(@PrevSurg, P_PrevSurgery),
+                        P_Alergy = IFNULL(@Allergy, P_Alergy),
+                        P_Medication = IFNULL(@Medication, P_Medication);";
 
             using (var connection = GetConnection())
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                // Add parameters to prevent SQL injection
                 cmd.Parameters.AddWithValue("@Height", height > 0 ? height : (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@Weight", weight > 0 ? weight : (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@BMI", bmi > 0 ? bmi : (object)DBNull.Value);
@@ -192,13 +190,40 @@ namespace Infocare_Project
         }
 
 
-        public bool PatientLogin(string username, string password)
+        public void AddStaff(Staff staff)
         {
             using (var connection = GetConnection())
             {
                 try
                 {
-                    string query = "SELECT COUNT(*) FROM tb_patientinfo WHERE p_Username = @Username AND P_Password = @Password";
+                    string query = @"INSERT INTO tb_patientinfo (s_FirstName, s_LastName, s_MiddleName, s_Username, s_Password) " +
+                                   "VALUES (@FirstName, @LastName, @MiddleName, @Username, @Password)";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@FirstName", staff.FirstName);
+                    command.Parameters.AddWithValue("@LastName", staff.LastName);
+                    command.Parameters.AddWithValue("@MiddleName", staff.MiddleName);
+                    command.Parameters.AddWithValue("@Username", staff.Username);
+                    command.Parameters.AddWithValue("@Password", staff.Password);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error inserting staff data: " + ex.Message);
+                }
+            }
+        }
+
+        public bool StaffLogin(string username, string password)
+        {
+            using (var connection = GetConnection())
+            {
+                try
+                {
+                    string query = "SELECT COUNT(*) FROM tb_stafftinfo WHERE s_Username = @Username AND s_Password = @Password";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
@@ -236,7 +261,7 @@ namespace Infocare_Project
                             string firstName = reader["P_Firstname"].ToString();
                             string lastName = reader["P_Lastname"].ToString();
 
-                            return $"{lastName}, {firstName}"; // Return the formatted name
+                            return $"{lastName}, {firstName}";
                         }
                         else
                         {

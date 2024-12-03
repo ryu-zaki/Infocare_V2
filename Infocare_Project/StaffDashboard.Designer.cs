@@ -1,6 +1,6 @@
 ﻿namespace Infocare_Project_1
 {
-    partial class PatientDashboard
+    partial class StaffDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientDashboard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDashboard));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -160,7 +160,7 @@
             NameLabel.BackColor = Color.Transparent;
             NameLabel.Font = new Font("Tahoma", 17.25F, FontStyle.Bold, GraphicsUnit.Point);
             NameLabel.ForeColor = SystemColors.Control;
-            NameLabel.Location = new Point(16, 142);
+            NameLabel.Location = new Point(12, 142);
             NameLabel.Margin = new Padding(3, 2, 3, 2);
             NameLabel.Name = "NameLabel";
             NameLabel.Size = new Size(79, 30);
@@ -606,7 +606,7 @@
             guna2HtmlLabel4.TabIndex = 138;
             guna2HtmlLabel4.Text = "Dashboard";
             // 
-            // PatientDashboard
+            // StaffDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -620,7 +620,7 @@
             Controls.Add(guna2PictureBox1);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "PatientDashboard";
+            Name = "StaffDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Load += PatientDashboard_Load;
             guna2CustomGradientPanel1.ResumeLayout(false);

@@ -134,7 +134,7 @@ namespace Infocare_Project
                         this.Close();
                     }
 
-                    var PatientLogin = new PatientLoginForm();
+                    var PatientLogin = new StaffLogin();
                     PatientLogin.Show();
                     this.Hide();
 

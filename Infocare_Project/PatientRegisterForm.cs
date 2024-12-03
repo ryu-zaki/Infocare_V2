@@ -212,7 +212,7 @@ namespace Infocare_Project
                 DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirm == DialogResult.Yes)
                 {
-                    PatientLoginForm patientLoginForm = new PatientLoginForm();
+                    StaffLogin patientLoginForm = new StaffLogin();
                     patientLoginForm.Show();
                     this.Hide();
                 }
@@ -222,7 +222,7 @@ namespace Infocare_Project
                 DialogResult confirm = MessageBox.Show("Some fields are filled. Are you sure you want to go back? Unsaved changes may be lost.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (confirm == DialogResult.Yes)
                 {
-                    PatientLoginForm patientLoginForm = new PatientLoginForm();
+                    StaffLogin patientLoginForm = new StaffLogin();
                     patientLoginForm.Show();
                     this.Hide();
 
