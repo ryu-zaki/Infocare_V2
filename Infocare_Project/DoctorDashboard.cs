@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using Infocare_Project;
 using Infocare_Project.Classes;
 using System;
 using System.Data;
@@ -20,8 +21,34 @@ namespace Infocare_Project_1
 
         private void ApprovalPendingButton_Click(object sender, EventArgs e)
         {
+            CreateDiagnosisButton.Visible = false;
+            AcceptButton.Visible = true;
+            DeclineButton.Visible = true;
 
+            try
+            {
+                Database db = new Database();
+                DataTable pendingAppointments = db.PendingAppointmentList();
+
+                if (pendingAppointments != null && pendingAppointments.Rows.Count > 0)
+                {
+                    DataGridViewList.DataSource = pendingAppointments;
+                    DataGridViewList.AutoGenerateColumns = true;
+                    DataGridViewList.AllowUserToAddRows = false;
+                    DataGridViewList.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No appointments found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+
 
         private void DataGridViewList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -30,39 +57,39 @@ namespace Infocare_Project_1
 
         private void AppointmentListButton_Click(object sender, EventArgs e)
         {
+            AcceptButton.Visible = false;
+            DeclineButton.Visible = false;
+            CreateDiagnosisButton.Visible = true;
+
             try
             {
-                Database_DataGridView.PatientList data = new Database_DataGridView.PatientList();
-                DataTable patientTable = data.GetPatientList();
-                DataGridViewList.DataSource = patientTable;
-                DataGridViewList.AutoGenerateColumns = false;
-                DataGridViewList.AllowUserToAddRows = false;
-                DataGridViewList.Visible = true;
-                // Check if the first column is a checkbox column
-                if (DataGridViewList.Columns[0] is DataGridViewCheckBoxColumn)
+                Database db = new Database();
+                DataTable viewappoointment = db.ViewAppointments();
+
+                if (viewappoointment != null && viewappoointment.Rows.Count > 0)
                 {
-                    // Optionally, set initial state for checkboxes (e.g., unchecked)
-                    foreach (DataGridViewRow row in DataGridViewList.Rows)
-                    {
-                        if (row.Cells[0] is DataGridViewCheckBoxCell checkBoxCell)
-                        {
-                            checkBoxCell.Value = false; // Set the checkbox to unchecked
-                        }
-                    }
+                    DataGridViewList.DataSource = viewappoointment;
+                    DataGridViewList.AutoGenerateColumns = true;
+                    DataGridViewList.AllowUserToAddRows = false;
+                    DataGridViewList.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No appointments found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading patients: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
         private void guna2DataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.ColumnIndex != 0) // Replace with your checkbox column index if different
+            if (e.ColumnIndex != 0)
             {
-                e.Cancel = true; // Prevent editing for other columns
+                e.Cancel = true;
             }
         }
 
@@ -104,8 +131,6 @@ namespace Infocare_Project_1
                 }
 
                 // Set the visibility of the Accept and Decline buttons based on the checkbox state
-                AcceptButton.Visible = isAnyChecked;
-                DeclineButton.Visible = isAnyChecked;
             }
         }
 
@@ -113,6 +138,92 @@ namespace Infocare_Project_1
         {
             DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
             doctorMedicalRecord.Show();
+        }
+
+        private void AcceptButton_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+            try
+            {
+                foreach (DataGridViewRow row in DataGridViewList.Rows)
+                {
+                    if (row.Cells["checkboxcolumn"] is DataGridViewCheckBoxCell checkBoxCell && checkBoxCell.Value != null && (bool)checkBoxCell.Value)
+                    {
+                        int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
+
+                        db.AcceptAppointment(appointmentId);
+                    }
+                }
+
+                DataTable pendingAppointments = db.PendingAppointmentList();
+                DataGridViewList.DataSource = pendingAppointments;
+
+                MessageBox.Show("Selected appointments have been accepted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while accepting the appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DeclineButton_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+            try
+            {
+                foreach (DataGridViewRow row in DataGridViewList.Rows)
+                {
+                    if (row.Cells["checkboxcolumn"] is DataGridViewCheckBoxCell checkBoxCell && checkBoxCell.Value != null && (bool)checkBoxCell.Value)
+                    {
+                        int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
+
+                        db.DeclineAppointment(appointmentId);
+                    }
+                }
+
+                DataTable pendingAppointments = db.PendingAppointmentList();
+                DataGridViewList.DataSource = pendingAppointments;
+
+                MessageBox.Show("Selected appointments have been declined.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while declining the appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RejectedRequestsButton_Click(object sender, EventArgs e)
+        {
+            AcceptButton.Visible = false;
+            DeclineButton.Visible = false;
+            CreateDiagnosisButton.Visible = false;
+
+            try
+            {
+                Database db = new Database();
+                DataTable declinedappointment = db.DeclinedAppointments();
+
+                if (declinedappointment != null && declinedappointment.Rows.Count > 0)
+                {
+                    DataGridViewList.DataSource = declinedappointment;
+                    DataGridViewList.AutoGenerateColumns = true;
+                    DataGridViewList.AllowUserToAddRows = false;
+                    DataGridViewList.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No appointments found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
