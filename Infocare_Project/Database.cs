@@ -11,6 +11,7 @@ using System.Drawing;
 using Microsoft.VisualBasic.ApplicationServices;
 using Infocare_Project.NewFolder;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Collections;
 
 namespace Infocare_Project
 {
@@ -67,8 +68,8 @@ namespace Infocare_Project
 
         public void PatientReg2(Patient patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string allergy, string medication)
         {
-        string query =
-                        @"INSERT INTO tb_patientinfo 
+            string query =
+                            @"INSERT INTO tb_patientinfo 
                         (P_Height, P_Weight, P_BMI, P_Blood_Type, P_Precondition, P_Treatment, P_PrevSurgery, P_Username, P_Alergy, P_Medication)
                         VALUES 
                         (@Height, @Weight, @BMI, @BloodType, @PreCon, @Treatment, @PrevSurg, @Username, @Allergy, @Medication)
@@ -337,37 +338,37 @@ namespace Infocare_Project
         }
 
         public void AddDoctor(Doctor doctor)
-{
-    using (var connection = GetConnection())
-    {
-        try
         {
-            string query = @"INSERT INTO tb_doctorinfo 
+            using (var connection = GetConnection())
+            {
+                try
+                {
+                    string query = @"INSERT INTO tb_doctorinfo 
                              (firstname, middlename, lastname, username, password, consultationfee, specialization, start_time, end_time, day_availability) 
                              VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @Specialization, @StartTime, @EndTime, @DayAvailability)";
 
-            MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlCommand command = new MySqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
-            command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
-            command.Parameters.AddWithValue("@LastName", doctor.LastName);
-            command.Parameters.AddWithValue("@Username", doctor.Username);
-            command.Parameters.AddWithValue("@Password", doctor.Password);
-            command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
-            command.Parameters.AddWithValue("@Specialization", doctor.Specialty);
-            command.Parameters.AddWithValue("@StartTime", doctor.StartTime);
-            command.Parameters.AddWithValue("@EndTime", doctor.EndTime);
-            command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
+                    command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
+                    command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
+                    command.Parameters.AddWithValue("@LastName", doctor.LastName);
+                    command.Parameters.AddWithValue("@Username", doctor.Username);
+                    command.Parameters.AddWithValue("@Password", doctor.Password);
+                    command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
+                    command.Parameters.AddWithValue("@Specialization", doctor.Specialty);
+                    command.Parameters.AddWithValue("@StartTime", doctor.StartTime);
+                    command.Parameters.AddWithValue("@EndTime", doctor.EndTime);
+                    command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
 
-            connection.Open();
-            command.ExecuteNonQuery();
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error inserting doctor data: " + ex.Message);
+                }
+            }
         }
-        catch (Exception ex)
-        {
-            throw new Exception("Error inserting doctor data: " + ex.Message);
-        }
-    }
-}
 
 
 
@@ -501,7 +502,7 @@ namespace Infocare_Project
             return patientNames;
         }
 
-       
+
         public List<string> GetDoctorNames(string specialization)
         {
             List<string> doctorNames = new List<string>();
@@ -541,7 +542,7 @@ namespace Infocare_Project
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                    string query = @"SELECT Start_Time, End_Time FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) = @doctorName";
+                string query = @"SELECT Start_Time, End_Time FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) = @doctorName";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -763,7 +764,7 @@ namespace Infocare_Project
                         command.Parameters.AddWithValue("@DoctorName", doctorName);
                         command.Parameters.AddWithValue("@TimeSlot", timeSlot);
                         command.Parameters.AddWithValue("@AppointmentDate", appointmentDate);
-                        command.Parameters.AddWithValue("@ConsFee", consFee); 
+                        command.Parameters.AddWithValue("@ConsFee", consFee);
 
                         connection.Open();
 
@@ -802,15 +803,140 @@ namespace Infocare_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error retrieving staff list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return AppointmentTable;
         }
 
+        public DataTable PendingAppointmentList()
+        {
+            string query = @"select * from tb_appointmenthistory where ah_status = 'pending'";
 
+            DataTable AppointmentTable = new DataTable();
 
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(AppointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
+            return AppointmentTable;
+        }
 
+        public void AcceptAppointment(int appointmentId)
+        {
+            string updateQuery = "update tb_appointmenthistory set ah_status = 'accepted' where id = @id";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", appointmentId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error accepting appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void DeclineAppointment(int appointmentId)
+        {
+            string query = "update tb_appointmenthistory set ah_status = 'Declined' where id = @id";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", appointmentId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error declining appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public DataTable ViewAppointments()
+        {
+            string query = "select * from tb_appointmenthistory where ah_status = 'Accepted'";
+
+            DataTable AppointmentTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(AppointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return AppointmentTable;
+        }
+
+        public DataTable DeclinedAppointments()
+        {
+            string query = "select * from tb_appointmenthistory where ah_status = 'Declined'";
+
+            DataTable AppointmentTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(AppointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return AppointmentTable;
+        }
     }
 }

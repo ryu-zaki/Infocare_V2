@@ -32,15 +32,15 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -62,10 +62,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ad_docpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             CreateDiagnosisButton = new Guna.UI2.WinForms.Guna2Button();
-            DataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
-            checkboxcolumn = new DataGridViewCheckBoxColumn();
             DeclineButton = new Guna.UI2.WinForms.Guna2Button();
             AcceptButton = new Guna.UI2.WinForms.Guna2Button();
+            DataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
+            checkboxcolumn = new DataGridViewCheckBoxColumn();
             RejectedRequestsButton = new Guna.UI2.WinForms.Guna2Button();
             AppointmentListButton = new Guna.UI2.WinForms.Guna2Button();
             ad_guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -80,7 +80,7 @@
             ad_guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            CompletedAppointmentsButton = new Guna.UI2.WinForms.Guna2Button();
             ad_guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_docpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewList).BeginInit();
@@ -95,9 +95,9 @@
             // 
             ad_docpanel.BackColor = Color.FromArgb(13, 41, 80);
             ad_docpanel.Controls.Add(CreateDiagnosisButton);
-            ad_docpanel.Controls.Add(DataGridViewList);
             ad_docpanel.Controls.Add(DeclineButton);
             ad_docpanel.Controls.Add(AcceptButton);
+            ad_docpanel.Controls.Add(DataGridViewList);
             ad_docpanel.CustomizableEdges = customizableEdges7;
             ad_docpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_docpanel.FillColor2 = Color.FromArgb(13, 41, 80);
@@ -132,7 +132,58 @@
             CreateDiagnosisButton.TabIndex = 143;
             CreateDiagnosisButton.Text = "Create Diagnosis";
             CreateDiagnosisButton.TextFormatNoPrefix = true;
+            CreateDiagnosisButton.Visible = false;
             CreateDiagnosisButton.Click += CreateDiagnosisButton_Click;
+            // 
+            // DeclineButton
+            // 
+            DeclineButton.BackColor = Color.Transparent;
+            DeclineButton.BorderRadius = 15;
+            DeclineButton.CustomizableEdges = customizableEdges3;
+            DeclineButton.DisabledState.BorderColor = Color.DarkGray;
+            DeclineButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            DeclineButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            DeclineButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            DeclineButton.FillColor = SystemColors.ButtonFace;
+            DeclineButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            DeclineButton.ForeColor = Color.Black;
+            DeclineButton.ImageAlign = HorizontalAlignment.Left;
+            DeclineButton.ImageSize = new Size(40, 40);
+            DeclineButton.Location = new Point(531, 8);
+            DeclineButton.Margin = new Padding(3, 2, 3, 2);
+            DeclineButton.Name = "DeclineButton";
+            DeclineButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            DeclineButton.Size = new Size(103, 31);
+            DeclineButton.TabIndex = 147;
+            DeclineButton.Text = "Decline";
+            DeclineButton.TextFormatNoPrefix = true;
+            DeclineButton.Visible = false;
+            DeclineButton.Click += DeclineButton_Click;
+            // 
+            // AcceptButton
+            // 
+            AcceptButton.BackColor = Color.Transparent;
+            AcceptButton.BorderRadius = 15;
+            AcceptButton.CustomizableEdges = customizableEdges5;
+            AcceptButton.DisabledState.BorderColor = Color.DarkGray;
+            AcceptButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            AcceptButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            AcceptButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            AcceptButton.FillColor = SystemColors.ButtonFace;
+            AcceptButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            AcceptButton.ForeColor = Color.Black;
+            AcceptButton.ImageAlign = HorizontalAlignment.Left;
+            AcceptButton.ImageSize = new Size(40, 40);
+            AcceptButton.Location = new Point(422, 8);
+            AcceptButton.Margin = new Padding(3, 2, 3, 2);
+            AcceptButton.Name = "AcceptButton";
+            AcceptButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            AcceptButton.Size = new Size(103, 31);
+            AcceptButton.TabIndex = 146;
+            AcceptButton.Text = "Accept";
+            AcceptButton.TextFormatNoPrefix = true;
+            AcceptButton.Visible = false;
+            AcceptButton.Click += AcceptButton_Click;
             // 
             // DataGridViewList
             // 
@@ -218,54 +269,6 @@
             checkboxcolumn.Name = "checkboxcolumn";
             checkboxcolumn.Resizable = DataGridViewTriState.False;
             // 
-            // DeclineButton
-            // 
-            DeclineButton.BackColor = Color.Transparent;
-            DeclineButton.BorderRadius = 15;
-            DeclineButton.CustomizableEdges = customizableEdges3;
-            DeclineButton.DisabledState.BorderColor = Color.DarkGray;
-            DeclineButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            DeclineButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            DeclineButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            DeclineButton.FillColor = SystemColors.ButtonFace;
-            DeclineButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            DeclineButton.ForeColor = Color.Black;
-            DeclineButton.ImageAlign = HorizontalAlignment.Left;
-            DeclineButton.ImageSize = new Size(40, 40);
-            DeclineButton.Location = new Point(531, 8);
-            DeclineButton.Margin = new Padding(3, 2, 3, 2);
-            DeclineButton.Name = "DeclineButton";
-            DeclineButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            DeclineButton.Size = new Size(103, 31);
-            DeclineButton.TabIndex = 147;
-            DeclineButton.Text = "Decline";
-            DeclineButton.TextFormatNoPrefix = true;
-            DeclineButton.Visible = false;
-            // 
-            // AcceptButton
-            // 
-            AcceptButton.BackColor = Color.Transparent;
-            AcceptButton.BorderRadius = 15;
-            AcceptButton.CustomizableEdges = customizableEdges5;
-            AcceptButton.DisabledState.BorderColor = Color.DarkGray;
-            AcceptButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            AcceptButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            AcceptButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            AcceptButton.FillColor = SystemColors.ButtonFace;
-            AcceptButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            AcceptButton.ForeColor = Color.Black;
-            AcceptButton.ImageAlign = HorizontalAlignment.Left;
-            AcceptButton.ImageSize = new Size(40, 40);
-            AcceptButton.Location = new Point(422, 8);
-            AcceptButton.Margin = new Padding(3, 2, 3, 2);
-            AcceptButton.Name = "AcceptButton";
-            AcceptButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            AcceptButton.Size = new Size(103, 31);
-            AcceptButton.TabIndex = 146;
-            AcceptButton.Text = "Accept";
-            AcceptButton.TextFormatNoPrefix = true;
-            AcceptButton.Visible = false;
-            // 
             // RejectedRequestsButton
             // 
             RejectedRequestsButton.BackColor = Color.Transparent;
@@ -289,6 +292,7 @@
             RejectedRequestsButton.TabIndex = 137;
             RejectedRequestsButton.Text = "Rejected requests";
             RejectedRequestsButton.TextFormatNoPrefix = true;
+            RejectedRequestsButton.Click += RejectedRequestsButton_Click;
             // 
             // AppointmentListButton
             // 
@@ -477,7 +481,7 @@
             // guna2CustomGradientPanel1
             // 
             guna2CustomGradientPanel1.BackColor = Color.FromArgb(13, 41, 80);
-            guna2CustomGradientPanel1.Controls.Add(guna2Button1);
+            guna2CustomGradientPanel1.Controls.Add(CompletedAppointmentsButton);
             guna2CustomGradientPanel1.Controls.Add(RejectedRequestsButton);
             guna2CustomGradientPanel1.Controls.Add(AppointmentListButton);
             guna2CustomGradientPanel1.Controls.Add(ad_guna2HtmlLabel1);
@@ -498,29 +502,30 @@
             guna2CustomGradientPanel1.Size = new Size(185, 604);
             guna2CustomGradientPanel1.TabIndex = 143;
             // 
-            // guna2Button1
+            // CompletedAppointmentsButton
             // 
-            guna2Button1.BackColor = Color.Transparent;
-            guna2Button1.BorderRadius = 25;
-            guna2Button1.CustomizableEdges = customizableEdges23;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = SystemColors.ButtonFace;
-            guna2Button1.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2Button1.ForeColor = Color.Black;
-            guna2Button1.ImageAlign = HorizontalAlignment.Left;
-            guna2Button1.ImageOffset = new Point(2, 0);
-            guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(12, 351);
-            guna2Button1.Margin = new Padding(3, 2, 3, 2);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            guna2Button1.Size = new Size(160, 53);
-            guna2Button1.TabIndex = 142;
-            guna2Button1.Text = "Completed Appointments";
-            guna2Button1.TextFormatNoPrefix = true;
+            CompletedAppointmentsButton.BackColor = Color.Transparent;
+            CompletedAppointmentsButton.BorderRadius = 25;
+            CompletedAppointmentsButton.CustomizableEdges = customizableEdges23;
+            CompletedAppointmentsButton.DisabledState.BorderColor = Color.DarkGray;
+            CompletedAppointmentsButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            CompletedAppointmentsButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            CompletedAppointmentsButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            CompletedAppointmentsButton.FillColor = SystemColors.ButtonFace;
+            CompletedAppointmentsButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            CompletedAppointmentsButton.ForeColor = Color.Black;
+            CompletedAppointmentsButton.ImageAlign = HorizontalAlignment.Left;
+            CompletedAppointmentsButton.ImageOffset = new Point(2, 0);
+            CompletedAppointmentsButton.ImageSize = new Size(40, 40);
+            CompletedAppointmentsButton.Location = new Point(12, 351);
+            CompletedAppointmentsButton.Margin = new Padding(3, 2, 3, 2);
+            CompletedAppointmentsButton.Name = "CompletedAppointmentsButton";
+            CompletedAppointmentsButton.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            CompletedAppointmentsButton.Size = new Size(160, 53);
+            CompletedAppointmentsButton.TabIndex = 142;
+            CompletedAppointmentsButton.Text = "Completed Appointments";
+            CompletedAppointmentsButton.TextFormatNoPrefix = true;
+            CompletedAppointmentsButton.Click += guna2Button1_Click;
             // 
             // ad_guna2HtmlLabel4
             // 
@@ -583,8 +588,8 @@
         private Guna.UI2.WinForms.Guna2Button DeclineButton;
         private Guna.UI2.WinForms.Guna2Button AcceptButton;
         private Guna.UI2.WinForms.Guna2DataGridView DataGridViewList;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private DataGridViewCheckBoxColumn checkboxcolumn;
+        private Guna.UI2.WinForms.Guna2Button CompletedAppointmentsButton;
         private Guna.UI2.WinForms.Guna2Button CreateDiagnosisButton;
+        private DataGridViewCheckBoxColumn checkboxcolumn;
     }
 }
