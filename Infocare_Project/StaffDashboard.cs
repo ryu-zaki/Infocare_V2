@@ -294,7 +294,6 @@ namespace Infocare_Project_1
 
         private void ConfirmBookBtn_Click(object sender, EventArgs e)
         {
-            // Confirm booking details
             DialogResult result = MessageBox.Show(
                 "Are you sure you want to confirm this booking?",
                 "Confirm Booking",
@@ -314,7 +313,6 @@ namespace Infocare_Project_1
                     DateTime appointmentDate = AppointmentDatePicker.SelectionStart;
                     string specialization = pd_SpecBox.SelectedItem?.ToString() ?? string.Empty;
 
-                    // Ensure all required fields are selected
                     if (string.IsNullOrWhiteSpace(selectedPatient) ||
                         string.IsNullOrWhiteSpace(selectedDoctor) ||
                         string.IsNullOrWhiteSpace(selectedTimeSlot) ||
@@ -324,14 +322,24 @@ namespace Infocare_Project_1
                         return;
                     }
 
-                    // Check if the patient already has a pending or accepted appointment
+                    if (selectedTimeSlot == "Select a Time Slot")
+                    {
+                        MessageBox.Show("Please select a valid time slot.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     if (db.IsPatientAppointmentPendingOrAccepted(selectedPatient))
                     {
                         MessageBox.Show("This patient already has a pending or accepted appointment. They cannot book another appointment until the current one is completed.", "Booking Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    // Parse consultation fee
+                    if (db.IsDoctorOccupied(selectedDoctor, appointmentDate))
+                    {
+                        MessageBox.Show("This doctor is already occupied for the selected date. Please choose another doctor or date.", "Booking Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string feeText = ConsFeeLbl.Text.Trim();
                     if (!decimal.TryParse(feeText, out decimal consultationFee))
                     {
@@ -339,7 +347,6 @@ namespace Infocare_Project_1
                         return;
                     }
 
-                    // Save appointment
                     bool appointmentSaved = db.SaveAppointment(selectedPatient, specialization, selectedDoctor, selectedTimeSlot, appointmentDate, consultationFee);
 
                     if (appointmentSaved)

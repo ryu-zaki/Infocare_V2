@@ -788,12 +788,11 @@ namespace Infocare_Project
                     {
                         if (reader.Read())
                         {
-                            // Return the consultation fee from the database
                             return reader.IsDBNull(reader.GetOrdinal("consultationfee")) ? (decimal?)null : reader.GetDecimal("consultationfee");
                         }
                         else
                         {
-                            return null; // No data found
+                            return null;
                         }
                     }
                 }
@@ -818,7 +817,7 @@ namespace Infocare_Project
                         command.Parameters.AddWithValue("@AppointmentDate", appointmentDate.Date);
 
                         int count = Convert.ToInt32(command.ExecuteScalar());
-                        return count > 0; // Return true if an appointment already exists
+                        return count > 0;
                     }
                 }
             }
@@ -857,6 +856,38 @@ namespace Infocare_Project
                 return false;
             }
         }
+
+        public bool IsDoctorOccupied(string doctorName, DateTime appointmentDate)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                SELECT COUNT(*) 
+                FROM tb_appointmenthistory 
+                WHERE ah_Doctor_Name = @DoctorName 
+                  AND ah_date = @AppointmentDate 
+                  AND ah_status IN ('Pending', 'Accepted')";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@DoctorName", doctorName);
+                        command.Parameters.AddWithValue("@AppointmentDate", appointmentDate.Date);
+
+                        int count = Convert.ToInt32(command.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking doctor's availability: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
 
         public bool SaveAppointment(string patientName, string specialization, string doctorName, string timeSlot, DateTime appointmentDate, decimal consFee)
         {
