@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using Infocare_Project;
 using Infocare_Project.Classes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -9,15 +10,27 @@ namespace Infocare_Project_1
 {
     public partial class DoctorDashboard : Form
     {
-        public DoctorDashboard()
+        private string LoggedInUsername;
+        private string FirstName;
+        private string LastName;
+        public DoctorDashboard(string usrnm, string firstName, string lastName)
         {
             InitializeComponent();
+
+            LoggedInUsername = usrnm;
+            FirstName = firstName;
+            LastName = lastName;
+
+            NameLabel.Text = $"Dr. {lastName}, {firstName}";
         }
+
 
         private void DoctorDashboard_Load(object sender, EventArgs e)
         {
 
         }
+
+
 
         private void ApprovalPendingButton_Click(object sender, EventArgs e)
         {
@@ -25,14 +38,18 @@ namespace Infocare_Project_1
             AcceptButton.Visible = true;
             DeclineButton.Visible = true;
 
+            Database db = new Database();
+
+            string doctorFullName = $"Dr. {LastName}, {FirstName}";
+
+            DataTable pendingAppointments = db.PendingAppointmentList(doctorFullName);
+            DataGridViewList.DataSource = pendingAppointments;
+
+
             try
             {
-                Database db = new Database();
-                DataTable pendingAppointments = db.PendingAppointmentList();
-
                 if (pendingAppointments != null && pendingAppointments.Rows.Count > 0)
                 {
-                    DataGridViewList.DataSource = pendingAppointments;
                     DataGridViewList.AutoGenerateColumns = true;
                     DataGridViewList.AllowUserToAddRows = false;
                     DataGridViewList.Visible = true;
@@ -49,7 +66,6 @@ namespace Infocare_Project_1
         }
 
 
-
         private void DataGridViewList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -61,14 +77,18 @@ namespace Infocare_Project_1
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = true;
 
+            Database db = new Database();
+
+            string doctorFullName = $"Dr. {LastName}, {FirstName}";
+            DataTable viewappoointment = db.ViewAppointments(doctorFullName);
+            DataGridViewList.DataSource = viewappoointment;
+
             try
             {
-                Database db = new Database();
-                DataTable viewappoointment = db.ViewAppointments();
+
 
                 if (viewappoointment != null && viewappoointment.Rows.Count > 0)
                 {
-                    DataGridViewList.DataSource = viewappoointment;
                     DataGridViewList.AutoGenerateColumns = true;
                     DataGridViewList.AllowUserToAddRows = false;
                     DataGridViewList.Visible = true;
@@ -130,15 +150,47 @@ namespace Infocare_Project_1
                     }
                 }
 
-                // Set the visibility of the Accept and Decline buttons based on the checkbox state
             }
         }
 
+
         private void CreateDiagnosisButton_Click(object sender, EventArgs e)
         {
-            DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
-            doctorMedicalRecord.Show();
+            if (DataGridViewList.SelectedRows.Count > 0)
+            {
+                int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["id"].Value);
+                Database db = new Database();
+
+                db.CreateDiagnosis(
+                    appointmentId,
+                    patientDetails =>
+                    {
+                        DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
+                        doctorMedicalRecord.SetPatientDetails(
+                            patientDetails["P_Firstname"],
+                            patientDetails["P_Lastname"],
+                            patientDetails["P_Bdate"],
+                            patientDetails["P_Height"],
+                            patientDetails["P_Weight"],
+                            patientDetails["P_BMI"],
+                            patientDetails["P_Blood_Type"],
+                            patientDetails["P_Alergy"],
+                            patientDetails["P_Medication"],
+                            patientDetails["P_PrevSurgery"],
+                            patientDetails["P_Precondition"],
+                            patientDetails["P_Treatment"]
+                        );
+                        doctorMedicalRecord.Show();
+                    },
+                    errorMessage => MessageBox.Show(errorMessage)
+                );
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment.");
+            }
         }
+
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
@@ -155,7 +207,8 @@ namespace Infocare_Project_1
                     }
                 }
 
-                DataTable pendingAppointments = db.PendingAppointmentList();
+                string doctorName = NameLabel.Text.Replace("!", "").Trim();
+                DataTable pendingAppointments = db.PendingAppointmentList(doctorName);
                 DataGridViewList.DataSource = pendingAppointments;
 
                 MessageBox.Show("Selected appointments have been accepted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -181,7 +234,8 @@ namespace Infocare_Project_1
                     }
                 }
 
-                DataTable pendingAppointments = db.PendingAppointmentList();
+                string doctorName = NameLabel.Text.Replace("!", "").Trim();
+                DataTable pendingAppointments = db.PendingAppointmentList(doctorName);
                 DataGridViewList.DataSource = pendingAppointments;
 
                 MessageBox.Show("Selected appointments have been declined.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -203,14 +257,17 @@ namespace Infocare_Project_1
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = false;
 
+            Database db = new Database();
+            string doctorFullName = $"Dr. {LastName}, {FirstName}";
+            DataTable declinedappointment = db.DeclinedAppointments(doctorFullName);
+            DataGridViewList.DataSource= declinedappointment;
+
             try
             {
-                Database db = new Database();
-                DataTable declinedappointment = db.DeclinedAppointments();
+
 
                 if (declinedappointment != null && declinedappointment.Rows.Count > 0)
                 {
-                    DataGridViewList.DataSource = declinedappointment;
                     DataGridViewList.AutoGenerateColumns = true;
                     DataGridViewList.AllowUserToAddRows = false;
                     DataGridViewList.Visible = true;
@@ -223,6 +280,22 @@ namespace Infocare_Project_1
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DoctorDashboard_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogOutButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                DoctorLogin DoctorLoginForm = new DoctorLogin();
+                DoctorLoginForm.Show();
+                this.Hide();
             }
         }
     }

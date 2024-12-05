@@ -249,5 +249,16 @@ namespace Infocare_Project_1
                 this.Hide();
             }
         }
+
+        private void LogOutButton_Click_1(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                AdminLogin AdminLoginForm = new AdminLogin();
+                AdminLoginForm.Show();
+                this.Hide();
+            }
+        }
     }
 }

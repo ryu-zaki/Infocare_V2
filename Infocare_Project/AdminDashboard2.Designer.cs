@@ -33,13 +33,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard2));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard2));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -88,6 +88,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             LogOutButton = new Guna.UI2.WinForms.Guna2Button();
+            pd_HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
             ad_patientBtn = new Guna.UI2.WinForms.Guna2Button();
             ad_appointment = new Guna.UI2.WinForms.Guna2Button();
             ad_doctor = new Guna.UI2.WinForms.Guna2Button();
@@ -96,7 +97,6 @@
             ad_NameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_Staff = new Guna.UI2.WinForms.Guna2Button();
-            ad_HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             ad_guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -150,6 +150,7 @@
             // 
             guna2CustomGradientPanel1.BackColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.Controls.Add(LogOutButton);
+            guna2CustomGradientPanel1.Controls.Add(pd_HomeButton);
             guna2CustomGradientPanel1.Controls.Add(ad_patientBtn);
             guna2CustomGradientPanel1.Controls.Add(ad_appointment);
             guna2CustomGradientPanel1.Controls.Add(ad_doctor);
@@ -158,7 +159,6 @@
             guna2CustomGradientPanel1.Controls.Add(ad_NameLabel);
             guna2CustomGradientPanel1.Controls.Add(ad_guna2HtmlLabel2);
             guna2CustomGradientPanel1.Controls.Add(ad_Staff);
-            guna2CustomGradientPanel1.Controls.Add(ad_HomeButton);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges13;
             guna2CustomGradientPanel1.FillColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(13, 41, 80);
@@ -183,20 +183,38 @@
             LogOutButton.FillColor = Color.Transparent;
             LogOutButton.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Bold, GraphicsUnit.Point);
             LogOutButton.ForeColor = SystemColors.ActiveCaptionText;
-            LogOutButton.Location = new Point(51, 533);
+            LogOutButton.Location = new Point(53, 516);
             LogOutButton.Name = "LogOutButton";
             LogOutButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
             LogOutButton.Size = new Size(81, 31);
-            LogOutButton.TabIndex = 143;
+            LogOutButton.TabIndex = 145;
             LogOutButton.Text = "Log Out";
-            LogOutButton.Click += LogOutButton_Click;
+            LogOutButton.Click += LogOutButton_Click_1;
+            // 
+            // pd_HomeButton
+            // 
+            pd_HomeButton.BackColor = Color.Transparent;
+            pd_HomeButton.DisabledState.BorderColor = Color.DarkGray;
+            pd_HomeButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            pd_HomeButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            pd_HomeButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            pd_HomeButton.FillColor = Color.Transparent;
+            pd_HomeButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            pd_HomeButton.ForeColor = Color.White;
+            pd_HomeButton.Image = (Image)resources.GetObject("pd_HomeButton.Image");
+            pd_HomeButton.Location = new Point(18, 515);
+            pd_HomeButton.Name = "pd_HomeButton";
+            pd_HomeButton.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            pd_HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            pd_HomeButton.Size = new Size(34, 33);
+            pd_HomeButton.TabIndex = 144;
             // 
             // ad_patientBtn
             // 
             ad_patientBtn.BackColor = Color.Transparent;
             ad_patientBtn.BorderRadius = 25;
             ad_patientBtn.Cursor = Cursors.Hand;
-            ad_patientBtn.CustomizableEdges = customizableEdges3;
+            ad_patientBtn.CustomizableEdges = customizableEdges4;
             ad_patientBtn.DisabledState.BorderColor = Color.DarkGray;
             ad_patientBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             ad_patientBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -209,7 +227,7 @@
             ad_patientBtn.Location = new Point(13, 190);
             ad_patientBtn.Margin = new Padding(3, 2, 3, 2);
             ad_patientBtn.Name = "ad_patientBtn";
-            ad_patientBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            ad_patientBtn.ShadowDecoration.CustomizableEdges = customizableEdges5;
             ad_patientBtn.Size = new Size(160, 53);
             ad_patientBtn.TabIndex = 142;
             ad_patientBtn.Text = "PATIENTS";
@@ -221,7 +239,7 @@
             ad_appointment.BackColor = Color.Transparent;
             ad_appointment.BorderRadius = 25;
             ad_appointment.Cursor = Cursors.Hand;
-            ad_appointment.CustomizableEdges = customizableEdges5;
+            ad_appointment.CustomizableEdges = customizableEdges6;
             ad_appointment.DisabledState.BorderColor = Color.DarkGray;
             ad_appointment.DisabledState.CustomBorderColor = Color.DarkGray;
             ad_appointment.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -235,7 +253,7 @@
             ad_appointment.Location = new Point(16, 424);
             ad_appointment.Margin = new Padding(3, 2, 3, 2);
             ad_appointment.Name = "ad_appointment";
-            ad_appointment.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            ad_appointment.ShadowDecoration.CustomizableEdges = customizableEdges7;
             ad_appointment.Size = new Size(160, 53);
             ad_appointment.TabIndex = 137;
             ad_appointment.Text = "APPOINTMENTS";
@@ -247,7 +265,7 @@
             ad_doctor.BackColor = Color.Transparent;
             ad_doctor.BorderRadius = 25;
             ad_doctor.Cursor = Cursors.Hand;
-            ad_doctor.CustomizableEdges = customizableEdges7;
+            ad_doctor.CustomizableEdges = customizableEdges8;
             ad_doctor.DisabledState.BorderColor = Color.DarkGray;
             ad_doctor.DisabledState.CustomBorderColor = Color.DarkGray;
             ad_doctor.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -261,7 +279,7 @@
             ad_doctor.Location = new Point(12, 344);
             ad_doctor.Margin = new Padding(3, 2, 3, 2);
             ad_doctor.Name = "ad_doctor";
-            ad_doctor.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            ad_doctor.ShadowDecoration.CustomizableEdges = customizableEdges9;
             ad_doctor.Size = new Size(160, 53);
             ad_doctor.TabIndex = 137;
             ad_doctor.Text = "DOCTORS";
@@ -289,7 +307,7 @@
             ad_guna2CirclePictureBox1.InitialImage = (Image)resources.GetObject("ad_guna2CirclePictureBox1.InitialImage");
             ad_guna2CirclePictureBox1.Location = new Point(12, 18);
             ad_guna2CirclePictureBox1.Name = "ad_guna2CirclePictureBox1";
-            ad_guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            ad_guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges10;
             ad_guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             ad_guna2CirclePictureBox1.Size = new Size(50, 53);
             ad_guna2CirclePictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -325,7 +343,7 @@
             ad_Staff.BackColor = Color.Transparent;
             ad_Staff.BorderRadius = 25;
             ad_Staff.Cursor = Cursors.Hand;
-            ad_Staff.CustomizableEdges = customizableEdges10;
+            ad_Staff.CustomizableEdges = customizableEdges11;
             ad_Staff.DisabledState.BorderColor = Color.DarkGray;
             ad_Staff.DisabledState.CustomBorderColor = Color.DarkGray;
             ad_Staff.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -338,30 +356,12 @@
             ad_Staff.Location = new Point(12, 265);
             ad_Staff.Margin = new Padding(3, 2, 3, 2);
             ad_Staff.Name = "ad_Staff";
-            ad_Staff.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            ad_Staff.ShadowDecoration.CustomizableEdges = customizableEdges12;
             ad_Staff.Size = new Size(160, 53);
             ad_Staff.TabIndex = 136;
             ad_Staff.Text = "STAFFS";
             ad_Staff.TextFormatNoPrefix = true;
             ad_Staff.Click += ad_PatientList_Click;
-            // 
-            // ad_HomeButton
-            // 
-            ad_HomeButton.BackColor = Color.Transparent;
-            ad_HomeButton.DisabledState.BorderColor = Color.DarkGray;
-            ad_HomeButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            ad_HomeButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            ad_HomeButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            ad_HomeButton.FillColor = Color.Transparent;
-            ad_HomeButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            ad_HomeButton.ForeColor = Color.White;
-            ad_HomeButton.Image = (Image)resources.GetObject("ad_HomeButton.Image");
-            ad_HomeButton.Location = new Point(22, 531);
-            ad_HomeButton.Name = "ad_HomeButton";
-            ad_HomeButton.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            ad_HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            ad_HomeButton.Size = new Size(34, 33);
-            ad_HomeButton.TabIndex = 107;
             // 
             // guna2PictureBox1
             // 
@@ -1102,7 +1102,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel ad_NameLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel ad_guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2Button ad_Staff;
-        private Guna.UI2.WinForms.Guna2CircleButton ad_HomeButton;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Button ad_appointment;
         private Guna.UI2.WinForms.Guna2Button ad_doctor;
@@ -1139,5 +1138,6 @@
         private Guna.UI2.WinForms.Guna2Button ExitButton;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2Button LogOutButton;
+        private Guna.UI2.WinForms.Guna2CircleButton pd_HomeButton;
     }
 }

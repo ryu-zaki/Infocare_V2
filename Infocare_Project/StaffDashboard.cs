@@ -306,39 +306,49 @@ namespace Infocare_Project_1
                 {
                     Database db = new Database();
 
-                    string selectedPatient = PatientComboBox.SelectedItem.ToString();
-                    string selectedDoctor = pd_DocBox.SelectedItem.ToString();
-                    string selectedTimeSlot = TimeCombobox.SelectedItem.ToString();
+                    string selectedPatient = PatientComboBox.SelectedItem?.ToString() ?? string.Empty;
+                    string selectedDoctor = pd_DocBox.SelectedItem?.ToString() ?? string.Empty;
+                    string selectedTimeSlot = TimeCombobox.SelectedItem?.ToString() ?? string.Empty;
                     DateTime appointmentDate = AppointmentDatePicker.SelectionStart;
-                    string specialization = pd_SpecBox.SelectedItem.ToString();
+                    string specialization = pd_SpecBox.SelectedItem?.ToString() ?? string.Empty;
 
-                    string feeText = ConsFeeLbl.Text.Trim();
-
-                    decimal consultationFee = 0;
-
-                    if (!decimal.TryParse(feeText, out consultationFee))
+                    // Ensure all required fields are selected
+                    if (string.IsNullOrWhiteSpace(selectedPatient) ||
+                        string.IsNullOrWhiteSpace(selectedDoctor) ||
+                        string.IsNullOrWhiteSpace(selectedTimeSlot) ||
+                        string.IsNullOrWhiteSpace(specialization))
                     {
-                        MessageBox.Show("Invalid consultation fee.");
+                        MessageBox.Show("Please ensure all fields are filled out correctly.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
+                    // Parse consultation fee
+                    string feeText = ConsFeeLbl.Text.Trim();
+                    if (!decimal.TryParse(feeText, out decimal consultationFee))
+                    {
+                        MessageBox.Show("Invalid consultation fee.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Save appointment
                     bool appointmentSaved = db.SaveAppointment(selectedPatient, specialization, selectedDoctor, selectedTimeSlot, appointmentDate, consultationFee);
 
                     if (appointmentSaved)
                     {
-                        MessageBox.Show("Appointment saved successfully.");
+                        MessageBox.Show("Appointment saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Failed to save appointment.");
+                        MessageBox.Show("Failed to save appointment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex.Message);
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
 
         private void ShowAppointmentList()
         {
@@ -398,6 +408,11 @@ namespace Infocare_Project_1
                 patientLoginForm.Show();
                 this.Hide();
             }
+        }
+
+        private void pd_HomeButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

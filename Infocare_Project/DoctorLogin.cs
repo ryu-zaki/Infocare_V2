@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infocare_Project_1;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -66,7 +67,48 @@ namespace Infocare_Project
 
         private void doctor_EnterButton_Click(object sender, EventArgs e)
         {
+            string username = doctor_UsernameTxtbox.Text;
+            string password = doctor_PasswordTxtbox.Text;
 
+
+
+            LoginEmpty loginEmpty = new LoginEmpty();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+
+                MessageBox.Show("Credentials are empty", "Empty FIelds", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                this.Hide();
+                return;
+
+            }
+
+            Database db = new Database();
+
+
+            bool validStaff = db.Doctorlogin(username, password);
+
+
+            if (validStaff)
+            {
+                (string firstName, string lastName) = db.GetDoctorNameDetails(username);
+
+                MessageBox.Show("Log in Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                var doctor = new DoctorDashboard(username, firstName, lastName);
+                doctor.Show();
+                this.Hide();
+            }
+
+            else
+            {
+
+                MessageBox.Show("Invalid Username or Password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+
+            }
         }
     }
 }

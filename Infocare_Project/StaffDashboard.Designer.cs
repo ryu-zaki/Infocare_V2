@@ -366,6 +366,7 @@
             pd_HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pd_HomeButton.Size = new Size(34, 33);
             pd_HomeButton.TabIndex = 107;
+            pd_HomeButton.Click += pd_HomeButton_Click;
             // 
             // guna2PictureBox1
             // 
@@ -1082,13 +1083,13 @@
             ControlBox = false;
             Controls.Add(Staff_MinimizeButton);
             Controls.Add(Staff_ExitButton);
-            Controls.Add(ViewAppointmentPanel);
-            Controls.Add(guna2CustomGradientPanel2);
             Controls.Add(guna2HtmlLabel3);
             Controls.Add(guna2HtmlLabel4);
             Controls.Add(BookAppPanel);
             Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(guna2PictureBox1);
+            Controls.Add(ViewAppointmentPanel);
+            Controls.Add(guna2CustomGradientPanel2);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.None;
             Name = "StaffDashboard";

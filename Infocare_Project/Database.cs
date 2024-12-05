@@ -12,23 +12,18 @@ using Microsoft.VisualBasic.ApplicationServices;
 using Infocare_Project.NewFolder;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Collections;
+using Infocare_Project_1;
 
 namespace Infocare_Project
 {
     internal class Database
     {
-        private string connectionString = "Server=127.0.0.1; Database=db_infocare_project;User ID=root; Password=;"; // Your MySQL connection string
+        private string connectionString = "Server=127.0.0.1; Database=db_infocare_project;User ID=root; Password=;";
 
-        // Method to connect to the database
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(connectionString);
         }
-
-        /*PATIENT
-         * DATABASE  
-         */
-
 
         public void PatientReg1(User user)
         {
@@ -231,6 +226,31 @@ namespace Infocare_Project
                 try
                 {
                     string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE s_Username = @Username AND s_Password = @Password";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    connection.Open();
+                    int result = Convert.ToInt32(command.ExecuteScalar());
+
+                    return result == 1;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error validating login: " + ex.Message);
+                }
+            }
+        }
+
+
+        public bool Doctorlogin(string username, string password)
+        {
+            using (var connection = GetConnection())
+            {
+                try
+                {
+                    string query = "SELECT COUNT(*) FROM tb_doctorinfo WHERE Username = @Username AND Password = @Password";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
@@ -462,7 +482,7 @@ namespace Infocare_Project
                         }
                         else
                         {
-                            throw new Exception("No patient found with the given username.");
+                            throw new Exception("No Staff found with the given username.");
                         }
                     }
                 }
@@ -472,11 +492,47 @@ namespace Infocare_Project
                 }
             }
         }
+
+             public (string firstName, string lastName) GetDoctorNameDetails(string username)
+        {
+            using (var connection = GetConnection())
+            {
+                string query = "SELECT Firstname, Lastname FROM tb_doctorinfo WHERE Username = @Username";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+
+                try
+                {
+                    connection.Open();
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string firstName = reader["Firstname"].ToString();
+                            string lastName = reader["Lastname"].ToString();
+
+                            return (firstName, lastName);
+                        }
+                        else
+                        {
+                            throw new Exception("No Doctor found with the given username.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error fetching patient name details: " + ex.Message);
+                }
+            }
+
+        }
         public List<string> GetPatientNames()
         {
             List<string> patientNames = new List<string>();
 
-            string query = @"SELECT CONCAT(P_Lastname, ', ', P_Firstname, ' ', LEFT(P_Middlename, 1), '.') AS patient_name
+            string query = @"SELECT CONCAT(P_Lastname, ', ', P_Firstname) AS patient_name
                      FROM tb_patientinfo";
 
             using (var connection = GetConnection())
@@ -507,7 +563,7 @@ namespace Infocare_Project
         {
             List<string> doctorNames = new List<string>();
 
-            string query = @"SELECT CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) AS doctor_name
+            string query = @"SELECT CONCAT('Dr. ', Lastname, ', ', Firstname) AS doctor_name
                      FROM tb_doctorinfo
                     WHERE specialization = @Specialization";
 
@@ -542,7 +598,7 @@ namespace Infocare_Project
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                string query = @"SELECT Start_Time, End_Time FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) = @doctorName";
+                string query = @"SELECT Start_Time, End_Time FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @doctorName";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -578,7 +634,7 @@ namespace Infocare_Project
         {
             string query = @"SELECT day_availability 
                      FROM tb_doctorinfo 
-                     WHERE CONCAT('Dr. ', Lastname, ', ', Firstname, ' ', LEFT(middlename, 1)) = @DoctorName";
+                     WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
             using (var connection = GetConnection())
             {
@@ -676,7 +732,7 @@ namespace Infocare_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error retrieving staff list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error retrieving patient list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return PatientTable;
@@ -750,12 +806,14 @@ namespace Infocare_Project
 
         public bool SaveAppointment(string patientName, string specialization, string doctorName, string timeSlot, DateTime appointmentDate, decimal consFee)
         {
+
             try
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    string query = @"INSERT INTO tb_appointmenthistory (ah_Patient_Name, ah_Specialization, ah_Doctor_Name, ah_time, ah_date, ah_consfee) 
-                             VALUES (@PatientName, @Specialization, @DoctorName, @TimeSlot, @AppointmentDate, @ConsFee)";
+                    string query = @"INSERT INTO tb_appointmenthistory (ah_Patient_Name, ah_Specialization, ah_Doctor_Name, ah_time, ah_date, ah_consfee, ah_status) 
+                             VALUES (@PatientName, @Specialization, @DoctorName, @TimeSlot, @AppointmentDate, @ConsFee, @Pending)";
+
 
                     using (var command = new MySqlCommand(query, connection))
                     {
@@ -765,6 +823,8 @@ namespace Infocare_Project
                         command.Parameters.AddWithValue("@TimeSlot", timeSlot);
                         command.Parameters.AddWithValue("@AppointmentDate", appointmentDate);
                         command.Parameters.AddWithValue("@ConsFee", consFee);
+                        command.Parameters.AddWithValue("@Pending", "Pending");
+
 
                         connection.Open();
 
@@ -809,37 +869,41 @@ namespace Infocare_Project
             return AppointmentTable;
         }
 
-        public DataTable PendingAppointmentList()
+        public DataTable PendingAppointmentList(string doctorFullName)
+{
+    string query = @"SELECT * FROM tb_appointmenthistory 
+                     WHERE ah_status = 'Pending' AND ah_Doctor_Name = @DoctorFullName";
+
+    DataTable appointmentTable = new DataTable();
+    try
+    {
+        using (MySqlConnection conn = new MySqlConnection(connectionString))
         {
-            string query = @"select * from tb_appointmenthistory where ah_status = 'pending'";
-
-            DataTable AppointmentTable = new DataTable();
-
-            try
+            conn.Open();
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                cmd.Parameters.AddWithValue("@DoctorFullName", doctorFullName);
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
-                    conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                        {
-                            adapter.Fill(AppointmentTable);
-                        }
-                    }
+                    adapter.Fill(appointmentTable);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return AppointmentTable;
         }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+    return appointmentTable;
+}
+
+
+
 
         public void AcceptAppointment(int appointmentId)
         {
-            string updateQuery = "update tb_appointmenthistory set ah_status = 'accepted' where id = @id";
+            string updateQuery = "update tb_appointmenthistory set ah_status = 'Accepted' where id = @id";
 
             try
             {
@@ -883,9 +947,10 @@ namespace Infocare_Project
             }
         }
 
-        public DataTable ViewAppointments()
+        public DataTable ViewAppointments(string doctorFullName)
         {
-            string query = "select * from tb_appointmenthistory where ah_status = 'Accepted'";
+            string query = @"SELECT * FROM tb_appointmenthistory 
+                     WHERE ah_status = 'Accepted' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable AppointmentTable = new DataTable();
 
@@ -896,6 +961,7 @@ namespace Infocare_Project
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@DoctorFullName", doctorFullName);
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                         {
                             adapter.Fill(AppointmentTable);
@@ -911,9 +977,10 @@ namespace Infocare_Project
             return AppointmentTable;
         }
 
-        public DataTable DeclinedAppointments()
+        public DataTable DeclinedAppointments(string doctorFullName)
         {
-            string query = "select * from tb_appointmenthistory where ah_status = 'Declined'";
+            string query = @"SELECT * FROM tb_appointmenthistory 
+                     WHERE ah_status = 'Declined' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable AppointmentTable = new DataTable();
 
@@ -924,6 +991,7 @@ namespace Infocare_Project
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@DoctorFullName", doctorFullName);
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                         {
                             adapter.Fill(AppointmentTable);
@@ -937,6 +1005,86 @@ namespace Infocare_Project
             }
 
             return AppointmentTable;
+        }
+
+        public void CreateDiagnosis(int appointmentId, Action<Dictionary<string, string>> onSuccess, Action<string> onFailure)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string getPatientNameQuery = "SELECT ah_Patient_Name FROM tb_appointmenthistory WHERE id = @appointmentId";
+                    string patientName;
+
+                    using (MySqlCommand command = new MySqlCommand(getPatientNameQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@appointmentId", appointmentId);
+
+                        object result = command.ExecuteScalar();
+                        if (result == null)
+                        {
+                            onFailure?.Invoke("No patient associated with this appointment.");
+                            return;
+                        }
+
+                        patientName = result.ToString();
+                    }
+
+                    var nameParts = patientName.Split(',');
+                    if (nameParts.Length < 2)
+                    {
+                        onFailure?.Invoke("Invalid patient name format in the database.");
+                        return;
+                    }
+
+                    string lastName = nameParts[0].Trim();
+                    string firstName = nameParts[1].Trim();
+
+                    string getPatientDetailsQuery = "SELECT P_Firstname, P_Lastname, P_Bdate, P_Height, P_Weight, P_BMI, " +
+                                                    "P_Blood_Type, P_Alergy, P_Medication, P_PrevSurgery, P_Precondition, P_Treatment " +
+                                                    "FROM tb_patientinfo WHERE P_Firstname = @firstName AND P_Lastname = @lastName";
+
+                    using (MySqlCommand command = new MySqlCommand(getPatientDetailsQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@firstName", firstName);
+                        command.Parameters.AddWithValue("@lastName", lastName);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var patientDetails = new Dictionary<string, string>
+                            {
+                                { "P_Firstname", reader["P_Firstname"].ToString() },
+                                { "P_Lastname", reader["P_Lastname"].ToString() },
+                                { "P_Bdate", reader["P_Bdate"].ToString() },
+                                { "P_Height", reader["P_Height"].ToString() },
+                                { "P_Weight", reader["P_Weight"].ToString() },
+                                { "P_BMI", reader["P_BMI"].ToString() },
+                                { "P_Blood_Type", reader["P_Blood_Type"].ToString() },
+                                { "P_Alergy", reader["P_Alergy"].ToString() },
+                                { "P_Medication", reader["P_Medication"].ToString() },
+                                { "P_PrevSurgery", reader["P_PrevSurgery"].ToString() },
+                                { "P_Precondition", reader["P_Precondition"].ToString() },
+                                { "P_Treatment", reader["P_Treatment"].ToString() }
+                            };
+
+                                onSuccess?.Invoke(patientDetails);
+                            }
+                            else
+                            {
+                                onFailure?.Invoke("Patient details not found.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                onFailure?.Invoke($"An error occurred: {ex.Message}");
+            }
         }
     }
 }
