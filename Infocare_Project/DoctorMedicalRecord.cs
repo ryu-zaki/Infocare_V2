@@ -17,7 +17,23 @@ namespace Infocare_Project_1
         {
             InitializeComponent();
         }
-
+        public void SetPatientDetails(string firstName, string lastName, string birthday, string height, string weight,
+                                      string bmi, string bloodType, string allergy, string medication,
+                                      string prevSurgery, string preCondition, string treatment)
+        {
+            FirstNameTextBox.Text = firstName;
+            LastNameTextBox.Text = lastName;
+            BirthdayTextBox.Text = birthday;
+            HeightTextBox.Text = height;
+            WeightTextBox.Text = weight;
+            BMITextBox.Text = bmi;
+            BloodTypeTextBox.Text = bloodType;
+            AllergyTextBox.Text = allergy;
+            MedicationTextBox.Text = medication;
+            PreviousSurgeryTextBox.Text = prevSurgery;
+            PreConditionTextBox.Text = preCondition;
+            TreatmentTextBox.Text = treatment;
+        }
         private void guna2TextBox10_TextChanged(object sender, EventArgs e)
         {
 

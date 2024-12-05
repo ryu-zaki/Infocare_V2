@@ -4519,7 +4519,17 @@
         kBhBYgSJESRGkBhBYgSJESRGkBhBAOAxcwMSsLIfVeOu5gAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="ad_HomeButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="guna2PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAPxJREFUeF7t0bEJgEAURMHfjb1YzfWfKIKBHdwDZ2CTTd8AwF8d57q+e292ESRG
+        kBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJ
+        ESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhB
+        YgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRG
+        kBhBYgSJESRGkBhBYgSJESRGkBhBAOAxcwMSsLIfVeOu5gAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="pd_HomeButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANkAAADHCAYAAACUYvadAAAABGdBTUEAALGPC/xhBQAAD+lJREFUeF7t
         ndtuG1UXxzkl5MAVVzTNwYTSigfgAimNnaYFiVcg0OTLBeUNUBQSm6gXfQIEbUjaqE8AEvTkHNqA2lsu
@@ -4591,16 +4601,6 @@
         XUTcSKhq0lCM7Ia0F7YhVLIHMjk5WXn06BGrV7/BM443b95cLPzzNDaqWySdZEZ2A22U6CbWpqenK19+
         +WXx/v37BbNPsgaEQ4XD82zb29tLNmNra2uR0V788MMPBc4YEkIIIeHx0kv/Bx6aKuR9C3/7AAAAAElF
         TkSuQmCC
-</value>
-  </data>
-  <data name="guna2PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAPxJREFUeF7t0bEJgEAURMHfjb1YzfWfKIKBHdwDZ2CTTd8AwF8d57q+e292ESRG
-        kBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJ
-        ESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhB
-        YgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRGkBhBYgSJESRG
-        kBhBYgSJESRGkBhBYgSJESRGkBhBAOAxcwMSsLIfVeOu5gAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

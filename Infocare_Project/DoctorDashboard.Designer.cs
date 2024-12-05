@@ -56,10 +56,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ad_docpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             CreateDiagnosisButton = new Guna.UI2.WinForms.Guna2Button();
             DeclineButton = new Guna.UI2.WinForms.Guna2Button();
@@ -70,10 +73,9 @@
             AppointmentListButton = new Guna.UI2.WinForms.Guna2Button();
             ad_guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            ad_NameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            NameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ApprovalPendingButton = new Guna.UI2.WinForms.Guna2Button();
-            ad_logoutlabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_staffpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             ad_HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
@@ -82,6 +84,8 @@
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             CompletedAppointmentsButton = new Guna.UI2.WinForms.Guna2Button();
             ad_guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            LogOutButton = new Guna.UI2.WinForms.Guna2Button();
+            pd_HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
             ad_docpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ad_guna2CirclePictureBox1).BeginInit();
@@ -347,17 +351,17 @@
             ad_guna2CirclePictureBox1.TabIndex = 141;
             ad_guna2CirclePictureBox1.TabStop = false;
             // 
-            // ad_NameLabel
+            // NameLabel
             // 
-            ad_NameLabel.BackColor = Color.Transparent;
-            ad_NameLabel.Font = new Font("Tahoma", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ad_NameLabel.ForeColor = SystemColors.Control;
-            ad_NameLabel.Location = new Point(15, 135);
-            ad_NameLabel.Margin = new Padding(3, 2, 3, 2);
-            ad_NameLabel.Name = "ad_NameLabel";
-            ad_NameLabel.Size = new Size(103, 35);
-            ad_NameLabel.TabIndex = 140;
-            ad_NameLabel.Text = "Doctor!";
+            NameLabel.BackColor = Color.Transparent;
+            NameLabel.Font = new Font("Tahoma", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            NameLabel.ForeColor = SystemColors.Control;
+            NameLabel.Location = new Point(15, 135);
+            NameLabel.Margin = new Padding(3, 2, 3, 2);
+            NameLabel.Name = "NameLabel";
+            NameLabel.Size = new Size(103, 35);
+            NameLabel.TabIndex = 140;
+            NameLabel.Text = "Doctor!";
             // 
             // ad_guna2HtmlLabel2
             // 
@@ -394,18 +398,6 @@
             ApprovalPendingButton.Text = "Pending Approval";
             ApprovalPendingButton.TextFormatNoPrefix = true;
             ApprovalPendingButton.Click += ApprovalPendingButton_Click;
-            // 
-            // ad_logoutlabel
-            // 
-            ad_logoutlabel.BackColor = Color.Transparent;
-            ad_logoutlabel.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Bold, GraphicsUnit.Point);
-            ad_logoutlabel.ForeColor = SystemColors.ActiveCaptionText;
-            ad_logoutlabel.Location = new Point(48, 540);
-            ad_logoutlabel.Margin = new Padding(3, 2, 3, 2);
-            ad_logoutlabel.Name = "ad_logoutlabel";
-            ad_logoutlabel.Size = new Size(56, 18);
-            ad_logoutlabel.TabIndex = 108;
-            ad_logoutlabel.Text = "Log Out";
             // 
             // ad_staffpanel
             // 
@@ -445,7 +437,6 @@
             ad_HomeButton.FillColor = Color.Transparent;
             ad_HomeButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ad_HomeButton.ForeColor = Color.White;
-            ad_HomeButton.Image = (Image)resources.GetObject("ad_HomeButton.Image");
             ad_HomeButton.Location = new Point(16, 534);
             ad_HomeButton.Name = "ad_HomeButton";
             ad_HomeButton.ShadowDecoration.CustomizableEdges = customizableEdges20;
@@ -481,24 +472,25 @@
             // guna2CustomGradientPanel1
             // 
             guna2CustomGradientPanel1.BackColor = Color.FromArgb(13, 41, 80);
+            guna2CustomGradientPanel1.Controls.Add(LogOutButton);
+            guna2CustomGradientPanel1.Controls.Add(pd_HomeButton);
             guna2CustomGradientPanel1.Controls.Add(CompletedAppointmentsButton);
             guna2CustomGradientPanel1.Controls.Add(RejectedRequestsButton);
             guna2CustomGradientPanel1.Controls.Add(AppointmentListButton);
             guna2CustomGradientPanel1.Controls.Add(ad_guna2HtmlLabel1);
             guna2CustomGradientPanel1.Controls.Add(ad_guna2CirclePictureBox1);
-            guna2CustomGradientPanel1.Controls.Add(ad_NameLabel);
+            guna2CustomGradientPanel1.Controls.Add(NameLabel);
             guna2CustomGradientPanel1.Controls.Add(ad_guna2HtmlLabel2);
             guna2CustomGradientPanel1.Controls.Add(ApprovalPendingButton);
-            guna2CustomGradientPanel1.Controls.Add(ad_logoutlabel);
             guna2CustomGradientPanel1.Controls.Add(ad_HomeButton);
-            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges25;
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges28;
             guna2CustomGradientPanel1.FillColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor3 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor4 = Color.FromArgb(110, 177, 247);
             guna2CustomGradientPanel1.Location = new Point(0, -1);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges29;
             guna2CustomGradientPanel1.Size = new Size(185, 604);
             guna2CustomGradientPanel1.TabIndex = 143;
             // 
@@ -506,7 +498,7 @@
             // 
             CompletedAppointmentsButton.BackColor = Color.Transparent;
             CompletedAppointmentsButton.BorderRadius = 25;
-            CompletedAppointmentsButton.CustomizableEdges = customizableEdges23;
+            CompletedAppointmentsButton.CustomizableEdges = customizableEdges26;
             CompletedAppointmentsButton.DisabledState.BorderColor = Color.DarkGray;
             CompletedAppointmentsButton.DisabledState.CustomBorderColor = Color.DarkGray;
             CompletedAppointmentsButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -520,7 +512,7 @@
             CompletedAppointmentsButton.Location = new Point(12, 351);
             CompletedAppointmentsButton.Margin = new Padding(3, 2, 3, 2);
             CompletedAppointmentsButton.Name = "CompletedAppointmentsButton";
-            CompletedAppointmentsButton.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            CompletedAppointmentsButton.ShadowDecoration.CustomizableEdges = customizableEdges27;
             CompletedAppointmentsButton.Size = new Size(160, 53);
             CompletedAppointmentsButton.TabIndex = 142;
             CompletedAppointmentsButton.Text = "Completed Appointments";
@@ -539,6 +531,45 @@
             ad_guna2HtmlLabel4.TabIndex = 146;
             ad_guna2HtmlLabel4.Text = "Dashboard";
             // 
+            // LogOutButton
+            // 
+            LogOutButton.BackColor = Color.Transparent;
+            LogOutButton.BorderRadius = 8;
+            LogOutButton.Cursor = Cursors.Hand;
+            LogOutButton.CustomizableEdges = customizableEdges23;
+            LogOutButton.DisabledState.BorderColor = Color.DarkGray;
+            LogOutButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            LogOutButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            LogOutButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            LogOutButton.FillColor = Color.Transparent;
+            LogOutButton.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Bold, GraphicsUnit.Point);
+            LogOutButton.ForeColor = SystemColors.ActiveCaptionText;
+            LogOutButton.Location = new Point(56, 518);
+            LogOutButton.Name = "LogOutButton";
+            LogOutButton.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            LogOutButton.Size = new Size(81, 31);
+            LogOutButton.TabIndex = 144;
+            LogOutButton.Text = "Log Out";
+            LogOutButton.Click += LogOutButton_Click;
+            // 
+            // pd_HomeButton
+            // 
+            pd_HomeButton.BackColor = Color.Transparent;
+            pd_HomeButton.DisabledState.BorderColor = Color.DarkGray;
+            pd_HomeButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            pd_HomeButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            pd_HomeButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            pd_HomeButton.FillColor = Color.Transparent;
+            pd_HomeButton.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            pd_HomeButton.ForeColor = Color.White;
+            pd_HomeButton.Image = (Image)resources.GetObject("pd_HomeButton.Image");
+            pd_HomeButton.Location = new Point(21, 518);
+            pd_HomeButton.Name = "pd_HomeButton";
+            pd_HomeButton.ShadowDecoration.CustomizableEdges = customizableEdges25;
+            pd_HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            pd_HomeButton.Size = new Size(34, 33);
+            pd_HomeButton.TabIndex = 143;
+            // 
             // DoctorDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -554,7 +585,6 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "DoctorDashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Load += DoctorDashboard_Load;
             ad_docpanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DataGridViewList).EndInit();
             ((System.ComponentModel.ISupportInitialize)ad_guna2CirclePictureBox1).EndInit();
@@ -574,10 +604,9 @@
         private Guna.UI2.WinForms.Guna2Button AppointmentListButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel ad_guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2CirclePictureBox ad_guna2CirclePictureBox1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel ad_NameLabel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel NameLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel ad_guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2Button ApprovalPendingButton;
-        private Guna.UI2.WinForms.Guna2HtmlLabel ad_logoutlabel;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_staffpanel;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
         private Guna.UI2.WinForms.Guna2CircleButton ad_HomeButton;
@@ -591,5 +620,7 @@
         private Guna.UI2.WinForms.Guna2Button CompletedAppointmentsButton;
         private Guna.UI2.WinForms.Guna2Button CreateDiagnosisButton;
         private DataGridViewCheckBoxColumn checkboxcolumn;
+        private Guna.UI2.WinForms.Guna2Button LogOutButton;
+        private Guna.UI2.WinForms.Guna2CircleButton pd_HomeButton;
     }
 }
