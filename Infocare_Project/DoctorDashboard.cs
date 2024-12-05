@@ -246,11 +246,6 @@ namespace Infocare_Project_1
             }
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RejectedRequestsButton_Click(object sender, EventArgs e)
         {
             AcceptButton.Visible = false;
@@ -260,7 +255,7 @@ namespace Infocare_Project_1
             Database db = new Database();
             string doctorFullName = $"Dr. {LastName}, {FirstName}";
             DataTable declinedappointment = db.DeclinedAppointments(doctorFullName);
-            DataGridViewList.DataSource= declinedappointment;
+            DataGridViewList.DataSource = declinedappointment;
 
             try
             {
@@ -296,6 +291,39 @@ namespace Infocare_Project_1
                 DoctorLogin DoctorLoginForm = new DoctorLogin();
                 DoctorLoginForm.Show();
                 this.Hide();
+            }
+        }
+
+        private void CompletedAppointmentsButton_Click(object sender, EventArgs e)
+        {
+            AcceptButton.Visible = false;
+            DeclineButton.Visible = false;
+            CreateDiagnosisButton.Visible = false;
+
+            Database db = new Database();
+
+            string doctorFullName = $"Dr. {LastName}, {FirstName}";
+            DataTable viewcompletedappoointment = db.ViewAppointments(doctorFullName);
+            DataGridViewList.DataSource = viewcompletedappoointment;
+
+            try
+            {
+
+
+                if (viewappoointment != null && viewappoointment.Rows.Count > 0)
+                {
+                    DataGridViewList.AutoGenerateColumns = true;
+                    DataGridViewList.AllowUserToAddRows = false;
+                    DataGridViewList.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("No appointments found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

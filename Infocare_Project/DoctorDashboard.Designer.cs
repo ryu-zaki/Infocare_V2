@@ -58,11 +58,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ad_docpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             CreateDiagnosisButton = new Guna.UI2.WinForms.Guna2Button();
             DeclineButton = new Guna.UI2.WinForms.Guna2Button();
@@ -82,10 +82,10 @@
             ad_guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            CompletedAppointmentsButton = new Guna.UI2.WinForms.Guna2Button();
-            ad_guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             LogOutButton = new Guna.UI2.WinForms.Guna2Button();
             pd_HomeButton = new Guna.UI2.WinForms.Guna2CircleButton();
+            CompletedAppointmentsButton = new Guna.UI2.WinForms.Guna2Button();
+            ad_guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ad_docpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ad_guna2CirclePictureBox1).BeginInit();
@@ -494,43 +494,6 @@
             guna2CustomGradientPanel1.Size = new Size(185, 604);
             guna2CustomGradientPanel1.TabIndex = 143;
             // 
-            // CompletedAppointmentsButton
-            // 
-            CompletedAppointmentsButton.BackColor = Color.Transparent;
-            CompletedAppointmentsButton.BorderRadius = 25;
-            CompletedAppointmentsButton.CustomizableEdges = customizableEdges26;
-            CompletedAppointmentsButton.DisabledState.BorderColor = Color.DarkGray;
-            CompletedAppointmentsButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            CompletedAppointmentsButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            CompletedAppointmentsButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            CompletedAppointmentsButton.FillColor = SystemColors.ButtonFace;
-            CompletedAppointmentsButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            CompletedAppointmentsButton.ForeColor = Color.Black;
-            CompletedAppointmentsButton.ImageAlign = HorizontalAlignment.Left;
-            CompletedAppointmentsButton.ImageOffset = new Point(2, 0);
-            CompletedAppointmentsButton.ImageSize = new Size(40, 40);
-            CompletedAppointmentsButton.Location = new Point(12, 351);
-            CompletedAppointmentsButton.Margin = new Padding(3, 2, 3, 2);
-            CompletedAppointmentsButton.Name = "CompletedAppointmentsButton";
-            CompletedAppointmentsButton.ShadowDecoration.CustomizableEdges = customizableEdges27;
-            CompletedAppointmentsButton.Size = new Size(160, 53);
-            CompletedAppointmentsButton.TabIndex = 142;
-            CompletedAppointmentsButton.Text = "Completed Appointments";
-            CompletedAppointmentsButton.TextFormatNoPrefix = true;
-            CompletedAppointmentsButton.Click += guna2Button1_Click;
-            // 
-            // ad_guna2HtmlLabel4
-            // 
-            ad_guna2HtmlLabel4.BackColor = Color.Transparent;
-            ad_guna2HtmlLabel4.Font = new Font("Arial Black", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ad_guna2HtmlLabel4.ForeColor = Color.Black;
-            ad_guna2HtmlLabel4.Location = new Point(228, 50);
-            ad_guna2HtmlLabel4.Margin = new Padding(3, 2, 3, 2);
-            ad_guna2HtmlLabel4.Name = "ad_guna2HtmlLabel4";
-            ad_guna2HtmlLabel4.Size = new Size(161, 40);
-            ad_guna2HtmlLabel4.TabIndex = 146;
-            ad_guna2HtmlLabel4.Text = "Dashboard";
-            // 
             // LogOutButton
             // 
             LogOutButton.BackColor = Color.Transparent;
@@ -569,6 +532,43 @@
             pd_HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pd_HomeButton.Size = new Size(34, 33);
             pd_HomeButton.TabIndex = 143;
+            // 
+            // CompletedAppointmentsButton
+            // 
+            CompletedAppointmentsButton.BackColor = Color.Transparent;
+            CompletedAppointmentsButton.BorderRadius = 25;
+            CompletedAppointmentsButton.CustomizableEdges = customizableEdges26;
+            CompletedAppointmentsButton.DisabledState.BorderColor = Color.DarkGray;
+            CompletedAppointmentsButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            CompletedAppointmentsButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            CompletedAppointmentsButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            CompletedAppointmentsButton.FillColor = SystemColors.ButtonFace;
+            CompletedAppointmentsButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            CompletedAppointmentsButton.ForeColor = Color.Black;
+            CompletedAppointmentsButton.ImageAlign = HorizontalAlignment.Left;
+            CompletedAppointmentsButton.ImageOffset = new Point(2, 0);
+            CompletedAppointmentsButton.ImageSize = new Size(40, 40);
+            CompletedAppointmentsButton.Location = new Point(12, 351);
+            CompletedAppointmentsButton.Margin = new Padding(3, 2, 3, 2);
+            CompletedAppointmentsButton.Name = "CompletedAppointmentsButton";
+            CompletedAppointmentsButton.ShadowDecoration.CustomizableEdges = customizableEdges27;
+            CompletedAppointmentsButton.Size = new Size(160, 53);
+            CompletedAppointmentsButton.TabIndex = 142;
+            CompletedAppointmentsButton.Text = "Completed Appointments";
+            CompletedAppointmentsButton.TextFormatNoPrefix = true;
+            CompletedAppointmentsButton.Click += CompletedAppointmentsButton_Click;
+            // 
+            // ad_guna2HtmlLabel4
+            // 
+            ad_guna2HtmlLabel4.BackColor = Color.Transparent;
+            ad_guna2HtmlLabel4.Font = new Font("Arial Black", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ad_guna2HtmlLabel4.ForeColor = Color.Black;
+            ad_guna2HtmlLabel4.Location = new Point(228, 50);
+            ad_guna2HtmlLabel4.Margin = new Padding(3, 2, 3, 2);
+            ad_guna2HtmlLabel4.Name = "ad_guna2HtmlLabel4";
+            ad_guna2HtmlLabel4.Size = new Size(161, 40);
+            ad_guna2HtmlLabel4.TabIndex = 146;
+            ad_guna2HtmlLabel4.Text = "Dashboard";
             // 
             // DoctorDashboard
             // 

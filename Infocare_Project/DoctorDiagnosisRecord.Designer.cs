@@ -29,46 +29,52 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorDiagnosisRecord));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorDiagnosisRecord));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel21 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            EnterButton = new Guna.UI2.WinForms.Guna2Button();
+            SaveButton = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2TextBox5 = new Guna.UI2.WinForms.Guna2TextBox();
+            DoctorOrderTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2TextBox4 = new Guna.UI2.WinForms.Guna2TextBox();
+            PrescriptionTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+            AdditionalNoteTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2TextBox3 = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            FirstNameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            FNLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DiagnosisTextBox = new Guna.UI2.WinForms.Guna2TextBox();
+            PatientNameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             BackButton = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             doctor_MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             doctor_ExitButton = new Guna.UI2.WinForms.Guna2Button();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
+            guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DoctorConsultationFeeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DoctorSpecializationLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DoctorLastNameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DoctorFirstNameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DoctorTimeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -88,38 +94,39 @@
             // 
             guna2CustomGradientPanel2.BackColor = Color.Transparent;
             guna2CustomGradientPanel2.BorderRadius = 15;
-            guna2CustomGradientPanel2.Controls.Add(EnterButton);
-            guna2CustomGradientPanel2.CustomizableEdges = customizableEdges3;
+            guna2CustomGradientPanel2.Controls.Add(SaveButton);
+            guna2CustomGradientPanel2.CustomizableEdges = customizableEdges19;
             guna2CustomGradientPanel2.FillColor = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor2 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor3 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor4 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.Location = new Point(372, 402);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges20;
             guna2CustomGradientPanel2.Size = new Size(118, 44);
             guna2CustomGradientPanel2.TabIndex = 187;
             // 
-            // EnterButton
+            // SaveButton
             // 
-            EnterButton.BackColor = Color.Transparent;
-            EnterButton.BorderRadius = 15;
-            EnterButton.Cursor = Cursors.Hand;
-            EnterButton.CustomizableEdges = customizableEdges1;
-            EnterButton.DisabledState.BorderColor = Color.DarkGray;
-            EnterButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            EnterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            EnterButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            EnterButton.FillColor = Color.FromArgb(13, 41, 80);
-            EnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
-            EnterButton.ForeColor = Color.White;
-            EnterButton.Location = new Point(-1, 0);
-            EnterButton.Margin = new Padding(3, 2, 3, 2);
-            EnterButton.Name = "EnterButton";
-            EnterButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            EnterButton.Size = new Size(115, 42);
-            EnterButton.TabIndex = 3;
-            EnterButton.Text = "Save";
+            SaveButton.BackColor = Color.Transparent;
+            SaveButton.BorderRadius = 15;
+            SaveButton.Cursor = Cursors.Hand;
+            SaveButton.CustomizableEdges = customizableEdges17;
+            SaveButton.DisabledState.BorderColor = Color.DarkGray;
+            SaveButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            SaveButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            SaveButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            SaveButton.FillColor = Color.FromArgb(13, 41, 80);
+            SaveButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
+            SaveButton.ForeColor = Color.White;
+            SaveButton.Location = new Point(-1, 0);
+            SaveButton.Margin = new Padding(3, 2, 3, 2);
+            SaveButton.Name = "SaveButton";
+            SaveButton.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            SaveButton.Size = new Size(115, 42);
+            SaveButton.TabIndex = 3;
+            SaveButton.Text = "Save";
+            SaveButton.Click += SaveButton_Click;
             // 
             // guna2HtmlLabel5
             // 
@@ -133,29 +140,30 @@
             guna2HtmlLabel5.TabIndex = 186;
             guna2HtmlLabel5.Text = "Doctor's Order";
             // 
-            // guna2TextBox5
+            // DoctorOrderTextBox
             // 
-            guna2TextBox5.BorderColor = Color.FromArgb(93, 202, 209);
-            guna2TextBox5.BorderRadius = 8;
-            guna2TextBox5.CustomizableEdges = customizableEdges5;
-            guna2TextBox5.DefaultText = "";
-            guna2TextBox5.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox5.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox5.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox5.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox5.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox5.ForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox5.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox5.Location = new Point(482, 149);
-            guna2TextBox5.Name = "guna2TextBox5";
-            guna2TextBox5.PasswordChar = '\0';
-            guna2TextBox5.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox5.PlaceholderText = "";
-            guna2TextBox5.SelectedText = "";
-            guna2TextBox5.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2TextBox5.Size = new Size(326, 80);
-            guna2TextBox5.TabIndex = 185;
+            DoctorOrderTextBox.BorderColor = Color.FromArgb(93, 202, 209);
+            DoctorOrderTextBox.BorderRadius = 8;
+            DoctorOrderTextBox.CustomizableEdges = customizableEdges21;
+            DoctorOrderTextBox.DefaultText = "";
+            DoctorOrderTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            DoctorOrderTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            DoctorOrderTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            DoctorOrderTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            DoctorOrderTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            DoctorOrderTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DoctorOrderTextBox.ForeColor = Color.FromArgb(47, 89, 114);
+            DoctorOrderTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            DoctorOrderTextBox.Location = new Point(482, 149);
+            DoctorOrderTextBox.Multiline = true;
+            DoctorOrderTextBox.Name = "DoctorOrderTextBox";
+            DoctorOrderTextBox.PasswordChar = '\0';
+            DoctorOrderTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
+            DoctorOrderTextBox.PlaceholderText = "";
+            DoctorOrderTextBox.SelectedText = "";
+            DoctorOrderTextBox.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            DoctorOrderTextBox.Size = new Size(326, 80);
+            DoctorOrderTextBox.TabIndex = 185;
             // 
             // guna2HtmlLabel4
             // 
@@ -169,161 +177,116 @@
             guna2HtmlLabel4.TabIndex = 184;
             guna2HtmlLabel4.Text = "Prescription";
             // 
-            // guna2TextBox4
+            // PrescriptionTextBox
             // 
-            guna2TextBox4.BorderColor = Color.FromArgb(93, 202, 209);
-            guna2TextBox4.BorderRadius = 8;
-            guna2TextBox4.CustomizableEdges = customizableEdges7;
-            guna2TextBox4.DefaultText = "";
-            guna2TextBox4.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox4.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox4.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox4.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox4.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox4.ForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox4.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox4.Location = new Point(482, 266);
-            guna2TextBox4.Name = "guna2TextBox4";
-            guna2TextBox4.PasswordChar = '\0';
-            guna2TextBox4.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox4.PlaceholderText = "";
-            guna2TextBox4.SelectedText = "";
-            guna2TextBox4.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2TextBox4.Size = new Size(326, 112);
-            guna2TextBox4.TabIndex = 183;
+            PrescriptionTextBox.BorderColor = Color.FromArgb(93, 202, 209);
+            PrescriptionTextBox.BorderRadius = 8;
+            PrescriptionTextBox.CustomizableEdges = customizableEdges23;
+            PrescriptionTextBox.DefaultText = "";
+            PrescriptionTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            PrescriptionTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            PrescriptionTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            PrescriptionTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            PrescriptionTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            PrescriptionTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PrescriptionTextBox.ForeColor = Color.FromArgb(47, 89, 114);
+            PrescriptionTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            PrescriptionTextBox.Location = new Point(482, 266);
+            PrescriptionTextBox.Multiline = true;
+            PrescriptionTextBox.Name = "PrescriptionTextBox";
+            PrescriptionTextBox.PasswordChar = '\0';
+            PrescriptionTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
+            PrescriptionTextBox.PlaceholderText = "";
+            PrescriptionTextBox.SelectedText = "";
+            PrescriptionTextBox.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            PrescriptionTextBox.Size = new Size(326, 112);
+            PrescriptionTextBox.TabIndex = 183;
             // 
             // guna2HtmlLabel2
             // 
             guna2HtmlLabel2.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel2.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel2.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel2.Location = new Point(42, 294);
+            guna2HtmlLabel2.Location = new Point(45, 272);
             guna2HtmlLabel2.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(90, 15);
             guna2HtmlLabel2.TabIndex = 182;
             guna2HtmlLabel2.Text = "Additional notes";
             // 
-            // guna2TextBox2
+            // AdditionalNoteTextBox
             // 
-            guna2TextBox2.BorderColor = Color.FromArgb(93, 202, 209);
-            guna2TextBox2.BorderRadius = 8;
-            guna2TextBox2.CustomizableEdges = customizableEdges9;
-            guna2TextBox2.DefaultText = "";
-            guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox2.ForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Location = new Point(42, 314);
-            guna2TextBox2.Name = "guna2TextBox2";
-            guna2TextBox2.PasswordChar = '\0';
-            guna2TextBox2.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox2.PlaceholderText = "";
-            guna2TextBox2.SelectedText = "";
-            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2TextBox2.Size = new Size(418, 64);
-            guna2TextBox2.TabIndex = 181;
+            AdditionalNoteTextBox.BorderColor = Color.FromArgb(93, 202, 209);
+            AdditionalNoteTextBox.BorderRadius = 8;
+            AdditionalNoteTextBox.CustomizableEdges = customizableEdges25;
+            AdditionalNoteTextBox.DefaultText = "";
+            AdditionalNoteTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            AdditionalNoteTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            AdditionalNoteTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            AdditionalNoteTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            AdditionalNoteTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            AdditionalNoteTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            AdditionalNoteTextBox.ForeColor = Color.FromArgb(47, 89, 114);
+            AdditionalNoteTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            AdditionalNoteTextBox.Location = new Point(45, 292);
+            AdditionalNoteTextBox.Multiline = true;
+            AdditionalNoteTextBox.Name = "AdditionalNoteTextBox";
+            AdditionalNoteTextBox.PasswordChar = '\0';
+            AdditionalNoteTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
+            AdditionalNoteTextBox.PlaceholderText = "";
+            AdditionalNoteTextBox.SelectedText = "";
+            AdditionalNoteTextBox.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            AdditionalNoteTextBox.Size = new Size(418, 64);
+            AdditionalNoteTextBox.TabIndex = 181;
             // 
             // guna2HtmlLabel3
             // 
             guna2HtmlLabel3.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel3.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel3.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel3.Location = new Point(42, 182);
+            guna2HtmlLabel3.Location = new Point(45, 160);
             guna2HtmlLabel3.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             guna2HtmlLabel3.Size = new Size(54, 15);
             guna2HtmlLabel3.TabIndex = 176;
             guna2HtmlLabel3.Text = "Diagnosis";
             // 
-            // guna2TextBox3
+            // DiagnosisTextBox
             // 
-            guna2TextBox3.BorderColor = Color.FromArgb(93, 202, 209);
-            guna2TextBox3.BorderRadius = 8;
-            guna2TextBox3.CustomizableEdges = customizableEdges11;
-            guna2TextBox3.DefaultText = "";
-            guna2TextBox3.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox3.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox3.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox3.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox3.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox3.ForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox3.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox3.Location = new Point(42, 202);
-            guna2TextBox3.Name = "guna2TextBox3";
-            guna2TextBox3.PasswordChar = '\0';
-            guna2TextBox3.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox3.PlaceholderText = "";
-            guna2TextBox3.SelectedText = "";
-            guna2TextBox3.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2TextBox3.Size = new Size(418, 74);
-            guna2TextBox3.TabIndex = 175;
+            DiagnosisTextBox.BorderColor = Color.FromArgb(93, 202, 209);
+            DiagnosisTextBox.BorderRadius = 8;
+            DiagnosisTextBox.CustomizableEdges = customizableEdges27;
+            DiagnosisTextBox.DefaultText = "";
+            DiagnosisTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            DiagnosisTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            DiagnosisTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            DiagnosisTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            DiagnosisTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            DiagnosisTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DiagnosisTextBox.ForeColor = Color.FromArgb(47, 89, 114);
+            DiagnosisTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            DiagnosisTextBox.Location = new Point(45, 180);
+            DiagnosisTextBox.Multiline = true;
+            DiagnosisTextBox.Name = "DiagnosisTextBox";
+            DiagnosisTextBox.PasswordChar = '\0';
+            DiagnosisTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
+            DiagnosisTextBox.PlaceholderText = "";
+            DiagnosisTextBox.SelectedText = "";
+            DiagnosisTextBox.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            DiagnosisTextBox.Size = new Size(418, 74);
+            DiagnosisTextBox.TabIndex = 175;
             // 
-            // guna2TextBox1
+            // PatientNameLabel
             // 
-            guna2TextBox1.BorderColor = Color.FromArgb(93, 202, 209);
-            guna2TextBox1.BorderRadius = 8;
-            guna2TextBox1.CustomizableEdges = customizableEdges13;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2TextBox1.ForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(267, 132);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PasswordChar = '\0';
-            guna2TextBox1.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            guna2TextBox1.PlaceholderText = "Last";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2TextBox1.Size = new Size(193, 36);
-            guna2TextBox1.TabIndex = 174;
-            // 
-            // FirstNameTextBox
-            // 
-            FirstNameTextBox.BorderColor = Color.FromArgb(93, 202, 209);
-            FirstNameTextBox.BorderRadius = 8;
-            FirstNameTextBox.CustomizableEdges = customizableEdges15;
-            FirstNameTextBox.DefaultText = "";
-            FirstNameTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            FirstNameTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            FirstNameTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            FirstNameTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            FirstNameTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            FirstNameTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            FirstNameTextBox.ForeColor = Color.FromArgb(47, 89, 114);
-            FirstNameTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            FirstNameTextBox.Location = new Point(42, 132);
-            FirstNameTextBox.Name = "FirstNameTextBox";
-            FirstNameTextBox.PasswordChar = '\0';
-            FirstNameTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            FirstNameTextBox.PlaceholderText = "First";
-            FirstNameTextBox.SelectedText = "";
-            FirstNameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            FirstNameTextBox.Size = new Size(194, 36);
-            FirstNameTextBox.TabIndex = 172;
-            // 
-            // FNLabel
-            // 
-            FNLabel.BackColor = Color.FromArgb(110, 177, 247);
-            FNLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            FNLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            FNLabel.Location = new Point(42, 102);
-            FNLabel.Margin = new Padding(3, 2, 3, 2);
-            FNLabel.Name = "FNLabel";
-            FNLabel.Size = new Size(80, 15);
-            FNLabel.TabIndex = 173;
-            FNLabel.Text = "Patient's name";
+            PatientNameLabel.BackColor = Color.FromArgb(110, 177, 247);
+            PatientNameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            PatientNameLabel.ForeColor = Color.FromArgb(13, 41, 80);
+            PatientNameLabel.Location = new Point(45, 116);
+            PatientNameLabel.Margin = new Padding(3, 2, 3, 2);
+            PatientNameLabel.Name = "PatientNameLabel";
+            PatientNameLabel.Size = new Size(80, 15);
+            PatientNameLabel.TabIndex = 173;
+            PatientNameLabel.Text = "Patient's name";
             // 
             // BackButton
             // 
@@ -337,7 +300,7 @@
             BackButton.Location = new Point(3, 2);
             BackButton.Name = "BackButton";
             BackButton.PressedState.ImageSize = new Size(64, 64);
-            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges17;
+            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges29;
             BackButton.Size = new Size(66, 45);
             BackButton.TabIndex = 190;
             BackButton.Click += BackButton_Click;
@@ -368,7 +331,7 @@
             doctor_MinimizeButton.Margin = new Padding(3, 2, 3, 2);
             doctor_MinimizeButton.Name = "doctor_MinimizeButton";
             doctor_MinimizeButton.PressedState.ImageSize = new Size(20, 30);
-            doctor_MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            doctor_MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges30;
             doctor_MinimizeButton.Size = new Size(43, 26);
             doctor_MinimizeButton.TabIndex = 210;
             doctor_MinimizeButton.Click += doctor_MinimizeButton_Click;
@@ -377,7 +340,7 @@
             // 
             doctor_ExitButton.BackColor = Color.FromArgb(110, 177, 247);
             doctor_ExitButton.Cursor = Cursors.Hand;
-            doctor_ExitButton.CustomizableEdges = customizableEdges19;
+            doctor_ExitButton.CustomizableEdges = customizableEdges31;
             doctor_ExitButton.DisabledState.BorderColor = Color.DarkGray;
             doctor_ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
             doctor_ExitButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -388,7 +351,7 @@
             doctor_ExitButton.Location = new Point(802, 0);
             doctor_ExitButton.Margin = new Padding(3, 2, 3, 2);
             doctor_ExitButton.Name = "doctor_ExitButton";
-            doctor_ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            doctor_ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges32;
             doctor_ExitButton.Size = new Size(43, 26);
             doctor_ExitButton.TabIndex = 209;
             doctor_ExitButton.Text = "X";
@@ -402,12 +365,168 @@
             guna2BorderlessForm1.DragStartTransparencyValue = 1D;
             guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
+            // guna2HtmlLabel13
+            // 
+            guna2HtmlLabel13.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel13.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel13.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel13.Location = new Point(45, 438);
+            guna2HtmlLabel13.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel13.Name = "guna2HtmlLabel13";
+            guna2HtmlLabel13.Size = new Size(255, 15);
+            guna2HtmlLabel13.TabIndex = 224;
+            guna2HtmlLabel13.Text = "DAPAT TO PATI INFO NUNG DOCTOR MA FETCH";
+            // 
+            // DoctorConsultationFeeLabel
+            // 
+            DoctorConsultationFeeLabel.BackColor = Color.FromArgb(110, 177, 247);
+            DoctorConsultationFeeLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DoctorConsultationFeeLabel.ForeColor = Color.FromArgb(13, 41, 80);
+            DoctorConsultationFeeLabel.Location = new Point(150, 421);
+            DoctorConsultationFeeLabel.Margin = new Padding(3, 2, 3, 2);
+            DoctorConsultationFeeLabel.Name = "DoctorConsultationFeeLabel";
+            DoctorConsultationFeeLabel.Size = new Size(101, 15);
+            DoctorConsultationFeeLabel.TabIndex = 223;
+            DoctorConsultationFeeLabel.Text = "D_ConsultationFee";
+            // 
+            // DoctorSpecializationLabel
+            // 
+            DoctorSpecializationLabel.BackColor = Color.FromArgb(110, 177, 247);
+            DoctorSpecializationLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DoctorSpecializationLabel.ForeColor = Color.FromArgb(13, 41, 80);
+            DoctorSpecializationLabel.Location = new Point(46, 421);
+            DoctorSpecializationLabel.Margin = new Padding(3, 2, 3, 2);
+            DoctorSpecializationLabel.Name = "DoctorSpecializationLabel";
+            DoctorSpecializationLabel.Size = new Size(87, 15);
+            DoctorSpecializationLabel.TabIndex = 222;
+            DoctorSpecializationLabel.Text = "D_Specialization";
+            // 
+            // DoctorLastNameLabel
+            // 
+            DoctorLastNameLabel.BackColor = Color.FromArgb(110, 177, 247);
+            DoctorLastNameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DoctorLastNameLabel.ForeColor = Color.FromArgb(13, 41, 80);
+            DoctorLastNameLabel.Location = new Point(150, 402);
+            DoctorLastNameLabel.Margin = new Padding(3, 2, 3, 2);
+            DoctorLastNameLabel.Name = "DoctorLastNameLabel";
+            DoctorLastNameLabel.Size = new Size(66, 15);
+            DoctorLastNameLabel.TabIndex = 221;
+            DoctorLastNameLabel.Text = "D_Lastname";
+            // 
+            // DoctorFirstNameLabel
+            // 
+            DoctorFirstNameLabel.BackColor = Color.FromArgb(110, 177, 247);
+            DoctorFirstNameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DoctorFirstNameLabel.ForeColor = Color.FromArgb(13, 41, 80);
+            DoctorFirstNameLabel.Location = new Point(46, 402);
+            DoctorFirstNameLabel.Margin = new Padding(3, 2, 3, 2);
+            DoctorFirstNameLabel.Name = "DoctorFirstNameLabel";
+            DoctorFirstNameLabel.Size = new Size(67, 15);
+            DoctorFirstNameLabel.TabIndex = 220;
+            DoctorFirstNameLabel.Text = "D_Firstname";
+            // 
+            // guna2HtmlLabel6
+            // 
+            guna2HtmlLabel6.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel6.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel6.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel6.Location = new Point(47, 383);
+            guna2HtmlLabel6.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            guna2HtmlLabel6.Size = new Size(78, 15);
+            guna2HtmlLabel6.TabIndex = 219;
+            guna2HtmlLabel6.Text = "Doctor's name";
+            // 
+            // guna2HtmlLabel15
+            // 
+            guna2HtmlLabel15.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel15.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel15.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel15.Location = new Point(676, 68);
+            guna2HtmlLabel15.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel15.Name = "guna2HtmlLabel15";
+            guna2HtmlLabel15.Size = new Size(52, 15);
+            guna2HtmlLabel15.TabIndex = 227;
+            guna2HtmlLabel15.Text = "AH_DATE";
+            // 
+            // guna2HtmlLabel14
+            // 
+            guna2HtmlLabel14.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel14.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel14.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel14.Location = new Point(600, 99);
+            guna2HtmlLabel14.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel14.Name = "guna2HtmlLabel14";
+            guna2HtmlLabel14.Size = new Size(245, 15);
+            guna2HtmlLabel14.TabIndex = 226;
+            guna2HtmlLabel14.Text = "DITO DAPAT KUNG KELAN NA APPOINTMENT";
+            // 
+            // DoctorTimeLabel
+            // 
+            DoctorTimeLabel.BackColor = Color.FromArgb(110, 177, 247);
+            DoctorTimeLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DoctorTimeLabel.ForeColor = Color.FromArgb(13, 41, 80);
+            DoctorTimeLabel.Location = new Point(678, 49);
+            DoctorTimeLabel.Margin = new Padding(3, 2, 3, 2);
+            DoctorTimeLabel.Name = "DoctorTimeLabel";
+            DoctorTimeLabel.Size = new Size(50, 15);
+            DoctorTimeLabel.TabIndex = 225;
+            DoctorTimeLabel.Text = "AH_TIME";
+            // 
+            // guna2HtmlLabel7
+            // 
+            guna2HtmlLabel7.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel7.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel7.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel7.Location = new Point(765, 49);
+            guna2HtmlLabel7.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            guna2HtmlLabel7.Size = new Size(60, 15);
+            guna2HtmlLabel7.TabIndex = 228;
+            guna2HtmlLabel7.Text = "TIME NOW";
+            // 
+            // guna2HtmlLabel8
+            // 
+            guna2HtmlLabel8.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel8.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel8.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel8.Location = new Point(765, 68);
+            guna2HtmlLabel8.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            guna2HtmlLabel8.Size = new Size(62, 15);
+            guna2HtmlLabel8.TabIndex = 229;
+            guna2HtmlLabel8.Text = "DATE NOW";
+            // 
+            // guna2HtmlLabel9
+            // 
+            guna2HtmlLabel9.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel9.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel9.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel9.Location = new Point(742, 60);
+            guna2HtmlLabel9.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel9.Name = "guna2HtmlLabel9";
+            guna2HtmlLabel9.Size = new Size(8, 15);
+            guna2HtmlLabel9.TabIndex = 230;
+            guna2HtmlLabel9.Text = "/";
+            // 
             // DoctorDiagnosisRecord
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(845, 464);
             ControlBox = false;
+            Controls.Add(guna2HtmlLabel9);
+            Controls.Add(guna2HtmlLabel8);
+            Controls.Add(guna2HtmlLabel7);
+            Controls.Add(guna2HtmlLabel15);
+            Controls.Add(guna2HtmlLabel14);
+            Controls.Add(DoctorTimeLabel);
+            Controls.Add(guna2HtmlLabel13);
+            Controls.Add(DoctorConsultationFeeLabel);
+            Controls.Add(DoctorSpecializationLabel);
+            Controls.Add(DoctorLastNameLabel);
+            Controls.Add(DoctorFirstNameLabel);
+            Controls.Add(guna2HtmlLabel6);
             Controls.Add(doctor_MinimizeButton);
             Controls.Add(doctor_ExitButton);
             Controls.Add(BackButton);
@@ -415,16 +534,14 @@
             Controls.Add(guna2HtmlLabel21);
             Controls.Add(guna2CustomGradientPanel2);
             Controls.Add(guna2HtmlLabel5);
-            Controls.Add(guna2TextBox5);
+            Controls.Add(DoctorOrderTextBox);
             Controls.Add(guna2HtmlLabel4);
-            Controls.Add(guna2TextBox4);
+            Controls.Add(PrescriptionTextBox);
             Controls.Add(guna2HtmlLabel2);
-            Controls.Add(guna2TextBox2);
+            Controls.Add(AdditionalNoteTextBox);
             Controls.Add(guna2HtmlLabel3);
-            Controls.Add(guna2TextBox3);
-            Controls.Add(guna2TextBox1);
-            Controls.Add(FirstNameTextBox);
-            Controls.Add(FNLabel);
+            Controls.Add(DiagnosisTextBox);
+            Controls.Add(PatientNameLabel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DoctorDiagnosisRecord";
             StartPosition = FormStartPosition.CenterScreen;
@@ -437,22 +554,34 @@
 
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel21;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
-        private Guna.UI2.WinForms.Guna2Button EnterButton;
+        private Guna.UI2.WinForms.Guna2Button SaveButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox5;
+        private Guna.UI2.WinForms.Guna2TextBox DoctorOrderTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox4;
+        private Guna.UI2.WinForms.Guna2TextBox PrescriptionTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
+        private Guna.UI2.WinForms.Guna2TextBox AdditionalNoteTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox3;
+        private Guna.UI2.WinForms.Guna2TextBox DiagnosisTextBox;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private Guna.UI2.WinForms.Guna2TextBox FirstNameTextBox;
-        private Guna.UI2.WinForms.Guna2HtmlLabel FNLabel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel PatientNameLabel;
         private Guna.UI2.WinForms.Guna2ImageButton BackButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2ImageButton doctor_MinimizeButton;
         private Guna.UI2.WinForms.Guna2Button doctor_ExitButton;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
+        private Guna.UI2.WinForms.Guna2HtmlLabel DoctorConsultationFeeLabel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel DoctorSpecializationLabel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel DoctorLastNameLabel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel DoctorFirstNameLabel;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel15;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
+        private Guna.UI2.WinForms.Guna2HtmlLabel DoctorTimeLabel;
     }
 }
