@@ -13,6 +13,7 @@ using Infocare_Project.NewFolder;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Collections;
 using Infocare_Project_1;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Infocare_Project
 {
@@ -357,17 +358,21 @@ namespace Infocare_Project
 
         }
 
-        public void AddDoctor(Doctor doctor)
+        public int AddDoctor(Doctor doctor)
         {
             using (var connection = GetConnection())
             {
+                MySqlTransaction transaction = null;
+
                 try
                 {
-                    string query = @"INSERT INTO tb_doctorinfo 
-                             (firstname, middlename, lastname, username, password, consultationfee, specialization, start_time, end_time, day_availability) 
-                             VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @Specialization, @StartTime, @EndTime, @DayAvailability)";
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
 
-                    MySqlCommand command = new MySqlCommand(query, connection);
+                    string query = @"INSERT INTO tb_doctorinfo 
+                     (firstname, middlename, lastname, username, password, consultationfee, start_time, end_time, day_availability) 
+                     VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @StartTime, @EndTime, @DayAvailability)";
+                    MySqlCommand command = new MySqlCommand(query, connection, transaction);
 
                     command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
                     command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
@@ -375,16 +380,53 @@ namespace Infocare_Project
                     command.Parameters.AddWithValue("@Username", doctor.Username);
                     command.Parameters.AddWithValue("@Password", doctor.Password);
                     command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
-                    command.Parameters.AddWithValue("@Specialization", doctor.Specialty);
                     command.Parameters.AddWithValue("@StartTime", doctor.StartTime);
                     command.Parameters.AddWithValue("@EndTime", doctor.EndTime);
                     command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
 
-                    connection.Open();
                     command.ExecuteNonQuery();
+                    int doctorId = (int)command.LastInsertedId;
+
+                    List<string> specializationsList = new List<string>();
+
+                    Console.WriteLine("Number of specializations to insert: " + doctor.Specialty.Count);
+
+                    foreach (var specialization in doctor.Specialty)
+                    {
+                        Console.WriteLine("Inserting specialization: " + specialization);
+
+                        string specializationQuery = @"INSERT INTO tb_doctor_specializations (doctor_id, specialization) 
+                                       VALUES (@DoctorId, @Specialization)";
+                        MySqlCommand specializationCommand = new MySqlCommand(specializationQuery, connection, transaction);
+
+                        specializationCommand.Parameters.AddWithValue("@DoctorId", doctorId);
+                        specializationCommand.Parameters.AddWithValue("@Specialization", specialization);
+
+                        specializationCommand.ExecuteNonQuery();
+
+                        specializationsList.Add(specialization);
+                    }
+
+                    Console.WriteLine("Specializations inserted: " + string.Join(", ", specializationsList));
+
+                    string joinedSpecializations = string.Join(", ", specializationsList);
+                    string updateQuery = @"UPDATE tb_doctorinfo 
+                                   SET specialization = @Specialization 
+                                   WHERE id = @DoctorId";
+                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, connection, transaction);
+                    updateCommand.Parameters.AddWithValue("@Specialization", joinedSpecializations);
+                    updateCommand.Parameters.AddWithValue("@DoctorId", doctorId);
+                    updateCommand.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    return doctorId;
                 }
                 catch (Exception ex)
                 {
+                    if (transaction != null)
+                    {
+                        transaction.Rollback();
+                    }
                     throw new Exception("Error inserting doctor data: " + ex.Message);
                 }
             }
@@ -392,6 +434,174 @@ namespace Infocare_Project
 
 
 
+        public void AddSpecialization(int doctorId, string specialization)
+        {
+            string query = "INSERT INTO tb_doctor_specializations (doctor_id, specialization) VALUES (@DoctorId, @Specialization)";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@DoctorId", doctorId);
+                cmd.Parameters.AddWithValue("@Specialization", specialization);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public List<string> GetDoctorNames(string specialization)
+        {
+            List<string> doctorNames = new List<string>();
+
+            string query = @"
+                    SELECT DISTINCT CONCAT('Dr. ', Lastname, ', ', Firstname) AS doctor_name
+                    FROM tb_doctor_specializations ds
+                    JOIN tb_doctorinfo di ON ds.doctor_id = di.id
+                    WHERE ds.specialization = @Specialization;
+                    ";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Specialization", specialization);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctorNames.Add(reader["doctor_name"].ToString());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error getting doctor names: " + ex.Message);
+                }
+            }
+
+            return doctorNames;
+        }
+
+        public List<string> GetDoctorAvailableTimes(string doctorName, string specialization)
+        {
+            List<string> availableTimes = new List<string>();
+
+            string query = @"
+                SELECT DISTINCT di.start_time, di.end_time, di.day_availability 
+                FROM tb_doctorinfo di
+                JOIN tb_doctor_specializations ds ON di.id = ds.doctor_id
+                WHERE CONCAT('Dr. ', di.lastname, ', ', di.firstname) = @DoctorName
+                  AND ds.specialization = @Specialization;
+            ";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@DoctorName", doctorName);
+                cmd.Parameters.AddWithValue("@Specialization", specialization);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            TimeSpan startTime = (TimeSpan)reader["start_time"];
+                            TimeSpan endTime = (TimeSpan)reader["end_time"];
+
+                            // Calculate total duration and divide into 4 slots
+                            TimeSpan totalDuration = endTime - startTime;
+                            TimeSpan slotDuration = TimeSpan.FromTicks(totalDuration.Ticks / 4);
+
+                            TimeSpan currentTime = startTime;
+
+                            // Generate 4 time slots
+                            for (int i = 0; i < 4; i++)
+                            {
+                                availableTimes.Add($"{currentTime:hh\\:mm}");
+                                currentTime = currentTime.Add(slotDuration);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error fetching available times: {ex.Message}");
+                }
+            }
+
+            return availableTimes;
+        }
+
+        public string GetDoctorAvailability(string doctorName)
+        {
+            string query = @"
+SELECT day_availability 
+FROM tb_doctorinfo 
+WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@DoctorName", doctorName);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        string dayAvailability = result.ToString().Replace("-", ",");
+                        return dayAvailability; 
+                    }
+                    return string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error fetching doctor availability: " + ex.Message);
+                }
+            }
+        }
+
+        public List<string> GetSpecialization()
+        {
+            HashSet<string> specializationSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            string query = @"SELECT Specialization FROM tb_doctorinfo";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string specializations = reader["Specialization"]?.ToString();
+                            if (!string.IsNullOrEmpty(specializations))
+                            {
+                                // Split and trim each specialization
+                                foreach (string spec in specializations.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                                {
+                                    specializationSet.Add(spec.Trim());
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error getting specializations: " + ex.Message);
+                }
+            }
+            return specializationSet.ToList();
+        }
         public void NullPatientReg2Data(string username)
         {
             string query = @"
@@ -559,101 +769,7 @@ namespace Infocare_Project
         }
 
 
-        public List<string> GetDoctorNames(string specialization)
-        {
-            List<string> doctorNames = new List<string>();
-
-            string query = @"SELECT CONCAT('Dr. ', Lastname, ', ', Firstname) AS doctor_name
-                     FROM tb_doctorinfo
-                    WHERE specialization = @Specialization";
-
-            using (var connection = GetConnection())
-            {
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Specialization", specialization);
-
-                try
-                {
-                    connection.Open();
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            doctorNames.Add(reader["doctor_name"].ToString());
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error getting doctor data: " + ex.Message);
-                }
-            }
-            return doctorNames;
-        }
-
-        public List<string> GetDoctorAvailableTimes(string doctorName)
-        {
-            List<string> timeSlots = new List<string>();
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = @"SELECT Start_Time, End_Time FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @doctorName";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@doctorName", doctorName);
-
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            string startTime = reader["Start_Time"].ToString();
-                            string endTime = reader["End_Time"].ToString();
-
-                            if (!string.IsNullOrEmpty(startTime) && !string.IsNullOrEmpty(endTime))
-                            {
-                                TimeSpan start = TimeSpan.Parse(startTime);
-                                TimeSpan end = TimeSpan.Parse(endTime);
-
-                                for (TimeSpan currentTime = start; currentTime < end; currentTime = currentTime.Add(TimeSpan.FromHours(1)))
-                                {
-                                    timeSlots.Add(currentTime.ToString(@"hh\:mm"));
-                                }
-
-                            }
-                        }
-                    }
-                }
-            }
-
-            return timeSlots;
-        }
-
-        public string GetDoctorAvailability(string doctorName)
-        {
-            string query = @"SELECT day_availability 
-                     FROM tb_doctorinfo 
-                     WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
-
-            using (var connection = GetConnection())
-            {
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@DoctorName", doctorName);
-
-                try
-                {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-                    return result != null ? result.ToString() : string.Empty;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error fetching doctor availability: " + ex.Message);
-                }
-            }
-        }
-
+        
         public DataTable StaffList()
         {
             string query = @"SELECT s_Firstname AS 'First Name', s_middleName AS 'Middle Name', s_lastname AS 'Last Name', s_suffix AS 'Suffix', s_contactnumber AS 'Contact Number', s_email AS 'Email' FROM tb_staffinfo";
@@ -739,38 +855,8 @@ namespace Infocare_Project
         }
 
 
-        public List<string> GetSpecialization()
-        {
-            List<string> specialization = new List<string>();
+        
 
-            string query = @"select Specialization from tb_doctorinfo group by Specialization";
-
-            using (var connection = GetConnection())
-            {
-                MySqlCommand command = new MySqlCommand(query, connection);
-
-                try
-                {
-                    connection.Open();
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            string spec = reader["Specialization"].ToString();
-                            if (!string.IsNullOrEmpty(spec))
-                            {
-                                specialization.Add(spec);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error getting specialization: " + ex.Message);
-                }
-            }
-            return specialization;
-        }
 
         public decimal? GetConsultationFee(string specialization)
         {

@@ -124,9 +124,12 @@ namespace Infocare_Project_1
             }
 
             string selectedDoctor = pd_DocBox.SelectedItem.ToString();
+            string selectedSpecialization = pd_SpecBox.SelectedItem.ToString();
+
             Database db = new Database();
 
-            var timeSlots = db.GetDoctorAvailableTimes(selectedDoctor);
+            // Fetch the available time slots
+            List<string> timeSlots = db.GetDoctorAvailableTimes(selectedDoctor, selectedSpecialization);
 
             SelectPatientPanel.Visible = false;
             SpecPanel.Visible = false;
@@ -136,6 +139,7 @@ namespace Infocare_Project_1
 
             if (timeSlots.Count > 0)
             {
+                // Populate the TimeCombobox
                 TimeCombobox.Items.Clear();
                 TimeCombobox.Items.Add("Select a Time Slot");
 
@@ -148,11 +152,11 @@ namespace Infocare_Project_1
             }
             else
             {
-                MessageBox.Show("No time slots found for this doctor.");
+                // Show error if no time slots are found
+                MessageBox.Show("No time slots found for this doctor and specialization.", "No Availability", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
         }
+
 
 
         private void pd_DocBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -197,20 +201,29 @@ namespace Infocare_Project_1
         private void ConfigureMonthCalendar(MonthCalendar calendar, List<DayOfWeek> availableDays)
         {
             DateTime today = DateTime.Today;
-            DateTime minDate = today.AddDays(4); // Allow selection starting 4 days from today
+            DateTime minDate = today.AddDays(4);
 
             calendar.MinDate = minDate;
             calendar.MaxSelectionCount = 1;
 
             calendar.DateChanged += (s, e) =>
             {
-                if (e.Start < minDate || !availableDays.Contains(e.Start.DayOfWeek))
+                if (e.Start < minDate)
                 {
-                    MessageBox.Show("The selected date is unavailable. Please select a valid day.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("The selected date is in the past. Please select a valid date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    calendar.SetDate(minDate);
+                    return;
+                }
+
+                if (!availableDays.Contains(e.Start.DayOfWeek))
+                {
+                    MessageBox.Show("The selected date is unavailable. Please select a valid day from the available days.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     calendar.SetDate(minDate);
                 }
             };
         }
+
+
         private void EnterPatientButton_Click(object sender, EventArgs e)
         {
             string selectedpatient = PatientComboBox.SelectedItem.ToString();
@@ -245,21 +258,22 @@ namespace Infocare_Project_1
             {
                 Database db = new Database();
 
-                var Specialties = db.GetSpecialization();
+                var specializations = db.GetSpecialization();
 
                 pd_SpecBox.Items.Clear();
-
                 pd_SpecBox.Items.Add("Select");
 
-                // Add doctor names to the ComboBox
-                pd_SpecBox.Items.AddRange(Specialties.ToArray());
+                // Add all specializations to the ComboBox
+                pd_SpecBox.Items.AddRange(specializations.ToArray());
+
                 pd_SpecBox.SelectedIndex = 0; // Set default selection
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while loading specializations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void LoadConsFee()
         {
@@ -283,7 +297,7 @@ namespace Infocare_Project_1
                 }
                 else
                 {
-                    ConsFeeLbl.Text = "Consultation Fee: Not Available";
+                    ConsFeeLbl.Text = "Not Available";
                 }
             }
             catch (Exception ex)

@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Reflection.Emit;
 using System.Security.Policy;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
 using Infocare_Project.NewFolder;
 using static Infocare_Project.NewFolder.PlaceHolderHandler;
 using static Infocare_Project.NewFolder.Specialization;
@@ -36,14 +37,13 @@ namespace Infocare_Project
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
+            // Validate required fields
             if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(LastNameTextbox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(UserNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(PasswordTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(ConfirmPasswordTextBox.Text.Trim()) ||
-                string.IsNullOrWhiteSpace(SpecializationTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(ConsultationFeeTextBox.Text.Trim()) ||
-
                 TimeComboBox.SelectedIndex == 0 ||
                 DayAvailabilityCombobox.SelectedIndex == 0)
             {
@@ -51,6 +51,26 @@ namespace Infocare_Project
                 return;
             }
 
+            List<string> specializations = new List<string>();
+            foreach (var control in flowLayoutPanel1.Controls)
+            {
+                if (control is Guna.UI2.WinForms.Guna2TextBox specializationTextBox)
+                {
+                    if (!string.IsNullOrWhiteSpace(specializationTextBox.Text.Trim()))
+                    {
+                        specializations.Add(specializationTextBox.Text.Trim());
+                    }
+                }
+            }
+
+            if (specializations.Count == 0)
+            {
+                MessageBox.Show("Please enter at least one specialization.");
+                return;
+            }
+
+
+            // Create a new Doctor object
             Doctor newDoctor = new Doctor
             {
                 FirstName = FirstNameTextBox.Text.Trim(),
@@ -60,9 +80,10 @@ namespace Infocare_Project
                 Password = PasswordTextBox.Text.Trim(),
                 ConfirmPassword = ConfirmPasswordTextBox.Text.Trim(),
                 ConsultationFee = int.TryParse(ConsultationFeeTextBox.Text, out int consultationFee) ? consultationFee : 0,
-                Specialty = SpecializationTextBox.Text.Trim(),
+                Specialty = specializations, // Store the list of specializations
             };
 
+            // Validate time slot
             string selectedTimeSlot = TimeComboBox.SelectedItem.ToString();
             if (!string.IsNullOrEmpty(selectedTimeSlot) && selectedTimeSlot != "Select a time slot")
             {
@@ -102,7 +123,13 @@ namespace Infocare_Project
             try
             {
                 Database db = new Database();
-                db.AddDoctor(newDoctor);
+                int doctorId = db.AddDoctor(newDoctor);
+
+                foreach (string specialization in specializations)
+                {
+                    db.AddSpecialization(doctorId, specialization);
+                }
+
                 MessageBox.Show("Doctor added successfully!");
             }
             catch (Exception ex)
@@ -110,8 +137,6 @@ namespace Infocare_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-
 
 
 
@@ -205,6 +230,33 @@ namespace Infocare_Project
             {
                 this.Close();
             }
+        }
+
+        private void AddSpecialization_Click(object sender, EventArgs e)
+        {
+            Guna2TextBox newSpecializationTextBox = new Guna2TextBox
+            {
+                Width = 194,
+                Height = 38,
+                Margin = new Padding(3, 3, 3, 3),
+                PlaceholderText = "Specialization",
+                PlaceholderForeColor = Color.FromArgb(47, 89, 114),
+                Font = new Font("Segoe UI", 9),
+                ForeColor = Color.FromArgb(47, 89, 114),
+                BorderColor = Color.FromArgb(93, 202, 209),
+                BorderThickness = 1,
+                BorderRadius = 8,
+                BackColor = Color.FromArgb(110, 177, 247),
+                Cursor = Cursors.Default,
+                Padding = new Padding(0),
+                IconLeftSize = new Size(20, 20),
+                IconRightSize = new Size(20, 20),
+                WordWrap = true,
+                Multiline = false,
+                TextAlign = HorizontalAlignment.Left,
+            }; 
+
+            flowLayoutPanel1.Controls.Add(newSpecializationTextBox);
         }
     }
 }
