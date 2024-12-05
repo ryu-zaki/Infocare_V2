@@ -252,11 +252,22 @@ namespace Infocare_Project_1
 
         private void LogOutButton_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void AddDoctor_Click_1(object sender, EventArgs e)
+        {
+            AdminAddDoctor adminAddDoctor = new AdminAddDoctor();
+            adminAddDoctor.Show();
+        }
+
+        private void pd_HomeButton_Click(object sender, EventArgs e)
+        {
             DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
-                AdminLogin AdminLoginForm = new AdminLogin();
-                AdminLoginForm.Show();
+                StaffLogin patientLoginForm = new StaffLogin();
+                patientLoginForm.Show();
                 this.Hide();
             }
         }

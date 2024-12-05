@@ -804,6 +804,60 @@ namespace Infocare_Project
             }
         }
 
+        public bool IsAppointmentBooked(string doctorName, DateTime appointmentDate)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(*) FROM tb_appointmenthistory WHERE ah_Doctor_Name = @DoctorName AND ah_date = @AppointmentDate";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@DoctorName", doctorName);
+                        command.Parameters.AddWithValue("@AppointmentDate", appointmentDate.Date);
+
+                        int count = Convert.ToInt32(command.ExecuteScalar());
+                        return count > 0; // Return true if an appointment already exists
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool IsPatientAppointmentPendingOrAccepted(string patientName)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = @"
+                SELECT COUNT(*) 
+                FROM tb_appointmenthistory 
+                WHERE ah_Patient_Name = @PatientName 
+                  AND ah_status IN ('Pending', 'Accepted')";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PatientName", patientName);
+
+                        int count = Convert.ToInt32(command.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking appointment status: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
         public bool SaveAppointment(string patientName, string specialization, string doctorName, string timeSlot, DateTime appointmentDate, decimal consFee)
         {
 
@@ -843,7 +897,7 @@ namespace Infocare_Project
 
         public DataTable AppointmentList()
         {
-            string query = @"select ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee' From tb_appointmenthistory";
+            string query = @"select ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee', ah_status AS 'Appointment Status' From tb_appointmenthistory";
 
             DataTable AppointmentTable = new DataTable();
 

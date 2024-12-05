@@ -58,9 +58,10 @@ namespace Infocare_Project_1
         private void pd_ViewAppointment_Click(object sender, EventArgs e)
         {
             ViewAppointmentPanel.Visible = true;
+            AppointmentDataGridViewList.Visible = true;
 
             SelectPatientPanel.Visible = false;
-            BookAppPanel.Visible = true;
+            BookAppPanel.Visible = false;
             SpecPanel.Visible = false;
             pd_DoctorPanel.Visible = false;
             BookingPanel.Visible = false;
@@ -195,20 +196,21 @@ namespace Infocare_Project_1
 
         private void ConfigureMonthCalendar(MonthCalendar calendar, List<DayOfWeek> availableDays)
         {
-            calendar.MinDate = DateTime.Today;
+            DateTime today = DateTime.Today;
+            DateTime minDate = today.AddDays(4); // Allow selection starting 4 days from today
+
+            calendar.MinDate = minDate;
             calendar.MaxSelectionCount = 1;
 
             calendar.DateChanged += (s, e) =>
             {
-                if (!availableDays.Contains(e.Start.DayOfWeek))
+                if (e.Start < minDate || !availableDays.Contains(e.Start.DayOfWeek))
                 {
-                    MessageBox.Show("The selected date is unavailable for the doctor.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    calendar.SetDate(DateTime.Today);
+                    MessageBox.Show("The selected date is unavailable. Please select a valid day.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    calendar.SetDate(minDate);
                 }
             };
         }
-
         private void EnterPatientButton_Click(object sender, EventArgs e)
         {
             string selectedpatient = PatientComboBox.SelectedItem.ToString();
@@ -322,6 +324,13 @@ namespace Infocare_Project_1
                         return;
                     }
 
+                    // Check if the patient already has a pending or accepted appointment
+                    if (db.IsPatientAppointmentPendingOrAccepted(selectedPatient))
+                    {
+                        MessageBox.Show("This patient already has a pending or accepted appointment. They cannot book another appointment until the current one is completed.", "Booking Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     // Parse consultation fee
                     string feeText = ConsFeeLbl.Text.Trim();
                     if (!decimal.TryParse(feeText, out decimal consultationFee))
@@ -348,7 +357,6 @@ namespace Infocare_Project_1
                 }
             }
         }
-
 
         private void ShowAppointmentList()
         {
@@ -401,6 +409,10 @@ namespace Infocare_Project_1
 
         private void LogOutButton_Click(object sender, EventArgs e)
         {
+
+        }
+        private void pd_HomeButton_Click(object sender, EventArgs e)
+        {
             DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
@@ -409,13 +421,5 @@ namespace Infocare_Project_1
                 this.Hide();
             }
         }
-
-        private void pd_HomeButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
-
-
-
 }

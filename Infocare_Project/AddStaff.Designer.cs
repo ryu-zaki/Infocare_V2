@@ -128,6 +128,7 @@
             BackButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
             BackButton.Size = new Size(61, 45);
             BackButton.TabIndex = 184;
+            BackButton.Click += BackButton_Click;
             // 
             // guna2HtmlLabel8
             // 

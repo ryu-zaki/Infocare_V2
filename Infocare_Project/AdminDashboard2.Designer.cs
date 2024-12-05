@@ -50,21 +50,21 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -103,17 +103,17 @@
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             ad_staffpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            BackButton = new Guna.UI2.WinForms.Guna2ImageButton();
             StaffDataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
             AddStaffLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            AddButton = new Guna.UI2.WinForms.Guna2ImageButton();
             ad_docpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            AddDoctor = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel4 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             DoctorDataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2ImageButton2 = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            AddDoctor = new Guna.UI2.WinForms.Guna2ImageButton();
             ad_patientpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
@@ -208,6 +208,7 @@
             pd_HomeButton.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pd_HomeButton.Size = new Size(34, 33);
             pd_HomeButton.TabIndex = 144;
+            pd_HomeButton.Click += pd_HomeButton_Click;
             // 
             // ad_patientBtn
             // 
@@ -417,9 +418,9 @@
             // 
             ad_staffpanel.BackColor = Color.FromArgb(13, 41, 80);
             ad_staffpanel.Controls.Add(guna2HtmlLabel3);
-            ad_staffpanel.Controls.Add(BackButton);
             ad_staffpanel.Controls.Add(StaffDataGridViewList);
             ad_staffpanel.Controls.Add(AddStaffLabel);
+            ad_staffpanel.Controls.Add(AddButton);
             ad_staffpanel.CustomizableEdges = customizableEdges20;
             ad_staffpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_staffpanel.FillColor2 = Color.FromArgb(13, 41, 80);
@@ -443,23 +444,6 @@
             guna2HtmlLabel3.Size = new Size(116, 26);
             guna2HtmlLabel3.TabIndex = 143;
             guna2HtmlLabel3.Text = "Patient List";
-            // 
-            // BackButton
-            // 
-            BackButton.CheckedState.ImageSize = new Size(64, 64);
-            BackButton.Cursor = Cursors.Hand;
-            BackButton.HoverState.ImageSize = new Size(64, 64);
-            BackButton.Image = (Image)resources.GetObject("BackButton.Image");
-            BackButton.ImageOffset = new Point(0, 0);
-            BackButton.ImageRotate = 0F;
-            BackButton.ImageSize = new Size(40, 45);
-            BackButton.Location = new Point(517, 5);
-            BackButton.Name = "BackButton";
-            BackButton.PressedState.ImageSize = new Size(64, 64);
-            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges19;
-            BackButton.Size = new Size(26, 29);
-            BackButton.TabIndex = 173;
-            BackButton.Click += BackButton_Click_1;
             // 
             // StaffDataGridViewList
             // 
@@ -491,7 +475,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             StaffDataGridViewList.DefaultCellStyle = dataGridViewCellStyle3;
             StaffDataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
-            StaffDataGridViewList.Location = new Point(12, 40);
+            StaffDataGridViewList.Location = new Point(13, 43);
             StaffDataGridViewList.Name = "StaffDataGridViewList";
             StaffDataGridViewList.ReadOnly = true;
             StaffDataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -541,13 +525,31 @@
             AddStaffLabel.TabIndex = 174;
             AddStaffLabel.Text = "Add Staff";
             // 
+            // AddButton
+            // 
+            AddButton.BackColor = Color.FromArgb(51, 95, 146);
+            AddButton.CheckedState.ImageSize = new Size(64, 64);
+            AddButton.Cursor = Cursors.Hand;
+            AddButton.HoverState.ImageSize = new Size(64, 64);
+            AddButton.Image = (Image)resources.GetObject("AddButton.Image");
+            AddButton.ImageOffset = new Point(0, 0);
+            AddButton.ImageRotate = 0F;
+            AddButton.ImageSize = new Size(40, 45);
+            AddButton.Location = new Point(516, 0);
+            AddButton.Name = "AddButton";
+            AddButton.PressedState.ImageSize = new Size(64, 64);
+            AddButton.ShadowDecoration.CustomizableEdges = customizableEdges19;
+            AddButton.Size = new Size(45, 39);
+            AddButton.TabIndex = 173;
+            AddButton.Click += BackButton_Click_1;
+            // 
             // ad_docpanel
             // 
             ad_docpanel.BackColor = Color.FromArgb(13, 41, 80);
-            ad_docpanel.Controls.Add(AddDoctor);
             ad_docpanel.Controls.Add(guna2HtmlLabel4);
             ad_docpanel.Controls.Add(guna2HtmlLabel1);
             ad_docpanel.Controls.Add(guna2CustomGradientPanel4);
+            ad_docpanel.Controls.Add(AddDoctor);
             ad_docpanel.CustomizableEdges = customizableEdges26;
             ad_docpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_docpanel.FillColor2 = Color.FromArgb(13, 41, 80);
@@ -558,23 +560,6 @@
             ad_docpanel.ShadowDecoration.CustomizableEdges = customizableEdges27;
             ad_docpanel.Size = new Size(662, 448);
             ad_docpanel.TabIndex = 177;
-            // 
-            // AddDoctor
-            // 
-            AddDoctor.DisabledState.BorderColor = Color.DarkGray;
-            AddDoctor.DisabledState.CustomBorderColor = Color.DarkGray;
-            AddDoctor.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            AddDoctor.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            AddDoctor.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            AddDoctor.ForeColor = Color.White;
-            AddDoctor.Location = new Point(516, 9);
-            AddDoctor.Name = "AddDoctor";
-            AddDoctor.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            AddDoctor.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            AddDoctor.Size = new Size(29, 28);
-            AddDoctor.TabIndex = 176;
-            AddDoctor.Text = "guna2CircleButton1";
-            AddDoctor.Click += AddDoctor_Click;
             // 
             // guna2HtmlLabel4
             // 
@@ -606,14 +591,14 @@
             guna2CustomGradientPanel4.Controls.Add(DoctorDataGridViewList);
             guna2CustomGradientPanel4.Controls.Add(guna2ImageButton2);
             guna2CustomGradientPanel4.Controls.Add(guna2HtmlLabel2);
-            guna2CustomGradientPanel4.CustomizableEdges = customizableEdges24;
+            guna2CustomGradientPanel4.CustomizableEdges = customizableEdges23;
             guna2CustomGradientPanel4.FillColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel4.FillColor2 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel4.FillColor3 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel4.FillColor4 = Color.FromArgb(110, 177, 247);
             guna2CustomGradientPanel4.Location = new Point(3, 42);
             guna2CustomGradientPanel4.Name = "guna2CustomGradientPanel4";
-            guna2CustomGradientPanel4.ShadowDecoration.CustomizableEdges = customizableEdges25;
+            guna2CustomGradientPanel4.ShadowDecoration.CustomizableEdges = customizableEdges24;
             guna2CustomGradientPanel4.Size = new Size(662, 448);
             guna2CustomGradientPanel4.TabIndex = 142;
             // 
@@ -647,7 +632,7 @@
             dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
             DoctorDataGridViewList.DefaultCellStyle = dataGridViewCellStyle7;
             DoctorDataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
-            DoctorDataGridViewList.Location = new Point(10, 4);
+            DoctorDataGridViewList.Location = new Point(4, 2);
             DoctorDataGridViewList.Name = "DoctorDataGridViewList";
             DoctorDataGridViewList.ReadOnly = true;
             DoctorDataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -698,7 +683,7 @@
             guna2ImageButton2.Location = new Point(492, 5);
             guna2ImageButton2.Name = "guna2ImageButton2";
             guna2ImageButton2.PressedState.ImageSize = new Size(64, 64);
-            guna2ImageButton2.ShadowDecoration.CustomizableEdges = customizableEdges23;
+            guna2ImageButton2.ShadowDecoration.CustomizableEdges = customizableEdges22;
             guna2ImageButton2.Size = new Size(26, 29);
             guna2ImageButton2.TabIndex = 173;
             // 
@@ -713,6 +698,24 @@
             guna2HtmlLabel2.Size = new Size(87, 24);
             guna2HtmlLabel2.TabIndex = 174;
             guna2HtmlLabel2.Text = "Add Staff";
+            // 
+            // AddDoctor
+            // 
+            AddDoctor.BackColor = Color.FromArgb(51, 95, 146);
+            AddDoctor.CheckedState.ImageSize = new Size(64, 64);
+            AddDoctor.Cursor = Cursors.Hand;
+            AddDoctor.HoverState.ImageSize = new Size(64, 64);
+            AddDoctor.Image = (Image)resources.GetObject("AddDoctor.Image");
+            AddDoctor.ImageOffset = new Point(0, 0);
+            AddDoctor.ImageRotate = 0F;
+            AddDoctor.ImageSize = new Size(40, 45);
+            AddDoctor.Location = new Point(508, 2);
+            AddDoctor.Name = "AddDoctor";
+            AddDoctor.PressedState.ImageSize = new Size(64, 64);
+            AddDoctor.ShadowDecoration.CustomizableEdges = customizableEdges25;
+            AddDoctor.Size = new Size(45, 39);
+            AddDoctor.TabIndex = 177;
+            AddDoctor.Click += AddDoctor_Click_1;
             // 
             // ad_patientpanel
             // 
@@ -789,7 +792,7 @@
             dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
             PatientDataGridViewList.DefaultCellStyle = dataGridViewCellStyle11;
             PatientDataGridViewList.GridColor = Color.FromArgb(231, 229, 255);
-            PatientDataGridViewList.Location = new Point(10, 4);
+            PatientDataGridViewList.Location = new Point(7, 2);
             PatientDataGridViewList.Name = "PatientDataGridViewList";
             PatientDataGridViewList.ReadOnly = true;
             PatientDataGridViewList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -1054,15 +1057,15 @@
             ControlBox = false;
             Controls.Add(MinimizeButton);
             Controls.Add(ExitButton);
-            Controls.Add(ad_AppointmentPanel);
-            Controls.Add(ad_patientpanel);
-            Controls.Add(ad_docpanel);
-            Controls.Add(ad_staffpanel);
             Controls.Add(ad_guna2HtmlLabel3);
             Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(ad_guna2HtmlLabel4);
             Controls.Add(guna2PictureBox1);
             Controls.Add(guna2PictureBox2);
+            Controls.Add(ad_docpanel);
+            Controls.Add(ad_staffpanel);
+            Controls.Add(ad_AppointmentPanel);
+            Controls.Add(ad_patientpanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AdminDashboard2";
             StartPosition = FormStartPosition.CenterScreen;
@@ -1111,7 +1114,6 @@
         private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_staffpanel;
         private Guna.UI2.WinForms.Guna2DataGridView StaffDataGridViewList;
         private Guna.UI2.WinForms.Guna2HtmlLabel AddStaffLabel;
-        private Guna.UI2.WinForms.Guna2ImageButton BackButton;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_docpanel;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel4;
         private Guna.UI2.WinForms.Guna2DataGridView DoctorDataGridViewList;
@@ -1119,7 +1121,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2CircleButton AddDoctor;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2Button ad_patientBtn;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel ad_patientpanel;
@@ -1139,5 +1140,7 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2Button LogOutButton;
         private Guna.UI2.WinForms.Guna2CircleButton pd_HomeButton;
+        private Guna.UI2.WinForms.Guna2ImageButton AddButton;
+        private Guna.UI2.WinForms.Guna2ImageButton AddDoctor;
     }
 }

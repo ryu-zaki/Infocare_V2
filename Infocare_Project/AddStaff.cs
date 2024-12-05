@@ -89,5 +89,16 @@ namespace Infocare_Project_1
             this.WindowState = FormWindowState.Minimized;
 
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Unsaved changes will be lost.", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+
+            {
+                this.Close();
+            }
+        }
     }
 }
