@@ -1042,7 +1042,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable PendingAppointmentList(string doctorFullName)
 {
-    string query = @"SELECT * FROM tb_appointmenthistory 
+    string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
                      WHERE ah_status = 'Pending' AND ah_Doctor_Name = @DoctorFullName";
 
     DataTable appointmentTable = new DataTable();
@@ -1120,7 +1120,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable ViewAppointments(string doctorFullName)
         {
-            string query = @"SELECT * FROM tb_appointmenthistory 
+            string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee FROM tb_appointmenthistory 
                      WHERE ah_status = 'Accepted' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable AppointmentTable = new DataTable();
@@ -1148,9 +1148,39 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return AppointmentTable;
         }
 
+        public DataTable ViewCompletedAppointments(string doctorFullName)
+        {
+            string query = @"SELECT ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+                     WHERE ah_status = 'Completed'";
+            //aayusin pa yung sa doctor for now completed muna
+            DataTable AppointmentTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DoctorFullName", doctorFullName);
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(AppointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return AppointmentTable;
+        }
+
         public DataTable DeclinedAppointments(string doctorFullName)
         {
-            string query = @"SELECT * FROM tb_appointmenthistory 
+            string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
                      WHERE ah_status = 'Declined' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable AppointmentTable = new DataTable();
@@ -1256,6 +1286,100 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             {
                 onFailure?.Invoke($"An error occurred: {ex.Message}");
             }
+        }
+        public void ExecuteQuery(string query, Dictionary<string, object> parameters)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    foreach (var param in parameters)
+                    {
+                        command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                    }
+
+                    // Debugging: Print query and parameters
+                    Console.WriteLine("Executing Query: " + query);
+                    foreach (var param in parameters)
+                    {
+                        Console.WriteLine($"{param.Key}: {param.Value}");
+                    }
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
+        public bool IsPatientExist(string firstName, string lastName)
+        {
+            string query = "SELECT COUNT(*) FROM tb_AppointmentHistory WHERE P_FirstName = @FirstName AND P_LastName = @LastName";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@LastName", lastName);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0; // Return true if patient already exists, otherwise false
+                }
+            }
+        }
+
+        public DataTable ViewCompletedppointments(string doctorFullName)
+        {
+            string query = @"SELECT * FROM tb_AppointmentHistory where status = 'Completed'";
+                  //   WHERE ah_status = 'Accepted' AND ah_Doctor_Name = @DoctorFullName";
+                  // KAILANGAN PA MA FETCH YUNG NAME NUNG DOCTOR
+            DataTable AppointmentTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DoctorFullName", doctorFullName);
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(AppointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return AppointmentTable;
+        }
+
+        public DataTable GetAppointmentHistory()
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = "SELECT * FROM tb_appointmenthistory";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection);
+                    dataAdapter.Fill(dataTable);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error fetching data: " + ex.Message);
+                }
+            }
+
+            return dataTable;
         }
     }
 }

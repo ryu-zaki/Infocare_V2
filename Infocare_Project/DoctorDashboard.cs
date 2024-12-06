@@ -37,6 +37,7 @@ namespace Infocare_Project_1
             CreateDiagnosisButton.Visible = false;
             AcceptButton.Visible = true;
             DeclineButton.Visible = true;
+            ViewButton.Visible = false;
 
             Database db = new Database();
 
@@ -76,6 +77,7 @@ namespace Infocare_Project_1
             AcceptButton.Visible = false;
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = true;
+            ViewButton.Visible = false;
 
             Database db = new Database();
 
@@ -165,7 +167,16 @@ namespace Infocare_Project_1
                     appointmentId,
                     patientDetails =>
                     {
+                        // Creating the doctor's full name
+                        string doctorFullName = $"Dr. {LastName}, {FirstName}";
+
+                        // Creating the DoctorMedicalRecord form
                         DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
+
+                        // Passing the doctor's name to the DoctorMedicalRecord form
+                        doctorMedicalRecord.SetDoctorName(doctorFullName);
+
+                        // Set the patient details
                         doctorMedicalRecord.SetPatientDetails(
                             patientDetails["P_Firstname"],
                             patientDetails["P_Lastname"],
@@ -180,6 +191,8 @@ namespace Infocare_Project_1
                             patientDetails["P_Precondition"],
                             patientDetails["P_Treatment"]
                         );
+
+                        // Show the DoctorMedicalRecord form
                         doctorMedicalRecord.Show();
                     },
                     errorMessage => MessageBox.Show(errorMessage)
@@ -189,6 +202,41 @@ namespace Infocare_Project_1
             {
                 MessageBox.Show("Please select an appointment.");
             }
+
+            //if (DataGridViewList.SelectedRows.Count > 0)
+            //{
+            //    int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["id"].Value);
+            //    Database db = new Database();
+
+            //    db.CreateDiagnosis(
+            //        appointmentId,
+            //        patientDetails =>
+            //        {
+
+            //            DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
+            //            doctorMedicalRecord.SetPatientDetails(
+            //                patientDetails["P_Firstname"],
+            //                patientDetails["P_Lastname"],
+            //                patientDetails["P_Bdate"],
+            //                patientDetails["P_Height"],
+            //                patientDetails["P_Weight"],
+            //                patientDetails["P_BMI"],
+            //                patientDetails["P_Blood_Type"],
+            //                patientDetails["P_Alergy"],
+            //                patientDetails["P_Medication"],
+            //                patientDetails["P_PrevSurgery"],
+            //                patientDetails["P_Precondition"],
+            //                patientDetails["P_Treatment"]
+            //            );
+            //            doctorMedicalRecord.Show();
+            //        },
+            //        errorMessage => MessageBox.Show(errorMessage)
+            //    );
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Please select an appointment.");
+            //}
         }
 
 
@@ -251,6 +299,7 @@ namespace Infocare_Project_1
             AcceptButton.Visible = false;
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = false;
+            ViewButton.Visible = false;
 
             Database db = new Database();
             string doctorFullName = $"Dr. {LastName}, {FirstName}";
@@ -299,18 +348,19 @@ namespace Infocare_Project_1
             AcceptButton.Visible = false;
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = false;
+            ViewButton.Visible = true;
 
             Database db = new Database();
 
             string doctorFullName = $"Dr. {LastName}, {FirstName}";
-            DataTable viewcompletedappoointment = db.ViewAppointments(doctorFullName);
+            DataTable viewcompletedappoointment = db.ViewCompletedAppointments(doctorFullName);
             DataGridViewList.DataSource = viewcompletedappoointment;
 
             try
             {
 
 
-                if (viewappoointment != null && viewappoointment.Rows.Count > 0)
+                if (viewcompletedappoointment != null && viewcompletedappoointment.Rows.Count > 0)
                 {
                     DataGridViewList.AutoGenerateColumns = true;
                     DataGridViewList.AllowUserToAddRows = false;
@@ -325,6 +375,11 @@ namespace Infocare_Project_1
             {
                 MessageBox.Show($"An error occurred while loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
