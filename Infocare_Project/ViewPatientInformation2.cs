@@ -146,17 +146,17 @@ namespace Infocare_Project_1
         //}
 
 
-        //private void CreatePDFButton_Click(object sender, EventArgs e)
-        //{
-        //    // Specify the file path for the PDF
-        //    SaveFileDialog saveFileDialog = new SaveFileDialog();
-        //    saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-        //    saveFileDialog.FileName = "PatientInformation.pdf";
-        //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-        //    {
-        //        string filePath = saveFileDialog.FileName;
-        //        ExportToPDF(this.PrintablePanel, filePath);
-        //    }
-        //}
+        private void CreatePDFButton_Click(object sender, EventArgs e)
+        {
+            //// Specify the file path for the PDF
+            //SaveFileDialog saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+            //saveFileDialog.FileName = "PatientInformation.pdf";
+            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    string filePath = saveFileDialog.FileName;
+            //    ExportToPDF(this.PrintablePanel, filePath);
+            //}
+        }
     }
 }

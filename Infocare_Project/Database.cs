@@ -1150,8 +1150,8 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable ViewCompletedAppointments(string doctorFullName)
         {
-            string query = @"SELECT ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
-                     WHERE ah_status = 'Completed'";
+            string query = @"SELECT id as 'Transaction ID', ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+             WHERE ah_status = 'Completed'";
             //aayusin pa yung sa doctor for now completed muna
             DataTable AppointmentTable = new DataTable();
 
@@ -1535,6 +1535,81 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                 }
             }
         }
+
+        public void viewDocument(int appointmentId, Action<Dictionary<string, string>> onSuccess, Action<string> onFailure)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string getPatientNameQuery = "SELECT * FROM tb_appointmenthistory WHERE id = @appointmentId";
+                    using (MySqlCommand command = new MySqlCommand(getPatientNameQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@appointmentId", appointmentId);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string patientName = reader["ah_Patient_Name"].ToString();
+                                string doctorName = reader["ah_Doctor_Name"].ToString();
+                                var nameParts = patientName.Split(',');
+                                var doctorParts = doctorName.Split(',');
+
+                                if (nameParts.Length < 2 || doctorParts.Length < 2)
+                                {
+                                    onFailure?.Invoke("Invalid patient or doctor name format in the database.");
+                                    return;
+                                }
+
+                                string patientFirstName = nameParts[1].Trim();
+                                string patientLastName = nameParts[0].Trim();
+                                string doctorFirstName = doctorParts[1].Trim();
+                                string doctorLastName = doctorParts[0].Trim();
+
+                                var patientDetails = new Dictionary<string, string>
+                        {
+                            { "P_Firstname", patientFirstName },
+                            { "P_Lastname", patientLastName },
+                            { "P_Bdate", reader["P_bdate"].ToString() },
+                            { "P_Height", reader["P_height"].ToString() },
+                            { "P_Weight", reader["P_weight"].ToString() },
+                            { "P_BMI", reader["P_bmi"].ToString() },
+                            { "P_Blood_Type", reader["P_Blood_type"].ToString() },
+                            { "P_Alergy", reader["P_alergy"].ToString() },
+                            { "P_Medication", reader["P_medication"].ToString() },
+                            { "P_PrevSurgery", reader["P_prevsurgery"].ToString() },
+                            { "P_Precondition", reader["P_precondition"].ToString() },
+                            { "P_Treatment", reader["P_treatment"].ToString() },
+                            { "ah_DoctorFirstName", doctorFirstName },
+                            { "ah_DoctorLastName", doctorLastName },
+                            { "ah_Time", reader["ah_time"].ToString() },
+                            { "ah_Date", reader["ah_date"].ToString() },
+                            { "ah_Consfee", reader["ah_Consfee"].ToString() },
+                            { "d_diagnosis", reader["d_diagnosis"].ToString() },
+                            { "d_additionalnotes", reader["d_additionalnotes"].ToString() },
+                            { "d_doctoroder", reader["d_doctoroder"].ToString() },
+                            { "d_prescription", reader["d_prescription"].ToString() }
+                        };
+
+                                onSuccess?.Invoke(patientDetails);
+                            }
+                            else
+                            {
+                                onFailure?.Invoke("Appointment details not found.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                onFailure?.Invoke($"An error occurred: {ex.Message}");
+            }
+        }
+
 
     }
 }
