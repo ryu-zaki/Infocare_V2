@@ -564,7 +564,7 @@
             ConatactNumberTextbox.Name = "ConatactNumberTextbox";
             ConatactNumberTextbox.PasswordChar = '\0';
             ConatactNumberTextbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            ConatactNumberTextbox.PlaceholderText = "Username";
+            ConatactNumberTextbox.PlaceholderText = "Contact Number";
             ConatactNumberTextbox.SelectedText = "";
             ConatactNumberTextbox.ShadowDecoration.CustomizableEdges = customizableEdges5;
             ConatactNumberTextbox.Size = new Size(194, 46);
