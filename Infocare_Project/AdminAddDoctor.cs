@@ -38,6 +38,52 @@ namespace Infocare_Project
         private void EnterButton_Click(object sender, EventArgs e)
         {
             // Validate required fields
+
+            string contactNumber = ContactNumberTextbox.Text;
+
+            if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))
+            {
+                MessageBox.Show("Invalid number. The contact number must start with '09' and be exactly 11 digits.", "Invalid Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!FirstNameTextBox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(FirstNameTextBox.Text))
+            {
+                MessageBox.Show("First name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!UserNameTextBox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(UserNameTextBox.Text))
+            {
+                MessageBox.Show("Username must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Database db = new Database();
+            if (db.UsernameExistsDoctor(UserNameTextBox.Text))
+            {
+                MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string password = PasswordTextBox.Text;
+
+            if (!Database.ValidatePassword(password))
+            {
+                return;
+            }
+
+            if (!MiddleNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
+            {
+                MessageBox.Show("Middle name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!LastNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(LastNameTextbox.Text))
+            {
+                MessageBox.Show("Last name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(LastNameTextbox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(UserNameTextBox.Text.Trim()) ||
@@ -68,6 +114,13 @@ namespace Infocare_Project
                 MessageBox.Show("Please enter at least one specialization.");
                 return;
             }
+            int Contact;
+
+            if (!int.TryParse(ConsultationFeeTextBox.Text, out Contact))
+            {
+                MessageBox.Show("Please enter a valid Consultation Fee.");
+                return;
+            }
 
 
             // Create a new Doctor object
@@ -78,6 +131,7 @@ namespace Infocare_Project
                 MiddleName = MiddleNameTextbox.Text.Trim(),
                 Username = UserNameTextBox.Text.Trim(),
                 Password = PasswordTextBox.Text.Trim(),
+                ContactNumber = ContactNumberTextbox.Text.Trim(),
                 ConfirmPassword = ConfirmPasswordTextBox.Text.Trim(),
                 ConsultationFee = int.TryParse(ConsultationFeeTextBox.Text, out int consultationFee) ? consultationFee : 0,
                 Specialty = specializations, // Store the list of specializations
@@ -122,12 +176,12 @@ namespace Infocare_Project
 
             try
             {
-                Database db = new Database();
-                int doctorId = db.AddDoctor(newDoctor);
+                Database db1 = new Database();
+                int doctorId = db1.AddDoctor1(newDoctor);
 
                 foreach (string specialization in specializations)
                 {
-                    db.AddSpecialization(doctorId, specialization);
+                    db1.AddSpecialization(doctorId, specialization);
                 }
 
                 MessageBox.Show("Doctor added successfully!");

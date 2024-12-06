@@ -45,16 +45,6 @@ namespace Infocare_Project
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
-            Guna2TextBox[] requiredTextBoxes = {
-                FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
-                ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, UsernameTxtbox
-            };
-
-            if (!InputValidator.ValidateAllFieldsFilled(requiredTextBoxes, "Please fill out all fields."))
-            {
-                return;
-            }
-
             string contactNumber = ContactNumberTxtbox.Text;
 
             if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))
@@ -95,16 +85,30 @@ namespace Infocare_Project
                 return;
             }
 
-            int zipCode;
-            int zone;
 
-            if (!int.TryParse(ZipCodeTxtbox.Text, out zipCode))
+            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr" };
+
+            string enteredText = SuffixTxtbox.Text.Trim();
+
+            if (!string.IsNullOrEmpty(enteredText) && !validSuffixes.Any(suffix => string.Equals(suffix, enteredText, StringComparison.OrdinalIgnoreCase)))
+            {
+                MessageBox.Show("Please enter a valid suffix (e.g., Jr., Sr., I, II, III, IV, etc.).", "Invalid Suffix", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+           
+
+            int ZipCode;
+            int Zone;
+
+            if (!int.TryParse(ZipCodeTxtbox.Text, out ZipCode))
             {
                 MessageBox.Show("Please enter a valid number for Zip Code.");
                 return;
             }
 
-            if (!int.TryParse(ZoneTxtbox.Text, out zone))
+            if (!int.TryParse(ZoneTxtbox.Text, out Zone))
             {
                 MessageBox.Show("Please enter a valid number for Zone.");
                 return;
@@ -156,6 +160,24 @@ namespace Infocare_Project
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
+
+
+            Guna2TextBox[] requiredTextBoxes = {
+                FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
+                ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, UsernameTxtbox
+            };
+
+            if (!InputValidator.ValidateAllFieldsFilled(requiredTextBoxes, "Please fill out all fields."))
+            {
+                return;
+            }
+
+            ///////VALIDATION
+
+
+            
+
         }
 
 

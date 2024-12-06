@@ -19,6 +19,8 @@ namespace Infocare_Project
         private string LoggedInUsername;
         private string Firstname;
         private string Lastname;
+
+
         public EmergencyRegistration(string usrnm, string firstName, string lastName)
         {
             InitializeComponent();
@@ -77,6 +79,57 @@ namespace Infocare_Project
 
         private void RegisterButton_Click_1(object sender, EventArgs e)
         {
+            //VALIDATION
+
+            if (!FirstnameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(FirstnameTxtbox.Text))
+            {
+                MessageBox.Show("First name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            if (!LastNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTxtbox.Text))
+            {
+                MessageBox.Show("Last name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            if (!MiddleNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTxtbox.Text))
+            {
+                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr"};
+
+            string enteredText = SuffixTxtbox.Text.Trim();
+
+            // Check if the entered text is one of the valid suffixes (case-insensitive)
+            if (!string.IsNullOrEmpty(enteredText) && !validSuffixes.Any(suffix => string.Equals(suffix, enteredText, StringComparison.OrdinalIgnoreCase)))
+            {
+                MessageBox.Show("Please enter a valid suffix (e.g., Jr., Sr., I, II, III, IV, etc.).", "Invalid Suffix", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+
+            int zipCode;
+            int Zone;
+            
+            if (!int.TryParse(ZipCodeTxtbox.Text, out zipCode))
+            {
+                MessageBox.Show("Please enter a valid number for Zip Code.");
+                return;
+            }
+
+            if (!int.TryParse(ZoneTxtbox.Text, out Zone))
+            {
+                MessageBox.Show("Please enter a valid number for Zone.");
+                return;
+            }
+
             try
             {
                 // Retrieve values from form inputs and fix type assignments
@@ -144,6 +197,10 @@ namespace Infocare_Project
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
+            
+
+
         }
 
         private void FirstnameTxtbox_TextChanged(object sender, EventArgs e)
@@ -200,6 +257,8 @@ namespace Infocare_Project
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+
 
         private void BackButton_Click(object sender, EventArgs e)
         {

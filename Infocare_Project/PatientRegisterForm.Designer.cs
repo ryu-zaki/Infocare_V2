@@ -176,7 +176,7 @@
             FirstnameTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FirstnameTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             FirstnameTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            FirstnameTxtbox.Location = new Point(96, 179);
+            FirstnameTxtbox.Location = new Point(96, 192);
             FirstnameTxtbox.Name = "FirstnameTxtbox";
             FirstnameTxtbox.PasswordChar = '\0';
             FirstnameTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -213,7 +213,7 @@
             LastNameTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             LastNameTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             LastNameTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            LastNameTxtbox.Location = new Point(281, 179);
+            LastNameTxtbox.Location = new Point(281, 192);
             LastNameTxtbox.Name = "LastNameTxtbox";
             LastNameTxtbox.PasswordChar = '\0';
             LastNameTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -233,7 +233,7 @@
             BdayDateTimePicker.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             BdayDateTimePicker.ForeColor = Color.Black;
             BdayDateTimePicker.Format = DateTimePickerFormat.Long;
-            BdayDateTimePicker.Location = new Point(479, 330);
+            BdayDateTimePicker.Location = new Point(479, 343);
             BdayDateTimePicker.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             BdayDateTimePicker.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             BdayDateTimePicker.Name = "BdayDateTimePicker";
@@ -247,7 +247,7 @@
             guna2HtmlLabel4.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel4.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel4.Location = new Point(479, 308);
+            guna2HtmlLabel4.Location = new Point(479, 321);
             guna2HtmlLabel4.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             guna2HtmlLabel4.Size = new Size(60, 19);
@@ -259,7 +259,7 @@
             guna2HtmlLabel5.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel5.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel5.Location = new Point(723, 308);
+            guna2HtmlLabel5.Location = new Point(723, 321);
             guna2HtmlLabel5.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             guna2HtmlLabel5.Size = new Size(24, 19);
@@ -280,7 +280,7 @@
             UsernameTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             UsernameTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             UsernameTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            UsernameTxtbox.Location = new Point(94, 330);
+            UsernameTxtbox.Location = new Point(94, 343);
             UsernameTxtbox.Name = "UsernameTxtbox";
             UsernameTxtbox.PasswordChar = '\0';
             UsernameTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -305,7 +305,7 @@
             MiddleNameTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             MiddleNameTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             MiddleNameTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            MiddleNameTxtbox.Location = new Point(96, 241);
+            MiddleNameTxtbox.Location = new Point(96, 254);
             MiddleNameTxtbox.Name = "MiddleNameTxtbox";
             MiddleNameTxtbox.PasswordChar = '\0';
             MiddleNameTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -330,7 +330,7 @@
             SuffixTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             SuffixTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             SuffixTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            SuffixTxtbox.Location = new Point(281, 241);
+            SuffixTxtbox.Location = new Point(281, 254);
             SuffixTxtbox.Name = "SuffixTxtbox";
             SuffixTxtbox.PasswordChar = '\0';
             SuffixTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -346,7 +346,7 @@
             guna2HtmlLabel6.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel6.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel6.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel6.Location = new Point(282, 293);
+            guna2HtmlLabel6.Location = new Point(282, 306);
             guna2HtmlLabel6.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             guna2HtmlLabel6.Size = new Size(93, 15);
@@ -358,7 +358,7 @@
             guna2HtmlLabel7.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel7.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel7.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel7.Location = new Point(94, 293);
+            guna2HtmlLabel7.Location = new Point(94, 306);
             guna2HtmlLabel7.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             guna2HtmlLabel7.Size = new Size(93, 15);
@@ -379,7 +379,7 @@
             ContactNumberTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ContactNumberTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             ContactNumberTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ContactNumberTxtbox.Location = new Point(279, 330);
+            ContactNumberTxtbox.Location = new Point(279, 343);
             ContactNumberTxtbox.Name = "ContactNumberTxtbox";
             ContactNumberTxtbox.PasswordChar = '\0';
             ContactNumberTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -428,7 +428,7 @@
             guna2CustomGradientPanel2.FillColor2 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor3 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor4 = Color.FromArgb(53, 93, 134);
-            guna2CustomGradientPanel2.Location = new Point(378, 497);
+            guna2CustomGradientPanel2.Location = new Point(371, 469);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
             guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges40;
             guna2CustomGradientPanel2.Size = new Size(181, 50);
@@ -446,7 +446,7 @@
             SexCombobox.ForeColor = Color.FromArgb(68, 88, 112);
             SexCombobox.ItemHeight = 30;
             SexCombobox.Items.AddRange(new object[] { "Male", "Female" });
-            SexCombobox.Location = new Point(723, 332);
+            SexCombobox.Location = new Point(723, 345);
             SexCombobox.Name = "SexCombobox";
             SexCombobox.ShadowDecoration.CustomizableEdges = customizableEdges38;
             SexCombobox.Size = new Size(104, 36);
@@ -466,7 +466,7 @@
             HouseNoTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             HouseNoTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             HouseNoTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            HouseNoTxtbox.Location = new Point(479, 179);
+            HouseNoTxtbox.Location = new Point(479, 192);
             HouseNoTxtbox.Name = "HouseNoTxtbox";
             HouseNoTxtbox.PasswordChar = '\0';
             HouseNoTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -491,7 +491,7 @@
             ZipCodeTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ZipCodeTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             ZipCodeTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ZipCodeTxtbox.Location = new Point(611, 179);
+            ZipCodeTxtbox.Location = new Point(611, 192);
             ZipCodeTxtbox.Name = "ZipCodeTxtbox";
             ZipCodeTxtbox.PasswordChar = '\0';
             ZipCodeTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -516,7 +516,7 @@
             ZoneTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ZoneTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             ZoneTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ZoneTxtbox.Location = new Point(747, 179);
+            ZoneTxtbox.Location = new Point(747, 192);
             ZoneTxtbox.Name = "ZoneTxtbox";
             ZoneTxtbox.PasswordChar = '\0';
             ZoneTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -541,7 +541,7 @@
             StreetTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             StreetTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             StreetTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            StreetTxtbox.Location = new Point(479, 241);
+            StreetTxtbox.Location = new Point(479, 254);
             StreetTxtbox.Name = "StreetTxtbox";
             StreetTxtbox.PasswordChar = '\0';
             StreetTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -566,7 +566,7 @@
             BarangayTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             BarangayTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             BarangayTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            BarangayTxtbox.Location = new Point(611, 241);
+            BarangayTxtbox.Location = new Point(611, 254);
             BarangayTxtbox.Name = "BarangayTxtbox";
             BarangayTxtbox.PasswordChar = '\0';
             BarangayTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -591,7 +591,7 @@
             CityTxtbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             CityTxtbox.ForeColor = Color.FromArgb(47, 89, 114);
             CityTxtbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            CityTxtbox.Location = new Point(747, 241);
+            CityTxtbox.Location = new Point(747, 254);
             CityTxtbox.Name = "CityTxtbox";
             CityTxtbox.PasswordChar = '\0';
             CityTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -607,7 +607,7 @@
             guna2HtmlLabel11.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel11.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point);
             guna2HtmlLabel11.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel11.Location = new Point(450, 550);
+            guna2HtmlLabel11.Location = new Point(442, 524);
             guna2HtmlLabel11.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel11.Name = "guna2HtmlLabel11";
             guna2HtmlLabel11.Size = new Size(36, 31);
@@ -619,7 +619,7 @@
             UserNameLabel.BackColor = Color.FromArgb(110, 177, 247);
             UserNameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             UserNameLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            UserNameLabel.Location = new Point(100, 314);
+            UserNameLabel.Location = new Point(100, 327);
             UserNameLabel.Margin = new Padding(3, 2, 3, 2);
             UserNameLabel.Name = "UserNameLabel";
             UserNameLabel.Size = new Size(31, 15);
@@ -632,7 +632,7 @@
             ContactNumberLabel.BackColor = Color.FromArgb(110, 177, 247);
             ContactNumberLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             ContactNumberLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            ContactNumberLabel.Location = new Point(286, 314);
+            ContactNumberLabel.Location = new Point(286, 327);
             ContactNumberLabel.Margin = new Padding(3, 2, 3, 2);
             ContactNumberLabel.Name = "ContactNumberLabel";
             ContactNumberLabel.Size = new Size(89, 15);
@@ -645,7 +645,7 @@
             FirstNameLabel.BackColor = Color.FromArgb(110, 177, 247);
             FirstNameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             FirstNameLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            FirstNameLabel.Location = new Point(104, 164);
+            FirstNameLabel.Location = new Point(104, 177);
             FirstNameLabel.Margin = new Padding(3, 2, 3, 2);
             FirstNameLabel.Name = "FirstNameLabel";
             FirstNameLabel.Size = new Size(57, 15);
@@ -658,7 +658,7 @@
             LastNameLabel.BackColor = Color.FromArgb(110, 177, 247);
             LastNameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             LastNameLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            LastNameLabel.Location = new Point(288, 164);
+            LastNameLabel.Location = new Point(288, 177);
             LastNameLabel.Margin = new Padding(3, 2, 3, 2);
             LastNameLabel.Name = "LastNameLabel";
             LastNameLabel.Size = new Size(56, 15);
@@ -671,7 +671,7 @@
             ZipCodeLabel.BackColor = Color.FromArgb(110, 177, 247);
             ZipCodeLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             ZipCodeLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            ZipCodeLabel.Location = new Point(616, 164);
+            ZipCodeLabel.Location = new Point(616, 177);
             ZipCodeLabel.Margin = new Padding(3, 2, 3, 2);
             ZipCodeLabel.Name = "ZipCodeLabel";
             ZipCodeLabel.Size = new Size(50, 15);
@@ -684,7 +684,7 @@
             ZoneLabel.BackColor = Color.FromArgb(110, 177, 247);
             ZoneLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             ZoneLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            ZoneLabel.Location = new Point(751, 164);
+            ZoneLabel.Location = new Point(751, 177);
             ZoneLabel.Margin = new Padding(3, 2, 3, 2);
             ZoneLabel.Name = "ZoneLabel";
             ZoneLabel.Size = new Size(30, 15);
@@ -697,7 +697,7 @@
             MiddleNameLabel.BackColor = Color.FromArgb(110, 177, 247);
             MiddleNameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             MiddleNameLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            MiddleNameLabel.Location = new Point(103, 227);
+            MiddleNameLabel.Location = new Point(103, 240);
             MiddleNameLabel.Margin = new Padding(3, 2, 3, 2);
             MiddleNameLabel.Name = "MiddleNameLabel";
             MiddleNameLabel.Size = new Size(72, 15);
@@ -710,7 +710,7 @@
             SuffixLabel.BackColor = Color.FromArgb(110, 177, 247);
             SuffixLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             SuffixLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            SuffixLabel.Location = new Point(288, 227);
+            SuffixLabel.Location = new Point(288, 240);
             SuffixLabel.Margin = new Padding(3, 2, 3, 2);
             SuffixLabel.Name = "SuffixLabel";
             SuffixLabel.Size = new Size(33, 15);
@@ -723,7 +723,7 @@
             StreetLabel.BackColor = Color.FromArgb(110, 177, 247);
             StreetLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             StreetLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            StreetLabel.Location = new Point(483, 227);
+            StreetLabel.Location = new Point(483, 240);
             StreetLabel.Margin = new Padding(3, 2, 3, 2);
             StreetLabel.Name = "StreetLabel";
             StreetLabel.Size = new Size(33, 15);
@@ -736,7 +736,7 @@
             BarangayLabel.BackColor = Color.FromArgb(110, 177, 247);
             BarangayLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             BarangayLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            BarangayLabel.Location = new Point(616, 227);
+            BarangayLabel.Location = new Point(616, 240);
             BarangayLabel.Margin = new Padding(3, 2, 3, 2);
             BarangayLabel.Name = "BarangayLabel";
             BarangayLabel.Size = new Size(52, 15);
@@ -749,7 +749,7 @@
             CityLabel.BackColor = Color.FromArgb(110, 177, 247);
             CityLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             CityLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            CityLabel.Location = new Point(751, 227);
+            CityLabel.Location = new Point(751, 240);
             CityLabel.Margin = new Padding(3, 2, 3, 2);
             CityLabel.Name = "CityLabel";
             CityLabel.Size = new Size(23, 15);
@@ -762,7 +762,7 @@
             HouseLabel.BackColor = Color.FromArgb(110, 177, 247);
             HouseLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             HouseLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            HouseLabel.Location = new Point(483, 164);
+            HouseLabel.Location = new Point(483, 177);
             HouseLabel.Margin = new Padding(3, 2, 3, 2);
             HouseLabel.Name = "HouseLabel";
             HouseLabel.Size = new Size(58, 15);
@@ -875,7 +875,7 @@
             guna2PictureBox2.CustomizableEdges = customizableEdges45;
             guna2PictureBox2.Image = (Image)resources.GetObject("guna2PictureBox2.Image");
             guna2PictureBox2.ImageRotate = 0F;
-            guna2PictureBox2.Location = new Point(16, 548);
+            guna2PictureBox2.Location = new Point(16, 536);
             guna2PictureBox2.Name = "guna2PictureBox2";
             guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges46;
             guna2PictureBox2.Size = new Size(866, 72);

@@ -22,6 +22,51 @@ namespace Infocare_Project_1
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
+            string contactNumber = ConatactNumberTextbox.Text;
+
+            if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))
+            {
+                MessageBox.Show("Invalid number. The contact number must start with '09' and be exactly 11 digits.", "Invalid Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!FirstNameTextBox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(FirstNameTextBox.Text))
+            {
+                MessageBox.Show("First name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!UserNameTextBox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(UserNameTextBox.Text))
+            {
+                MessageBox.Show("Username must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Database db = new Database();
+            if (db.UsernameExistsStaff(UserNameTextBox.Text))
+            {
+                MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string password = PasswordTextBox.Text;
+
+            if (!Database.ValidatePassword(password))
+            {
+                return; 
+            }
+
+            if (!MiddleNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
+            {
+                MessageBox.Show("Middle name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!LastNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(LastNameTextbox.Text))
+            {
+                MessageBox.Show("Last name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Guna2TextBox[] requiredTextBoxes = {
                 FirstNameTextBox, LastNameTextbox, MiddleNameTextbox, UserNameTextBox, PasswordTextBox, ConfirmPasswordTextBox
             };
@@ -34,6 +79,16 @@ namespace Infocare_Project_1
             if (!InputValidator.ValidateAlphabetic(FirstNameTextBox, "First name must contain only letters. ex. (Juan)") ||
                 !InputValidator.ValidateAlphabetic(LastNameTextbox, "Last name must contain only letters. ex. (Dela Cruz)"))
             {
+                return;
+            }
+
+            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr" };
+
+            string enteredText = SuffixTextbox.Text.Trim();
+
+            if (!string.IsNullOrEmpty(enteredText) && !validSuffixes.Any(suffix => string.Equals(suffix, enteredText, StringComparison.OrdinalIgnoreCase)))
+            {
+                MessageBox.Show("Please enter a valid suffix (e.g., Jr., Sr., I, II, III, IV, etc.).", "Invalid Suffix", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -57,8 +112,8 @@ namespace Infocare_Project_1
 
             try
             {
-                Database db = new Database();
-                db.AddStaff(newStaff);
+                Database db1 = new Database();
+                db1.AddStaff(newStaff);
                 MessageBox.Show("Staff added successfully!");
                 this.Hide();
             }
