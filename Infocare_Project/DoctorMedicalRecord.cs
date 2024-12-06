@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Infocare_Project_1
 {
@@ -16,6 +17,12 @@ namespace Infocare_Project_1
         public DoctorMedicalRecord()
         {
             InitializeComponent();
+        }
+
+        public void SetDoctorName(string doctorFullName)
+        {
+            // This method sets the doctor's name in the NameLabel
+            DoctorFullNameLabel.Text = doctorFullName;
         }
         public void SetPatientDetails(string firstName, string lastName, string birthday, string height, string weight,
                                       string bmi, string bloodType, string allergy, string medication,
@@ -66,11 +73,11 @@ namespace Infocare_Project_1
             }
         }
 
+
         private void ContinueButton_Click(object sender, EventArgs e)
         {
-            // Confirm the action
             DialogResult result = MessageBox.Show(
-                "Are you sure you want to save and mark the appointment as completed?",
+                "Do you want to save the information?",
                 "Confirm Action",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -80,62 +87,71 @@ namespace Infocare_Project_1
             {
                 try
                 {
-                    // Collect values from textboxes
+                    // Collect data
                     string firstName = FirstNameTextBox.Text.Trim();
                     string lastName = LastNameTextBox.Text.Trim();
                     string bloodType = BloodTypeTextBox.Text.Trim();
-                    string bmi = BMITextBox.Text.Trim();
-                    string weight = WeightTextBox.Text.Trim();
-                    string height = HeightTextBox.Text.Trim();
+                    double bmi = double.TryParse(BMITextBox.Text.Trim(), out var bmiVal) ? bmiVal : 0;
+                    double weight = double.TryParse(WeightTextBox.Text.Trim(), out var weightVal) ? weightVal : 0;
+                    double height = double.TryParse(HeightTextBox.Text.Trim(), out var heightVal) ? heightVal : 0;
                     string allergy = AllergyTextBox.Text.Trim();
                     string previousSurgery = PreviousSurgeryTextBox.Text.Trim();
                     string treatment = TreatmentTextBox.Text.Trim();
                     string medication = MedicationTextBox.Text.Trim();
                     string preCondition = PreConditionTextBox.Text.Trim();
-                    string birthday = BirthdayTextBox.Text.Trim();
+                    DateTime birthday = DateTime.TryParse(BirthdayTextBox.Text.Trim(), out var bdayVal) ? bdayVal : DateTime.MinValue;
 
-                    // Validate required fields
                     if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
                     {
                         MessageBox.Show("First Name and Last Name are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    // Check if the patient already exists
-                    Database db = new Database();
-                    bool patientExists = db.IsPatientExist(firstName, lastName);
-                    if (patientExists)
-                    {
-                        MessageBox.Show("This patient already exists in the database.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                    // Format patient name in the "LastName, FirstName" format
+                    string patientName = $"{lastName}, {firstName}";
 
-                    // If patient doesn't exist, insert the record
-                    string query = "INSERT INTO tb_completedappointment " +
-                                   "(P_FirstName, P_LastName, P_Blood_Type, P_BMI, P_Weight, P_Height, P_Alergy, P_PrevSurgery, P_Treatment, P_Medication, P_PreCondition, P_Bdate) " +
-                                   "VALUES (@FirstName, @LastName, @BloodType, @BMI, @Weight, @Height, @Allergy, @PreviousSurgery, @Treatment, @Medication, @PreCondition, @Birthday)";
-                    db.ExecuteQuery(query, new Dictionary<string, object>
+                    // Update or insert logic
+                    string query = @"UPDATE tb_AppointmentHistory SET 
+                        P_Bdate = @Birthday,
+                        P_Height = @Height,
+                        P_Weight = @Weight,
+                        P_BMI = @BMI,
+                        P_Blood_Type = @BloodType,
+                        P_Precondition = @PreCondition,
+                        P_Treatment = @Treatment,
+                        P_PrevSurgery = @PreviousSurgery,
+                        P_Alergy = @Allergy,
+                        P_Medication = @Medication,
+                        ah_status = 'Accepted'
+                     WHERE ah_Patient_Name = @PatientName";
+
+                    Dictionary<string, object> parameters = new()
             {
-                { "@FirstName", firstName },
-                { "@LastName", lastName },
-                { "@BloodType", bloodType },
-                { "@BMI", bmi },
-                { "@Weight", weight },
-                { "@Height", height },
-                { "@Allergy", allergy },
-                { "@PreviousSurgery", previousSurgery },
-                { "@Treatment", treatment },
-                { "@Medication", medication },
-                { "@PreCondition", preCondition },
-                { "@Birthday", birthday }
-            });
+                { "@Birthday", birthday == DateTime.MinValue ? DBNull.Value : birthday },
+                { "@Height", height > 0 ? height : DBNull.Value },
+                { "@Weight", weight > 0 ? weight : DBNull.Value },
+                { "@BMI", bmi > 0 ? bmi : DBNull.Value },
+                { "@BloodType", string.IsNullOrEmpty(bloodType) ? DBNull.Value : bloodType },
+                { "@PreCondition", string.IsNullOrEmpty(preCondition) ? DBNull.Value : preCondition },
+                { "@Treatment", string.IsNullOrEmpty(treatment) ? DBNull.Value : treatment },
+                { "@PreviousSurgery", string.IsNullOrEmpty(previousSurgery) ? DBNull.Value : previousSurgery },
+                { "@Allergy", string.IsNullOrEmpty(allergy) ? DBNull.Value : allergy },
+                { "@Medication", string.IsNullOrEmpty(medication) ? DBNull.Value : medication },
+                { "@PatientName", patientName }
+            };
 
-                    // Open DoctorDiagnosisRecord form
+                    // Execute query
+                    Database db = new Database();
+                    db.ExecuteQuery(query, parameters);
+
+                    MessageBox.Show("Appointment history updated successfully and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Navigate to DoctorDiagnosisRecord
                     DoctorDiagnosisRecord diagnosisRecord = new DoctorDiagnosisRecord();
-                    diagnosisRecord.SetPatientName(firstName, lastName); // Pass patient data
+                    diagnosisRecord.SetPatientName(firstName, lastName);
                     diagnosisRecord.Show();
 
-                    // Optionally close this form
+                    // Close current form
                     this.Close();
                 }
                 catch (Exception ex)
@@ -144,5 +160,6 @@ namespace Infocare_Project_1
                 }
             }
         }
+
     }
 }

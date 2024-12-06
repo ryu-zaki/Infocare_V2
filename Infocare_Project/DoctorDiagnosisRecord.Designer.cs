@@ -69,7 +69,7 @@
             DoctorLastNameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorFirstNameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            DoctorDateLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorTimeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -437,17 +437,17 @@
             guna2HtmlLabel6.TabIndex = 219;
             guna2HtmlLabel6.Text = "Doctor's name";
             // 
-            // guna2HtmlLabel15
+            // DoctorDateLabel
             // 
-            guna2HtmlLabel15.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel15.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel15.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel15.Location = new Point(676, 68);
-            guna2HtmlLabel15.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel15.Name = "guna2HtmlLabel15";
-            guna2HtmlLabel15.Size = new Size(52, 15);
-            guna2HtmlLabel15.TabIndex = 227;
-            guna2HtmlLabel15.Text = "AH_DATE";
+            DoctorDateLabel.BackColor = Color.FromArgb(110, 177, 247);
+            DoctorDateLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DoctorDateLabel.ForeColor = Color.FromArgb(13, 41, 80);
+            DoctorDateLabel.Location = new Point(676, 68);
+            DoctorDateLabel.Margin = new Padding(3, 2, 3, 2);
+            DoctorDateLabel.Name = "DoctorDateLabel";
+            DoctorDateLabel.Size = new Size(52, 15);
+            DoctorDateLabel.TabIndex = 227;
+            DoctorDateLabel.Text = "AH_DATE";
             // 
             // guna2HtmlLabel14
             // 
@@ -518,7 +518,7 @@
             Controls.Add(guna2HtmlLabel9);
             Controls.Add(guna2HtmlLabel8);
             Controls.Add(guna2HtmlLabel7);
-            Controls.Add(guna2HtmlLabel15);
+            Controls.Add(DoctorDateLabel);
             Controls.Add(guna2HtmlLabel14);
             Controls.Add(DoctorTimeLabel);
             Controls.Add(guna2HtmlLabel13);
@@ -545,6 +545,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "DoctorDiagnosisRecord";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += DoctorDiagnosisRecord_Load;
             guna2CustomGradientPanel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -580,7 +581,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel15;
+        private Guna.UI2.WinForms.Guna2HtmlLabel DoctorDateLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorTimeLabel;
     }
