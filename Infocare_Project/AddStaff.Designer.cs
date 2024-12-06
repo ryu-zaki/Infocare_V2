@@ -527,7 +527,7 @@
             EmailTextbox.Name = "EmailTextbox";
             EmailTextbox.PasswordChar = '\0';
             EmailTextbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            EmailTextbox.PlaceholderText = "Username";
+            EmailTextbox.PlaceholderText = "Email";
             EmailTextbox.SelectedText = "";
             EmailTextbox.ShadowDecoration.CustomizableEdges = customizableEdges7;
             EmailTextbox.Size = new Size(194, 46);
