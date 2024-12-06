@@ -854,18 +854,16 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return PatientTable;
         }
 
-
-        
-
-
-        public decimal? GetConsultationFee(string specialization)
+        public decimal? GetConsultationFee(string doctorName)
         {
             using (var connection = GetConnection())
             {
-                // Corrected SQL query
-                string query = @"SELECT consultationfee FROM tb_doctorinfo WHERE Specialization = @specialization";
+                string query = @"SELECT consultationfee 
+                 FROM tb_doctorinfo 
+                 WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @doctorName";
+
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@specialization", specialization);
+                command.Parameters.AddWithValue("@doctorName", doctorName);
 
                 try
                 {
@@ -874,7 +872,9 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     {
                         if (reader.Read())
                         {
-                            return reader.IsDBNull(reader.GetOrdinal("consultationfee")) ? (decimal?)null : reader.GetDecimal("consultationfee");
+                            return reader.IsDBNull(reader.GetOrdinal("consultationfee"))
+                                ? (decimal?)null
+                                : reader.GetDecimal("consultationfee");
                         }
                         else
                         {
@@ -1380,6 +1380,23 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
 
             return dataTable;
+        }
+
+        public bool IsUsernameExists(string username)
+        {
+            string query = "SELECT COUNT(*) FROM tb_patientinfo WHERE P_Username = @Username";
+
+            // Corrected class names: MySqlConnection and MySqlCommand
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
         }
     }
 }
