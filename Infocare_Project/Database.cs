@@ -1118,6 +1118,58 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
+        public void CheckOutAppointment(int appointmentID)
+        {
+            string updateQuery = "update tb_appointmenthistory set ah_status = 'CheckOut' where id = @id";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", appointmentID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error CheckOut appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public DataTable CheckOutAppointmentList(string doctorFullName)
+        {
+            string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
+                     WHERE ah_status = 'CheckOut' AND ah_Doctor_Name = @DoctorFullName";
+
+            DataTable appointmentTable = new DataTable();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DoctorFullName", doctorFullName);
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(appointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return appointmentTable;
+        }
+
         public DataTable ViewAppointments(string doctorFullName)
         {
             string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee FROM tb_appointmenthistory 
@@ -1150,7 +1202,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable ViewCompletedAppointments(string doctorFullName)
         {
-            string query = @"SELECT id as 'Transaction ID', ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+            string query = @"SELECT id, ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
              WHERE ah_status = 'Completed'";
             //aayusin pa yung sa doctor for now completed muna
             DataTable AppointmentTable = new DataTable();
@@ -1610,6 +1662,52 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
+        public string GetDoctorSpecialization(string doctorFullName)
+        {
+            string specialization = string.Empty;
+            string query = "SELECT specialization FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @doctorName";
 
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@doctorName", doctorFullName);
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        specialization = result.ToString();
+                    }
+                }
+            }
+            return specialization;
+        }
+
+        public DataTable ChecOutList()
+        {
+            string query = @"SELECT ah_patient_name, ah_Consfee, ah_time, ah_date from tb_appointmenthistory where ah_status = 'Checkout'";
+
+            DataTable CheckoutTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(CheckoutTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return CheckoutTable;
+        }
     }
 }

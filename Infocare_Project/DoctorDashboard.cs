@@ -38,6 +38,8 @@ namespace Infocare_Project_1
             AcceptButton.Visible = true;
             DeclineButton.Visible = true;
             ViewButton.Visible = false;
+            CheckOutButton.Visible = false;
+            InvoiceButton.Visible = false;
 
             Database db = new Database();
 
@@ -78,6 +80,8 @@ namespace Infocare_Project_1
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = true;
             ViewButton.Visible = false;
+            CheckOutButton.Visible = false;
+            InvoiceButton.Visible = false;
 
             Database db = new Database();
 
@@ -203,40 +207,6 @@ namespace Infocare_Project_1
                 MessageBox.Show("Please select an appointment.");
             }
 
-            //if (DataGridViewList.SelectedRows.Count > 0)
-            //{
-            //    int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["id"].Value);
-            //    Database db = new Database();
-
-            //    db.CreateDiagnosis(
-            //        appointmentId,
-            //        patientDetails =>
-            //        {
-
-            //            DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
-            //            doctorMedicalRecord.SetPatientDetails(
-            //                patientDetails["P_Firstname"],
-            //                patientDetails["P_Lastname"],
-            //                patientDetails["P_Bdate"],
-            //                patientDetails["P_Height"],
-            //                patientDetails["P_Weight"],
-            //                patientDetails["P_BMI"],
-            //                patientDetails["P_Blood_Type"],
-            //                patientDetails["P_Alergy"],
-            //                patientDetails["P_Medication"],
-            //                patientDetails["P_PrevSurgery"],
-            //                patientDetails["P_Precondition"],
-            //                patientDetails["P_Treatment"]
-            //            );
-            //            doctorMedicalRecord.Show();
-            //        },
-            //        errorMessage => MessageBox.Show(errorMessage)
-            //    );
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Please select an appointment.");
-            //}
         }
 
 
@@ -349,6 +319,8 @@ namespace Infocare_Project_1
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = false;
             ViewButton.Visible = true;
+            CheckOutButton.Visible = true;
+            InvoiceButton.Visible = true;
 
             Database db = new Database();
 
@@ -381,7 +353,7 @@ namespace Infocare_Project_1
         {
             if (DataGridViewList.SelectedRows.Count > 0)
             {
-                int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["Transaction ID"].Value);
+                int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["id"].Value);
                 Database db = new Database();
 
                 // Fetch appointment and patient details
@@ -427,6 +399,68 @@ namespace Infocare_Project_1
             {
                 MessageBox.Show("Please select an appointment.");
             }
+        }
+
+        private void CheckOutButton_Click(object sender, EventArgs e)
+        {
+            Database db = new Database();
+
+            DialogResult result = MessageBox.Show("Are you sure you want to check out this appointment?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in DataGridViewList.Rows)
+                    {
+                        if (row.Cells["checkboxcolumn"] is DataGridViewCheckBoxCell checkBoxCell && checkBoxCell.Value != null && (bool)checkBoxCell.Value)
+                        {
+                            int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
+                            db.CheckOutAppointment(appointmentId);
+                        }
+                    }
+
+                    string doctorName = NameLabel.Text.Replace("!", "").Trim();
+
+                    string specialization = db.GetDoctorSpecialization(doctorName);
+
+                    DataTable checkoutAppointments = db.CheckOutAppointmentList(doctorName);
+
+                    DataGridViewList.DataSource = checkoutAppointments;
+
+                    DoctorBillingInvoice invoiceForm = new DoctorBillingInvoice();
+
+                    // Pass doctor details and transactions
+                    string date = DateTime.Now.ToString("yyyy-MM-dd"); // Replace with appropriate date if needed
+                    invoiceForm.SetDoctorDetails(doctorName, specialization, date, checkoutAppointments);
+
+                    invoiceForm.Show();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while checking out the appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+
+        private void InvoiceButton_Click(object sender, EventArgs e)
+        {
+            string doctorFullName = $"Dr. {LastName}, {FirstName}";
+
+            Database db = new Database();
+            string specialization = db.GetDoctorSpecialization(doctorFullName);
+
+            DataTable checkoutAppointments = db.CheckOutAppointmentList(doctorFullName);
+
+            DoctorBillingInvoice doctorBilling = new DoctorBillingInvoice();
+
+            string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+            doctorBilling.SetDoctorDetails(doctorFullName, specialization, currentDate, checkoutAppointments);
+
+            doctorBilling.Show();
         }
 
     }

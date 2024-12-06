@@ -9,11 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using iText.Kernel.Pdf;
-//using iText.Layout;
-//using iText.Layout.Element;
-//using iText.IO.Image;
-//using System.Drawing.Imaging;
+using System.Drawing.Printing;
+using System.Windows.Forms;
 
 namespace Infocare_Project_1
 {
@@ -24,29 +21,7 @@ namespace Infocare_Project_1
             InitializeComponent();
         }
 
-        private void Print(Panel PrintPanel)
-        {
-            PrinterSettings ps = new PrinterSettings();
-            PrintPanel = PrintablePanel;
-            getprintarea(PrintPanel);
-            printPreviewDialog1.Document = printDocument1;
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            printPreviewDialog1.ShowDialog();
-        }
-
-        private Bitmap memorying;
-
-        private void getprintarea(Panel PrintPanel)
-        {
-            memorying = new Bitmap(PrintPanel.Width, PrintPanel.Height);
-            PrintPanel.DrawToBitmap(memorying, new Rectangle(0, 0, PrintPanel.Width, PrintPanel.Height));
-        }
-
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            Rectangle pagearea = e.PageBounds;
-            e.Graphics.DrawImage(memorying, (pagearea.Width / 2) - (this.PrintablePanel.Width / 2), this.PrintablePanel.Location.Y);
-        }
+       
         public void SetDetails(
         string firstName, string lastName, string birthDate, string height, string weight, string bmi,
         string bloodType, string allergy, string medication, string prevSurgery, string precondition,
@@ -67,8 +42,8 @@ namespace Infocare_Project_1
             viewinfo_Prevsur.Text = prevSurgery;
             viewinfo_Precon.Text = precondition;
             viewinfo_Treatment.Text = treatment;
-            diagnosis_Fname.Text = doctorFirstName; // If you have a TextBox for this
-            diagnosis_Lname.Text = doctorLastName; // If you have a TextBox for this
+            diagnosis_Fname.Text = doctorFirstName; 
+            diagnosis_Lname.Text = doctorLastName; 
             appointmenttimeTextBox.Text = appointmentTime;
             appointmentdateTextBox.Text = appointmentDate;
             consultationTextBox.Text = consultationFee;
@@ -88,6 +63,35 @@ namespace Infocare_Project_1
         private void ViewPatientInformation2_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Print(Panel PrintPanel)
+        {
+
+            PrinterSettings ps = new PrinterSettings();
+            PrintPanel = PrintablePanel;
+            getprintarea(PrintPanel);
+            printPreviewDialog1.Document = printDocument1;
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private Bitmap memorying;
+
+        private void getprintarea(Panel PrintPanel)
+        {
+            memorying = new Bitmap(PrintPanel.Width, PrintPanel.Height);
+            PrintPanel.DrawToBitmap(memorying, new Rectangle(0, 0, PrintPanel.Width, PrintPanel.Height));
+        }
+
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Rectangle pagearea = e.PageBounds;
+            float scaleWidth = (float)pagearea.Width / PrintablePanel.Width;
+            float scaleHeight = (float)pagearea.Height / PrintablePanel.Height;
+            float scale = Math.Min(scaleWidth, scaleHeight); 
+
+            e.Graphics.DrawImage(memorying, 0, 0, PrintablePanel.Width * scale, PrintablePanel.Height * scale);
         }
 
         private void viewinfo_BackBtn_Click(object sender, EventArgs e)
@@ -118,45 +122,39 @@ namespace Infocare_Project_1
             }
         }
 
-        //private void ExportToPDF(Panel ExportPanel, string filePath)
-        //{
-        //    // Step 1: Capture the panel's content as an image
-        //    Bitmap panelBitmap = new Bitmap(ExportPanel.Width, ExportPanel.Height);
-        //    ExportPanel.DrawToBitmap(panelBitmap, new Rectangle(0, 0, ExportPanel.Width, ExportPanel.Height));
 
-        //    // Step 2: Save the image temporarily
-        //    string tempImagePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "panelImage.png");
-        //    panelBitmap.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
+        private void PrintToPDF(Panel printPanel, string filePath)
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF"; 
 
-        //    // Step 3: Create a new PDF document and add the image
-        //    using (PdfWriter writer = new PdfWriter(filePath))
-        //    using (PdfDocument pdfDoc = new PdfDocument(writer))
-        //    using (Document document = new Document(pdfDoc))
-        //    {
-        //        // Specify the iText namespace for Image
-        //        iText.Layout.Element.Image image = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create(tempImagePath))
-        //            .SetWidth(ExportPanel.Width)
-        //            .SetHeight(ExportPanel.Height);
+            printDocument.PrintPage += (sender, e) =>
+            {
+                Bitmap memorying = new Bitmap(printPanel.Width, printPanel.Height);
+                printPanel.DrawToBitmap(memorying, new Rectangle(0, 0, printPanel.Width, printPanel.Height));
 
-        //        document.Add(image);
-        //    }
 
-        //    // Inform the user that the PDF was created successfully
-        //    MessageBox.Show("PDF created successfully at " + filePath);
-        //}
+                e.Graphics.DrawImage(memorying, 0, 0);
+            };
 
+            printDocument.PrintController = new StandardPrintController(); 
+            printDocument.Print();
+        }
 
         private void CreatePDFButton_Click(object sender, EventArgs e)
         {
-            //// Specify the file path for the PDF
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
-            //saveFileDialog.FileName = "PatientInformation.pdf";
-            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    string filePath = saveFileDialog.FileName;
-            //    ExportToPDF(this.PrintablePanel, filePath);
-            //}
+            DialogResult confirm = MessageBox.Show("Are you sure you want to make PDF of form?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+                    PrintToPDF(this.PrintablePanel, filePath);
+                }
+            }
+           
         }
     }
 }

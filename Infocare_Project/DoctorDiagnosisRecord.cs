@@ -44,17 +44,13 @@ namespace Infocare_Project_1
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            //DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Your progress will be lost.", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirm = MessageBox.Show("Are you sure you want to back? Unsaved changes will be lost.", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            //if (confirm == DialogResult.Yes)
+            if (confirm == DialogResult.Yes)
 
-            //{
-            //    DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
-            //    this.Hide();
-
-            //    doctorMedicalRecord.Show();
-            //    doctorMedicalRecord.BringToFront();
-            //}
+            {
+                this.Close();
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

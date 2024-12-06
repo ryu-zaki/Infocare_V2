@@ -63,14 +63,12 @@
             doctor_MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             doctor_ExitButton = new Guna.UI2.WinForms.Guna2Button();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorConsultationFeeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorSpecializationLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorLastNameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorFirstNameLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorDateLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorTimeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -365,18 +363,6 @@
             guna2BorderlessForm1.DragStartTransparencyValue = 1D;
             guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
-            // guna2HtmlLabel13
-            // 
-            guna2HtmlLabel13.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel13.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel13.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel13.Location = new Point(45, 438);
-            guna2HtmlLabel13.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            guna2HtmlLabel13.Size = new Size(255, 15);
-            guna2HtmlLabel13.TabIndex = 224;
-            guna2HtmlLabel13.Text = "DAPAT TO PATI INFO NUNG DOCTOR MA FETCH";
-            // 
             // DoctorConsultationFeeLabel
             // 
             DoctorConsultationFeeLabel.BackColor = Color.FromArgb(110, 177, 247);
@@ -449,18 +435,6 @@
             DoctorDateLabel.TabIndex = 227;
             DoctorDateLabel.Text = "AH_DATE";
             // 
-            // guna2HtmlLabel14
-            // 
-            guna2HtmlLabel14.BackColor = Color.FromArgb(110, 177, 247);
-            guna2HtmlLabel14.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel14.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel14.Location = new Point(600, 99);
-            guna2HtmlLabel14.Margin = new Padding(3, 2, 3, 2);
-            guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            guna2HtmlLabel14.Size = new Size(245, 15);
-            guna2HtmlLabel14.TabIndex = 226;
-            guna2HtmlLabel14.Text = "DITO DAPAT KUNG KELAN NA APPOINTMENT";
-            // 
             // DoctorTimeLabel
             // 
             DoctorTimeLabel.BackColor = Color.FromArgb(110, 177, 247);
@@ -502,7 +476,7 @@
             guna2HtmlLabel9.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel9.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel9.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel9.Location = new Point(742, 60);
+            guna2HtmlLabel9.Location = new Point(734, 59);
             guna2HtmlLabel9.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel9.Name = "guna2HtmlLabel9";
             guna2HtmlLabel9.Size = new Size(8, 15);
@@ -513,15 +487,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(845, 464);
             ControlBox = false;
             Controls.Add(guna2HtmlLabel9);
             Controls.Add(guna2HtmlLabel8);
             Controls.Add(guna2HtmlLabel7);
             Controls.Add(DoctorDateLabel);
-            Controls.Add(guna2HtmlLabel14);
             Controls.Add(DoctorTimeLabel);
-            Controls.Add(guna2HtmlLabel13);
             Controls.Add(DoctorConsultationFeeLabel);
             Controls.Add(DoctorSpecializationLabel);
             Controls.Add(DoctorLastNameLabel);
@@ -572,7 +545,6 @@
         private Guna.UI2.WinForms.Guna2ImageButton doctor_MinimizeButton;
         private Guna.UI2.WinForms.Guna2Button doctor_ExitButton;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorConsultationFeeLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorSpecializationLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorLastNameLabel;
@@ -582,7 +554,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorDateLabel;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorTimeLabel;
     }
 }
