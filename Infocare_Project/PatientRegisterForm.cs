@@ -258,8 +258,6 @@ namespace Infocare_Project
                 DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirm == DialogResult.Yes)
                 {
-                    StaffLogin patientLoginForm = new StaffLogin();
-                    patientLoginForm.Show();
                     this.Hide();
                 }
             }

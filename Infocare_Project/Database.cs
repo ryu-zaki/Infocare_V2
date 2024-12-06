@@ -1014,7 +1014,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable AppointmentList()
         {
-            string query = @"select ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee', ah_status AS 'Appointment Status' From tb_appointmenthistory";
+            string query = @"select id as 'Transaction ID', ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee' From tb_appointmenthistory";
 
             DataTable AppointmentTable = new DataTable();
 

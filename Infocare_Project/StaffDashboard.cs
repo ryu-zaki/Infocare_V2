@@ -32,6 +32,8 @@ namespace Infocare_Project_1
 
         private void pd_BookAppointment_Click(object sender, EventArgs e)
         {
+            SearchPanel.Visible = false;
+            ViewButton.Visible = false;
             SelectPatientPanel.Visible = true;
             BookAppPanel.Visible = true;
             SpecPanel.Visible = false;
@@ -57,15 +59,17 @@ namespace Infocare_Project_1
 
         private void pd_ViewAppointment_Click(object sender, EventArgs e)
         {
+            SearchPanel.Visible = false;
             AppointmentLabel.Text = "Appointment History List";
             ViewAppointmentPanel.Visible = true;
-            AppointmentDataGridViewList.Visible = true;
+            AppointmentDataGridViewList2.Visible = true;
 
             SelectPatientPanel.Visible = false;
             BookAppPanel.Visible = false;
             SpecPanel.Visible = false;
             pd_DoctorPanel.Visible = false;
             BookingPanel.Visible = false;
+            ViewButton.Visible = false;
 
             ShowAppointmentList();
         }
@@ -129,7 +133,6 @@ namespace Infocare_Project_1
 
             Database db = new Database();
 
-            // Fetch the available time slots
             List<string> timeSlots = db.GetDoctorAvailableTimes(selectedDoctor, selectedSpecialization);
 
             SelectPatientPanel.Visible = false;
@@ -140,7 +143,6 @@ namespace Infocare_Project_1
 
             if (timeSlots.Count > 0)
             {
-                // Populate the TimeCombobox
                 TimeCombobox.Items.Clear();
                 TimeCombobox.Items.Add("Select a Time Slot");
 
@@ -153,7 +155,6 @@ namespace Infocare_Project_1
             }
             else
             {
-                // Show error if no time slots are found
                 MessageBox.Show("No time slots found for this doctor and specialization.", "No Availability", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -282,10 +283,9 @@ namespace Infocare_Project_1
                 pd_SpecBox.Items.Clear();
                 pd_SpecBox.Items.Add("Select");
 
-                // Add all specializations to the ComboBox
                 pd_SpecBox.Items.AddRange(specializations.ToArray());
 
-                pd_SpecBox.SelectedIndex = 0; // Set default selection
+                pd_SpecBox.SelectedIndex = 0; 
             }
             catch (Exception ex)
             {
@@ -413,7 +413,7 @@ namespace Infocare_Project_1
                 DataTable AppointmentData = db.AppointmentList();
                 if (AppointmentData.Rows.Count > 0)
                 {
-                    AppointmentDataGridViewList.DataSource = AppointmentData;
+                    AppointmentDataGridViewList2.DataSource = AppointmentData;
                 }
                 else
                 {
@@ -470,12 +470,19 @@ namespace Infocare_Project_1
 
         private void PatientRegistrationButton_Click(object sender, EventArgs e)
         {
-            PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
-            patientRegisterForm.Show();
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Register a Patient?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
+                patientRegisterForm.Show();
+            }
+
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+            SearchPanel.Visible = true;
+            ViewButton.Visible = true;
             AppointmentLabel.Text = "Completed Appointments";
             SelectPatientPanel.Visible = false;
             SpecPanel.Visible = false;
@@ -484,10 +491,195 @@ namespace Infocare_Project_1
 
             BookAppPanel.Visible = false;
             ViewAppointmentPanel.Visible = true;
-            AppointmentDataGridViewList.Visible = true;
+            AppointmentDataGridViewList2.Visible = true;
             Database db = new Database();
             DataTable viewcompletedappoointment = db.ViewCompletedppointments();
-            AppointmentDataGridViewList.DataSource = viewcompletedappoointment;
+            AppointmentDataGridViewList2.DataSource = viewcompletedappoointment;
         }
+
+        private void AppointmentDataGridViewList2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+                e.Cancel = true;
+        }
+
+        private void AppointmentDataGridViewList2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = (bool)AppointmentDataGridViewList2.Rows[e.RowIndex].Cells[0].Value;
+
+                if (isChecked)
+                {
+                    foreach (DataGridViewRow row in AppointmentDataGridViewList2.Rows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            DataGridViewCheckBoxCell checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                            if (checkBoxCell != null)
+                            {
+                                checkBoxCell.Value = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("After CellValueChanged:");
+            foreach (DataGridViewRow row in AppointmentDataGridViewList2.Rows)
+            {
+                Console.WriteLine($"Row {row.Index}: Visible={row.Visible}, Checked={(row.Cells[0].Value ?? "null")}");
+            }
+        }
+
+
+        private void AppointmentDataGridViewList2_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (AppointmentDataGridViewList2.CurrentCell is DataGridViewCheckBoxCell)
+            {
+                AppointmentDataGridViewList2.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+            if (AppointmentDataGridViewList2.SelectedRows.Count > 0)
+            {
+                int appointmentId = Convert.ToInt32(AppointmentDataGridViewList2.SelectedRows[0].Cells["Transaction ID"].Value);
+                Database db = new Database();
+
+                db.viewDocument(
+                    appointmentId,
+                    patientDetails =>
+                    {
+                        ViewPatientInformation2 viewpatientinfo = new ViewPatientInformation2();
+
+                        viewpatientinfo.SetDetails(
+                            patientDetails["P_Firstname"],
+                            patientDetails["P_Lastname"],
+                            patientDetails["P_Bdate"],
+                            patientDetails["P_Height"],
+                            patientDetails["P_Weight"],
+                            patientDetails["P_BMI"],
+                            patientDetails["P_Blood_Type"],
+                            patientDetails["P_Alergy"],
+                            patientDetails["P_Medication"],
+                            patientDetails["P_PrevSurgery"],
+                            patientDetails["P_Precondition"],
+                            patientDetails["P_Treatment"],
+                            patientDetails["ah_DoctorFirstName"],
+                            patientDetails["ah_DoctorLastName"],
+                            patientDetails["ah_Time"],
+                            patientDetails["ah_Date"],
+                            patientDetails["ah_Consfee"],
+                            patientDetails["d_diagnosis"],
+                            patientDetails["d_additionalnotes"],
+                            patientDetails["d_doctoroder"],
+                            patientDetails["d_prescription"]
+                        );
+
+                        viewpatientinfo.Show();
+                    },
+                    errorMessage => MessageBox.Show(errorMessage)
+                );
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment.");
+            }
+        }
+
+        private void SearchTransactionButton_Click(object sender, EventArgs e)
+        {
+            string transactionId = TransactionIdTextBox.Text.Trim();
+            string patientName = NameTextBox.Text.Trim();
+
+            if (!string.IsNullOrEmpty(patientName) && patientName.Any(char.IsDigit))
+            {
+                MessageBox.Show("Patient name cannot contain numbers.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) && !transactionId.All(char.IsDigit))
+            {
+                MessageBox.Show("Transaction ID must contain only numeric values.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) || !string.IsNullOrEmpty(patientName))
+            {
+                try
+                {
+                    DataTable dataSource = (DataTable)AppointmentDataGridViewList2.DataSource;
+
+                    if (dataSource != null)
+                    {
+                        string filter = "";
+
+                        if (!string.IsNullOrEmpty(transactionId))
+                        {
+                            filter = $"Convert([Transaction ID], 'System.String') LIKE '%{transactionId}%'";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientName))
+                        {
+                            if (!string.IsNullOrEmpty(filter))
+                            {
+                                filter += " OR "; 
+                            }
+
+                            string[] nameParts = patientName.Split(',');
+
+                            if (nameParts.Length == 2)
+                            {
+                                string lastName = nameParts[0].Trim();
+                                string firstName = nameParts[1].Trim();
+
+                                filter += $"[Patient Name] LIKE '%{lastName}%' AND [Patient Name] LIKE '%{firstName}%'";
+                            }
+                            else
+                            {
+                                filter += $"[Patient Name] LIKE '%{patientName}%'";
+                            }
+                        }
+
+                        dataSource.DefaultView.RowFilter = filter;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error while filtering data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter either a transaction ID or a patient name to search.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+
+
+        private void ResetTransactionFilterButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dataSource = (DataTable)AppointmentDataGridViewList2.DataSource;
+
+                if (dataSource != null)
+                {
+                    dataSource.DefaultView.RowFilter = string.Empty; 
+
+                    TransactionIdTextBox.Clear(); 
+                    NameTextBox.Clear(); 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while resetting filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }
