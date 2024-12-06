@@ -379,7 +379,55 @@ namespace Infocare_Project_1
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
+            if (DataGridViewList.SelectedRows.Count > 0)
+            {
+                int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["Transaction ID"].Value);
+                Database db = new Database();
 
+                // Fetch appointment and patient details
+                db.viewDocument(
+                    appointmentId,
+                    patientDetails =>
+                    {
+                        // Open the ViewPatientInformation2 form
+                        ViewPatientInformation2 viewpatientinfo = new ViewPatientInformation2();
+
+                        // Populate the form's textboxes using the new method
+                        viewpatientinfo.SetDetails(
+                            patientDetails["P_Firstname"],
+                            patientDetails["P_Lastname"],
+                            patientDetails["P_Bdate"],
+                            patientDetails["P_Height"],
+                            patientDetails["P_Weight"],
+                            patientDetails["P_BMI"],
+                            patientDetails["P_Blood_Type"],
+                            patientDetails["P_Alergy"],
+                            patientDetails["P_Medication"],
+                            patientDetails["P_PrevSurgery"],
+                            patientDetails["P_Precondition"],
+                            patientDetails["P_Treatment"],
+                            patientDetails["ah_DoctorFirstName"],
+                            patientDetails["ah_DoctorLastName"],
+                            patientDetails["ah_Time"],
+                            patientDetails["ah_Date"],
+                            patientDetails["ah_Consfee"],
+                            patientDetails["d_diagnosis"],
+                            patientDetails["d_additionalnotes"],
+                            patientDetails["d_doctoroder"],
+                            patientDetails["d_prescription"]
+                        );
+
+                        // Show the form
+                        viewpatientinfo.Show();
+                    },
+                    errorMessage => MessageBox.Show(errorMessage)
+                );
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment.");
+            }
         }
+
     }
 }
