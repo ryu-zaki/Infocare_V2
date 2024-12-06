@@ -1382,11 +1382,10 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public DataTable ViewCompletedppointments(string doctorFullName)
+        public DataTable ViewCompletedppointments()
         {
-            string query = @"SELECT * FROM tb_AppointmentHistory where status = 'Completed'";
-                  //   WHERE ah_status = 'Accepted' AND ah_Doctor_Name = @DoctorFullName";
-                  // KAILANGAN PA MA FETCH YUNG NAME NUNG DOCTOR
+            string query = @"SELECT id as 'Transaction ID', ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+             WHERE ah_status = 'Completed'";
             DataTable AppointmentTable = new DataTable();
 
             try
@@ -1396,7 +1395,6 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@DoctorFullName", doctorFullName);
                         using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                         {
                             adapter.Fill(AppointmentTable);
