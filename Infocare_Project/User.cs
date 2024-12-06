@@ -148,14 +148,14 @@ namespace Infocare_Project
     public class Doctor : User
     {
         public List<string> Specialty { get; set; }
-        public double ConsultationFee { get; set; }
+        public decimal ConsultationFee { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public string DayAvailability { get; set; }
 
         public Doctor() { }
 
-        public Doctor(string firstName, string lastName, string contactNumber, string sex, List<string> specialty, double consultationFee, string username, string password, TimeSpan start_time, TimeSpan end_time, string dayAvailability)
+        public Doctor(string firstName, string lastName, string contactNumber, string sex, List<string> specialty, decimal consultationFee, string username, string password, TimeSpan start_time, TimeSpan end_time, string dayAvailability)
             : base(firstName, lastName, string.Empty, contactNumber, sex, string.Empty, username, password, string.Empty, DateTime.MinValue)
         {
             Specialty = specialty;

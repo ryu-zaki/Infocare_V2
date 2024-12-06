@@ -115,11 +115,11 @@ namespace Infocare_Project_1
             LoadConsFee();
         }
 
+
         private void pd_DocBtn_Click(object sender, EventArgs e)
         {
             if (pd_DocBox.SelectedItem == null || pd_DocBox.SelectedItem.ToString() == "Select")
             {
-                MessageBox.Show("Please select a doctor.");
                 return;
             }
 
@@ -161,7 +161,6 @@ namespace Infocare_Project_1
 
         private void pd_DocBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (pd_DocBox.SelectedItem != null && pd_DocBox.SelectedItem.ToString() != "Select")
             {
                 string selectedDoctor = pd_DocBox.SelectedItem.ToString();
@@ -179,8 +178,27 @@ namespace Infocare_Project_1
                 {
                     MessageBox.Show("No date availability data found for the selected doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                try
+                {
+                    decimal? consultationFee = db.GetConsultationFee(selectedDoctor);
+
+                    if (consultationFee.HasValue)
+                    {
+                        ConsFeeLbl.Text = $"{consultationFee:C}";
+                    }
+                    else
+                    {
+                        ConsFeeLbl.Text = "Not Available";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while loading the consultation fee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
 
         private List<DayOfWeek> ParseDayAvailability(string availability)
         {
@@ -279,21 +297,20 @@ namespace Infocare_Project_1
         {
             try
             {
-                Database db = new Database();
-
-                string selectedSpecialization = pd_SpecBox.SelectedItem?.ToString();
-
-                if (string.IsNullOrEmpty(selectedSpecialization) || selectedSpecialization == "Select")
+                if (pd_DocBox.SelectedItem == null || pd_DocBox.SelectedItem.ToString() == "Select")
                 {
-                    MessageBox.Show("Please select a valid specialization.");
                     return;
                 }
 
-                decimal? consultationFee = db.GetConsultationFee(selectedSpecialization);
+                string selectedDoctor = pd_DocBox.SelectedItem.ToString();
+
+                Database db = new Database();
+
+                decimal? consultationFee = db.GetConsultationFee(selectedDoctor);
 
                 if (consultationFee.HasValue)
                 {
-                    ConsFeeLbl.Text = $"{consultationFee}";
+                    ConsFeeLbl.Text = $"{consultationFee:C}";
                 }
                 else
                 {
@@ -305,6 +322,7 @@ namespace Infocare_Project_1
                 MessageBox.Show($"An error occurred while loading consultation fee: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void ConfirmBookBtn_Click(object sender, EventArgs e)
         {
@@ -354,12 +372,18 @@ namespace Infocare_Project_1
                         return;
                     }
 
-                    string feeText = ConsFeeLbl.Text.Trim();
-                    if (!decimal.TryParse(feeText, out decimal consultationFee))
+                    string feeText = ConsFeeLbl.Text.Trim().Replace("$", "").Replace("€", "").Replace("£", "").Trim();
+                    feeText = new string(feeText.Where(c => Char.IsDigit(c) || c == '.').ToArray());
+                    decimal consultationFee = 0;
+                    if (decimal.TryParse(feeText, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out consultationFee))
                     {
-                        MessageBox.Show("Invalid consultation fee.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid consultation fee format. Please check the fee and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
 
                     bool appointmentSaved = db.SaveAppointment(selectedPatient, specialization, selectedDoctor, selectedTimeSlot, appointmentDate, consultationFee);
 
@@ -441,6 +465,12 @@ namespace Infocare_Project_1
                 patientLoginForm.Show();
                 this.Hide();
             }
+        }
+
+        private void PatientRegistrationButton_Click(object sender, EventArgs e)
+        {
+            PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
+            patientRegisterForm.Show();
         }
     }
 }

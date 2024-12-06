@@ -157,7 +157,7 @@
             HeightTextBox.Name = "HeightTextBox";
             HeightTextBox.PasswordChar = '\0';
             HeightTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            HeightTextBox.PlaceholderText = "(in cm)";
+            HeightTextBox.PlaceholderText = "(in meter)";
             HeightTextBox.SelectedText = "";
             HeightTextBox.ShadowDecoration.CustomizableEdges = customizableEdges4;
             HeightTextBox.Size = new Size(177, 46);
@@ -202,6 +202,7 @@
             BmiTextBox.PasswordChar = '\0';
             BmiTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             BmiTextBox.PlaceholderText = "";
+            BmiTextBox.ReadOnly = true;
             BmiTextBox.SelectedText = "";
             BmiTextBox.ShadowDecoration.CustomizableEdges = customizableEdges8;
             BmiTextBox.Size = new Size(177, 46);

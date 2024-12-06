@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Infocare_Project
 {
@@ -46,11 +47,37 @@ namespace Infocare_Project
         {
             Guna2TextBox[] requiredTextBoxes = {
                 FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
-                ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, UsernameTxtbox, PasswordTxtbox, ConfirmPasswordTxtbox
+                ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, UsernameTxtbox
             };
 
             if (!InputValidator.ValidateAllFieldsFilled(requiredTextBoxes, "Please fill out all fields."))
             {
+                return;
+            }
+
+            string contactNumber = ContactNumberTxtbox.Text;
+
+            if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))
+            {
+                MessageBox.Show("Invalid number. The contact number must start with '09' and be exactly 11 digits.", "Invalid Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!FirstnameTxtbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(FirstnameTxtbox.Text))
+            {
+                MessageBox.Show("First name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!MiddleNameTxtbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(MiddleNameTxtbox.Text))
+            {
+                MessageBox.Show("Middle name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!LastNameTxtbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(LastNameTxtbox.Text))
+            {
+                MessageBox.Show("Last name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -82,6 +109,13 @@ namespace Infocare_Project
                 MessageBox.Show("Please enter a valid number for Zone.");
                 return;
             }
+            Database db = new Database();
+            if (db.IsUsernameExists(UsernameTxtbox.Text))
+            {
+                MessageBox.Show("The username is already in use. Please choose a different username.");
+                return;
+            }
+
 
             User newUser = new User
             {
@@ -92,8 +126,6 @@ namespace Infocare_Project
                 Bdate = BdayDateTimePicker.Value,
                 Sex = SexCombobox.SelectedItem?.ToString(),
                 Username = UsernameTxtbox.Text,
-                Password = PasswordTxtbox.Text,
-                ConfirmPassword = ConfirmPasswordTxtbox.Text,
                 ContactNumber = ContactNumberTxtbox.Text,
 
                 HouseNo = houseNo,
@@ -112,8 +144,8 @@ namespace Infocare_Project
 
             try
             {
-                Database db = new Database();
-                db.PatientReg1(newUser);
+                Database Db = new Database();
+                Db.PatientReg1(newUser);
 
                 var patientInfoForm = new PatientBasicInformationForm(newUser.Username, newUser.FirstName, newUser.LastName);
                 patientInfoForm.Show();
@@ -131,23 +163,16 @@ namespace Infocare_Project
 
         private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
         {
-            _placeHolderHandler.HandleTextBoxPlaceholder(UsernameTxtbox, UserNameLabel, "Username");
-        }
-
-        private void PasswordTxtbox_TextChanged(object sender, EventArgs e)
-        {
-            _placeHolderHandler.HandleTextBoxPlaceholder(PasswordTxtbox, PasswordLabel, "Password");
+            _placeHolderHandler.HandleTextBoxPlaceholder(UsernameTxtbox, UserNameLabel, "Email");
         }
 
         private void ContactNumberTxtbox_TextChanged(object sender, EventArgs e)
         {
             _placeHolderHandler.HandleTextBoxPlaceholder(ContactNumberTxtbox, ContactNumberLabel, "Contact Number");
+
+            
         }
 
-        private void ConfirmPasswordTxtbox_TextChanged(object sender, EventArgs e)
-        {
-            _placeHolderHandler.HandleTextBoxPlaceholder(ConfirmPasswordTxtbox, ConfirmPasswordLabel, "Confirm Password");
-        }
 
         private void FirstnameTxtbox_TextChanged(object sender, EventArgs e)
         {
@@ -203,7 +228,7 @@ namespace Infocare_Project
         {
             Control[] textBoxes = {
                                     UsernameTxtbox, FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
-                                    ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, PasswordTxtbox, ConfirmPasswordTxtbox
+                                    ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox
                                   };
 
             if (textBoxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)))

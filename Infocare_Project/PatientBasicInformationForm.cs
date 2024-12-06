@@ -1,15 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Infocare_Project
 {
@@ -26,6 +17,10 @@ namespace Infocare_Project
             FirstName = firstName;
             LastName = lastName;
             NameLabel.Text = $"{lastName}, {firstName}";
+
+            // Register event handlers for height and weight textboxes
+            HeightTextBox.TextChanged += HeightOrWeightTextChanged;
+            WeightTextBox.TextChanged += HeightOrWeightTextChanged;
         }
 
         private void PatientBasicInformationForm_Load(object sender, EventArgs e)
@@ -48,21 +43,42 @@ namespace Infocare_Project
             }
         }
 
+        // Event handler to calculate BMI whenever Height or Weight is changed
+        private void HeightOrWeightTextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                double heightCm = string.IsNullOrWhiteSpace(HeightTextBox.Text) ? 0 : Convert.ToDouble(HeightTextBox.Text);
+                double weight = string.IsNullOrWhiteSpace(WeightTextBox.Text) ? 0 : Convert.ToDouble(WeightTextBox.Text);
 
-
+                // Check if both height and weight are valid
+                if (heightCm > 0 && weight > 0)
+                {
+                    double heightInMeters = heightCm;
+                    double bmi = weight / (heightCm * heightCm); // BMI calculation (weight in kg, height in meters)
+                    BmiTextBox.Text = bmi.ToString("F2"); // Show the BMI with two decimal places
+                }
+                else
+                {
+                    BmiTextBox.Clear(); // Clear BMI if invalid input
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions, like non-numeric input
+                MessageBox.Show("Error calculating BMI: " + ex.Message);
+            }
+        }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-
             DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (confirm == DialogResult.Yes)
             {
                 try
                 {
                     Database db = new Database();
                     db.DeletePatientByUsername(LoggedInUsername);
-
                     MessageBox.Show("Your data has been deleted.");
                 }
                 catch (Exception ex)
@@ -74,16 +90,12 @@ namespace Infocare_Project
                     this.Close();
                 }
             }
-
         }
-
-
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             try
             {
-
                 double height = string.IsNullOrWhiteSpace(HeightTextBox.Text) ? 0 : Convert.ToDouble(HeightTextBox.Text);
                 double weight = string.IsNullOrWhiteSpace(WeightTextBox.Text) ? 0 : Convert.ToDouble(WeightTextBox.Text);
                 double bmi = string.IsNullOrWhiteSpace(BmiTextBox.Text) ? 0 : Convert.ToDouble(BmiTextBox.Text);
@@ -94,11 +106,8 @@ namespace Infocare_Project
                 string alergy = string.IsNullOrWhiteSpace(AlergyTextbox.Text) ? string.Empty : AlergyTextbox.Text;
                 string medication = string.IsNullOrWhiteSpace(MedicationTxtbox.Text) ? string.Empty : MedicationTxtbox.Text;
 
-
-
                 Patient patient = new Patient()
                 {
-
                     Height = height,
                     Weight = weight,
                     BMI = bmi,
@@ -137,7 +146,6 @@ namespace Infocare_Project
         private void BackButton_Click(object sender, EventArgs e)
         {
             DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Your progress will be lost.", "Back to Page 1", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (confirm == DialogResult.Yes)
             {
                 try
