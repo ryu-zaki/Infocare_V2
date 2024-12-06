@@ -35,10 +35,10 @@ namespace Infocare_Project_1
             ad_AppointmentPanel.Visible = false;
 
 
-            StaffDataGridViewList.Visible = true;
-            DoctorDataGridViewList.Visible = false;
-            PatientDataGridViewList.Visible = false;
-            AppointmentDataGridViewList.Visible = false;
+            StaffDataGridViewList2.Visible = true;
+            DoctorDataGridViewList2.Visible = false;
+            PatientDataGridViewList2.Visible = false;
+            AppointmentDataGridViewList2.Visible = false;
 
 
             ShowStaffList();
@@ -53,10 +53,10 @@ namespace Infocare_Project_1
 
 
 
-            DoctorDataGridViewList.Visible = true;
-            StaffDataGridViewList.Visible = false;
-            PatientDataGridViewList.Visible = false;
-            AppointmentDataGridViewList.Visible = false;
+            DoctorDataGridViewList2.Visible = true;
+            StaffDataGridViewList2.Visible = false;
+            PatientDataGridViewList2.Visible = false;
+            AppointmentDataGridViewList2.Visible = false;
 
 
 
@@ -71,10 +71,10 @@ namespace Infocare_Project_1
             ad_AppointmentPanel.Visible = false;
 
 
-            PatientDataGridViewList.Visible = true;
-            StaffDataGridViewList.Visible = false;
-            DoctorDataGridViewList.Visible = false;
-            AppointmentDataGridViewList.Visible = false;
+            PatientDataGridViewList2.Visible = true;
+            StaffDataGridViewList2.Visible = false;
+            DoctorDataGridViewList2.Visible = false;
+            AppointmentDataGridViewList2.Visible = false;
 
 
 
@@ -89,10 +89,10 @@ namespace Infocare_Project_1
             ad_docpanel.Visible = false;
             ad_staffpanel.Visible = false;
 
-            AppointmentDataGridViewList.Visible = true;
-            PatientDataGridViewList.Visible = false;
-            StaffDataGridViewList.Visible = false;
-            DoctorDataGridViewList.Visible = false;
+            AppointmentDataGridViewList2.Visible = true;
+            PatientDataGridViewList2.Visible = false;
+            StaffDataGridViewList2.Visible = false;
+            DoctorDataGridViewList2.Visible = false;
 
 
 
@@ -132,7 +132,7 @@ namespace Infocare_Project_1
                 DataTable staffData = db.StaffList();
                 if (staffData.Rows.Count > 0)
                 {
-                    StaffDataGridViewList.DataSource = staffData; // Bind the data to DataGridView
+                    StaffDataGridViewList2.DataSource = staffData; // Bind the data to DataGridView
                 }
                 else
                 {
@@ -154,7 +154,7 @@ namespace Infocare_Project_1
                 DataTable DoctorData = db.DoctorList();
                 if (DoctorData.Rows.Count > 0)
                 {
-                    DoctorDataGridViewList.DataSource = DoctorData;
+                    DoctorDataGridViewList2.DataSource = DoctorData;
                 }
                 else
                 {
@@ -176,7 +176,7 @@ namespace Infocare_Project_1
                 DataTable PatientData = db.PatientList();
                 if (PatientData.Rows.Count > 0)
                 {
-                    PatientDataGridViewList.DataSource = PatientData;
+                    PatientDataGridViewList2.DataSource = PatientData;
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace Infocare_Project_1
                 DataTable AppointmentData = db.AppointmentList();
                 if (AppointmentData.Rows.Count > 0)
                 {
-                    AppointmentDataGridViewList.DataSource = AppointmentData;
+                    AppointmentDataGridViewList2.DataSource = AppointmentData;
                 }
                 else
                 {
@@ -274,7 +274,226 @@ namespace Infocare_Project_1
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in StaffDataGridViewList2.Rows)
+            {
+                // Check if the checkbox column is selected
+                DataGridViewCheckBoxCell checkBoxCell = row.Cells["SelectCheckBox"] as DataGridViewCheckBoxCell;
 
+                if (checkBoxCell != null && Convert.ToBoolean(checkBoxCell.Value))
+                {
+                    // Make the entire row editable
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        cell.ReadOnly = false; // Set ReadOnly to false to allow editing
+                    }
+
+                    // Optionally, uncheck the checkbox after enabling editing
+                    checkBoxCell.Value = false;
+                }
+            }
+        }
+        private void StaffDataGridViewList2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void StaffDataGridViewList2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = (bool)StaffDataGridViewList2.Rows[e.RowIndex].Cells[0].Value;
+
+
+                if (isChecked)
+                {
+                    foreach (DataGridViewRow row in StaffDataGridViewList2.Rows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            DataGridViewCheckBoxCell checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                            if (checkBoxCell != null)
+                            {
+                                checkBoxCell.Value = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void StaffDataGridViewList2_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (StaffDataGridViewList2.CurrentCell is DataGridViewCheckBoxCell)
+            {
+                StaffDataGridViewList2.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void AppointmentDataGridViewList2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void AppointmentDataGridViewList2_CellBeginEdit_1(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void AppointmentDataGridViewList2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = (bool)AppointmentDataGridViewList2.Rows[e.RowIndex].Cells[0].Value;
+
+
+                if (isChecked)
+                {
+                    foreach (DataGridViewRow row in AppointmentDataGridViewList2.Rows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            DataGridViewCheckBoxCell checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                            if (checkBoxCell != null)
+                            {
+                                checkBoxCell.Value = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AppointmentDataGridViewList2_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (AppointmentDataGridViewList2.CurrentCell is DataGridViewCheckBoxCell)
+            {
+
+                AppointmentDataGridViewList2.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void PatientDataGridViewList2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void PatientDataGridViewList2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = (bool)PatientDataGridViewList2.Rows[e.RowIndex].Cells[0].Value;
+
+                if (isChecked)
+                {
+                    foreach (DataGridViewRow row in PatientDataGridViewList2.Rows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            DataGridViewCheckBoxCell checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                            if (checkBoxCell != null)
+                            {
+                                checkBoxCell.Value = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void PatientDataGridViewList2_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (PatientDataGridViewList2.CurrentCell is DataGridViewCheckBoxCell)
+            {
+                PatientDataGridViewList2.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void DoctorDataGridViewList2_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+                e.Cancel = true;
+        }
+
+
+        private void DoctorDataGridViewList2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = (bool)DoctorDataGridViewList2.Rows[e.RowIndex].Cells[0].Value;
+
+                if (isChecked)
+                {
+                    foreach (DataGridViewRow row in DoctorDataGridViewList2.Rows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            DataGridViewCheckBoxCell checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                            if (checkBoxCell != null)
+                            {
+                                checkBoxCell.Value = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DoctorDataGridViewList2_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (DoctorDataGridViewList2.CurrentCell is DataGridViewCheckBoxCell)
+            {
+                // Commit the edit when a checkbox is clicked
+                DoctorDataGridViewList2.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void StaffDataGridViewList2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            // Check if the clicked cell belongs to the "Edit" button column
+            if (StaffDataGridViewList2.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                StaffDataGridViewList2.Columns[e.ColumnIndex].Name == "EditButton")
+            {
+                // Get the selected row
+                DataGridViewRow selectedRow = StaffDataGridViewList2.Rows[e.RowIndex];
+
+                // Make the selected row editable
+                foreach (DataGridViewCell cell in selectedRow.Cells)
+                {
+                    cell.ReadOnly = false;
+                }
+
+                // Optionally, change the button text to "Save" or any other action
+                selectedRow.Cells["EditButton"].Value = "Save";
+            }
+        }
+
+        private void StaffDataGridViewList2_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = StaffDataGridViewList2.Rows[e.RowIndex];
+
+                // Check if the row is no longer ReadOnly (was edited)
+                if (row.ReadOnly == false)
+                {
+                    // Mark the row for update (e.g., by adding it to a list)
+                    row.Tag = "Modified";
+                }
+            }
         }
     }
 }

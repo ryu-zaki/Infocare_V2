@@ -57,6 +57,7 @@ namespace Infocare_Project_1
 
         private void pd_ViewAppointment_Click(object sender, EventArgs e)
         {
+            AppointmentLabel.Text = "Appointment History List";
             ViewAppointmentPanel.Visible = true;
             AppointmentDataGridViewList.Visible = true;
 
@@ -471,6 +472,22 @@ namespace Infocare_Project_1
         {
             PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
             patientRegisterForm.Show();
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            AppointmentLabel.Text = "Completed Appointments";
+            SelectPatientPanel.Visible = false;
+            SpecPanel.Visible = false;
+            pd_DoctorPanel.Visible = false;
+            BookingPanel.Visible = false;
+
+            BookAppPanel.Visible = false;
+            ViewAppointmentPanel.Visible = true;
+            AppointmentDataGridViewList.Visible = true;
+            Database db = new Database();
+            DataTable viewcompletedappoointment = db.ViewCompletedppointments();
+            AppointmentDataGridViewList.DataSource = viewcompletedappoointment;
         }
     }
 }
