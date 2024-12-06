@@ -1150,8 +1150,8 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable ViewCompletedAppointments(string doctorFullName)
         {
-            string query = @"SELECT ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
-                     WHERE ah_status = 'Completed'";
+            string query = @"SELECT id as 'Transaction ID', ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+             WHERE ah_status = 'Completed'";
             //aayusin pa yung sa doctor for now completed muna
             DataTable AppointmentTable = new DataTable();
 
@@ -1386,7 +1386,6 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         {
             string query = "SELECT COUNT(*) FROM tb_patientinfo WHERE P_Username = @Username";
 
-            // Corrected class names: MySqlConnection and MySqlCommand
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
@@ -1398,5 +1397,219 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                 }
             }
         }
+
+        public bool UsernameExistsStaff(string username)
+        {
+            string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE s_Username = @Username";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool UsernameExistsDoctor(string username)
+        {
+            string query = "SELECT COUNT(*) FROM tb_doctorinfo WHERE username = @Username";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool EmailExistsStaff(string email)
+        {
+            string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE s_email = @Email";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public static bool ValidatePassword(string password)
+        {
+            var regex = new System.Text.RegularExpressions.Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$");
+
+            if (!regex.IsMatch(password))
+            {
+                MessageBox.Show("Password must be at least 8 characters long and include:\n- At least one uppercase letter\n- At least one lowercase letter\n- At least one number\n- At least one special character (e.g., @, !, etc.)",
+                                "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        public int AddDoctor1(Doctor doctor)
+        {
+            using (var connection = GetConnection())
+            {
+                MySqlTransaction transaction = null;
+
+                try
+                {
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+
+                    string query = @"INSERT INTO tb_doctorinfo 
+                     (firstname, middlename, lastname, username, password, consultationfee, start_time, end_time, day_availability, contactnumber) 
+                     VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @StartTime, @EndTime, @DayAvailability, @ContactNumber)";
+                    MySqlCommand command = new MySqlCommand(query, connection, transaction);
+
+                    command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
+                    command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
+                    command.Parameters.AddWithValue("@LastName", doctor.LastName);
+                    command.Parameters.AddWithValue("@Username", doctor.Username);
+                    command.Parameters.AddWithValue("@Password", doctor.Password);
+                    command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
+                    command.Parameters.AddWithValue("@StartTime", doctor.StartTime);
+                    command.Parameters.AddWithValue("@EndTime", doctor.EndTime);
+                    command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
+                    command.Parameters.AddWithValue("@ContactNumber", doctor.ContactNumber);
+
+
+                    command.ExecuteNonQuery();
+                    int doctorId = (int)command.LastInsertedId;
+
+                    List<string> specializationsList = new List<string>();
+
+                    Console.WriteLine("Number of specializations to insert: " + doctor.Specialty.Count);
+
+                    foreach (var specialization in doctor.Specialty)
+                    {
+                        Console.WriteLine("Inserting specialization: " + specialization);
+
+                        string specializationQuery = @"INSERT INTO tb_doctor_specializations (doctor_id, specialization) 
+                                       VALUES (@DoctorId, @Specialization)";
+                        MySqlCommand specializationCommand = new MySqlCommand(specializationQuery, connection, transaction);
+
+                        specializationCommand.Parameters.AddWithValue("@DoctorId", doctorId);
+                        specializationCommand.Parameters.AddWithValue("@Specialization", specialization);
+
+                        specializationCommand.ExecuteNonQuery();
+
+                        specializationsList.Add(specialization);
+                    }
+
+                    Console.WriteLine("Specializations inserted: " + string.Join(", ", specializationsList));
+
+                    string joinedSpecializations = string.Join(", ", specializationsList);
+                    string updateQuery = @"UPDATE tb_doctorinfo 
+                                   SET specialization = @Specialization 
+                                   WHERE id = @DoctorId";
+                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, connection, transaction);
+                    updateCommand.Parameters.AddWithValue("@Specialization", joinedSpecializations);
+                    updateCommand.Parameters.AddWithValue("@DoctorId", doctorId);
+                    updateCommand.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    return doctorId;
+                }
+                catch (Exception ex)
+                {
+                    if (transaction != null)
+                    {
+                        transaction.Rollback();
+                    }
+                    throw new Exception("Error inserting doctor data: " + ex.Message);
+                }
+            }
+        }
+
+        public void viewDocument(int appointmentId, Action<Dictionary<string, string>> onSuccess, Action<string> onFailure)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string getPatientNameQuery = "SELECT * FROM tb_appointmenthistory WHERE id = @appointmentId";
+                    using (MySqlCommand command = new MySqlCommand(getPatientNameQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@appointmentId", appointmentId);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string patientName = reader["ah_Patient_Name"].ToString();
+                                string doctorName = reader["ah_Doctor_Name"].ToString();
+                                var nameParts = patientName.Split(',');
+                                var doctorParts = doctorName.Split(',');
+
+                                if (nameParts.Length < 2 || doctorParts.Length < 2)
+                                {
+                                    onFailure?.Invoke("Invalid patient or doctor name format in the database.");
+                                    return;
+                                }
+
+                                string patientFirstName = nameParts[1].Trim();
+                                string patientLastName = nameParts[0].Trim();
+                                string doctorFirstName = doctorParts[1].Trim();
+                                string doctorLastName = doctorParts[0].Trim();
+
+                                var patientDetails = new Dictionary<string, string>
+                        {
+                            { "P_Firstname", patientFirstName },
+                            { "P_Lastname", patientLastName },
+                            { "P_Bdate", reader["P_bdate"].ToString() },
+                            { "P_Height", reader["P_height"].ToString() },
+                            { "P_Weight", reader["P_weight"].ToString() },
+                            { "P_BMI", reader["P_bmi"].ToString() },
+                            { "P_Blood_Type", reader["P_Blood_type"].ToString() },
+                            { "P_Alergy", reader["P_alergy"].ToString() },
+                            { "P_Medication", reader["P_medication"].ToString() },
+                            { "P_PrevSurgery", reader["P_prevsurgery"].ToString() },
+                            { "P_Precondition", reader["P_precondition"].ToString() },
+                            { "P_Treatment", reader["P_treatment"].ToString() },
+                            { "ah_DoctorFirstName", doctorFirstName },
+                            { "ah_DoctorLastName", doctorLastName },
+                            { "ah_Time", reader["ah_time"].ToString() },
+                            { "ah_Date", reader["ah_date"].ToString() },
+                            { "ah_Consfee", reader["ah_Consfee"].ToString() },
+                            { "d_diagnosis", reader["d_diagnosis"].ToString() },
+                            { "d_additionalnotes", reader["d_additionalnotes"].ToString() },
+                            { "d_doctoroder", reader["d_doctoroder"].ToString() },
+                            { "d_prescription", reader["d_prescription"].ToString() }
+                        };
+
+                                onSuccess?.Invoke(patientDetails);
+                            }
+                            else
+                            {
+                                onFailure?.Invoke("Appointment details not found.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                onFailure?.Invoke($"An error occurred: {ex.Message}");
+            }
+        }
+
+
     }
 }

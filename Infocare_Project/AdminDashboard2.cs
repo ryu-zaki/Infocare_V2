@@ -271,5 +271,10 @@ namespace Infocare_Project_1
                 this.Hide();
             }
         }
+
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

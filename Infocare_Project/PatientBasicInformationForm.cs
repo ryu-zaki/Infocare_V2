@@ -94,6 +94,41 @@ namespace Infocare_Project
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
+            if (!AlergyTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(AlergyTextbox.Text))
+            {
+                MessageBox.Show("Alergy field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!MedicationTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MedicationTxtbox.Text))
+            {
+                MessageBox.Show("Medication field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            if (!PreviousSurgeryTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(PreviousSurgeryTextBox.Text))
+            {
+                MessageBox.Show("Previous Surgery field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            if (!preConditionTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(preConditionTextBox.Text))
+            {
+                MessageBox.Show("Pre-condition field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            if (!TreatmentTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(TreatmentTextBox.Text))
+            {
+                MessageBox.Show("Treatment field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+
             try
             {
                 double height = string.IsNullOrWhiteSpace(HeightTextBox.Text) ? 0 : Convert.ToDouble(HeightTextBox.Text);
@@ -130,6 +165,12 @@ namespace Infocare_Project
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
+
+            //VALIDATION
+
+            
+
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
