@@ -130,14 +130,12 @@ namespace Infocare_Project
 
                     MySqlCommand command = new MySqlCommand(query, connection);
 
-                    // Personal details
                     command.Parameters.AddWithValue("@P_username", username);
                     command.Parameters.AddWithValue("@Eme_Firstname", string.IsNullOrEmpty(firstName) ? DBNull.Value : firstName);
                     command.Parameters.AddWithValue("@Eme_Middlename", string.IsNullOrEmpty(middleName) ? DBNull.Value : middleName);
                     command.Parameters.AddWithValue("@Eme_Lastname", string.IsNullOrEmpty(lastName) ? DBNull.Value : lastName);
                     command.Parameters.AddWithValue("@Eme_Suffix", string.IsNullOrEmpty(suffix) ? DBNull.Value : suffix);
 
-                    // Address concatenation
                     string fullAddress = $"{houseNo},{zipCode}, {zone}, {street} street, Brgy. {barangay}, {city}";
                     command.Parameters.AddWithValue("@Eme_Address", string.IsNullOrEmpty(fullAddress) ? DBNull.Value : fullAddress);
 
@@ -512,13 +510,11 @@ namespace Infocare_Project
                             TimeSpan startTime = (TimeSpan)reader["start_time"];
                             TimeSpan endTime = (TimeSpan)reader["end_time"];
 
-                            // Calculate total duration and divide into 4 slots
                             TimeSpan totalDuration = endTime - startTime;
                             TimeSpan slotDuration = TimeSpan.FromTicks(totalDuration.Ticks / 4);
 
                             TimeSpan currentTime = startTime;
 
-                            // Generate 4 time slots
                             for (int i = 0; i < 4; i++)
                             {
                                 availableTimes.Add($"{currentTime:hh\\:mm}");
@@ -772,7 +768,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         
         public DataTable StaffList()
         {
-            string query = @"SELECT s_Firstname AS 'First Name', s_middleName AS 'Middle Name', s_lastname AS 'Last Name', s_suffix AS 'Suffix', s_contactnumber AS 'Contact Number', s_email AS 'Email' FROM tb_staffinfo";
+            string query = @"SELECT id as 'Staff ID', s_Firstname AS 'First Name', s_middleName AS 'Middle Name', s_lastname AS 'Last Name', s_suffix AS 'Suffix', s_contactnumber AS 'Contact Number', s_email AS 'Email' FROM tb_staffinfo";
 
             DataTable staffTable = new DataTable();
 
@@ -800,7 +796,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable DoctorList()
         {
-            string query = @"SELECT Firstname AS 'First Name', middleName AS 'Middle Name', lastname AS 'Last Name', specialization AS 'Specialization', day_availability AS 'Day Available' FROM tb_doctorinfo";
+            string query = @"SELECT id as 'Doctor ID', Firstname AS 'First Name', middleName AS 'Middle Name', lastname AS 'Last Name', specialization AS 'Specialization', day_availability AS 'Day Available' FROM tb_doctorinfo";
 
             DataTable DoctorTable = new DataTable();
 
@@ -828,7 +824,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public DataTable PatientList()
         {
-            string query = @"SELECT p_Firstname AS 'First Name', p_middleName AS 'Middle Name', P_lastname AS 'Last Name', p_suffix AS 'Suffix', p_sex AS 'Sex', P_bdate AS 'Birth Date', p_address AS 'Full Address' FROM tb_patientinfo";
+            string query = @"SELECT id as 'Patient ID', p_Firstname AS 'First Name', p_middleName AS 'Middle Name', P_lastname AS 'Last Name', p_suffix AS 'Suffix', p_sex AS 'Sex', P_bdate AS 'Birth Date', p_address AS 'Full Address' FROM tb_patientinfo";
 
             DataTable PatientTable = new DataTable();
 
@@ -1074,7 +1070,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public void AcceptAppointment(int appointmentId)
         {
-            string updateQuery = "update tb_appointmenthistory set ah_status = 'Accepted' where id = @id";
+            string updateQuery = "update tb_appointmenthistory set ah_status = 'Accepted' where id = @id and ah_status = 'Pending'";
 
             try
             {
@@ -1097,7 +1093,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public void DeclineAppointment(int appointmentId)
         {
-            string query = "update tb_appointmenthistory set ah_status = 'Declined' where id = @id";
+            string query = "update tb_appointmenthistory set ah_status = 'Declined' where id = @id and ah_status = 'Pending'";
 
             try
             {
@@ -1120,7 +1116,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public void CheckOutAppointment(int appointmentID)
         {
-            string updateQuery = "update tb_appointmenthistory set ah_status = 'CheckOut' where id = @id";
+            string updateQuery = "update tb_appointmenthistory set ah_status = 'CheckOut' where id = @id and ah_status = 'Completed'";
 
             try
             {
@@ -1140,6 +1136,30 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                 MessageBox.Show($"Error CheckOut appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void ReconsiderAppointment(int appointmentId)
+        {
+            string updateQuery = "update tb_appointmenthistory set ah_status = 'Pending' where id = @id and ah_status = 'Declined'";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", appointmentId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error accepting appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         public DataTable CheckOutAppointmentList(string doctorFullName)
         {
@@ -1268,7 +1288,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                 {
                     connection.Open();
 
-                    string getPatientNameQuery = "SELECT ah_Patient_Name FROM tb_appointmenthistory WHERE id = @appointmentId";
+                    string getPatientNameQuery = "SELECT ah_Patient_Name FROM tb_appointmenthistory WHERE id = @appointmentId and ah_status = 'Accepted'";
                     string patientName;
 
                     using (MySqlCommand command = new MySqlCommand(getPatientNameQuery, connection))
@@ -1377,7 +1397,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     command.Parameters.AddWithValue("@LastName", lastName);
 
                     int count = Convert.ToInt32(command.ExecuteScalar());
-                    return count > 0; // Return true if patient already exists, otherwise false
+                    return count > 0; 
                 }
             }
         }
@@ -1707,5 +1727,39 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
             return CheckoutTable;
         }
+
+        public bool IsValidTextInput(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return true;
+
+            if (input.Equals("N/A", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return input.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
+        }
+
+        public void UpdateStatus(string doctorName)
+        {
+            string query = @"UPDATE tb_appointmenthistory
+                     SET ah_status = @status
+                     WHERE ah_Doctor_Name = @doctorName and ah_status = 'Checkout'";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    string status = "InvoiceChecked";
+                    cmd.Parameters.AddWithValue("@status", status);
+
+                    cmd.Parameters.AddWithValue("@doctorName", doctorName);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
     }
 }

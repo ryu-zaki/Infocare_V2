@@ -152,7 +152,7 @@
             EnterButton.FillColor = Color.FromArgb(110, 177, 247);
             EnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
             EnterButton.ForeColor = Color.FromArgb(13, 41, 80);
-            EnterButton.Location = new Point(294, 380);
+            EnterButton.Location = new Point(259, 384);
             EnterButton.Margin = new Padding(3, 2, 3, 2);
             EnterButton.Name = "EnterButton";
             EnterButton.ShadowDecoration.CustomizableEdges = customizableEdges5;

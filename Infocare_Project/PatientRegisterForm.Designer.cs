@@ -398,7 +398,7 @@
             ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
             ExitButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             ExitButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            ExitButton.FillColor = Color.Silver;
+            ExitButton.FillColor = Color.FromArgb(110, 177, 247);
             ExitButton.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point);
             ExitButton.ForeColor = SystemColors.Window;
             ExitButton.Location = new Point(852, 0);
@@ -772,7 +772,7 @@
             // 
             // MinimizeButton
             // 
-            MinimizeButton.BackColor = Color.Silver;
+            MinimizeButton.BackColor = Color.FromArgb(110, 177, 247);
             MinimizeButton.CheckedState.ImageSize = new Size(64, 64);
             MinimizeButton.Cursor = Cursors.Hand;
             MinimizeButton.HoverState.ImageSize = new Size(20, 30);

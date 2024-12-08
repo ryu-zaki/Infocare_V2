@@ -29,7 +29,6 @@ namespace Infocare_Project_1
         string appointmentDate, string consultationFee, string diagnosis, string additionalNotes,
         string doctorOrder, string prescription)
         {
-            // Populate form fields
             viewinfo_Fname.Text = firstName;
             viewinfo_Lname.Text = lastName;
             viewinfo_Bdate.Text = birthDate;

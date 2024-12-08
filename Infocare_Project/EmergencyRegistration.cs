@@ -1,4 +1,5 @@
 ﻿using Infocare_Project.NewFolder;
+using Infocare_Project_1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,7 +103,7 @@ namespace Infocare_Project
 
             }
 
-            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr"};
+            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr", "N/A"};
 
             string enteredText = SuffixTxtbox.Text.Trim();
 
@@ -132,13 +133,11 @@ namespace Infocare_Project
 
             try
             {
-                // Retrieve values from form inputs and fix type assignments
                 string firstname = FirstnameTxtbox.Text.Trim();
                 string middlename = MiddleNameTxtbox.Text.Trim();
                 string lastname = LastNameTxtbox.Text.Trim();
                 string suffix = SuffixTxtbox.Text.Trim();
 
-                // Handling the address fields correctly
                 int housenum = string.IsNullOrWhiteSpace(HouseNoTxtbox.Text) ? 0 : Convert.ToInt32(HouseNoTxtbox.Text);
                 string street = string.IsNullOrWhiteSpace(StreetTxtbox.Text) ? string.Empty : StreetTxtbox.Text.Trim();
                 string barangay = string.IsNullOrWhiteSpace(BarangayTxtbox.Text) ? string.Empty : BarangayTxtbox.Text.Trim();
@@ -146,7 +145,6 @@ namespace Infocare_Project
                 int zipcode = string.IsNullOrWhiteSpace(ZipCodeTxtbox.Text) ? 0 : Convert.ToInt32(ZipCodeTxtbox.Text);
                 int zone = string.IsNullOrWhiteSpace(ZoneTxtbox.Text) ? 0 : Convert.ToInt32(ZoneTxtbox.Text);
 
-                // Create an EmergencyContact object with the details
                 EmergencyContact emergencyContact = new EmergencyContact()
                 {
                     FirstName = firstname,
@@ -168,15 +166,14 @@ namespace Infocare_Project
                 {
                     try
                     {
-                        // Register the patient data
                         Database db = new Database();
 
-                        // Call PatientReg3 for emergency contact registration
                         db.PatientReg3(emergencyContact, LoggedInUsername, firstname, lastname, middlename, suffix, housenum, street, barangay, city, zipcode, zone);
 
-                        // Open emergency registration form
 
                         MessageBox.Show("Submit Succesfully");
+                        this.Hide();
+
                     }
                     catch (Exception ex)
                     {
@@ -187,9 +184,6 @@ namespace Infocare_Project
                         this.Close();
                     }
 
-                    var PatientLogin = new StaffLogin();
-                    PatientLogin.Show();
-                    this.Hide();
 
                 }
             }

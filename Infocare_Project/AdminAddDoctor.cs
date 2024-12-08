@@ -47,16 +47,25 @@ namespace Infocare_Project
                 return;
             }
 
-            if (!FirstNameTextBox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(FirstNameTextBox.Text))
+            if (!FirstNameTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(FirstNameTextBox.Text))
             {
-                MessageBox.Show("First name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("First name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+
             }
 
-            if (!UserNameTextBox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(UserNameTextBox.Text))
+            if (!LastNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTextbox.Text))
             {
-                MessageBox.Show("Username must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Last name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+
+            }
+
+            if (!MiddleNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
+            {
+                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
             }
 
             Database db = new Database();
@@ -73,11 +82,7 @@ namespace Infocare_Project
                 return;
             }
 
-            if (!MiddleNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
-            {
-                MessageBox.Show("Middle name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+           
 
             if (!LastNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(LastNameTextbox.Text))
             {
@@ -123,7 +128,6 @@ namespace Infocare_Project
             }
 
 
-            // Create a new Doctor object
             Doctor newDoctor = new Doctor
             {
                 FirstName = FirstNameTextBox.Text.Trim(),
@@ -134,10 +138,9 @@ namespace Infocare_Project
                 ContactNumber = ContactNumberTextbox.Text.Trim(),
                 ConfirmPassword = ConfirmPasswordTextBox.Text.Trim(),
                 ConsultationFee = int.TryParse(ConsultationFeeTextBox.Text, out int consultationFee) ? consultationFee : 0,
-                Specialty = specializations, // Store the list of specializations
+                Specialty = specializations, 
             };
 
-            // Validate time slot
             string selectedTimeSlot = TimeComboBox.SelectedItem.ToString();
             if (!string.IsNullOrEmpty(selectedTimeSlot) && selectedTimeSlot != "Select a time slot")
             {
@@ -185,11 +188,14 @@ namespace Infocare_Project
                 }
 
                 MessageBox.Show("Doctor added successfully!");
+                this.Hide();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
         }
 
 
