@@ -27,7 +27,9 @@ namespace Infocare_Project_1
         private void PatientDashboard_Load(object sender, EventArgs e)
         {
             LoadSpecializations();
-            AppointmentDatePicker.MinDate = DateTime.Today;
+            AppointmentDatePicker.MinDate = DateTime.Today; 
+            AppointmentDatePicker.MaxDate = DateTime.Today.AddMonths(5); 
+
         }
 
         private void pd_BookAppointment_Click(object sender, EventArgs e)
@@ -222,26 +224,37 @@ namespace Infocare_Project_1
         {
             DateTime today = DateTime.Today;
             DateTime minDate = today.AddDays(4);
+            DateTime maxDate = today.AddMonths(5); 
 
             calendar.MinDate = minDate;
+            calendar.MaxDate = maxDate;
             calendar.MaxSelectionCount = 1;
 
             calendar.DateChanged += (s, e) =>
             {
-                if (e.Start < minDate)
+                if (e.Start < minDate || e.Start > maxDate || !availableDays.Contains(e.Start.DayOfWeek))
                 {
-                    MessageBox.Show("The selected date is in the past. Please select a valid date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    calendar.SetDate(minDate);
-                    return;
-                }
-
-                if (!availableDays.Contains(e.Start.DayOfWeek))
-                {
-                    MessageBox.Show("The selected date is unavailable. Please select a valid day from the available days.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    calendar.SetDate(minDate);
+                    MessageBox.Show("The selected date is unavailable. Please select a valid day.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    calendar.SetDate(FindNearestValidDate(e.Start, availableDays, minDate, maxDate));
                 }
             };
         }
+
+        private DateTime FindNearestValidDate(DateTime selectedDate, List<DayOfWeek> availableDays, DateTime minDate, DateTime maxDate)
+        {
+            for (DateTime date = selectedDate.Date; date <= maxDate; date = date.AddDays(1))
+            {
+                if (availableDays.Contains(date.DayOfWeek))
+                {
+                    return date;
+                }
+            }
+
+            return minDate;
+        }
+
+
+
 
 
         private void EnterPatientButton_Click(object sender, EventArgs e)

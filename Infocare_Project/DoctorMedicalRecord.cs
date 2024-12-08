@@ -21,7 +21,6 @@ namespace Infocare_Project_1
 
         public void SetDoctorName(string doctorFullName)
         {
-            // This method sets the doctor's name in the NameLabel
             DoctorFullNameLabel.Text = doctorFullName;
         }
         public void SetPatientDetails(string firstName, string lastName, string birthday, string height, string weight,
@@ -87,7 +86,6 @@ namespace Infocare_Project_1
             {
                 try
                 {
-                    // Collect data
                     string firstName = FirstNameTextBox.Text.Trim();
                     string lastName = LastNameTextBox.Text.Trim();
                     string bloodType = BloodTypeTextBox.Text.Trim();
@@ -107,10 +105,8 @@ namespace Infocare_Project_1
                         return;
                     }
 
-                    // Format patient name in the "LastName, FirstName" format
                     string patientName = $"{lastName}, {firstName}";
 
-                    // Update or insert logic
                     string query = @"UPDATE tb_AppointmentHistory SET 
                         P_Bdate = @Birthday,
                         P_Height = @Height,
@@ -123,7 +119,7 @@ namespace Infocare_Project_1
                         P_Alergy = @Allergy,
                         P_Medication = @Medication,
                         ah_status = 'Accepted'
-                     WHERE ah_Patient_Name = @PatientName";
+                     WHERE ah_Patient_Name = @PatientName and ah_status = 'Accepted'";
 
                     Dictionary<string, object> parameters = new()
             {
@@ -140,18 +136,15 @@ namespace Infocare_Project_1
                 { "@PatientName", patientName }
             };
 
-                    // Execute query
                     Database db = new Database();
                     db.ExecuteQuery(query, parameters);
 
-                    MessageBox.Show("Appointment history updated successfully and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Appointment history updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Navigate to DoctorDiagnosisRecord
                     DoctorDiagnosisRecord diagnosisRecord = new DoctorDiagnosisRecord();
                     diagnosisRecord.SetPatientName(firstName, lastName);
                     diagnosisRecord.Show();
 
-                    // Close current form
                     this.Close();
                 }
                 catch (Exception ex)

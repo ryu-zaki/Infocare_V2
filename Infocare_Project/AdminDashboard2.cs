@@ -29,6 +29,10 @@ namespace Infocare_Project_1
 
         private void ad_PatientList_Click(object sender, EventArgs e)
         {
+            SearchPanel4.Visible = false;
+            SearchPanel3.Visible = false;
+            SearchPanel2.Visible = true;
+            SearchPanel1.Visible = false;
             ad_staffpanel.Visible = true;
             ad_docpanel.Visible = false;
             ad_patientpanel.Visible = false;
@@ -46,6 +50,10 @@ namespace Infocare_Project_1
 
         private void ad_AppointmentList_Click(object sender, EventArgs e)
         {
+            SearchPanel3.Visible = true;
+            SearchPanel4.Visible = false;
+            SearchPanel2.Visible = false;
+            SearchPanel1.Visible = false;
             ad_docpanel.Visible = true;
             ad_staffpanel.Visible = false;
             ad_patientpanel.Visible = false;
@@ -65,6 +73,10 @@ namespace Infocare_Project_1
         }
         private void ad_patientBtn_Click(object sender, EventArgs e)
         {
+            SearchPanel4.Visible = false;
+            SearchPanel2.Visible = false;
+            SearchPanel1.Visible = true;
+            SearchPanel3.Visible = false;
             ad_patientpanel.Visible = true;
             ad_docpanel.Visible = false;
             ad_staffpanel.Visible = false;
@@ -84,6 +96,10 @@ namespace Infocare_Project_1
 
         private void ad_appointment_Click(object sender, EventArgs e)
         {
+            SearchPanel3.Visible = false;
+            SearchPanel4.Visible = true;
+            SearchPanel2.Visible = false;
+            SearchPanel1.Visible = false;
             ad_AppointmentPanel.Visible = true;
             ad_patientpanel.Visible = false;
             ad_docpanel.Visible = false;
@@ -132,7 +148,7 @@ namespace Infocare_Project_1
                 DataTable staffData = db.StaffList();
                 if (staffData.Rows.Count > 0)
                 {
-                    StaffDataGridViewList2.DataSource = staffData; // Bind the data to DataGridView
+                    StaffDataGridViewList2.DataSource = staffData;
                 }
                 else
                 {
@@ -266,7 +282,7 @@ namespace Infocare_Project_1
             DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
-                StaffLogin patientLoginForm = new StaffLogin();
+                AdminLogin patientLoginForm = new AdminLogin();
                 patientLoginForm.Show();
                 this.Hide();
             }
@@ -276,18 +292,15 @@ namespace Infocare_Project_1
         {
             foreach (DataGridViewRow row in StaffDataGridViewList2.Rows)
             {
-                // Check if the checkbox column is selected
                 DataGridViewCheckBoxCell checkBoxCell = row.Cells["SelectCheckBox"] as DataGridViewCheckBoxCell;
 
                 if (checkBoxCell != null && Convert.ToBoolean(checkBoxCell.Value))
                 {
-                    // Make the entire row editable
                     foreach (DataGridViewCell cell in row.Cells)
                     {
-                        cell.ReadOnly = false; // Set ReadOnly to false to allow editing
+                        cell.ReadOnly = false;
                     }
 
-                    // Optionally, uncheck the checkbox after enabling editing
                     checkBoxCell.Value = false;
                 }
             }
@@ -454,7 +467,6 @@ namespace Infocare_Project_1
         {
             if (DoctorDataGridViewList2.CurrentCell is DataGridViewCheckBoxCell)
             {
-                // Commit the edit when a checkbox is clicked
                 DoctorDataGridViewList2.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
@@ -463,20 +475,16 @@ namespace Infocare_Project_1
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            // Check if the clicked cell belongs to the "Edit" button column
             if (StaffDataGridViewList2.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 StaffDataGridViewList2.Columns[e.ColumnIndex].Name == "EditButton")
             {
-                // Get the selected row
                 DataGridViewRow selectedRow = StaffDataGridViewList2.Rows[e.RowIndex];
 
-                // Make the selected row editable
                 foreach (DataGridViewCell cell in selectedRow.Cells)
                 {
                     cell.ReadOnly = false;
                 }
 
-                // Optionally, change the button text to "Save" or any other action
                 selectedRow.Cells["EditButton"].Value = "Save";
             }
         }
@@ -487,13 +495,370 @@ namespace Infocare_Project_1
             {
                 DataGridViewRow row = StaffDataGridViewList2.Rows[e.RowIndex];
 
-                // Check if the row is no longer ReadOnly (was edited)
                 if (row.ReadOnly == false)
                 {
-                    // Mark the row for update (e.g., by adding it to a list)
                     row.Tag = "Modified";
                 }
             }
         }
+
+        private void SearchTransactionButton_Click(object sender, EventArgs e)
+        {
+            string transactionId = TransactionIdTextBox.Text.Trim();
+            string patientName = NameTextBox.Text.Trim();
+
+            if (!string.IsNullOrEmpty(patientName) && patientName.Any(char.IsDigit))
+            {
+                MessageBox.Show("Patient name cannot contain numbers.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) && !transactionId.All(char.IsDigit))
+            {
+                MessageBox.Show("Patient ID must contain only numeric values.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) || !string.IsNullOrEmpty(patientName))
+            {
+                try
+                {
+                    DataTable dataSource = (DataTable)PatientDataGridViewList2.DataSource;
+
+                    if (dataSource != null)
+                    {
+                        string filter = "";
+
+                        if (!string.IsNullOrEmpty(transactionId))
+                        {
+                            filter = $"Convert([Patient ID], 'System.String') LIKE '%{transactionId}%'";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientName))
+                        {
+                            if (!string.IsNullOrEmpty(filter))
+                            {
+                                filter += " OR ";
+                            }
+
+                            string[] nameParts = patientName.Split(',');
+
+                            if (nameParts.Length == 2)
+                            {
+                                string lastName = nameParts[0].Trim();
+                                string firstName = nameParts[1].Trim();
+
+                                filter += $"[First Name] LIKE '%{firstName}%' OR [Last Name] LIKE '%{lastName}%'";
+                            }
+                            else
+                            {
+                                filter += $"[First Name] LIKE '%{patientName}%' OR [Last Name] LIKE '%{patientName}%'";
+                            }
+                        }
+
+                        dataSource.DefaultView.RowFilter = filter;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error while filtering data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter either a Patient ID or a patient name to search.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+        }
+
+        private void ResetTransactionFilterButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dataSource = (DataTable)PatientDataGridViewList2.DataSource;
+
+                if (dataSource != null)
+                {
+                    dataSource.DefaultView.RowFilter = string.Empty;
+
+                    TransactionIdTextBox.Clear();
+                    NameTextBox.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while resetting filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            string transactionId = guna2TextBox2.Text.Trim();
+            string patientName = guna2TextBox1.Text.Trim();
+
+            if (!string.IsNullOrEmpty(patientName) && patientName.Any(char.IsDigit))
+            {
+                MessageBox.Show("Staff name cannot contain numbers.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) && !transactionId.All(char.IsDigit))
+            {
+                MessageBox.Show("Staff ID must contain only numeric values.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) || !string.IsNullOrEmpty(patientName))
+            {
+                try
+                {
+                    DataTable dataSource = (DataTable)StaffDataGridViewList2.DataSource;
+
+                    if (dataSource != null)
+                    {
+                        string filter = "";
+
+                        if (!string.IsNullOrEmpty(transactionId))
+                        {
+                            filter = $"Convert([Staff ID], 'System.String') LIKE '%{transactionId}%'";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientName))
+                        {
+                            if (!string.IsNullOrEmpty(filter))
+                            {
+                                filter += " OR ";
+                            }
+
+                            string[] nameParts = patientName.Split(',');
+
+                            if (nameParts.Length == 2)
+                            {
+                                string lastName = nameParts[0].Trim();
+                                string firstName = nameParts[1].Trim();
+
+                                filter += $"[First Name] LIKE '%{firstName}%' OR [Last Name] LIKE '%{lastName}%'";
+                            }
+                            else
+                            {
+                                filter += $"[First Name] LIKE '%{patientName}%' OR [Last Name] LIKE '%{patientName}%'";
+                            }
+                        }
+
+                        dataSource.DefaultView.RowFilter = filter;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error while filtering data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter either a Staff ID or a staff name to search.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dataSource = (DataTable)StaffDataGridViewList2.DataSource;
+
+                if (dataSource != null)
+                {
+                    dataSource.DefaultView.RowFilter = string.Empty;
+
+                    guna2TextBox2.Clear();
+                    guna2TextBox1.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while resetting filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SearchDoctorButton_Click(object sender, EventArgs e)
+        {
+            string transactionId = SearchDoctorID.Text.Trim();
+            string patientName = SearchDoctorName.Text.Trim();
+
+            if (!string.IsNullOrEmpty(patientName) && patientName.Any(char.IsDigit))
+            {
+                MessageBox.Show("Doctor name cannot contain numbers.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) && !transactionId.All(char.IsDigit))
+            {
+                MessageBox.Show("Doctor ID must contain only numeric values.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) || !string.IsNullOrEmpty(patientName))
+            {
+                try
+                {
+                    DataTable dataSource = (DataTable)DoctorDataGridViewList2.DataSource;
+
+                    if (dataSource != null)
+                    {
+                        string filter = "";
+
+                        if (!string.IsNullOrEmpty(transactionId))
+                        {
+                            filter = $"Convert([Doctor ID], 'System.String') LIKE '%{transactionId}%'";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientName))
+                        {
+                            if (!string.IsNullOrEmpty(filter))
+                            {
+                                filter += " OR ";
+                            }
+
+                            string[] nameParts = patientName.Split(',');
+
+                            if (nameParts.Length == 2)
+                            {
+                                string lastName = nameParts[0].Trim();
+                                string firstName = nameParts[1].Trim();
+
+                                filter += $"[First Name] LIKE '%{firstName}%' OR [Last Name] LIKE '%{lastName}%'";
+                            }
+                            else
+                            {
+                                filter += $"[First Name] LIKE '%{patientName}%' OR [Last Name] LIKE '%{patientName}%'";
+                            }
+                        }
+
+                        dataSource.DefaultView.RowFilter = filter;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error while filtering data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter either a Doctor ID or a Doctor name to search.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ResetDoctorButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dataSource = (DataTable)DoctorDataGridViewList2.DataSource;
+
+                if (dataSource != null)
+                {
+                    dataSource.DefaultView.RowFilter = string.Empty;
+
+                    SearchDoctorName.Clear();
+                    SearchDoctorID.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while resetting filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AppointmentSearchButton_Click(object sender, EventArgs e)
+        {
+            string transactionId = SearchAppointmentID.Text.Trim();
+            string patientName = SearchAppointmentName.Text.Trim();
+
+            if (!string.IsNullOrEmpty(patientName) && patientName.Any(char.IsDigit))
+            {
+                MessageBox.Show("Patient name cannot contain numbers.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) && !transactionId.All(char.IsDigit))
+            {
+                MessageBox.Show("Transaction ID must contain only numeric values.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(transactionId) || !string.IsNullOrEmpty(patientName))
+            {
+                try
+                {
+                    DataTable dataSource = (DataTable)AppointmentDataGridViewList2.DataSource;
+
+                    if (dataSource != null)
+                    {
+                        string filter = "";
+
+                        if (!string.IsNullOrEmpty(transactionId))
+                        {
+                            filter = $"Convert([Transaction ID], 'System.String') LIKE '%{transactionId}%'";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientName))
+                        {
+                            if (!string.IsNullOrEmpty(filter))
+                            {
+                                filter += " OR ";
+                            }
+
+                            string[] nameParts = patientName.Split(',');
+
+                            if (nameParts.Length == 2)
+                            {
+                                string lastName = nameParts[0].Trim();
+                                string firstName = nameParts[1].Trim();
+
+                                filter += $"[Patient Name] LIKE '%{lastName}%' AND [Patient Name] LIKE '%{firstName}%'";
+                            }
+                            else
+                            {
+                                filter += $"[Patient Name] LIKE '%{patientName}%'";
+                            }
+                        }
+
+                        dataSource.DefaultView.RowFilter = filter;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error while filtering data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter either a transaction ID or patient name  to search.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void ResetAppointmentButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dataSource = (DataTable)AppointmentDataGridViewList2.DataSource;
+
+                if (dataSource != null)
+                {
+                    dataSource.DefaultView.RowFilter = string.Empty;
+
+                    SearchAppointmentName.Clear();
+                    SearchAppointmentID.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while resetting filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+        }
     }
+
+
+
 }
+

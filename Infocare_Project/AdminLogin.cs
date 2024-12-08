@@ -43,6 +43,7 @@ namespace Infocare_Project
             {
 
                 MessageBox.Show("Invalid Username or Password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
 
 
             }

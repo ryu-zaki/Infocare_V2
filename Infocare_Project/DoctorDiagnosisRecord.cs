@@ -57,30 +57,26 @@ namespace Infocare_Project_1
         {
             try
             {
-                // Collect data from form controls
                 string diagnosis = DiagnosisTextBox.Text.Trim();
                 string doctorOrder = DoctorOrderTextBox.Text.Trim();
                 string additionalNote = AdditionalNoteTextBox.Text.Trim();
                 string prescription = PrescriptionTextBox.Text.Trim();
                 string patientName = PatientNameLabel.Text;
 
-                // Validation (optional, add rules as needed)
                 if (string.IsNullOrEmpty(patientName))
                 {
                     MessageBox.Show("Patient name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // SQL Query to update the data
                 string query = @"UPDATE tb_AppointmentHistory SET 
                             d_diagnosis = @Diagnosis,
                             d_doctoroder = @DoctorOrder,
                             d_additionalnotes = @AdditionalNote,
                             d_prescription = @Prescription,
                             ah_Status = 'Completed'
-                         WHERE ah_Patient_Name = @PatientName";
+                         WHERE ah_Patient_Name = @PatientName and ah_status = 'Accepted'";
 
-                // Parameters for the query
                 Dictionary<string, object> parameters = new()
         {
             { "@Diagnosis", string.IsNullOrEmpty(diagnosis) ? DBNull.Value : diagnosis },
@@ -90,14 +86,11 @@ namespace Infocare_Project_1
             { "@PatientName", patientName }
         };
 
-                // Execute the query
                 Database db = new Database();
                 db.ExecuteQuery(query, parameters);
 
-                // Notify the user
                 MessageBox.Show("Appointment details saved successfully and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Optional: Close the form or reset the fields
                 this.Close();
             }
             catch (Exception ex)
@@ -127,14 +120,12 @@ namespace Infocare_Project_1
                     connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Use PatientNameLabel.Text as a parameter to fetch the appropriate records
                         command.Parameters.AddWithValue("@PatientName", PatientNameLabel.Text);
 
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                // Set label values based on data from the database
                                 string doctorName = reader["ah_doctor_name"].ToString();
                                 string[] nameParts = doctorName.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 if (nameParts.Length == 2)
@@ -155,7 +146,6 @@ namespace Infocare_Project_1
                             }
                             else
                             {
-                                // Handle cases where no records are found
                                 DoctorFirstNameLabel.Text = "No record found";
                                 DoctorLastNameLabel.Text = "No record found";
                                 DoctorSpecializationLabel.Text = "No record found";
@@ -169,7 +159,6 @@ namespace Infocare_Project_1
             }
             catch (Exception ex)
             {
-                // Display error messages or log exceptions
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

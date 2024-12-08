@@ -71,6 +71,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             PrintablePanel = new Guna.UI2.WinForms.Guna2Panel();
             TotalLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             billing_Total = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -79,7 +81,6 @@
             guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
             billing_DataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             billing_TimeTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             billing_DateTextBox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -105,10 +106,10 @@
             viewinfo_PrintBtn = new Guna.UI2.WinForms.Guna2Button();
             printPreviewDialog1 = new PrintPreviewDialog();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             PrintablePanel.SuspendLayout();
             guna2Panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)billing_DataGridView).BeginInit();
-            guna2CustomGradientPanel1.SuspendLayout();
             guna2Panel5.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel3.SuspendLayout();
@@ -259,7 +260,6 @@
             // 
             guna2CustomGradientPanel1.BorderColor = Color.Black;
             guna2CustomGradientPanel1.BorderThickness = 2;
-            guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel10);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges5;
             guna2CustomGradientPanel1.FillColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(13, 41, 80);
@@ -270,17 +270,6 @@
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2CustomGradientPanel1.Size = new Size(648, 26);
             guna2CustomGradientPanel1.TabIndex = 153;
-            // 
-            // guna2HtmlLabel10
-            // 
-            guna2HtmlLabel10.BackColor = Color.Transparent;
-            guna2HtmlLabel10.Font = new Font("Nirmala UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel10.ForeColor = Color.White;
-            guna2HtmlLabel10.Location = new Point(281, 0);
-            guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            guna2HtmlLabel10.Size = new Size(10, 23);
-            guna2HtmlLabel10.TabIndex = 0;
-            guna2HtmlLabel10.Text = "?";
             // 
             // guna2Panel5
             // 
@@ -652,6 +641,27 @@
             printPreviewDialog1.Name = "printPreviewDialog1";
             printPreviewDialog1.Visible = false;
             // 
+            // guna2Button1
+            // 
+            guna2Button1.BackColor = SystemColors.ActiveCaption;
+            guna2Button1.Cursor = Cursors.Hand;
+            guna2Button1.CustomizableEdges = customizableEdges40;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.Transparent;
+            guna2Button1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            guna2Button1.ForeColor = SystemColors.Window;
+            guna2Button1.Location = new Point(749, 0);
+            guna2Button1.Margin = new Padding(3, 2, 3, 2);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges41;
+            guna2Button1.Size = new Size(43, 26);
+            guna2Button1.TabIndex = 168;
+            guna2Button1.Text = "<";
+            guna2Button1.Click += guna2Button1_Click;
+            // 
             // DoctorBillingInvoice
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -659,6 +669,7 @@
             BackColor = Color.FromArgb(13, 41, 80);
             ClientSize = new Size(840, 714);
             ControlBox = false;
+            Controls.Add(guna2Button1);
             Controls.Add(CreatePDFButton);
             Controls.Add(ExitButton);
             Controls.Add(viewinfo_PrintBtn);
@@ -671,8 +682,6 @@
             PrintablePanel.PerformLayout();
             guna2Panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)billing_DataGridView).EndInit();
-            guna2CustomGradientPanel1.ResumeLayout(false);
-            guna2CustomGradientPanel1.PerformLayout();
             guna2Panel5.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
             guna2Panel2.PerformLayout();
@@ -716,7 +725,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel8;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
         private Guna.UI2.WinForms.Guna2DataGridView billing_DataGridView;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel4;
@@ -727,5 +735,6 @@
         private Guna.UI2.WinForms.Guna2Button viewinfo_PrintBtn;
         private PrintPreviewDialog printPreviewDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

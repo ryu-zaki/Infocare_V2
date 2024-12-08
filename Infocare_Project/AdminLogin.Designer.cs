@@ -75,6 +75,7 @@
             // 
             PasswordTxtbox.BorderColor = Color.Black;
             PasswordTxtbox.BorderRadius = 8;
+            PasswordTxtbox.Cursor = Cursors.IBeam;
             PasswordTxtbox.CustomizableEdges = customizableEdges1;
             PasswordTxtbox.DefaultText = "";
             PasswordTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -101,6 +102,7 @@
             UsernameTxtbox.BackColor = Color.Transparent;
             UsernameTxtbox.BorderColor = Color.Black;
             UsernameTxtbox.BorderRadius = 8;
+            UsernameTxtbox.Cursor = Cursors.IBeam;
             UsernameTxtbox.CustomizableEdges = customizableEdges3;
             UsernameTxtbox.DefaultText = "";
             UsernameTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);

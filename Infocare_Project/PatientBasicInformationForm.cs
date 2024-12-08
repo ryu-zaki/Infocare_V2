@@ -18,7 +18,6 @@ namespace Infocare_Project
             LastName = lastName;
             NameLabel.Text = $"{lastName}, {firstName}";
 
-            // Register event handlers for height and weight textboxes
             HeightTextBox.TextChanged += HeightOrWeightTextChanged;
             WeightTextBox.TextChanged += HeightOrWeightTextChanged;
         }
@@ -43,7 +42,6 @@ namespace Infocare_Project
             }
         }
 
-        // Event handler to calculate BMI whenever Height or Weight is changed
         private void HeightOrWeightTextChanged(object sender, EventArgs e)
         {
             try
@@ -51,21 +49,20 @@ namespace Infocare_Project
                 double heightCm = string.IsNullOrWhiteSpace(HeightTextBox.Text) ? 0 : Convert.ToDouble(HeightTextBox.Text);
                 double weight = string.IsNullOrWhiteSpace(WeightTextBox.Text) ? 0 : Convert.ToDouble(WeightTextBox.Text);
 
-                // Check if both height and weight are valid
                 if (heightCm > 0 && weight > 0)
                 {
                     double heightInMeters = heightCm;
-                    double bmi = weight / (heightCm * heightCm); // BMI calculation (weight in kg, height in meters)
-                    BmiTextBox.Text = bmi.ToString("F2"); // Show the BMI with two decimal places
+                    double bmi = weight / (heightCm * heightCm); 
+                    BmiTextBox.Text = bmi.ToString("F2"); 
                 }
                 else
                 {
-                    BmiTextBox.Clear(); // Clear BMI if invalid input
+                    BmiTextBox.Clear(); 
                 }
             }
             catch (Exception ex)
             {
-                // Handle any exceptions, like non-numeric input
+                
                 MessageBox.Show("Error calculating BMI: " + ex.Message);
             }
         }
@@ -94,39 +91,38 @@ namespace Infocare_Project
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            if (!AlergyTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(AlergyTextbox.Text))
+            Database db = new Database();
+
+            if (!db.IsValidTextInput(AlergyTextbox.Text))
             {
-                MessageBox.Show("Alergy field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Alergy field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!MedicationTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MedicationTxtbox.Text))
+            if (!db.IsValidTextInput(MedicationTxtbox.Text))
             {
-                MessageBox.Show("Medication field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Medication field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
 
-            if (!PreviousSurgeryTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(PreviousSurgeryTextBox.Text))
+            if (!db.IsValidTextInput(PreviousSurgeryTextBox.Text))
             {
-                MessageBox.Show("Previous Surgery field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Previous Surgery field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
 
-            if (!preConditionTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(preConditionTextBox.Text))
+            if (!db.IsValidTextInput(preConditionTextBox.Text))
             {
-                MessageBox.Show("Pre-condition field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Pre-condition field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
 
-            if (!TreatmentTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(TreatmentTextBox.Text))
+            if (!db.IsValidTextInput(TreatmentTextBox.Text))
             {
-                MessageBox.Show("Treatment field must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Treatment field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
+
 
 
             try
@@ -154,8 +150,8 @@ namespace Infocare_Project
                     Medication = medication
                 };
 
-                Database db = new Database();
-                db.PatientReg2(patient, LoggedInUsername, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication);
+                Database d1b = new Database();
+                d1b.PatientReg2(patient, LoggedInUsername, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication);
 
                 var emergencyRegistration = new EmergencyRegistration(LoggedInUsername, FirstName, LastName);
                 emergencyRegistration.Show();

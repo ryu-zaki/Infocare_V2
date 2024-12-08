@@ -196,6 +196,7 @@
             // 
             // staff_HomeButton
             // 
+            staff_HomeButton.Cursor = Cursors.Hand;
             staff_HomeButton.CustomizableEdges = customizableEdges5;
             staff_HomeButton.DisabledState.BorderColor = Color.DarkGray;
             staff_HomeButton.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -305,6 +306,7 @@
             // 
             doctor_UsernameTxtbox.BorderColor = Color.Black;
             doctor_UsernameTxtbox.BorderRadius = 8;
+            doctor_UsernameTxtbox.Cursor = Cursors.IBeam;
             doctor_UsernameTxtbox.CustomizableEdges = customizableEdges9;
             doctor_UsernameTxtbox.DefaultText = "";
             doctor_UsernameTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -329,6 +331,7 @@
             // 
             doctor_PasswordTxtbox.BorderColor = Color.Black;
             doctor_PasswordTxtbox.BorderRadius = 8;
+            doctor_PasswordTxtbox.Cursor = Cursors.IBeam;
             doctor_PasswordTxtbox.CustomizableEdges = customizableEdges11;
             doctor_PasswordTxtbox.DefaultText = "";
             doctor_PasswordTxtbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);

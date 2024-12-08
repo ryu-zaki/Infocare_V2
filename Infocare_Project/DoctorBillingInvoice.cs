@@ -58,6 +58,34 @@ namespace Infocare_Project_1
             DialogResult confirm = MessageBox.Show("Are you sure you want to Exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
+                try
+                {
+                    Database db = new Database();
+                    DataTable checkoutTable = (DataTable)billing_DataGridView.DataSource;
+
+                    string doctorName = billing_DoctorNameTextbox.Text.Trim();
+                    string specialization = billing_Specialization.Text.Trim();
+
+                    if (string.IsNullOrEmpty(doctorName) || string.IsNullOrEmpty(specialization))
+                    {
+                        MessageBox.Show("Doctor Name or Specialization cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    foreach (DataRow row in checkoutTable.Rows)
+                    {
+                        string date = Convert.ToDateTime(row["ah_date"]).ToString("dd-MM-yyyy");
+
+                        db.UpdateStatus(doctorName);
+                    }
+
+                    MessageBox.Show("Statuses updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error updating statuses: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 this.Hide();
             }
         }
@@ -89,7 +117,7 @@ namespace Infocare_Project_1
         private void PrintToPDF(Panel printPanel, string filePath)
         {
             PrintDocument printDocument = new PrintDocument();
-            printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF"; 
+            printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF";
             printDocument.PrintPage += (sender, e) =>
             {
                 Bitmap memorying = new Bitmap(printPanel.Width, printPanel.Height);
@@ -99,7 +127,7 @@ namespace Infocare_Project_1
                 e.Graphics.DrawImage(memorying, 0, 0);
             };
 
-            printDocument.PrintController = new StandardPrintController(); 
+            printDocument.PrintController = new StandardPrintController();
             printDocument.Print();
         }
 
@@ -127,9 +155,14 @@ namespace Infocare_Project_1
             Rectangle pagearea = e.PageBounds;
             float scaleWidth = (float)pagearea.Width / PrintablePanel.Width;
             float scaleHeight = (float)pagearea.Height / PrintablePanel.Height;
-            float scale = Math.Min(scaleWidth, scaleHeight); 
+            float scale = Math.Min(scaleWidth, scaleHeight);
 
             e.Graphics.DrawImage(memorying, 0, 0, PrintablePanel.Width * scale, PrintablePanel.Height * scale);
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
