@@ -14,19 +14,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Collections;
 using Infocare_Project_1;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using System.Configuration;
 
 namespace Infocare_Project
 {
-    internal class Database
+    static class Database
     {
-        private string connectionString = "Server=127.0.0.1; Database=db_infocare_project;User ID=root; Password=;";
+      
+        public static string connectionString = "Server=127.0.0.1; Database=db_infocare_project;User ID=root;Password=ashlieKim;";
 
-        private MySqlConnection GetConnection()
+        public static MySqlConnection GetConnection()
         {
             return new MySqlConnection(connectionString);
         }
 
-        public void PatientReg1(User user)
+        public static void PatientReg1(User user)
         {
             using (var connection = GetConnection())
             {
@@ -62,7 +64,7 @@ namespace Infocare_Project
         }
 
 
-        public void PatientReg2(Patient patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string allergy, string medication)
+        public static void PatientReg2(Patient patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string allergy, string medication)
         {
             string query =
                             @"INSERT INTO tb_patientinfo 
@@ -107,7 +109,7 @@ namespace Infocare_Project
             }
         }
 
-        public void PatientReg3(EmergencyContact Emergency, string username, string firstName, string lastName, string middleName, string suffix, int houseNo, string street, string barangay, string city, int zipCode, int zone)
+        public static void PatientReg3(EmergencyContact Emergency, string username, string firstName, string lastName, string middleName, string suffix, int houseNo, string street, string barangay, string city, int zipCode, int zone)
         {
 
             string query = @"
@@ -150,43 +152,8 @@ namespace Infocare_Project
             }
         }
 
-        public User GetUserByUsername(string username)
-        {
-            using (var connection = GetConnection())
-            {
-                string query = "SELECT * FROM tb_patientinfo WHERE p_Username = @Username";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Username", username);
 
-                try
-                {
-                    connection.Open();
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return new User
-                            {
-                                FirstName = reader["P_FirstName"].ToString(),
-                                LastName = reader["P_LastName"].ToString(),
-                                Username = reader["P_Username"].ToString(),
-                            };
-                        }
-                        else
-                        {
-                            return null;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error fetching user data: " + ex.Message);
-                }
-            }
-        }
-
-
-        public void AddStaff(Staff staff)
+        public static void AddStaff(Staff staff)
         {
             using (var connection = GetConnection())
             {
@@ -218,7 +185,7 @@ namespace Infocare_Project
             }
         }
 
-        public bool StaffLogin(string username, string password)
+        public static bool StaffLogin(string username, string password)
         {
             using (var connection = GetConnection())
             {
@@ -243,7 +210,7 @@ namespace Infocare_Project
         }
 
 
-        public bool Doctorlogin(string username, string password)
+        public static bool Doctorlogin(string username, string password)
         {
             using (var connection = GetConnection())
             {
@@ -267,7 +234,7 @@ namespace Infocare_Project
             }
         }
 
-        public string GetPatientName(string username)
+         public static string GetPatientName(string username)
         {
             using (var connection = GetConnection())
             {
@@ -302,7 +269,7 @@ namespace Infocare_Project
             }
         }
 
-        public void DeletePatientByUsername(string username)
+        public static void DeletePatientByUsername(string username)
         {
             string query = "DELETE FROM tb_patientinfo WHERE P_Username = @Username";
 
@@ -329,7 +296,7 @@ namespace Infocare_Project
         }
 
         //ADMIN LOGIN
-        public bool AdminLogin(string username, string password)
+        public static bool AdminLogin(string username, string password)
         {
 
             using (var connection = GetConnection())
@@ -356,7 +323,7 @@ namespace Infocare_Project
 
         }
 
-        public int AddDoctor(Doctor doctor)
+        public static int AddDoctor(Doctor doctor)
         {
             using (var connection = GetConnection())
             {
@@ -432,7 +399,7 @@ namespace Infocare_Project
 
 
 
-        public void AddSpecialization(int doctorId, string specialization)
+        public static void AddSpecialization(int doctorId, string specialization)
         {
             string query = "INSERT INTO tb_doctor_specializations (doctor_id, specialization) VALUES (@DoctorId, @Specialization)";
 
@@ -482,7 +449,7 @@ namespace Infocare_Project
             return doctorNames;
         }
 
-        public List<string> GetDoctorAvailableTimes(string doctorName, string specialization)
+        public static List<string> GetDoctorAvailableTimes(string doctorName, string specialization)
         {
             List<string> availableTimes = new List<string>();
 
@@ -532,7 +499,7 @@ namespace Infocare_Project
             return availableTimes;
         }
 
-        public string GetDoctorAvailability(string doctorName)
+        public static string GetDoctorAvailability(string doctorName)
         {
             string query = @"
 SELECT day_availability 
@@ -562,7 +529,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public List<string> GetSpecialization()
+        public static List<string> GetSpecialization()
         {
             HashSet<string> specializationSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
@@ -598,7 +565,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
             return specializationSet.ToList();
         }
-        public void NullPatientReg2Data(string username)
+        public static void NullPatientReg2Data(string username)
         {
             string query = @"
         UPDATE tb_patientinfo
@@ -636,7 +603,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public void DeletePatientReg1Data(string username)
+        public static void DeletePatientReg1Data(string username)
         {
             string query = @"
                 Delete from tb_patientinfo
@@ -664,7 +631,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public (string firstName, string lastName) GetStaffNameDetails(string username)
+        public static (string firstName, string lastName) GetStaffNameDetails(string username)
         {
             using (var connection = GetConnection())
             {
@@ -734,7 +701,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
 
         }
-        public List<string> GetPatientNames()
+        public static List<string> GetPatientNames()
         {
             List<string> patientNames = new List<string>();
 
@@ -766,7 +733,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
 
         
-        public DataTable StaffList()
+        public static DataTable StaffList()
         {
             string query = @"SELECT id as 'Staff ID', s_Firstname AS 'First Name', s_middleName AS 'Middle Name', s_lastname AS 'Last Name', s_suffix AS 'Suffix', s_contactnumber AS 'Contact Number', s_email AS 'Email' FROM tb_staffinfo";
 
@@ -794,7 +761,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return staffTable;
         }
 
-        public DataTable DoctorList()
+        public static DataTable DoctorList()
         {
             string query = @"SELECT id as 'Doctor ID', Firstname AS 'First Name', middleName AS 'Middle Name', lastname AS 'Last Name', specialization AS 'Specialization', day_availability AS 'Day Available' FROM tb_doctorinfo";
 
@@ -822,7 +789,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return DoctorTable;
         }
 
-        public DataTable PatientList()
+        public static DataTable PatientList()
         {
             string query = @"SELECT id as 'Patient ID', p_Firstname AS 'First Name', p_middleName AS 'Middle Name', P_lastname AS 'Last Name', p_suffix AS 'Suffix', p_sex AS 'Sex', P_bdate AS 'Birth Date', p_address AS 'Full Address' FROM tb_patientinfo";
 
@@ -850,7 +817,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return PatientTable;
         }
 
-        public decimal? GetConsultationFee(string doctorName)
+        public static decimal? GetConsultationFee(string doctorName)
         {
             using (var connection = GetConnection())
             {
@@ -885,32 +852,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public bool IsAppointmentBooked(string doctorName, DateTime appointmentDate)
-        {
-            try
-            {
-                using (var connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT COUNT(*) FROM tb_appointmenthistory WHERE ah_Doctor_Name = @DoctorName AND ah_date = @AppointmentDate";
-                    using (var command = new MySqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@DoctorName", doctorName);
-                        command.Parameters.AddWithValue("@AppointmentDate", appointmentDate.Date);
-
-                        int count = Convert.ToInt32(command.ExecuteScalar());
-                        return count > 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error checking appointment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-        public bool IsPatientAppointmentPendingOrAccepted(string patientName)
+        public static bool IsPatientAppointmentPendingOrAccepted(string patientName)
         {
             try
             {
@@ -939,7 +881,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public bool IsDoctorOccupied(string doctorName, DateTime appointmentDate)
+        public static bool IsDoctorOccupied(string doctorName, DateTime appointmentDate)
         {
             try
             {
@@ -971,7 +913,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         }
 
 
-        public bool SaveAppointment(string patientName, string specialization, string doctorName, string timeSlot, DateTime appointmentDate, decimal consFee)
+        public static bool SaveAppointment(string patientName, string specialization, string doctorName, string timeSlot, DateTime appointmentDate, decimal consFee)
         {
 
             try
@@ -1008,7 +950,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public DataTable AppointmentList()
+        public static DataTable AppointmentList()
         {
             string query = @"select id as 'Transaction ID', ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee' From tb_appointmenthistory";
 
@@ -1036,7 +978,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return AppointmentTable;
         }
 
-        public DataTable PendingAppointmentList(string doctorFullName)
+    public static DataTable PendingAppointmentList(string doctorFullName)
 {
     string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
                      WHERE ah_status = 'Pending' AND ah_Doctor_Name = @DoctorFullName";
@@ -1068,7 +1010,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
 
 
-        public void AcceptAppointment(int appointmentId)
+        public static void AcceptAppointment(int appointmentId)
         {
             string updateQuery = "update tb_appointmenthistory set ah_status = 'Accepted' where id = @id and ah_status = 'Pending'";
 
@@ -1091,7 +1033,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public void DeclineAppointment(int appointmentId)
+        public static void DeclineAppointment(int appointmentId)
         {
             string query = "update tb_appointmenthistory set ah_status = 'Declined' where id = @id and ah_status = 'Pending'";
 
@@ -1114,7 +1056,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public void CheckOutAppointment(int appointmentID)
+        public static void CheckOutAppointment(int appointmentID)
         {
             string updateQuery = "update tb_appointmenthistory set ah_status = 'CheckOut' where id = @id and ah_status = 'Completed'";
 
@@ -1137,7 +1079,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public void ReconsiderAppointment(int appointmentId)
+        public static void ReconsiderAppointment(int appointmentId)
         {
             string updateQuery = "update tb_appointmenthistory set ah_status = 'Pending' where id = @id and ah_status = 'Declined'";
 
@@ -1161,7 +1103,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         }
 
 
-        public DataTable CheckOutAppointmentList(string doctorFullName)
+        public static DataTable CheckOutAppointmentList(string doctorFullName)
         {
             string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
                      WHERE ah_status = 'CheckOut' AND ah_Doctor_Name = @DoctorFullName";
@@ -1190,7 +1132,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return appointmentTable;
         }
 
-        public DataTable ViewAppointments(string doctorFullName)
+        public static DataTable ViewAppointments(string doctorFullName)
         {
             string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee FROM tb_appointmenthistory 
                      WHERE ah_status = 'Accepted' AND ah_Doctor_Name = @DoctorFullName";
@@ -1220,7 +1162,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return AppointmentTable;
         }
 
-        public DataTable ViewCompletedAppointments(string doctorFullName)
+        public static DataTable ViewCompletedAppointments(string doctorFullName)
         {
             string query = @"SELECT id, ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
              WHERE ah_status = 'Completed'";
@@ -1250,7 +1192,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return AppointmentTable;
         }
 
-        public DataTable DeclinedAppointments(string doctorFullName)
+        public static DataTable DeclinedAppointments(string doctorFullName)
         {
             string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
                      WHERE ah_status = 'Declined' AND ah_Doctor_Name = @DoctorFullName";
@@ -1280,7 +1222,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return AppointmentTable;
         }
 
-        public void CreateDiagnosis(int appointmentId, Action<Dictionary<string, string>> onSuccess, Action<string> onFailure)
+        public static void CreateDiagnosis(int appointmentId, Action<Dictionary<string, string>> onSuccess, Action<string> onFailure)
         {
             try
             {
@@ -1359,50 +1301,23 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                 onFailure?.Invoke($"An error occurred: {ex.Message}");
             }
         }
-        public void ExecuteQuery(string query, Dictionary<string, object> parameters)
+        public static void ExecuteQuery(string query, Dictionary<string, object> parameters)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+                connection.Open();
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     foreach (var param in parameters)
                     {
                         command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                     }
-
-                    // Debugging: Print query and parameters
-                    Console.WriteLine("Executing Query: " + query);
-                    foreach (var param in parameters)
-                    {
-                        Console.WriteLine($"{param.Key}: {param.Value}");
-                    }
-
-                    connection.Open();
                     command.ExecuteNonQuery();
                 }
             }
         }
 
-
-
-        public bool IsPatientExist(string firstName, string lastName)
-        {
-            string query = "SELECT COUNT(*) FROM tb_AppointmentHistory WHERE P_FirstName = @FirstName AND P_LastName = @LastName";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@FirstName", firstName);
-                    command.Parameters.AddWithValue("@LastName", lastName);
-
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-                    return count > 0; 
-                }
-            }
-        }
-
-        public DataTable ViewCompletedppointments()
+        public static DataTable ViewCompletedppointments()
         {
             string query = @"SELECT id as 'Transaction ID', ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
              WHERE ah_status = 'Completed'";
@@ -1430,29 +1345,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return AppointmentTable;
         }
 
-        public DataTable GetAppointmentHistory()
-        {
-            DataTable dataTable = new DataTable();
-
-            string query = "SELECT * FROM tb_appointmenthistory";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection);
-                    dataAdapter.Fill(dataTable);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error fetching data: " + ex.Message);
-                }
-            }
-
-            return dataTable;
-        }
-
-        public bool IsUsernameExists(string username)
+        public static bool IsUsernameExists(string username)
         {
             string query = "SELECT COUNT(*) FROM tb_patientinfo WHERE P_Username = @Username";
 
@@ -1468,7 +1361,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public bool UsernameExistsStaff(string username)
+        public static bool UsernameExistsStaff(string username)
         {
             string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE s_Username = @Username";
 
@@ -1484,7 +1377,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public bool UsernameExistsDoctor(string username)
+        public static bool UsernameExistsDoctor(string username)
         {
             string query = "SELECT COUNT(*) FROM tb_doctorinfo WHERE username = @Username";
 
@@ -1500,21 +1393,6 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public bool EmailExistsStaff(string email)
-        {
-            string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE s_email = @Email";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Email", email);
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-                    return count > 0;
-                }
-            }
-        }
 
         public static bool ValidatePassword(string password)
         {
@@ -1530,7 +1408,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return true;
         }
 
-        public int AddDoctor1(Doctor doctor)
+        public static int AddDoctor1(Doctor doctor)
         {
             using (var connection = GetConnection())
             {
@@ -1606,7 +1484,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public void viewDocument(int appointmentId, Action<Dictionary<string, string>> onSuccess, Action<string> onFailure)
+        public static void viewDocument(int appointmentId, Action<Dictionary<string, string>> onSuccess, Action<string> onFailure)
         {
             try
             {
@@ -1680,7 +1558,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public string GetDoctorSpecialization(string doctorFullName)
+        public static string GetDoctorSpecialization(string doctorFullName)
         {
             string specialization = string.Empty;
             string query = "SELECT specialization FROM tb_doctorinfo WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @doctorName";
@@ -1701,7 +1579,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return specialization;
         }
 
-        public DataTable ChecOutList()
+        public static DataTable ChecOutList()
         {
             string query = @"SELECT ah_patient_name, ah_Consfee, ah_time, ah_date from tb_appointmenthistory where ah_status = 'Checkout'";
 
@@ -1728,7 +1606,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return CheckoutTable;
         }
 
-        public bool IsValidTextInput(string input)
+        public static bool IsValidTextInput(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return true;
@@ -1739,7 +1617,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return input.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
         }
 
-        public void UpdateStatus(string doctorName)
+        public static void UpdateStatus(string doctorName)
         {
             string query = @"UPDATE tb_appointmenthistory
                      SET ah_status = @status

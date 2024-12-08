@@ -75,6 +75,7 @@ namespace Infocare_Project_1
 
         private void ContinueButton_Click(object sender, EventArgs e)
         {
+            
             DialogResult result = MessageBox.Show(
                 "Do you want to save the information?",
                 "Confirm Action",
@@ -145,7 +146,7 @@ namespace Infocare_Project_1
                     diagnosisRecord.SetPatientName(firstName, lastName);
                     diagnosisRecord.Show();
 
-                    this.Close();
+                    //this.Close();
                 }
                 catch (Exception ex)
                 {

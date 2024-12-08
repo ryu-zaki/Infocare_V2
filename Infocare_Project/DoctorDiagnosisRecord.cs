@@ -74,7 +74,7 @@ namespace Infocare_Project_1
                             d_doctoroder = @DoctorOrder,
                             d_additionalnotes = @AdditionalNote,
                             d_prescription = @Prescription,
-                            ah_Status = 'Completed'
+                            ah_Status = @Status
                          WHERE ah_Patient_Name = @PatientName and ah_status = 'Accepted'";
 
                 Dictionary<string, object> parameters = new()
@@ -83,6 +83,7 @@ namespace Infocare_Project_1
             { "@DoctorOrder", string.IsNullOrEmpty(doctorOrder) ? DBNull.Value : doctorOrder },
             { "@AdditionalNote", string.IsNullOrEmpty(additionalNote) ? DBNull.Value : additionalNote },
             { "@Prescription", string.IsNullOrEmpty(prescription) ? DBNull.Value : prescription },
+            { "@Status", string.IsNullOrEmpty(prescription) ? DBNull.Value : "Completed" },
             { "@PatientName", patientName }
         };
 
