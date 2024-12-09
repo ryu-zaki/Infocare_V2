@@ -137,8 +137,8 @@ namespace Infocare_Project_1
                 { "@PatientName", patientName }
             };
 
-                    Database db = new Database();
-                    db.ExecuteQuery(query, parameters);
+                 
+                    Database.ExecuteQuery(query, parameters);
 
                     MessageBox.Show("Appointment history updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using Infocare_Project;
 using Infocare_Project.Classes;
+using Infocare_Project_1.Object_Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -10,18 +11,14 @@ namespace Infocare_Project_1
 {
     public partial class DoctorDashboard : Form
     {
-        private string LoggedInUsername;
-        private string FirstName;
-        private string LastName;
-        public DoctorDashboard(string usrnm, string firstName, string lastName)
+        private DoctorModel doctor;
+        public DoctorDashboard(DoctorModel doctor)
         {
             InitializeComponent();
 
-            LoggedInUsername = usrnm;
-            FirstName = firstName;
-            LastName = lastName;
+            this.doctor = doctor;
 
-            NameLabel.Text = $"Dr. {lastName}, {firstName}";
+            NameLabel.Text = $"Dr. {doctor.LastName}, {doctor.FirstName}";
         }
 
 
@@ -44,11 +41,9 @@ namespace Infocare_Project_1
             CheckOutButton.Visible = false;
             InvoiceButton.Visible = false;
 
-            Database db = new Database();
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
 
-            string doctorFullName = $"Dr. {LastName}, {FirstName}";
-
-            DataTable pendingAppointments = db.PendingAppointmentList(doctorFullName);
+            DataTable pendingAppointments = Database.PendingAppointmentList(doctorFullName);
             DataGridViewList.DataSource = pendingAppointments;
 
 
@@ -87,10 +82,8 @@ namespace Infocare_Project_1
             CheckOutButton.Visible = false;
             InvoiceButton.Visible = false;
 
-            Database db = new Database();
-
-            string doctorFullName = $"Dr. {LastName}, {FirstName}";
-            DataTable viewappoointment = db.ViewAppointments(doctorFullName);
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
+            DataTable viewappoointment = Database.ViewAppointments(doctorFullName);
             DataGridViewList.DataSource = viewappoointment;
 
             try
@@ -169,13 +162,12 @@ namespace Infocare_Project_1
             if (DataGridViewList.SelectedRows.Count > 0)
             {
                 int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["id"].Value);
-                Database db = new Database();
 
-                db.CreateDiagnosis(
+                Database.CreateDiagnosis(
                     appointmentId,
                     patientDetails =>
                     {
-                        string doctorFullName = $"Dr. {LastName}, {FirstName}";
+                        string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
 
                         DoctorMedicalRecord doctorMedicalRecord = new DoctorMedicalRecord();
 
@@ -211,7 +203,7 @@ namespace Infocare_Project_1
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
+            
             try
             {
                 foreach (DataGridViewRow row in DataGridViewList.Rows)
@@ -220,12 +212,12 @@ namespace Infocare_Project_1
                     {
                         int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
 
-                        db.AcceptAppointment(appointmentId);
+                        Database.AcceptAppointment(appointmentId);
                     }
                 }
 
                 string doctorName = NameLabel.Text.Replace("!", "").Trim();
-                DataTable pendingAppointments = db.PendingAppointmentList(doctorName);
+                DataTable pendingAppointments = Database.PendingAppointmentList(doctorName);
                 DataGridViewList.DataSource = pendingAppointments;
 
                 MessageBox.Show("Selected appointments have been accepted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -238,7 +230,7 @@ namespace Infocare_Project_1
 
         private void DeclineButton_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
+            
             try
             {
                 foreach (DataGridViewRow row in DataGridViewList.Rows)
@@ -247,12 +239,12 @@ namespace Infocare_Project_1
                     {
                         int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
 
-                        db.DeclineAppointment(appointmentId);
+                        Database.DeclineAppointment(appointmentId);
                     }
                 }
 
                 string doctorName = NameLabel.Text.Replace("!", "").Trim();
-                DataTable pendingAppointments = db.PendingAppointmentList(doctorName);
+                DataTable pendingAppointments = Database.PendingAppointmentList(doctorName);
                 DataGridViewList.DataSource = pendingAppointments;
 
                 MessageBox.Show("Selected appointments have been declined.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -271,9 +263,8 @@ namespace Infocare_Project_1
             CreateDiagnosisButton.Visible = false;
             ViewButton.Visible = false;
 
-            Database db = new Database();
-            string doctorFullName = $"Dr. {LastName}, {FirstName}";
-            DataTable declinedappointment = db.DeclinedAppointments(doctorFullName);
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
+            DataTable declinedappointment = Database.DeclinedAppointments(doctorFullName);
             DataGridViewList.DataSource = declinedappointment;
 
             try
@@ -315,12 +306,10 @@ namespace Infocare_Project_1
             CreateDiagnosisButton.Visible = false;
             ViewButton.Visible = true;
             CheckOutButton.Visible = true;
-            InvoiceButton.Visible = true;
+            InvoiceButton.Visible = true;;
 
-            Database db = new Database();
-
-            string doctorFullName = $"Dr. {LastName}, {FirstName}";
-            DataTable viewcompletedappoointment = db.ViewCompletedAppointments(doctorFullName);
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
+            DataTable viewcompletedappoointment = Database.ViewCompletedAppointments(doctorFullName);
             DataGridViewList.DataSource = viewcompletedappoointment;
 
             try
@@ -349,9 +338,8 @@ namespace Infocare_Project_1
             if (DataGridViewList.SelectedRows.Count > 0)
             {
                 int appointmentId = Convert.ToInt32(DataGridViewList.SelectedRows[0].Cells["id"].Value);
-                Database db = new Database();
 
-                db.viewDocument(
+                Database.viewDocument(
                     appointmentId,
                     patientDetails =>
                     {
@@ -394,7 +382,6 @@ namespace Infocare_Project_1
 
         private void CheckOutButton_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
 
             DialogResult result = MessageBox.Show("Are you sure you want to check out this appointment?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -407,15 +394,15 @@ namespace Infocare_Project_1
                         if (row.Cells["checkboxcolumn"] is DataGridViewCheckBoxCell checkBoxCell && checkBoxCell.Value != null && (bool)checkBoxCell.Value)
                         {
                             int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
-                            db.CheckOutAppointment(appointmentId);
+                            Database.CheckOutAppointment(appointmentId);
                         }
                     }
 
                     string doctorName = NameLabel.Text.Replace("!", "").Trim();
 
-                    string specialization = db.GetDoctorSpecialization(doctorName);
+                    string specialization = Database.GetDoctorSpecialization(doctorName);
 
-                    DataTable checkoutAppointments = db.CheckOutAppointmentList(doctorName);
+                    DataTable checkoutAppointments = Database.CheckOutAppointmentList(doctorName);
 
                     DataGridViewList.DataSource = checkoutAppointments;
 
@@ -441,12 +428,11 @@ namespace Infocare_Project_1
         {
             if (_doctorBillingInvoice == null || _doctorBillingInvoice.IsDisposed)
             {
-                string doctorFullName = $"Dr. {LastName}, {FirstName}";
+                string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
 
-                Database db = new Database();
-                string specialization = db.GetDoctorSpecialization(doctorFullName);
+                string specialization = Database.GetDoctorSpecialization(doctorFullName);
 
-                DataTable checkoutAppointments = db.CheckOutAppointmentList(doctorFullName);
+                DataTable checkoutAppointments = Database.CheckOutAppointmentList(doctorFullName);
 
                 _doctorBillingInvoice = new DoctorBillingInvoice();
 
@@ -466,10 +452,9 @@ namespace Infocare_Project_1
 
         private void LoadPendingAppointments()
         {
-            Database db = new Database();
 
-            string doctorFullName = $"Dr. {LastName}, {FirstName}";
-            DataTable pendingAppointments = db.PendingAppointmentList(doctorFullName);
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
+            DataTable pendingAppointments = Database.PendingAppointmentList(doctorFullName);
             DataGridViewList.DataSource = pendingAppointments;
 
             try
@@ -493,10 +478,9 @@ namespace Infocare_Project_1
 
         private void LoadCompletedAppointments()
         {
-            Database db = new Database();
 
-            string doctorFullName = $"Dr. {LastName}, {FirstName}";
-            DataTable completedAppointments = db.ViewCompletedAppointments(doctorFullName);
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
+            DataTable completedAppointments = Database.ViewCompletedAppointments(doctorFullName);
             DataGridViewList.DataSource = completedAppointments;
 
             try
@@ -520,10 +504,9 @@ namespace Infocare_Project_1
 
         private void LoadRejectedAppointments()
         {
-            Database db = new Database();
 
-            string doctorFullName = $"Dr. {LastName}, {FirstName}";
-            DataTable rejectedAppointments = db.DeclinedAppointments(doctorFullName);
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
+            DataTable rejectedAppointments = Database.DeclinedAppointments(doctorFullName);
             DataGridViewList.DataSource = rejectedAppointments;
 
             try
@@ -558,7 +541,6 @@ namespace Infocare_Project_1
 
         private void ReconsiderButton_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
 
             try
             {
@@ -569,13 +551,13 @@ namespace Infocare_Project_1
                     {
                         int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
 
-                        db.ReconsiderAppointment(appointmentId); // Update status to 'Pending' for declined appointments
+                       Database.ReconsiderAppointment(appointmentId); // Update status to 'Pending' for declined appointments
                     }
                 }
 
                 // Reload the data after reconsidering appointments
                 string doctorName = NameLabel.Text.Replace("!", "").Trim();
-                DataTable pendingAppointments = db.PendingAppointmentList(doctorName); // Ensure this retrieves updated data
+                DataTable pendingAppointments = Database.PendingAppointmentList(doctorName); // Ensure this retrieves updated data
                 DataGridViewList.DataSource = pendingAppointments;
 
                 MessageBox.Show("Selected appointments have been reconsidered successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

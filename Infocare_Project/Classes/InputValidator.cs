@@ -1,5 +1,10 @@
 ﻿using Guna.UI2.WinForms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Infocare_Project_1.Classes
 {
@@ -26,25 +31,25 @@ namespace Infocare_Project_1.Classes
         {
             if (!IsNotEmpty(textBox))
             {
-                textBox.BorderColor = System.Drawing.Color.Red; 
+                textBox.BorderColor = System.Drawing.Color.Red;
                 MessageBox.Show(errorMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox.Focus();
                 return false;
             }
             //textBox.BorderColor = System.Drawing.Color.Green; 
-           return true;
+            return true;
         }
 
         public static bool ValidateAlphabetic(Guna2TextBox textBox, string errorMessage)
         {
             if (!IsAlphabetic(textBox))
             {
-                textBox.BorderColor = System.Drawing.Color.Red; 
+                textBox.BorderColor = System.Drawing.Color.Red;
                 MessageBox.Show(errorMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox.Focus();
                 return false;
             }
-            textBox.BorderColor = System.Drawing.Color.LightBlue; 
+            textBox.BorderColor = System.Drawing.Color.LightBlue;
             return true;
         }
 
@@ -52,12 +57,12 @@ namespace Infocare_Project_1.Classes
         {
             if (!IsNumeric(textBox))
             {
-                textBox.BorderColor = System.Drawing.Color.Red; 
+                textBox.BorderColor = System.Drawing.Color.Red;
                 MessageBox.Show(errorMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox.Focus();
                 return false;
             }
-            textBox.BorderColor = System.Drawing.Color.LightBlue; 
+            textBox.BorderColor = System.Drawing.Color.LightBlue;
             return true;
         }
 

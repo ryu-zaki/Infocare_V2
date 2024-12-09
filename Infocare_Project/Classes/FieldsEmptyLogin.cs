@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infocare_Project
+namespace Infocare_Project_1.Classes
 {
     public class LoginEmpty
     {
@@ -18,15 +18,6 @@ namespace Infocare_Project
         {
             Username = username;
             Password = password;
-        }
-    }
-
-    internal class FieldsEmptyLogin
-    {
-       public void EmptyLogin(LoginEmpty nullLogin) 
-        {                   
-            HomeForm home = new HomeForm();
-            home.Show();
         }
     }
 }

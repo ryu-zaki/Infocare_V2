@@ -1,4 +1,5 @@
 ﻿using Infocare_Project_1;
+using Infocare_Project_1.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,8 +41,6 @@ namespace Infocare_Project
             string username = UsernameTxtbox.Text;
             string password = PasswordTxtbox.Text;
 
-
-
             LoginEmpty loginEmpty = new LoginEmpty();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
@@ -54,19 +53,17 @@ namespace Infocare_Project
 
             }
 
-            Database db = new Database();
 
-
-            bool validStaff = db.StaffLogin(username, password);
+            bool validStaff = Database.RoleLogin(username, password, Role.Staff);
 
 
             if (validStaff)
             {
-                (string firstName, string lastName) = db.GetStaffNameDetails(username);
+                (string firstName, string lastName) = Database.GetStaffNameDetails(username);
 
                 MessageBox.Show("Log in Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                var staffdashboard = new StaffDashboard(username, firstName, lastName);
+                StaffDashboard staffdashboard = new StaffDashboard(username, firstName, lastName);
                 staffdashboard.Show();
                 this.Hide();
             }

@@ -27,29 +27,5 @@ namespace Infocare_Project.NewFolder
                 textBox.PlaceholderText = string.Empty;
             }
         }
-
-        public static class TimeHelper
-        {
-            public static void ChooseTime(ComboBox TimeComboBox)
-            {
-                TimeSpan startTime = new TimeSpan(8, 0, 0);
-                TimeSpan endTime = new TimeSpan(20, 0, 0);
-                TimeSpan DifferenceTime = new TimeSpan(4, 0, 0);
-
-                for (TimeSpan time = startTime; time < endTime; time += DifferenceTime)
-                {
-                    TimeSpan nextTime = time + DifferenceTime;
-                    string timeString = $"{DateTime.Today.Add(time):HH:mm} - {DateTime.Today.Add(nextTime):HH:mm}";
-                    TimeComboBox.Items.Add(timeString);
-
-                    if (nextTime >= endTime)
-                        break;
-                }
-
-                if (TimeComboBox.Items.Count > 0)
-                    TimeComboBox.SelectedIndex = 0;
-            }
-
-        }
     }
 }

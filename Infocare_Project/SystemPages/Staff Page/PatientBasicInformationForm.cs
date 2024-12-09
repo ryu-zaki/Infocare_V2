@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Infocare_Project_1.Classes;
+using Infocare_Project_1.Object_Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
 
@@ -6,18 +8,12 @@ namespace Infocare_Project
 {
     public partial class PatientBasicInformationForm : Form
     {
-        private string LoggedInUsername;
-        private string FirstName;
-        private string LastName;
+        PatientModel patient;
 
-        public PatientBasicInformationForm(string usrnm, string firstName, string lastName)
+        public PatientBasicInformationForm(PatientModel patient)
         {
             InitializeComponent();
-            LoggedInUsername = usrnm;
-            FirstName = firstName;
-            LastName = lastName;
-            NameLabel.Text = $"{lastName}, {firstName}";
-
+            this.patient = patient;
             HeightTextBox.TextChanged += HeightOrWeightTextChanged;
             WeightTextBox.TextChanged += HeightOrWeightTextChanged;
         }
@@ -29,8 +25,8 @@ namespace Infocare_Project
 
         private void LoadPatientName()
         {
-            Database db = new Database();
-            string fullName = db.GetPatientName(LoggedInUsername);
+   
+            string fullName = Database.GetPatientName(patient);
 
             if (!string.IsNullOrEmpty(fullName))
             {
@@ -74,8 +70,7 @@ namespace Infocare_Project
             {
                 try
                 {
-                    Database db = new Database();
-                    db.DeletePatientByUsername(LoggedInUsername);
+                    Database.DeletePatientByUsername(patient.UserName);
                     MessageBox.Show("Your data has been deleted.");
                 }
                 catch (Exception ex)
@@ -91,33 +86,32 @@ namespace Infocare_Project
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
 
-            if (!db.IsValidTextInput(AlergyTextbox.Text))
+            if (!Database.IsValidTextInput(AlergyTextbox.Text))
             {
                 MessageBox.Show("Alergy field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!db.IsValidTextInput(MedicationTxtbox.Text))
+            if (!Database.IsValidTextInput(MedicationTxtbox.Text))
             {
                 MessageBox.Show("Medication field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!db.IsValidTextInput(PreviousSurgeryTextBox.Text))
+            if (!Database.IsValidTextInput(PreviousSurgeryTextBox.Text))
             {
                 MessageBox.Show("Previous Surgery field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!db.IsValidTextInput(preConditionTextBox.Text))
+            if (!Database.IsValidTextInput(preConditionTextBox.Text))
             {
                 MessageBox.Show("Pre-condition field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!db.IsValidTextInput(TreatmentTextBox.Text))
+            if (!Database.IsValidTextInput(TreatmentTextBox.Text))
             {
                 MessageBox.Show("Treatment field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -137,7 +131,7 @@ namespace Infocare_Project
                 string alergy = string.IsNullOrWhiteSpace(AlergyTextbox.Text) ? string.Empty : AlergyTextbox.Text;
                 string medication = string.IsNullOrWhiteSpace(MedicationTxtbox.Text) ? string.Empty : MedicationTxtbox.Text;
 
-                Patient patient = new Patient()
+                HealthInfoModel healthInfo = new HealthInfoModel
                 {
                     Height = height,
                     Weight = weight,
@@ -150,10 +144,13 @@ namespace Infocare_Project
                     Medication = medication
                 };
 
-                Database d1b = new Database();
-                d1b.PatientReg2(patient, LoggedInUsername, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication);
+                patient.HealthInfo = healthInfo;
 
-                var emergencyRegistration = new EmergencyRegistration(LoggedInUsername, FirstName, LastName);
+                
+
+                Database.PatientRegFunc(patient, patient.UserName, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication);
+
+                var emergencyRegistration = new EmergencyRegistration(patient);
                 emergencyRegistration.Show();
                 this.Hide();
             }
@@ -187,8 +184,8 @@ namespace Infocare_Project
             {
                 try
                 {
-                    Database db = new Database();
-                    db.DeletePatientReg1Data(LoggedInUsername);
+                  
+                    Database.DeletePatientReg1Data(patient);
 
                     var patientInfoForm = new PatientRegisterForm();
                     patientInfoForm.Show();

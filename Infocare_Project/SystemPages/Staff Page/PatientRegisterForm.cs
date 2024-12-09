@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using Infocare_Project.NewFolder;
 using Infocare_Project_1.Classes;
+using Infocare_Project_1.Object_Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,45 +116,34 @@ namespace Infocare_Project
                 MessageBox.Show("Please enter a valid number for Zone.");
                 return;
             }
-            Database db = new Database();
-            if (db.IsUsernameExists(UsernameTxtbox.Text))
+            
+            if (Database.IsUsernameExists(UsernameTxtbox.Text))
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.");
                 return;
             }
 
+            AddressModel address = new AddressModel(houseNo, StreetTxtbox.Text, BarangayTxtbox.Text, CityTxtbox.Text, zipCode, zone);
 
-            User newUser = new User
+            PatientModel newPatient = new PatientModel
             {
                 FirstName = FirstnameTxtbox.Text,
                 LastName = LastNameTxtbox.Text,
                 MiddleName = MiddleNameTxtbox.Text,
-                Suffix = SuffixTxtbox.Text,
-                Bdate = BdayDateTimePicker.Value,
-                Sex = SexCombobox.SelectedItem?.ToString(),
-                Username = UsernameTxtbox.Text,
                 ContactNumber = ContactNumberTxtbox.Text,
-
-                HouseNo = houseNo,
-                ZipCode = zipCode,
-                Zone = zone,
-                Street = StreetTxtbox.Text,
-                Barangay = BarangayTxtbox.Text,
-                City = CityTxtbox.Text
+                UserName = UsernameTxtbox.Text,
+                Address = address
             };
 
-            if (newUser.Password != newUser.ConfirmPassword)
-            {
-                MessageBox.Show("Passwords do not match.");
-                return;
-            }
 
             try
             {
-                Database Db = new Database();
-                Db.PatientReg1(newUser);
+                
+                Database.PatientRegFunc(newPatient);
 
-                var patientInfoForm = new PatientBasicInformationForm(newUser.Username, newUser.FirstName, newUser.LastName);
+                var patientInfoForm = new PatientBasicInformationForm(newPatient);
+
+
                 patientInfoForm.Show();
 
                 this.Hide();
@@ -162,8 +152,6 @@ namespace Infocare_Project
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
-
 
             Guna2TextBox[] requiredTextBoxes = {
                 FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
@@ -174,16 +162,8 @@ namespace Infocare_Project
             {
                 return;
             }
-
-            ///////VALIDATION
-
-
-            
-
+           
         }
-
-
-        //TEXTBOX PLACE HOLDER BRO!!!
 
         private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
         {

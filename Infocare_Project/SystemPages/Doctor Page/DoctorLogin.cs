@@ -1,4 +1,5 @@
 ﻿using Infocare_Project_1;
+using Infocare_Project_1.Object_Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,10 +71,6 @@ namespace Infocare_Project
             string username = doctor_UsernameTxtbox.Text;
             string password = doctor_PasswordTxtbox.Text;
 
-
-
-            LoginEmpty loginEmpty = new LoginEmpty();
-
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
 
@@ -84,20 +81,17 @@ namespace Infocare_Project
 
             }
 
-            Database db = new Database();
 
+            bool validDoctor = Database.RoleLogin(username, password, Role.Doctor);
 
-            bool validStaff = db.Doctorlogin(username, password);
-
-
-            if (validStaff)
+            if (validDoctor)
             {
-                (string firstName, string lastName) = db.GetDoctorNameDetails(username);
+                DoctorModel doctor = Database.GetDoctorNameDetails(username);
 
                 MessageBox.Show("Log in Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                var doctor = new DoctorDashboard(username, firstName, lastName);
-                doctor.Show();
+                DoctorDashboard dashboard = new DoctorDashboard(doctor);
+                dashboard.Show();
                 this.Hide();
             }
 

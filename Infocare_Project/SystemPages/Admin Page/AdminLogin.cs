@@ -1,4 +1,5 @@
 ﻿using Infocare_Project_1;
+using Infocare_Project_1.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,9 +26,7 @@ namespace Infocare_Project
             string password = PasswordTxtbox.Text;
 
 
-            Database db = new Database();
-
-            bool valid = db.AdminLogin(username, password);
+            bool valid = Database.RoleLogin(username, password, Role.Admin);
 
             if (valid)
             {

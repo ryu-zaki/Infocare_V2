@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using Infocare_Project;
 using Infocare_Project_1.Classes;
+using Infocare_Project_1.Object_Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,8 +44,7 @@ namespace Infocare_Project_1
                 return;
             }
 
-            Database db = new Database();
-            if (db.UsernameExistsStaff(UserNameTextBox.Text))
+            if (Database.UsernameExistsStaff(UserNameTextBox.Text))
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -96,19 +96,19 @@ namespace Infocare_Project_1
                 return;
             }
 
-            Staff newStaff = new Staff
+            StaffModel newStaff = new StaffModel
             {
-                FirstName = FirstNameTextBox.Text,
-                LastName = LastNameTextbox.Text,
+                FirstName = FirstNameTextBox.Text.Trim(),
+                LastName = LastNameTextbox.Text.Trim(),
                 MiddleName = MiddleNameTextbox.Text,
-                Email = EmailTextbox.Text,
                 ContactNumber = ConatactNumberTextbox.Text,
-                Username = UserNameTextBox.Text,
+                UserName = UserNameTextBox.Text,
                 Password = PasswordTextBox.Text,
-                ConfirmPassword = ConfirmPasswordTextBox.Text,
+                Suffix = SuffixTextbox.Text,
+                Email = EmailTextbox.Text
             };
 
-            if (newStaff.Password != newStaff.ConfirmPassword)
+            if (PasswordTextBox.Text.Trim() != ConfirmPasswordTextBox.Text.Trim())
             {
                 MessageBox.Show("Passwords do not match.");
                 return;
@@ -116,8 +116,8 @@ namespace Infocare_Project_1
 
             try
             {
-                Database db1 = new Database();
-                db1.AddStaff(newStaff);
+           
+                Database.AddStaff(newStaff);
                 MessageBox.Show("Staff added successfully!");
                 this.Hide();
             }

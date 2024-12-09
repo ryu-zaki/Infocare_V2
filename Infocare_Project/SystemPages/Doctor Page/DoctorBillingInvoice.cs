@@ -45,9 +45,7 @@ namespace Infocare_Project_1
 
             billing_TimeTextBox.Text = currentTime;
 
-            Database db = new Database();
-
-            DataTable checkoutTable = db.ChecOutList();
+            DataTable checkoutTable = Database.ChecOutList();
 
             billing_DataGridView.DataSource = checkoutTable;
 
@@ -60,7 +58,6 @@ namespace Infocare_Project_1
             {
                 try
                 {
-                    Database db = new Database();
                     DataTable checkoutTable = (DataTable)billing_DataGridView.DataSource;
 
                     string doctorName = billing_DoctorNameTextbox.Text.Trim();
@@ -76,7 +73,7 @@ namespace Infocare_Project_1
                     {
                         string date = Convert.ToDateTime(row["ah_date"]).ToString("dd-MM-yyyy");
 
-                        db.UpdateStatus(doctorName);
+                        Database.UpdateStatus(doctorName);
                     }
 
                     MessageBox.Show("Statuses updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

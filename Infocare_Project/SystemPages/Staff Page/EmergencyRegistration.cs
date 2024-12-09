@@ -1,5 +1,7 @@
 ﻿using Infocare_Project.NewFolder;
 using Infocare_Project_1;
+using Infocare_Project_1.Classes;
+using Infocare_Project_1.Object_Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,19 +19,15 @@ namespace Infocare_Project
     public partial class EmergencyRegistration : Form
     {
         private PlaceHolderHandler _placeHolderHandler;
-        private string LoggedInUsername;
-        private string Firstname;
-        private string Lastname;
-
-
-        public EmergencyRegistration(string usrnm, string firstName, string lastName)
+        PatientModel patient;
+        public EmergencyRegistration(PatientModel patient)
         {
             InitializeComponent();
             _placeHolderHandler = new PlaceHolderHandler();
-            LoggedInUsername = usrnm;
-            NameLabel.Text = $"{lastName}, {firstName}";
-            Firstname = firstName;
-            Lastname = lastName;
+           
+            NameLabel.Text = $"{patient.LastName}, {patient.FirstName}";
+
+            this.patient = patient;
         }
 
 
@@ -42,8 +40,7 @@ namespace Infocare_Project
             {
                 try
                 {
-                    Database db = new Database();
-                    db.DeletePatientByUsername(LoggedInUsername);
+                    Database.DeletePatientByUsername(patient.UserName);
 
                     MessageBox.Show("Your data has been deleted.");
                 }
@@ -65,8 +62,7 @@ namespace Infocare_Project
 
         private void LoadPatientName()
         {
-            Database db = new Database();
-            string fullName = db.GetPatientName(LoggedInUsername);
+            string fullName = Database.GetPatientName(patient);
 
             if (!string.IsNullOrEmpty(fullName))
             {
@@ -103,7 +99,7 @@ namespace Infocare_Project
 
             }
 
-            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr", "N/A"};
+            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr", "N/A" };
 
             string enteredText = SuffixTxtbox.Text.Trim();
 
@@ -118,7 +114,7 @@ namespace Infocare_Project
 
             int zipCode;
             int Zone;
-            
+
             if (!int.TryParse(ZipCodeTxtbox.Text, out zipCode))
             {
                 MessageBox.Show("Please enter a valid number for Zip Code.");
@@ -145,18 +141,15 @@ namespace Infocare_Project
                 int zipcode = string.IsNullOrWhiteSpace(ZipCodeTxtbox.Text) ? 0 : Convert.ToInt32(ZipCodeTxtbox.Text);
                 int zone = string.IsNullOrWhiteSpace(ZoneTxtbox.Text) ? 0 : Convert.ToInt32(ZoneTxtbox.Text);
 
-                EmergencyContact emergencyContact = new EmergencyContact()
+                AddressModel address = new AddressModel(housenum, street, barangay, city, zipCode, zone);
+
+                EmergencyContactModel emergencyContact = new EmergencyContactModel()
                 {
                     FirstName = firstname,
                     MiddleName = middlename,
                     LastName = lastname,
                     Suffix = suffix,
-                    HouseNo = housenum,
-                    Street = street,
-                    Barangay = barangay,
-                    City = city,
-                    ZipCode = zipcode,
-                    Zone = zone
+                    address = address
                 };
 
 
@@ -165,11 +158,8 @@ namespace Infocare_Project
                 if (YesNO == DialogResult.Yes)
                 {
                     try
-                    {
-                        Database db = new Database();
-
-                        db.PatientReg3(emergencyContact, LoggedInUsername, firstname, lastname, middlename, suffix, housenum, street, barangay, city, zipcode, zone);
-
+                    { 
+                        Database.PatientRegFunc(emergencyContact, patient.UserName, firstname, lastname, middlename, suffix, housenum, street, barangay, city, zipcode, zone);
 
                         MessageBox.Show("Submit Succesfully");
                         this.Hide();
@@ -192,7 +182,7 @@ namespace Infocare_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
 
-            
+
 
 
         }
@@ -262,10 +252,9 @@ namespace Infocare_Project
             {
                 try
                 {
-                    Database db = new Database();
-                    db.NullPatientReg2Data(LoggedInUsername);
+                    Database.NullPatientReg2Data(patient.UserName);
 
-                    var patientInfoForm = new PatientBasicInformationForm(LoggedInUsername, Firstname, Lastname);
+                    PatientBasicInformationForm patientInfoForm = new PatientBasicInformationForm(patient);
                     patientInfoForm.Show();
                     this.Hide();
                 }
@@ -284,8 +273,7 @@ namespace Infocare_Project
             {
                 try
                 {
-                    Database db = new Database();
-                    db.DeletePatientByUsername(LoggedInUsername);
+                    Database.DeletePatientByUsername(patient.UserName);
 
                     MessageBox.Show("Your data has been deleted.");
                 }

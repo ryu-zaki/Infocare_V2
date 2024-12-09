@@ -43,9 +43,7 @@ namespace Infocare_Project_1
             BookingPanel.Visible = false;
             ViewAppointmentPanel.Visible = false;
 
-            Database db = new Database();
-
-            List<string> patientNames = db.GetPatientNames();
+            List<string> patientNames = Database.GetPatientNames();
 
             PatientComboBox.Items.Clear();
             PatientComboBox.Items.Add("Select");
@@ -82,7 +80,6 @@ namespace Infocare_Project_1
 
         private void pd_SpecBtn_Click(object sender, EventArgs e)
         {
-            Database db = new Database();
 
             if (pd_SpecBox.SelectedItem == null || pd_SpecBox.SelectedItem.ToString() == "Select")
             {
@@ -101,7 +98,7 @@ namespace Infocare_Project_1
                 pd_DoctorPanel.Visible = true;
                 BookAppPanel.Visible = true;
 
-                List<string> doctorNames = db.GetDoctorNames(selectedSpecialization);
+                List<string> doctorNames = Database.GetDoctorNames(selectedSpecialization);
 
                 pd_DocBox.Items.Clear();
                 pd_DocBox.Items.Add("Select");
@@ -133,9 +130,7 @@ namespace Infocare_Project_1
             string selectedDoctor = pd_DocBox.SelectedItem.ToString();
             string selectedSpecialization = pd_SpecBox.SelectedItem.ToString();
 
-            Database db = new Database();
-
-            List<string> timeSlots = db.GetDoctorAvailableTimes(selectedDoctor, selectedSpecialization);
+            List<string> timeSlots = Database.GetDoctorAvailableTimes(selectedDoctor, selectedSpecialization);
 
             SelectPatientPanel.Visible = false;
             SpecPanel.Visible = false;
@@ -168,9 +163,8 @@ namespace Infocare_Project_1
             if (pd_DocBox.SelectedItem != null && pd_DocBox.SelectedItem.ToString() != "Select")
             {
                 string selectedDoctor = pd_DocBox.SelectedItem.ToString();
-                Database db = new Database();
 
-                string availability = db.GetDoctorAvailability(selectedDoctor);
+                string availability = Database.GetDoctorAvailability(selectedDoctor);
 
                 if (!string.IsNullOrEmpty(availability))
                 {
@@ -185,7 +179,7 @@ namespace Infocare_Project_1
 
                 try
                 {
-                    decimal? consultationFee = db.GetConsultationFee(selectedDoctor);
+                    decimal? consultationFee = Database.GetConsultationFee(selectedDoctor);
 
                     if (consultationFee.HasValue)
                     {
@@ -289,9 +283,8 @@ namespace Infocare_Project_1
         {
             try
             {
-                Database db = new Database();
 
-                var specializations = db.GetSpecialization();
+                var specializations = Database.GetSpecialization();
 
                 pd_SpecBox.Items.Clear();
                 pd_SpecBox.Items.Add("Select");
@@ -318,9 +311,7 @@ namespace Infocare_Project_1
 
                 string selectedDoctor = pd_DocBox.SelectedItem.ToString();
 
-                Database db = new Database();
-
-                decimal? consultationFee = db.GetConsultationFee(selectedDoctor);
+                decimal? consultationFee = Database.GetConsultationFee(selectedDoctor);
 
                 if (consultationFee.HasValue)
                 {
@@ -351,7 +342,6 @@ namespace Infocare_Project_1
             {
                 try
                 {
-                    Database db = new Database();
 
                     string selectedPatient = PatientComboBox.SelectedItem?.ToString() ?? string.Empty;
                     string selectedDoctor = pd_DocBox.SelectedItem?.ToString() ?? string.Empty;
@@ -374,13 +364,13 @@ namespace Infocare_Project_1
                         return;
                     }
 
-                    if (db.IsPatientAppointmentPendingOrAccepted(selectedPatient))
+                    if (Database.IsPatientAppointmentPendingOrAccepted(selectedPatient))
                     {
                         MessageBox.Show("This patient already has a pending or accepted appointment. They cannot book another appointment until the current one is completed.", "Booking Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    if (db.IsDoctorOccupied(selectedDoctor, appointmentDate))
+                    if (Database.IsDoctorOccupied(selectedDoctor, appointmentDate))
                     {
                         MessageBox.Show("This doctor is already occupied for the selected date. Please choose another doctor or date.", "Booking Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
@@ -399,7 +389,7 @@ namespace Infocare_Project_1
                     }
 
 
-                    bool appointmentSaved = db.SaveAppointment(selectedPatient, specialization, selectedDoctor, selectedTimeSlot, appointmentDate, consultationFee);
+                    bool appointmentSaved = Database.SaveAppointment(selectedPatient, specialization, selectedDoctor, selectedTimeSlot, appointmentDate, consultationFee);
 
                     if (appointmentSaved)
                     {
@@ -420,10 +410,9 @@ namespace Infocare_Project_1
         private void ShowAppointmentList()
         {
 
-            Database db = new Database();
             try
             {
-                DataTable AppointmentData = db.AppointmentList();
+                DataTable AppointmentData = Database.AppointmentList();
                 if (AppointmentData.Rows.Count > 0)
                 {
                     AppointmentDataGridViewList2.DataSource = AppointmentData;
@@ -505,8 +494,8 @@ namespace Infocare_Project_1
             BookAppPanel.Visible = false;
             ViewAppointmentPanel.Visible = true;
             AppointmentDataGridViewList2.Visible = true;
-            Database db = new Database();
-            DataTable viewcompletedappoointment = db.ViewCompletedppointments();
+           
+            DataTable viewcompletedappoointment = Database.ViewCompletedppointments();
             AppointmentDataGridViewList2.DataSource = viewcompletedappoointment;
         }
 
@@ -559,9 +548,8 @@ namespace Infocare_Project_1
             if (AppointmentDataGridViewList2.SelectedRows.Count > 0)
             {
                 int appointmentId = Convert.ToInt32(AppointmentDataGridViewList2.SelectedRows[0].Cells["Transaction ID"].Value);
-                Database db = new Database();
 
-                db.viewDocument(
+                Database.viewDocument(
                     appointmentId,
                     patientDetails =>
                     {

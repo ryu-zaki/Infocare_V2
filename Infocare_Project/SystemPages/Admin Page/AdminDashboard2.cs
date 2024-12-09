@@ -141,11 +141,9 @@ namespace Infocare_Project_1
 
         private void ShowStaffList()
         {
-
-            Database db = new Database();
             try
             {
-                DataTable staffData = db.StaffList();
+                DataTable staffData = Database.StaffList();
                 if (staffData.Rows.Count > 0)
                 {
                     StaffDataGridViewList2.DataSource = staffData;
@@ -163,11 +161,9 @@ namespace Infocare_Project_1
 
         private void ShowDoctorList()
         {
-
-            Database db = new Database();
             try
             {
-                DataTable DoctorData = db.DoctorList();
+                DataTable DoctorData = Database.DoctorList();
                 if (DoctorData.Rows.Count > 0)
                 {
                     DoctorDataGridViewList2.DataSource = DoctorData;
@@ -186,10 +182,9 @@ namespace Infocare_Project_1
         private void ShowPatientList()
         {
 
-            Database db = new Database();
             try
             {
-                DataTable PatientData = db.PatientList();
+                DataTable PatientData = Database.PatientList();
                 if (PatientData.Rows.Count > 0)
                 {
                     PatientDataGridViewList2.DataSource = PatientData;
@@ -208,10 +203,9 @@ namespace Infocare_Project_1
         private void ShowAppointmentList()
         {
 
-            Database db = new Database();
             try
             {
-                DataTable AppointmentData = db.AppointmentList();
+                DataTable AppointmentData = Database.AppointmentList();
                 if (AppointmentData.Rows.Count > 0)
                 {
                     AppointmentDataGridViewList2.DataSource = AppointmentData;

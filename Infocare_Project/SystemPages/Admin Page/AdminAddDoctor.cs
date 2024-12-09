@@ -6,6 +6,8 @@ using System.Security.Policy;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Infocare_Project.NewFolder;
+using Infocare_Project_1.Classes;
+using Infocare_Project_1.Object_Models;
 using static Infocare_Project.NewFolder.PlaceHolderHandler;
 using static Infocare_Project.NewFolder.Specialization;
 
@@ -68,8 +70,7 @@ namespace Infocare_Project
 
             }
 
-            Database db = new Database();
-            if (db.UsernameExistsDoctor(UserNameTextBox.Text))
+            if (Database.UsernameExistsDoctor(UserNameTextBox.Text))
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -127,18 +128,19 @@ namespace Infocare_Project
                 return;
             }
 
-
-            Doctor newDoctor = new Doctor
+            DoctorModel newDoctor = new DoctorModel
             {
+
                 FirstName = FirstNameTextBox.Text.Trim(),
                 LastName = LastNameTextbox.Text.Trim(),
                 MiddleName = MiddleNameTextbox.Text.Trim(),
-                Username = UserNameTextBox.Text.Trim(),
-                Password = PasswordTextBox.Text.Trim(),
                 ContactNumber = ContactNumberTextbox.Text.Trim(),
-                ConfirmPassword = ConfirmPasswordTextBox.Text.Trim(),
+                UserName = UserNameTextBox.Text.Trim(),
+                Password = PasswordTextBox.Text.Trim(),
+
+
                 ConsultationFee = int.TryParse(ConsultationFeeTextBox.Text, out int consultationFee) ? consultationFee : 0,
-                Specialty = specializations, 
+                Specialty = specializations,
             };
 
             string selectedTimeSlot = TimeComboBox.SelectedItem.ToString();
@@ -171,7 +173,7 @@ namespace Infocare_Project
 
             newDoctor.DayAvailability = DayAvailabilityCombobox.SelectedItem?.ToString() ?? string.Empty;
 
-            if (newDoctor.Password != newDoctor.ConfirmPassword)
+            if (PasswordTextBox.Text.Trim() != ConfirmPasswordTextBox.Text.Trim())
             {
                 MessageBox.Show("Passwords do not match.");
                 return;
@@ -179,12 +181,11 @@ namespace Infocare_Project
 
             try
             {
-                Database db1 = new Database();
-                int doctorId = db1.AddDoctor1(newDoctor);
+                int doctorId = Database.AddDoctor1(newDoctor);
 
                 foreach (string specialization in specializations)
                 {
-                    db1.AddSpecialization(doctorId, specialization);
+                    Database.AddSpecialization(doctorId, specialization);
                 }
 
                 MessageBox.Show("Doctor added successfully!");

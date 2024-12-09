@@ -87,8 +87,7 @@ namespace Infocare_Project_1
             { "@PatientName", patientName }
         };
 
-                Database db = new Database();
-                db.ExecuteQuery(query, parameters);
+                Database.ExecuteQuery(query, parameters);
 
                 MessageBox.Show("Appointment details saved successfully and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -116,7 +115,7 @@ namespace Infocare_Project_1
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection("Server=127.0.0.1; Database=db_infocare_project; User ID=root; Password=;"))
+                using (MySqlConnection connection = Database.GetConnection())
                 {
                     connection.Open();
                     using (MySqlCommand command = new MySqlCommand(query, connection))
