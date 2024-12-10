@@ -52,7 +52,7 @@ namespace Infocare_Project_1
 
             string password = PasswordTextBox.Text;
 
-            if (!Database.ValidatePassword(password))
+            if (!ProcessMethods.ValidatePassword(password))
             {
                 return; 
             }
@@ -116,7 +116,6 @@ namespace Infocare_Project_1
 
             try
             {
-           
                 Database.AddStaff(newStaff);
                 MessageBox.Show("Staff added successfully!");
                 this.Hide();

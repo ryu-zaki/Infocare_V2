@@ -1,4 +1,5 @@
-﻿using Infocare_Project_1.Classes;
+﻿using Infocare_Project_1;
+using Infocare_Project_1.Classes;
 using Infocare_Project_1.Object_Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -87,37 +88,35 @@ namespace Infocare_Project
         private void RegisterButton_Click(object sender, EventArgs e)
         {
 
-            if (!Database.IsValidTextInput(AlergyTextbox.Text))
+            if (!ProcessMethods.IsValidTextInput(AlergyTextbox.Text))
             {
                 MessageBox.Show("Alergy field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!Database.IsValidTextInput(MedicationTxtbox.Text))
+            if (!ProcessMethods.IsValidTextInput(MedicationTxtbox.Text))
             {
                 MessageBox.Show("Medication field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!Database.IsValidTextInput(PreviousSurgeryTextBox.Text))
+            if (!ProcessMethods.IsValidTextInput(PreviousSurgeryTextBox.Text))
             {
                 MessageBox.Show("Previous Surgery field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!Database.IsValidTextInput(preConditionTextBox.Text))
+            if (!ProcessMethods.IsValidTextInput(preConditionTextBox.Text))
             {
                 MessageBox.Show("Pre-condition field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!Database.IsValidTextInput(TreatmentTextBox.Text))
+            if (!ProcessMethods.IsValidTextInput(TreatmentTextBox.Text))
             {
                 MessageBox.Show("Treatment field must contain only letters, spaces, or 'N/A'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-
 
             try
             {

@@ -6,6 +6,7 @@ using System.Security.Policy;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Infocare_Project.NewFolder;
+using Infocare_Project_1;
 using Infocare_Project_1.Classes;
 using Infocare_Project_1.Object_Models;
 using static Infocare_Project.NewFolder.PlaceHolderHandler;
@@ -78,7 +79,7 @@ namespace Infocare_Project
 
             string password = PasswordTextBox.Text;
 
-            if (!Database.ValidatePassword(password))
+            if (!ProcessMethods.ValidatePassword(password))
             {
                 return;
             }

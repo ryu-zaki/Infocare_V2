@@ -750,6 +750,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "DoctorDashboard";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += DoctorDashboard_Load_2;
             ad_docpanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DataGridViewList).EndInit();
             ((System.ComponentModel.ISupportInitialize)ad_guna2CirclePictureBox1).EndInit();

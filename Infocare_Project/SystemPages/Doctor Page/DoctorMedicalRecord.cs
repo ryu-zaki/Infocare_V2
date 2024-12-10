@@ -14,6 +14,7 @@ namespace Infocare_Project_1
 {
     public partial class DoctorMedicalRecord : Form
     {
+        public Func<DataTable> LoadAppointmentsList;
         public DoctorMedicalRecord()
         {
             InitializeComponent();
@@ -75,7 +76,6 @@ namespace Infocare_Project_1
 
         private void ContinueButton_Click(object sender, EventArgs e)
         {
-            
             DialogResult result = MessageBox.Show(
                 "Do you want to save the information?",
                 "Confirm Action",
@@ -142,7 +142,10 @@ namespace Infocare_Project_1
 
                     MessageBox.Show("Appointment history updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    DoctorDiagnosisRecord diagnosisRecord = new DoctorDiagnosisRecord();
+                    DoctorDiagnosisRecord diagnosisRecord = new DoctorDiagnosisRecord(this);
+
+                    diagnosisRecord.LoadAppointmentsList += LoadAppointmentsList;
+
                     diagnosisRecord.SetPatientName(firstName, lastName);
                     diagnosisRecord.Show();
 

@@ -23,7 +23,7 @@ namespace Infocare_Project
     static class Database
     {
 
-        private static string dbms = "Xampp";
+        private static string dbms = "Workbench";
         public static string connectionString = ConfigurationManager.ConnectionStrings[dbms].ConnectionString;
 
         public static void ExecuteQuery(string query, Dictionary<string, object> parameters)
@@ -41,36 +41,6 @@ namespace Infocare_Project
                 }
             }
         }
-
-
-        public static bool ValidatePassword(string password)
-        {
-            var regex = new System.Text.RegularExpressions.Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$");
-
-            if (!regex.IsMatch(password))
-            {
-                MessageBox.Show("Password must be at least 8 characters long and include:\n- At least one uppercase letter\n- At least one lowercase letter\n- At least one number\n- At least one special character (e.g., @, !, etc.)",
-                                "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            return true;
-        }
-
-
-
-        public static bool IsValidTextInput(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return true;
-
-            if (input.Equals("N/A", StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            return input.All(c => char.IsLetter(c) || char.IsWhiteSpace(c));
-        }
-
-
 
         //Other Functions are seperated here by region
 
@@ -101,8 +71,9 @@ namespace Infocare_Project
                     string query = $"SELECT COUNT(*) FROM {tableName} WHERE {tableColumn}Username = @Username AND {tableColumn}Password = @Password";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
+                    string hashhPassword = ProcessMethods.HashCharacter(password);
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", password);
+                    command.Parameters.AddWithValue("@Password", hashhPassword);
 
                     connection.Open();
                     int result = Convert.ToInt32(command.ExecuteScalar());
@@ -685,7 +656,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             DataTable appointmentTable = new DataTable();
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (MySqlConnection conn = GetConnection())
                 {
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
@@ -980,7 +951,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable ChecOutList()
         {
-            string query = @"SELECT ah_patient_name, ah_Consfee, ah_time, ah_date from tb_appointmenthistory where ah_status = 'Checkout'";
+            string query = @"SELECT ah_patient_name, ah_Consfee, ah_time, ah_date from tb_appointmenthistory where ah_status = 'CheckOut'";
 
             DataTable CheckoutTable = new DataTable();
 
@@ -1142,13 +1113,16 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     string query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, s_Username, s_Password, s_suffix, s_contactNumber, s_email) " +
                                    "VALUES (@FirstName, @LastName, @MiddleName, @Username, @Password, @suffix, @ContactNumber, @email)";
 
+                    string hashPassword = ProcessMethods.HashCharacter(staff.Password);
+
                     MySqlCommand command = new MySqlCommand(query, connection);
 
                     command.Parameters.AddWithValue("@FirstName", staff.FirstName);
                     command.Parameters.AddWithValue("@LastName", staff.LastName);
                     command.Parameters.AddWithValue("@MiddleName", staff.MiddleName);
                     command.Parameters.AddWithValue("@Username", staff.UserName);
-                    command.Parameters.AddWithValue("@Password", staff.Password);
+
+                    command.Parameters.AddWithValue("@Password", hashPassword);
                     command.Parameters.AddWithValue("@suffix", staff.Suffix);
                     command.Parameters.AddWithValue("@ContactNumber", staff.ContactNumber);
                     command.Parameters.AddWithValue("@email", staff.Email);
@@ -1315,11 +1289,12 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                      VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @StartTime, @EndTime, @DayAvailability, @ContactNumber)";
                     MySqlCommand command = new MySqlCommand(query, connection, transaction);
 
+                    string hashPassword = ProcessMethods.HashCharacter(doctor.Password);
                     command.Parameters.AddWithValue("@FirstName", doctor.FirstName);
                     command.Parameters.AddWithValue("@MiddleName", doctor.MiddleName);
                     command.Parameters.AddWithValue("@LastName", doctor.LastName);
                     command.Parameters.AddWithValue("@Username", doctor.UserName);
-                    command.Parameters.AddWithValue("@Password", doctor.Password);
+                    command.Parameters.AddWithValue("@Password", hashPassword);
                     command.Parameters.AddWithValue("@ConsultationFee", doctor.ConsultationFee);
                     command.Parameters.AddWithValue("@StartTime", doctor.StartTime);
                     command.Parameters.AddWithValue("@EndTime", doctor.EndTime);

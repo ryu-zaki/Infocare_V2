@@ -1,3 +1,6 @@
+using Infocare_Project_1;
+using System.Diagnostics;
+
 namespace Infocare_Project
 {
     public partial class LandForm : Form
@@ -5,6 +8,7 @@ namespace Infocare_Project
         public LandForm()
         {
             InitializeComponent();
+
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
@@ -19,7 +23,6 @@ namespace Infocare_Project
             DialogResult confirm = MessageBox.Show("Are you sure you want to close?", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirm == DialogResult.Yes)
-
             {
                 this.Close();
             }

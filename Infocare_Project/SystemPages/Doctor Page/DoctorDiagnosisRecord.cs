@@ -14,9 +14,12 @@ namespace Infocare_Project_1
 {
     public partial class DoctorDiagnosisRecord : Form
     {
-        public DoctorDiagnosisRecord()
+        DoctorMedicalRecord prevForm;
+        public Func<DataTable> LoadAppointmentsList;
+        public DoctorDiagnosisRecord(DoctorMedicalRecord prevForm)
         {
             InitializeComponent();
+            this.prevForm = prevForm;
         }
 
         private void doctor_ExitButton_Click(object sender, EventArgs e)
@@ -92,6 +95,13 @@ namespace Infocare_Project_1
                 MessageBox.Show("Appointment details saved successfully and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();
+                prevForm.Close();
+
+
+                LoadAppointmentsList.Invoke();
+
+
+
             }
             catch (Exception ex)
             {

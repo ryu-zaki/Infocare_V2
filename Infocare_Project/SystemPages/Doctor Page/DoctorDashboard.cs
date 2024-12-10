@@ -29,10 +29,10 @@ namespace Infocare_Project_1
             LoadRejectedAppointments();
         }
 
-
-
-        private void ApprovalPendingButton_Click(object sender, EventArgs e)
+        private void LoadPendingApprovals(bool haveAnError)
         {
+            DataGridViewList.DataSource = null;
+
             ReconsiderButton.Visible = false;
             CreateDiagnosisButton.Visible = false;
             AcceptButton.Visible = true;
@@ -43,19 +43,19 @@ namespace Infocare_Project_1
 
             string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
 
-            DataTable pendingAppointments = Database.PendingAppointmentList(doctorFullName);
-            DataGridViewList.DataSource = pendingAppointments;
-
-
             try
             {
+                DataTable pendingAppointments = Database.PendingAppointmentList(doctorFullName);
+
+                DataGridViewList.AutoGenerateColumns = true;
+                DataGridViewList.AllowUserToAddRows = false;
+                DataGridViewList.Visible = true;
+
                 if (pendingAppointments != null && pendingAppointments.Rows.Count > 0)
                 {
-                    DataGridViewList.AutoGenerateColumns = true;
-                    DataGridViewList.AllowUserToAddRows = false;
-                    DataGridViewList.Visible = true;
+                    DataGridViewList.DataSource = pendingAppointments;
                 }
-                else
+                else if (haveAnError)
                 {
                     MessageBox.Show("No appointments found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -67,13 +67,26 @@ namespace Infocare_Project_1
         }
 
 
-        private void DataGridViewList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
+        private void ApprovalPendingButton_Click(object sender, EventArgs e)
+        {
+            LoadPendingApprovals(true);
         }
+
+        public DataTable LoadAppointmentsList()
+        {
+            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
+            DataTable viewappoointment = Database.ViewAppointments(doctorFullName);
+            DataGridViewList.DataSource = viewappoointment;
+
+            return viewappoointment;
+        }
+
 
         private void AppointmentListButton_Click(object sender, EventArgs e)
         {
+            DataGridViewList.DataSource = null;
+
             ReconsiderButton.Visible = false;
             AcceptButton.Visible = false;
             DeclineButton.Visible = false;
@@ -82,9 +95,7 @@ namespace Infocare_Project_1
             CheckOutButton.Visible = false;
             InvoiceButton.Visible = false;
 
-            string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
-            DataTable viewappoointment = Database.ViewAppointments(doctorFullName);
-            DataGridViewList.DataSource = viewappoointment;
+            DataTable viewappoointment = LoadAppointmentsList();
 
             try
             {
@@ -106,14 +117,6 @@ namespace Infocare_Project_1
                 MessageBox.Show($"An error occurred while loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }
-
-        private void guna2DataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (e.ColumnIndex != 0)
-            {
-                e.Cancel = true;
-            }
         }
 
         private void DataGridViewList_CurrentCellChanged(object sender, EventArgs e)
@@ -188,6 +191,8 @@ namespace Infocare_Project_1
                             patientDetails["P_Treatment"]
                         );
 
+                        doctorMedicalRecord.LoadAppointmentsList += LoadAppointmentsList;
+
                         doctorMedicalRecord.Show();
                     },
                     errorMessage => MessageBox.Show(errorMessage)
@@ -203,7 +208,7 @@ namespace Infocare_Project_1
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 foreach (DataGridViewRow row in DataGridViewList.Rows)
@@ -230,7 +235,7 @@ namespace Infocare_Project_1
 
         private void DeclineButton_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 foreach (DataGridViewRow row in DataGridViewList.Rows)
@@ -257,6 +262,8 @@ namespace Infocare_Project_1
 
         private void RejectedRequestsButton_Click(object sender, EventArgs e)
         {
+            DataGridViewList.DataSource = null;
+
             ReconsiderButton.Visible = true;
             AcceptButton.Visible = false;
             DeclineButton.Visible = false;
@@ -300,13 +307,14 @@ namespace Infocare_Project_1
 
         private void CompletedAppointmentsButton_Click(object sender, EventArgs e)
         {
+            DataGridViewList.DataSource = null;
             ReconsiderButton.Visible = false;
             AcceptButton.Visible = false;
             DeclineButton.Visible = false;
             CreateDiagnosisButton.Visible = false;
             ViewButton.Visible = true;
             CheckOutButton.Visible = true;
-            InvoiceButton.Visible = true;;
+            InvoiceButton.Visible = true; ;
 
             string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
             DataTable viewcompletedappoointment = Database.ViewCompletedAppointments(doctorFullName);
@@ -402,16 +410,18 @@ namespace Infocare_Project_1
 
                     string specialization = Database.GetDoctorSpecialization(doctorName);
 
-                    DataTable checkoutAppointments = Database.CheckOutAppointmentList(doctorName);
-
-                    DataGridViewList.DataSource = checkoutAppointments;
+                     
 
                     DoctorBillingInvoice invoiceForm = new DoctorBillingInvoice();
 
+                    DataTable checkoutAppointments = Database.CheckOutAppointmentList(doctorName);
                     string date = DateTime.Now.ToString("yyyy-MM-dd");
                     invoiceForm.SetDoctorDetails(doctorName, specialization, date, checkoutAppointments);
-
                     invoiceForm.Show();
+
+                    //Reload the whole datagridviee
+                    LoadCompletedAppointments(false);
+
                 }
                 catch (Exception ex)
                 {
@@ -476,7 +486,8 @@ namespace Infocare_Project_1
             }
         }
 
-        private void LoadCompletedAppointments()
+
+        private void LoadCompletedAppointments(bool includeAnErrorValidation = true)
         {
 
             string doctorFullName = $"Dr. {doctor.LastName}, {doctor.FirstName}";
@@ -491,7 +502,7 @@ namespace Infocare_Project_1
                     DataGridViewList.AllowUserToAddRows = false;
                     DataGridViewList.Visible = true;
                 }
-                else
+                else if (includeAnErrorValidation)
                 {
                     MessageBox.Show("No completed appointments found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -551,7 +562,7 @@ namespace Infocare_Project_1
                     {
                         int appointmentId = Convert.ToInt32(row.Cells["id"].Value);
 
-                       Database.ReconsiderAppointment(appointmentId); // Update status to 'Pending' for declined appointments
+                        Database.ReconsiderAppointment(appointmentId); // Update status to 'Pending' for declined appointments
                     }
                 }
 
@@ -582,6 +593,12 @@ namespace Infocare_Project_1
         private void Staff_MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void DoctorDashboard_Load_2(object sender, EventArgs e)
+        {
+            LoadPendingApprovals(false);
+
         }
     }
 }
