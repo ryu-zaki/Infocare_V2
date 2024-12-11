@@ -53,5 +53,12 @@ namespace Infocare_Project_1
                 return sb.ToString();
             }
         }
+
+
+
+        public static void SendEmail()
+        {
+
+        }
     }
 }
