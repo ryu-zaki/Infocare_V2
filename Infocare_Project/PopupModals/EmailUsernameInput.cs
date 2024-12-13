@@ -80,7 +80,7 @@ namespace Infocare_Project_1.PopupModals
 
             Debug.WriteLine($"Your OTP: {otp}");
            
-            //ProcessMethods.SendEmail(user, otp);
+            ProcessMethods.SendEmail(user, otp);
 
             submitBtn.Enabled = true;
             this.Cursor = Cursors.Default;
