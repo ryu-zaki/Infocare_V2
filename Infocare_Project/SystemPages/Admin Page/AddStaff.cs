@@ -64,6 +64,12 @@ namespace Infocare_Project_1
 
             }
 
+            if (!ProcessMethods.ValidateEmail(EmailTextbox.Text))
+            {
+                MessageBox.Show("Please Enter a valid Email.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!MiddleNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
             {
                 MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);

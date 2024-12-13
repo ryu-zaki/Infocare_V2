@@ -64,7 +64,6 @@
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
-            forgotPassBtn = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox2).BeginInit();
@@ -139,7 +138,7 @@
             EnterButton.FillColor = Color.Blue;
             EnterButton.Font = new Font("Microsoft Sans Serif", 11.999999F, FontStyle.Regular, GraphicsUnit.Point);
             EnterButton.ForeColor = SystemColors.Control;
-            EnterButton.Location = new Point(56, 250);
+            EnterButton.Location = new Point(56, 259);
             EnterButton.Margin = new Padding(3, 2, 3, 2);
             EnterButton.Name = "EnterButton";
             EnterButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
@@ -159,7 +158,6 @@
             // guna2GradientPanel1
             // 
             guna2GradientPanel1.BackColor = Color.White;
-            guna2GradientPanel1.Controls.Add(forgotPassBtn);
             guna2GradientPanel1.Controls.Add(guna2CirclePictureBox3);
             guna2GradientPanel1.Controls.Add(guna2CirclePictureBox2);
             guna2GradientPanel1.Controls.Add(ad_HomeButton);
@@ -173,7 +171,7 @@
             guna2GradientPanel1.Location = new Point(290, 125);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges15;
-            guna2GradientPanel1.Size = new Size(354, 371);
+            guna2GradientPanel1.Size = new Size(354, 350);
             guna2GradientPanel1.TabIndex = 137;
             // 
             // guna2CirclePictureBox3
@@ -352,18 +350,6 @@
             ExitButton.Text = "X";
             ExitButton.Click += ExitButton_Click;
             // 
-            // forgotPassBtn
-            // 
-            forgotPassBtn.BackColor = Color.Transparent;
-            forgotPassBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            forgotPassBtn.ForeColor = Color.FromArgb(0, 0, 3, 51);
-            forgotPassBtn.Location = new Point(30, 337);
-            forgotPassBtn.Name = "forgotPassBtn";
-            forgotPassBtn.Size = new Size(107, 17);
-            forgotPassBtn.TabIndex = 164;
-            forgotPassBtn.Text = "Fogrgot Password?";
-            forgotPassBtn.Click += forgotPassBtn_Click;
-            // 
             // AdminLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -402,6 +388,5 @@
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox3;
         private Guna.UI2.WinForms.Guna2ImageButton MinimizeButton;
         private Guna.UI2.WinForms.Guna2Button ExitButton;
-        private Guna.UI2.WinForms.Guna2HtmlLabel forgotPassBtn;
     }
 }

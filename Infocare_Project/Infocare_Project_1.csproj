@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentEmail.Razor" Version="3.0.2" />
+    <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.6" />
     <PackageReference Include="MySql.Data" Version="9.1.0" />
+    <PackageReference Include="Otp.NET" Version="1.4.0" />
+    <PackageReference Include="RazorLight" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,5 +36,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+	
 
 </Project>

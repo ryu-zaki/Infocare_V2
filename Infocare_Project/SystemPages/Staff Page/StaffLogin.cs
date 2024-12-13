@@ -17,6 +17,7 @@ namespace Infocare_Project
         public StaffLogin()
         {
             InitializeComponent();
+            forgotPassBtn.Cursor = Cursors.Hand;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -121,6 +122,11 @@ namespace Infocare_Project
                 PasswordTxtbox.PasswordChar = '●';
                 PasswordTxtbox.UseSystemPasswordChar = true;
             }
+        }
+
+        private void forgotPassBtn_Click_1(object sender, EventArgs e)
+        {
+            ProcessMethods.viewForgotPass(Role.Staff);
         }
     }
 }

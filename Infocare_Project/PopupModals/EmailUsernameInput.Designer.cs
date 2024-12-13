@@ -75,6 +75,7 @@
             usernameTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             usernameTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             usernameTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameTextbox.ForeColor = SystemColors.ActiveCaptionText;
             usernameTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             usernameTextbox.Location = new Point(51, 102);
             usernameTextbox.Name = "usernameTextbox";
@@ -99,6 +100,7 @@
             emailTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             emailTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             emailTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            emailTextbox.ForeColor = SystemColors.ActiveCaptionText;
             emailTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             emailTextbox.Location = new Point(51, 167);
             emailTextbox.Name = "emailTextbox";
@@ -134,6 +136,7 @@
             closeBtn.BackColor = Color.Transparent;
             closeBtn.BackgroundImage = Properties.Resources.cross_dark;
             closeBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            closeBtn.Cursor = Cursors.Hand;
             closeBtn.CustomizableEdges = customizableEdges1;
             closeBtn.FillColor = Color.Transparent;
             closeBtn.ImageRotate = 0F;
@@ -143,6 +146,7 @@
             closeBtn.Size = new Size(25, 25);
             closeBtn.TabIndex = 4;
             closeBtn.TabStop = false;
+            closeBtn.Click += closeBtn_Click;
             // 
             // EmailUsernameInput
             // 

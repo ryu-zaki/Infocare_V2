@@ -82,7 +82,7 @@
             newpassTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             newpassTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             newpassTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            newpassTextbox.ForeColor = SystemColors.ControlDarkDark;
+            newpassTextbox.ForeColor = SystemColors.ActiveCaptionText;
             newpassTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             newpassTextbox.Location = new Point(88, 154);
             newpassTextbox.Name = "newpassTextbox";
@@ -106,7 +106,7 @@
             confirmpassTextbox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             confirmpassTextbox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             confirmpassTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            confirmpassTextbox.ForeColor = SystemColors.ControlLightLight;
+            confirmpassTextbox.ForeColor = SystemColors.ActiveCaptionText;
             confirmpassTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             confirmpassTextbox.Location = new Point(88, 214);
             confirmpassTextbox.Name = "confirmpassTextbox";

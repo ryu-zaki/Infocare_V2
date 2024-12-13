@@ -21,6 +21,7 @@ namespace Infocare_Project_1.Object_Models
        public string MiddleName { get; set; }
        public string Password { get; set; }
        public string ContactNumber { get; set; }
+        public string Email { get; set; }
 
 
     }

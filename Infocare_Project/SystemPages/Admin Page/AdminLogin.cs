@@ -17,7 +17,6 @@ namespace Infocare_Project
         public AdminLogin()
         {
             InitializeComponent();
-            forgotPassBtn.Cursor = Cursors.Hand;
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
@@ -111,11 +110,6 @@ namespace Infocare_Project
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void forgotPassBtn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

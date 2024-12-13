@@ -17,6 +17,7 @@ namespace Infocare_Project
         public DoctorLogin()
         {
             InitializeComponent();
+            forgotPassBtn.Cursor = Cursors.Hand;
         }
 
         private void DoctorLogin_Load(object sender, EventArgs e)
@@ -103,6 +104,11 @@ namespace Infocare_Project
 
 
             }
+        }
+
+        private void forgotPassBtn_Click(object sender, EventArgs e)
+        {
+            ProcessMethods.viewForgotPass(Role.Doctor);
         }
     }
 }

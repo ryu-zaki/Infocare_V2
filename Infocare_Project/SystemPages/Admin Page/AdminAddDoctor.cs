@@ -84,6 +84,12 @@ namespace Infocare_Project
                 return;
             }
 
+
+            if (!ProcessMethods.ValidateEmail(emailTextBox.Text))
+            {
+                MessageBox.Show("Please enter a valid email.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
            
 
             if (!LastNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(LastNameTextbox.Text))
@@ -138,7 +144,7 @@ namespace Infocare_Project
                 ContactNumber = ContactNumberTextbox.Text.Trim(),
                 UserName = UserNameTextBox.Text.Trim(),
                 Password = PasswordTextBox.Text.Trim(),
-
+                Email = emailTextBox.Text,
 
                 ConsultationFee = int.TryParse(ConsultationFeeTextBox.Text, out int consultationFee) ? consultationFee : 0,
                 Specialty = specializations,

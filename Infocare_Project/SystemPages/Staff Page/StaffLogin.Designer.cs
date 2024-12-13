@@ -62,6 +62,7 @@
             PasswordLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2PictureBox8 = new Guna.UI2.WinForms.Guna2PictureBox();
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            forgotPassBtn = new Label();
             staff_HomeButton = new Guna.UI2.WinForms.Guna2Button();
             staff_showpass = new CheckBox();
             label2 = new Label();
@@ -269,6 +270,7 @@
             // guna2GradientPanel1
             // 
             guna2GradientPanel1.BackColor = Color.White;
+            guna2GradientPanel1.Controls.Add(forgotPassBtn);
             guna2GradientPanel1.Controls.Add(staff_HomeButton);
             guna2GradientPanel1.Controls.Add(EnterButton);
             guna2GradientPanel1.Controls.Add(staff_showpass);
@@ -282,11 +284,23 @@
             guna2GradientPanel1.Controls.Add(guna2CirclePictureBox2);
             guna2GradientPanel1.Controls.Add(guna2PictureBox8);
             guna2GradientPanel1.CustomizableEdges = customizableEdges17;
-            guna2GradientPanel1.Location = new Point(308, 42);
+            guna2GradientPanel1.Location = new Point(282, 42);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges18;
             guna2GradientPanel1.Size = new Size(372, 518);
             guna2GradientPanel1.TabIndex = 173;
+            // 
+            // forgotPassBtn
+            // 
+            forgotPassBtn.AutoSize = true;
+            forgotPassBtn.Cursor = Cursors.Hand;
+            forgotPassBtn.Font = new Font("Arial", 8.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            forgotPassBtn.Location = new Point(32, 485);
+            forgotPassBtn.Name = "forgotPassBtn";
+            forgotPassBtn.Size = new Size(109, 14);
+            forgotPassBtn.TabIndex = 174;
+            forgotPassBtn.Text = "Forgot Password?";
+            forgotPassBtn.Click += forgotPassBtn_Click_1;
             // 
             // staff_HomeButton
             // 
@@ -439,5 +453,6 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox3;
+        private Label forgotPassBtn;
     }
 }

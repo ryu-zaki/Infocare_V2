@@ -51,24 +51,41 @@ namespace Infocare_Project
             return new MySqlConnection(connectionString);
         }
 
+        public static bool IsEmailExisted(Role role, UserModel user)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                string tablename = ProcessMethods.GetTablenameByRole(role);
+
+                string query = $"SELECT COUNT(*) FROM {tablename} WHERE email = @Email AND username = @Username";
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@Email", user.Email);
+                command.Parameters.AddWithValue("@Username", user.UserName);
+
+                int result = Convert.ToInt32(command.ExecuteScalar());
+
+                return result != 0;
+
+            }
+        }
+
         public static bool RoleLogin(string username, string password, Role role)
         {
             using (var connection = GetConnection())
             {
                 try
                 {
-                    string tableName = 
-                       role == Role.Staff ? "tb_staffinfo" : 
-                        role == Role.Admin ? "tb_adminlogin" :
-                           role == Role.Doctor ? "tb_doctorinfo" : "";
+                    string tableName = ProcessMethods.GetTablenameByRole(role);
 
                     string tableColumn =
-                        role == Role.Staff ? "s_" :
-                         role == Role.Admin ? "a_" : "";
+                        
+                         role == Role.Admin ? "A_" : role == Role.Staff ? "S_" : "";
                           
 
 
-                    string query = $"SELECT COUNT(*) FROM {tableName} WHERE {tableColumn}Username = @Username AND {tableColumn}Password = @Password";
+                    string query = $"SELECT COUNT(*) FROM {tableName} WHERE Username = @Username AND {tableColumn}Password = @Password";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     string hashhPassword = ProcessMethods.HashCharacter(password);
@@ -282,7 +299,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         {
             using (var connection = GetConnection())
             {
-                string query = "SELECT s_Firstname, s_Lastname FROM tb_staffinfo WHERE s_Username = @Username";
+                string query = "SELECT s_Firstname, s_Lastname FROM tb_staffinfo WHERE username = @Username";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Username", username);
@@ -409,7 +426,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable StaffList()
         {
-            string query = @"SELECT id as 'Staff ID', s_Firstname AS 'First Name', s_middleName AS 'Middle Name', s_lastname AS 'Last Name', s_suffix AS 'Suffix', s_contactnumber AS 'Contact Number', s_email AS 'Email' FROM tb_staffinfo";
+            string query = @"SELECT id as 'Staff ID', s_Firstname AS 'First Name', s_middleName AS 'Middle Name', s_lastname AS 'Last Name', s_suffix AS 'Suffix', s_contactnumber AS 'Contact Number', email AS 'Email' FROM tb_staffinfo";
 
             DataTable staffTable = new DataTable();
 
@@ -818,7 +835,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static bool UsernameExistsStaff(string username)
         {
-            string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE s_Username = @Username";
+            string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE username = @Username";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -1110,7 +1127,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             {
                 try
                 {
-                    string query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, s_Username, s_Password, s_suffix, s_contactNumber, s_email) " +
+                    string query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, username, s_Password, s_suffix, s_contactNumber, email) " +
                                    "VALUES (@FirstName, @LastName, @MiddleName, @Username, @Password, @suffix, @ContactNumber, @email)";
 
                     string hashPassword = ProcessMethods.HashCharacter(staff.Password);
@@ -1285,8 +1302,8 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     transaction = connection.BeginTransaction();
 
                     string query = @"INSERT INTO tb_doctorinfo 
-                     (firstname, middlename, lastname, username, password, consultationfee, start_time, end_time, day_availability, contactnumber) 
-                     VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @StartTime, @EndTime, @DayAvailability, @ContactNumber)";
+                     (firstname, middlename, lastname, username, password, consultationfee, start_time, end_time, day_availability, contactnumber, email) 
+                     VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @StartTime, @EndTime, @DayAvailability, @ContactNumber, @Email)";
                     MySqlCommand command = new MySqlCommand(query, connection, transaction);
 
                     string hashPassword = ProcessMethods.HashCharacter(doctor.Password);
@@ -1300,7 +1317,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     command.Parameters.AddWithValue("@EndTime", doctor.EndTime);
                     command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
                     command.Parameters.AddWithValue("@ContactNumber", doctor.ContactNumber);
-
+                    command.Parameters.AddWithValue("@Email", doctor.Email);
 
                     command.ExecuteNonQuery();
                     int doctorId = (int)command.LastInsertedId;
@@ -1355,6 +1372,36 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         #region Update Functions
 
+
+        public static void UpdateUserPassword(Role role, UserModel user) { 
+        
+           using (var connection = GetConnection())
+            {
+                connection.Open();
+                string tblName = ProcessMethods.GetTablenameByRole(role);
+                
+
+                try
+                {
+                    string query = $"UPDATE {tblName} SET {(role == Role.Staff ? "s_" : "")}password = @Password WHERE email = @Email AND username = @UserName";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    cmd.Parameters.AddWithValue("@Password", user.Password);
+                    cmd.Parameters.AddWithValue("@Email", user.Email);
+                    cmd.Parameters.AddWithValue("@UserName", user.UserName);
+
+                    cmd.ExecuteScalar();
+                    return;
+                }
+               
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+
+            }
+
+        }
 
         public static void NullPatientReg2Data(string username)
         {

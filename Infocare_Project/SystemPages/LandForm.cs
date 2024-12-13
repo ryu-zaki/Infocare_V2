@@ -8,7 +8,7 @@ namespace Infocare_Project
         public LandForm()
         {
             InitializeComponent();
-
+           
         }
 
         private void EnterButton_Click(object sender, EventArgs e)

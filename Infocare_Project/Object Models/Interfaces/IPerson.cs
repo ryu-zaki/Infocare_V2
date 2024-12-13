@@ -16,5 +16,6 @@ namespace Infocare_Project_1.Object_Models.Interfaces
         string MiddleName { get; set; }
         string Password { get; set; }
         string ContactNumber { get; set; }
+        string Email { get; set; }
     }
 }
