@@ -63,7 +63,31 @@ namespace Infocare_Project_1.Object_Models
             this.Close();
             emailInput.Close();
             otpModal.Close();
-            
+
+        }
+
+        private void showPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if ( sender is Guna2CheckBox checkBox )
+            {
+                if (checkBox.Checked)
+                {
+                    newpassTextbox.PasswordChar = '\0';
+                    newpassTextbox.UseSystemPasswordChar = false;
+
+                    confirmpassTextbox.PasswordChar = '\0';
+                    confirmpassTextbox.UseSystemPasswordChar = false;
+
+                }
+                else
+                {
+                    newpassTextbox.PasswordChar = '●';
+                    newpassTextbox.UseSystemPasswordChar = true;
+
+                    confirmpassTextbox.PasswordChar = '●';
+                    confirmpassTextbox.UseSystemPasswordChar = true;
+                }
+            }
         }
     }
 }
