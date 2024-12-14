@@ -24,7 +24,7 @@ namespace Infocare_Project
     static class Database
     {
 
-        private static string dbms = "Workbench";
+        private static string dbms = "Xampp";
         public static string connectionString = ConfigurationManager.ConnectionStrings[dbms].ConnectionString;
 
         public static void ExecuteQuery(string query, Dictionary<string, object> parameters)
