@@ -78,7 +78,7 @@ namespace Infocare_Project
                             user.ContactNumber = reader.GetString("P_ContactNumber");
                             user.BirthDate = DateTime.Parse(reader.GetString("P_Bdate"));
                             user.sex = reader.GetString("P_Sex");
-                            user.Suffix = reader.GetString("P_Suffix");
+                            user.Suffix = reader.IsDBNull(reader.GetOrdinal("P_Suffix")) ? "n/a" : reader.GetString("P_Suffix");
                             user.Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email");
 
                             health.Height = reader.IsDBNull(reader.GetOrdinal("P_Height")) ? 0 : reader.GetDouble("P_Height");

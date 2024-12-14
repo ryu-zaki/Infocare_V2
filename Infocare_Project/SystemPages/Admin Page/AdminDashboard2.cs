@@ -870,6 +870,7 @@ namespace Infocare_Project_1
 
                 this.Cursor = Cursors.WaitCursor;
                 PatientRegisterForm regForm = new PatientRegisterForm(ModalMode.Edit, patientID);
+                regForm.ReloadResults += ShowPatientTab;
                 regForm.ShowDialog();
 
                 this.Cursor = Cursors.Default;

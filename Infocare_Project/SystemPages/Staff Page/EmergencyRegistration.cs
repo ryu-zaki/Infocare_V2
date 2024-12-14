@@ -19,6 +19,8 @@ namespace Infocare_Project
     public partial class EmergencyRegistration : Form
     {
         private PlaceHolderHandler _placeHolderHandler;
+        public Action ReloadResults;
+        public Action DeletePatientAndReload;
         PatientModel patient;
         ModalMode mode;
         public EmergencyRegistration(PatientModel patient, ModalMode mode)
@@ -28,6 +30,11 @@ namespace Infocare_Project
             _placeHolderHandler = new PlaceHolderHandler();
             NameLabel.Text = $"{patient.LastName}, {patient.FirstName}";
             this.patient = patient;
+
+            if (mode == ModalMode.Edit)
+            {
+                DeleteBtn.Visible = true;
+            }
         }
 
 
@@ -76,7 +83,7 @@ namespace Infocare_Project
 
         public EmergencyContactModel SetupInfo()
         {
-            AddressModel addressInfo = new AddressModel() 
+            AddressModel addressInfo = new AddressModel()
             {
                 HouseNo = int.Parse(HouseNoTxtbox.Text),
                 ZipCode = int.Parse(ZipCodeTxtbox.Text),
@@ -94,7 +101,7 @@ namespace Infocare_Project
                 MiddleName = MiddleNameTxtbox.Text,
                 Suffix = SuffixTxtbox.Text,
                 address = addressInfo
-               
+
             };
 
             return info;
@@ -193,9 +200,11 @@ namespace Infocare_Project
                     try
                     {
                         Database.PatientRegFunc(emergencyContact, patient.UserName, firstname, lastname, middlename, suffix, housenum, street, barangay, city, zipcode, zone, mode);
-
                         MessageBox.Show("Submit Succesfully");
                         this.Hide();
+
+                        //Refresh the patient list
+                        ReloadResults.Invoke();
 
                     }
                     catch (Exception ex)
@@ -279,13 +288,22 @@ namespace Infocare_Project
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Your progress will be lost.", "Back to Page 2", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirm = DialogResult.Cancel;
+            if (mode == ModalMode.Add)
+            {
+                confirm = MessageBox.Show("Are you sure you want to go back? Your progress will be lost.", "Back to Page 2", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            
 
-            if (confirm == DialogResult.Yes)
+            if (confirm == DialogResult.Yes || mode == ModalMode.Edit)
             {
                 try
                 {
-                    Database.NullPatientReg2Data(patient.UserName);
+                   if (mode == ModalMode.Add)
+                    {
+                        Database.NullPatientReg2Data(patient.UserName);
+                    }
+                    
 
                     PatientBasicInformationForm patientInfoForm = new PatientBasicInformationForm(patient, mode);
                     patientInfoForm.Show();
@@ -300,15 +318,20 @@ namespace Infocare_Project
 
         private void ExitButton_Click_1(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirm = MessageBox.Show($"Are you sure to cancel {(mode == ModalMode.Add ? "cancel registration" : "close")}?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
 
             if (confirm == DialogResult.Yes)
             {
                 try
                 {
-                    Database.DeletePatientByUsername(patient.UserName);
+                    if (mode == ModalMode.Add)
+                    {
+                        Database.DeletePatientByUsername(patient.UserName);
 
-                    MessageBox.Show("Your data has been deleted.");
+                        MessageBox.Show("Your data has been deleted.");
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -327,7 +350,7 @@ namespace Infocare_Project
             LastNameTxtbox.Text = patient.EmergencyContact.LastName;
             MiddleNameTxtbox.Text = patient.EmergencyContact.MiddleName;
             SuffixTxtbox.Text = patient.EmergencyContact.Suffix;
-            
+
             //Address
             HouseNoTxtbox.Text = patient.EmergencyContact.address.HouseNo.ToString();
             ZipCodeTxtbox.Text = patient.EmergencyContact.address.ZipCode.ToString();
@@ -342,6 +365,15 @@ namespace Infocare_Project
             {
                 FillUpFields();
             }
+        }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult isDelete = MessageBox.Show("Are you sure you want to delete this information?", "Patient Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (isDelete == DialogResult.No) return;
+            DeletePatientAndReload.Invoke();
+            this.Hide();
         }
     }
 }

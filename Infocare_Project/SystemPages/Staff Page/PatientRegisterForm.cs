@@ -21,6 +21,7 @@ namespace Infocare_Project
     public partial class PatientRegisterForm : Form
     {
         private PlaceHolderHandler _placeHolderHandler;
+        public Action ReloadResults;
         int houseNo;
         int zipCode;
         int zone;
@@ -35,6 +36,11 @@ namespace Infocare_Project
             this.AccountID = AccountId;
             _placeHolderHandler = new PlaceHolderHandler();
             PageTitle.Text = mode == ModalMode.Edit ? "Patient Information" : "Patient Registration";
+
+            if (mode == ModalMode.Edit)
+            {
+                DeleteBtn.Visible = true;
+            }
         }
 
         private void PatientRegisterForm_Load(object sender, EventArgs e)
@@ -42,13 +48,14 @@ namespace Infocare_Project
             if (mode == ModalMode.Add)
             {
                 BdayDateTimePicker.MaxDate = DateTime.Today;
-            } else
+            }
+            else
             {
                 //Edit
                 extractedInfo = Database.GetPatientInfo(AccountID);
-                FillUpFields(extractedInfo); 
+                FillUpFields(extractedInfo);
             }
-            
+
         }
 
         public void FillUpFields(PatientModel info)
@@ -65,7 +72,7 @@ namespace Infocare_Project
             SexCombobox.SelectedItem = info.sex;
             //return $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
 
-            
+
             HouseNoTxtbox.Text = info.Address.HouseNo.ToString();
             ZipCodeTxtbox.Text = info.Address.ZipCode.ToString();
             ZoneTxtbox.Text = info.Address.Zone.ToString();
@@ -107,15 +114,15 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            
+            DialogResult confirm = MessageBox.Show($"Are you sure to cancel {(mode == ModalMode.Add ? "cancel registration" : "close")}?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (confirm == DialogResult.Yes)
+                if (confirm == DialogResult.Yes)
 
             {
                 this.Close();
             }
         }
-
         private void EnterButton_Click(object sender, EventArgs e)
         {
             string contactNumber = ContactNumberTxtbox.Text;
@@ -161,7 +168,7 @@ namespace Infocare_Project
             }
 
 
-            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr", "N/A"};
+            string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr", "N/A" };
 
             string enteredText = SuffixTxtbox.Text.Trim();
 
@@ -185,7 +192,7 @@ namespace Infocare_Project
                 MessageBox.Show("Please enter a valid number for Zone.");
                 return;
             }
-            
+
             if (Database.IsUsernameExists(EmailTxtbox.Text))
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.");
@@ -210,7 +217,7 @@ namespace Infocare_Project
                 City = CityTxtbox.Text,
                 ZipCode = zipCode,
                 Zone = zone
-            }; 
+            };
 
             PatientModel newPatient = new PatientModel
             {
@@ -223,20 +230,22 @@ namespace Infocare_Project
                 Address = address,
                 sex = SexCombobox.SelectedItem.ToString()
             };
+            extractedInfo.AccountID = AccountID;
+            this.Cursor = Cursors.WaitCursor;
+            PatientModel editedInfo = SetupObj();
+            PatientModel ProperModel = mode == ModalMode.Add ? newPatient : extractedInfo;
 
-                this.Cursor = Cursors.WaitCursor;
-                PatientModel editedInfo = SetupObj();
-                PatientModel ProperModel = mode == ModalMode.Add ? newPatient : extractedInfo;
+            Database.PatientRegFunc(editedInfo, mode);
 
-                Database.PatientRegFunc(editedInfo, mode);
+            this.Cursor = Cursors.Default;
+            var patientInfoForm = new PatientBasicInformationForm(ProperModel, mode);
+            patientInfoForm.ReloadResults += ReloadResults;
+            patientInfoForm.DeletePatientAndReload += DeletePatientAndReload;
+            patientInfoForm.TopMost = true;
+            patientInfoForm.Show();
+            this.Hide();
 
-                this.Cursor = Cursors.Default;
-                var patientInfoForm = new PatientBasicInformationForm(ProperModel, mode);
 
-                patientInfoForm.Show();
-                this.Hide();
-            
-           
         }
 
         private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
@@ -248,7 +257,7 @@ namespace Infocare_Project
         {
             _placeHolderHandler.HandleTextBoxPlaceholder(ContactNumberTxtbox, ContactNumberLabel, "Contact Number");
 
-            
+
         }
 
 
@@ -333,6 +342,25 @@ namespace Infocare_Project
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+
+        }
+
+        private void DeletePatientAndReload()
+        {
+            
+
+            Database.DeletePatientByUsername(extractedInfo.UserName);
+            ReloadResults.Invoke();
+           
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            DialogResult isDelete = MessageBox.Show("Are you sure you want to delete this information?", "Patient Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (isDelete == DialogResult.No) return;
+            DeletePatientAndReload();
+            this.Hide();
 
         }
     }

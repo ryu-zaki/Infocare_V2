@@ -15,6 +15,7 @@ namespace Infocare_Project_1.Object_Models
 
     public class PatientModel : UserModel
     {
+        public int AccountID { get; set; }
         public HealthInfoModel HealthInfo { get; set; }
         public EmergencyContactModel EmergencyContact { get; set; }
         public DateTime BirthDate { get; set; }

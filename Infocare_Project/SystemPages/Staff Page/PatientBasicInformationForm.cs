@@ -11,7 +11,8 @@ namespace Infocare_Project
     {
         PatientModel patient;
         ModalMode mode;
-
+        public Action ReloadResults;
+        public Action DeletePatientAndReload;
         public PatientBasicInformationForm(PatientModel patient, ModalMode mode)
         {
             InitializeComponent();
@@ -19,9 +20,14 @@ namespace Infocare_Project
             this.patient = patient;
             HeightTextBox.TextChanged += HeightOrWeightTextChanged;
             WeightTextBox.TextChanged += HeightOrWeightTextChanged;
-            
+
             string[] bloodtypes = { "Select BloodType", "A+", "A", "B+", "O+", "O", "O", "AB", "AB.", "AB-" };
             BloodTypeComboBox.DataSource = bloodtypes;
+
+            if (mode == ModalMode.Edit)
+            {
+                DeleteBtn.Visible = true;
+            }
 
         }
 
@@ -67,13 +73,20 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirm = MessageBox.Show($"Are you sure to cancel {(mode == ModalMode.Add ? "cancel registration" : "close")}?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+
             if (confirm == DialogResult.Yes)
             {
                 try
                 {
-                    Database.DeletePatientByUsername(patient.UserName);
-                    MessageBox.Show("Your data has been deleted.");
+                    if (mode == ModalMode.Add)
+                    {
+                        Database.DeletePatientByUsername(patient.UserName);
+
+                        MessageBox.Show("Your data has been deleted.");
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -119,41 +132,44 @@ namespace Infocare_Project
                 return;
             }
 
-          
-                double height = string.IsNullOrWhiteSpace(HeightTextBox.Text) ? 0 : Convert.ToDouble(HeightTextBox.Text);
-                double weight = string.IsNullOrWhiteSpace(WeightTextBox.Text) ? 0 : Convert.ToDouble(WeightTextBox.Text);
-                double bmi = string.IsNullOrWhiteSpace(BmiTextBox.Text) ? 0 : Convert.ToDouble(BmiTextBox.Text);
-                string bloodType = BloodTypeComboBox.SelectedItem?.ToString() ?? string.Empty;
-                string preCon = string.IsNullOrWhiteSpace(preConditionTextBox.Text) ? string.Empty : preConditionTextBox.Text;
-                string treatment = string.IsNullOrWhiteSpace(TreatmentTextBox.Text) ? string.Empty : TreatmentTextBox.Text;
-                string prevSurg = string.IsNullOrWhiteSpace(PreviousSurgeryTextBox.Text) ? string.Empty : PreviousSurgeryTextBox.Text;
-                string alergy = string.IsNullOrWhiteSpace(AlergyTextbox.Text) ? string.Empty : AlergyTextbox.Text;
-                string medication = string.IsNullOrWhiteSpace(MedicationTxtbox.Text) ? string.Empty : MedicationTxtbox.Text;
 
-                HealthInfoModel healthInfo = new HealthInfoModel
-                {
-                    Height = height,
-                    Weight = weight,
-                    BMI = bmi,
-                    BloodType = bloodType,
-                    PreCon = preCon,
-                    Treatment = treatment,
-                    PrevSurg = prevSurg,
-                    Alergy = alergy,
-                    Medication = medication
-                };
+            double height = string.IsNullOrWhiteSpace(HeightTextBox.Text) ? 0 : Convert.ToDouble(HeightTextBox.Text);
+            double weight = string.IsNullOrWhiteSpace(WeightTextBox.Text) ? 0 : Convert.ToDouble(WeightTextBox.Text);
+            double bmi = string.IsNullOrWhiteSpace(BmiTextBox.Text) ? 0 : Convert.ToDouble(BmiTextBox.Text);
+            string bloodType = BloodTypeComboBox.SelectedItem?.ToString() ?? string.Empty;
+            string preCon = string.IsNullOrWhiteSpace(preConditionTextBox.Text) ? string.Empty : preConditionTextBox.Text;
+            string treatment = string.IsNullOrWhiteSpace(TreatmentTextBox.Text) ? string.Empty : TreatmentTextBox.Text;
+            string prevSurg = string.IsNullOrWhiteSpace(PreviousSurgeryTextBox.Text) ? string.Empty : PreviousSurgeryTextBox.Text;
+            string alergy = string.IsNullOrWhiteSpace(AlergyTextbox.Text) ? string.Empty : AlergyTextbox.Text;
+            string medication = string.IsNullOrWhiteSpace(MedicationTxtbox.Text) ? string.Empty : MedicationTxtbox.Text;
 
-                patient.HealthInfo = healthInfo;
+            HealthInfoModel healthInfo = new HealthInfoModel
+            {
+                Height = height,
+                Weight = weight,
+                BMI = bmi,
+                BloodType = bloodType,
+                PreCon = preCon,
+                Treatment = treatment,
+                PrevSurg = prevSurg,
+                Alergy = alergy,
+                Medication = medication
+            };
 
-                PatientModel editedInfo = SetupInfo();
+            patient.HealthInfo = healthInfo;
 
-                Database.PatientRegFunc(mode == ModalMode.Add ? patient : editedInfo, patient.UserName, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication, mode);
+            PatientModel editedInfo = SetupInfo();
 
-                
-                var emergencyRegistration = new EmergencyRegistration(patient, mode);
-                emergencyRegistration.Show();
-                this.Hide();
-            
+            Database.PatientRegFunc(mode == ModalMode.Add ? patient : editedInfo, patient.UserName, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication, mode);
+
+
+            var emergencyRegistration = new EmergencyRegistration(patient, mode);
+            emergencyRegistration.ReloadResults += ReloadResults;
+            emergencyRegistration.DeletePatientAndReload += DeletePatientAndReload;
+            emergencyRegistration.TopMost = true;
+            emergencyRegistration.Show();
+            this.Hide();
+
 
 
             //VALIDATION
@@ -196,15 +212,24 @@ namespace Infocare_Project
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Are you sure you want to go back? Your progress will be lost.", "Back to Page 1", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (confirm == DialogResult.Yes)
+            DialogResult confirm = DialogResult.Cancel;
+
+            if (mode == ModalMode.Add)
+            {
+                confirm = MessageBox.Show($"Are you sure you want to go back? Your progress will be lost.", "Back to Page 1", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+           
+            if (confirm == DialogResult.Yes || mode == ModalMode.Edit)
             {
                 try
                 {
+                    if (mode == ModalMode.Add)
+                    {
+                        Database.DeletePatientReg1Data(patient);
+                    }
+                    
 
-                    Database.DeletePatientReg1Data(patient);
-
-                    var patientInfoForm = new PatientRegisterForm(mode);
+                    var patientInfoForm = new PatientRegisterForm(mode, patient.AccountID);
                     patientInfoForm.Show();
                     this.Hide();
                 }
@@ -236,6 +261,16 @@ namespace Infocare_Project
             {
                 FillUpFields();
             }
+        }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult isDelete = MessageBox.Show("Are you sure you want to delete this information?", "Patient Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (isDelete == DialogResult.No) return;
+            DeletePatientAndReload.Invoke();
+            this.Hide();
+            
         }
     }
 }
