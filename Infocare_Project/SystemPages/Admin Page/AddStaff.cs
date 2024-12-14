@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -54,7 +55,7 @@ namespace Infocare_Project_1
 
             if (!ProcessMethods.ValidatePassword(password))
             {
-                return; 
+                return;
             }
 
             if (!LastNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTextbox.Text))
@@ -163,6 +164,32 @@ namespace Infocare_Project_1
             {
                 this.Close();
             }
+        }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+
+            Guna2TextBox? textBox = sender as Guna2TextBox;
+
+            string msg =
+                !Regex.IsMatch(textBox.Text, @"[A-Z]") ? "Must contain atleast one uppercase letter" :
+                !Regex.IsMatch(textBox.Text, @"[^a-zA-Z0-9\s]") ? "Must have At least one special character" : !Regex.IsMatch(textBox.Text, @"[^a-zA-Z0-9\s]") ? "Must have At least one number" : !Regex.IsMatch(textBox.Text, @".{8,}") ? "Must be at least 8 characters long" :  "";
+            passValidatorMsg.Visible = true;
+            if (msg == "")
+            {
+               
+                passValidatorMsg.Text = "Strong Enough";
+                passValidatorMsg.ForeColor = Color.Green;
+            }
+            else
+            {
+                passValidatorMsg.Text = msg;
+                passValidatorMsg.ForeColor = Color.Red;
+
+            }
+
+
         }
     }
 }

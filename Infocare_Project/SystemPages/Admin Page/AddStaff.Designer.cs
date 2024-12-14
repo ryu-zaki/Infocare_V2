@@ -89,6 +89,7 @@
             ConatactNumberTextbox = new Guna.UI2.WinForms.Guna2TextBox();
             MinimizeButton = new Guna.UI2.WinForms.Guna2ImageButton();
             ExitButton = new Guna.UI2.WinForms.Guna2Button();
+            passValidatorMsg = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox4).BeginInit();
             SuspendLayout();
@@ -373,6 +374,7 @@
             PasswordTextBox.ShadowDecoration.CustomizableEdges = customizableEdges22;
             PasswordTextBox.Size = new Size(194, 46);
             PasswordTextBox.TabIndex = 166;
+            PasswordTextBox.TextChanged += PasswordTextBox_TextChanged;
             // 
             // guna2HtmlLabel1
             // 
@@ -610,12 +612,25 @@
             ExitButton.Text = "X";
             ExitButton.Click += ExitButton_Click;
             // 
+            // passValidatorMsg
+            // 
+            passValidatorMsg.BackColor = Color.FromArgb(110, 177, 247);
+            passValidatorMsg.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            passValidatorMsg.ForeColor = Color.Red;
+            passValidatorMsg.Location = new Point(275, 383);
+            passValidatorMsg.Margin = new Padding(3, 2, 3, 2);
+            passValidatorMsg.Name = "passValidatorMsg";
+            passValidatorMsg.Size = new Size(138, 15);
+            passValidatorMsg.TabIndex = 193;
+            passValidatorMsg.Text = "*At least 8 characters long";
+            // 
             // AddStaff
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(741, 493);
+            Controls.Add(passValidatorMsg);
             Controls.Add(MinimizeButton);
             Controls.Add(ExitButton);
             Controls.Add(guna2HtmlLabel7);
@@ -688,5 +703,6 @@
         private Guna.UI2.WinForms.Guna2TextBox EmailTextbox;
         private Guna.UI2.WinForms.Guna2ImageButton MinimizeButton;
         private Guna.UI2.WinForms.Guna2Button ExitButton;
+        private Guna.UI2.WinForms.Guna2HtmlLabel passValidatorMsg;
     }
 }
