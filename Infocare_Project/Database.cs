@@ -17,6 +17,7 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Configuration;
 using Infocare_Project_1.Classes;
 using Infocare_Project_1.Object_Models;
+using System.Diagnostics;
 
 namespace Infocare_Project
 {
@@ -50,6 +51,90 @@ namespace Infocare_Project
         {
             return new MySqlConnection(connectionString);
         }
+
+        public static PatientModel GetPatientInfo(int accountID)
+        {
+            using (var connection = GetConnection())
+            {
+                PatientModel user = new PatientModel();
+                HealthInfoModel health = new HealthInfoModel();
+                EmergencyContactModel emergency = new EmergencyContactModel();
+                AddressModel user_address = new AddressModel();
+                AddressModel eme_address = new AddressModel();
+
+                connection.Open();
+                string query = $"Select * from tb_patientinfo WHERE id = @ID";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ID", accountID);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            user.FirstName = reader.GetString("P_Firstname");
+                            user.LastName = reader.GetString("P_lastname");
+                            user.MiddleName = reader.GetString("P_Middlename");
+                            user.UserName = reader.GetString("P_username");
+                            user.ContactNumber = reader.GetString("P_ContactNumber");
+                            user.BirthDate = DateTime.Parse(reader.GetString("P_Bdate"));
+                            user.sex = reader.GetString("P_Sex");
+                            user.Suffix = reader.GetString("P_Suffix");
+                            user.Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email");
+
+                            health.Height = reader.IsDBNull(reader.GetOrdinal("P_Height")) ? 0 : reader.GetDouble("P_Height");
+
+                            health.Weight = reader.IsDBNull(reader.GetOrdinal("P_Weight")) ? 0 : reader.GetDouble("P_Weight");
+
+                            health.BMI = reader.IsDBNull(reader.GetOrdinal("P_BMI")) ? 0 : reader.GetDouble("P_Weight"); ;
+                            health.BloodType = reader.IsDBNull(reader.GetOrdinal("P_Blood_Type")) ? "" : reader.GetString("P_Blood_Type");
+
+                            health.PreCon = reader.IsDBNull(reader.GetOrdinal("P_Precondition")) ? "" : reader.GetString("P_Precondition");
+                            health.Treatment = reader.IsDBNull(reader.GetOrdinal("P_Treatment")) ? "" : reader.GetString("P_Treatment");
+
+                            health.PrevSurg = reader.IsDBNull(reader.GetOrdinal("P_PrevSurgery")) ? "" : reader.GetString("P_PrevSurgery");
+
+                            string[] addressArr = (reader.IsDBNull(reader.GetOrdinal("P_Address")) ? ",,,,," : reader.GetString("P_Address")).Split(",");
+
+                            user_address.HouseNo = int.Parse(addressArr[0]);
+                            user_address.ZipCode = int.Parse(addressArr[1]);
+                            user_address.Zone = int.Parse(addressArr[2]);
+                            user_address.Street = addressArr[3];
+                            user_address.Barangay = addressArr[4];
+                            user_address.City = addressArr[5];
+
+                            //return $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
+
+                            health.Alergy = reader.IsDBNull(reader.GetOrdinal("P_Alergy")) ? "" : reader.GetString("P_Alergy"); 
+                            health.Medication = reader.IsDBNull(reader.GetOrdinal("P_Medication")) ? "" : reader.GetString("P_Medication");
+
+                            emergency.FirstName = reader.IsDBNull(reader.GetOrdinal("Eme_Firstname")) ? "" : reader.GetString("Eme_Firstname");
+                            emergency.LastName = reader.IsDBNull(reader.GetOrdinal("Eme_Lastname")) ? "" : reader.GetString("Eme_Lastname"); ;
+                            emergency.MiddleName = reader.IsDBNull(reader.GetOrdinal("Eme_Middlename")) ? "" : reader.GetString("Eme_Middlename");
+                            emergency.Suffix = reader.IsDBNull(reader.GetOrdinal("Eme_Suffix")) ? "" : reader.GetString("Eme_Suffix");
+
+        
+
+                            string[] eme_addressArr = (reader.IsDBNull(reader.GetOrdinal("Eme_Address")) ? ",,,,," : reader.GetString("Eme_Address")).Split(",");
+
+                            eme_address.HouseNo = int.Parse(eme_addressArr[0]);
+                            eme_address.ZipCode = int.Parse(eme_addressArr[1]);
+                            eme_address.Zone = int.Parse(eme_addressArr[2]);
+                            eme_address.Street = eme_addressArr[3];
+                            eme_address.Barangay = eme_addressArr[4];
+                            eme_address.City = eme_addressArr[5];
+                        }
+                    }
+                }
+
+                user.HealthInfo = health;
+                user.Address = user_address;
+
+                emergency.address = eme_address;
+                user.EmergencyContact = emergency;
+
+                return user;
+            }
+        } 
 
         public static bool IsEmailExisted(Role role, UserModel user)
         {
@@ -85,7 +170,7 @@ namespace Infocare_Project
                           
 
 
-                    string query = $"SELECT COUNT(*) FROM {tableName} WHERE Username = @Username AND {tableColumn}Password = @Password";
+                    string query = $"SELECT COUNT(*) FROM {tableName} WHERE {(role == Role.Staff ? "" : tableColumn)}Username = @Username AND {tableColumn}Password = @Password";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     string hashhPassword = ProcessMethods.HashCharacter(password);
@@ -998,14 +1083,35 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         #region Create Functions
 
-        public static void PatientRegFunc(PatientModel patient)
+        public static void PatientRegFunc(PatientModel patient, ModalMode mode)
         {
             using (var connection = GetConnection())
             {
                 try
                 {
-                    string query = @"INSERT INTO tb_patientinfo (p_FirstName, p_LastName, p_MiddleName, p_Suffix, p_Username, P_Password, P_ContactNumber, P_Bdate, P_Sex, P_Address) " +
-                                   "VALUES (@FirstName, @LastName, @MiddleName, @Suffix, @Username, @Password, @ContactNumber, @Bdate, @Sex, @Address)";
+                    string query;
+
+                    if (mode == ModalMode.Add)
+                    {
+                        query = @"INSERT INTO tb_patientinfo (p_FirstName, p_LastName, p_MiddleName, p_Suffix, p_Username, P_Password, P_ContactNumber, P_Bdate, P_Sex, P_Address, email) " +
+                                   "VALUES (@FirstName, @LastName, @MiddleName, @Suffix, @Username, @Password, @ContactNumber, @Bdate, @Sex, @Address, @Email)"; ;
+                    } else
+                    {
+                        query = @"UPDATE tb_patientinfo 
+                                  SET p_FirstName = @FirstName, 
+                                      p_LastName = @LastName, 
+                                      p_MiddleName = @MiddleName, 
+                                      p_Suffix = @Suffix, 
+                                      p_username = @Username, 
+                                      P_Password = @Password, 
+                                      P_ContactNumber = @ContactNumber, 
+                                      P_Bdate = @Bdate, 
+                                      P_Sex = @Sex, 
+                                      P_Address = @Address, 
+                                      email = @Email WHERE P_username = @Username";
+                                   
+                    }
+                       
 
                     MySqlCommand command = new MySqlCommand(query, connection);
 
@@ -1019,12 +1125,13 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
                     command.Parameters.AddWithValue("@Bdate", patient.BirthDate.ToString("dd-MM-yyyy"));
                     command.Parameters.AddWithValue("@Sex", patient.sex.ToString());
+                    command.Parameters.AddWithValue("@Email", patient.Email);
+                    Debug.WriteLine(patient.Address.FullAddress);
 
-                    string fullAddress = $"{patient.Address.HouseNo},{patient.Address.ZipCode}, {patient.Address.Zone}, {patient.Address.Street} street, Brgy. {patient.Address.Barangay}, {patient.Address.City}";
-                    command.Parameters.AddWithValue("@Address", fullAddress);
-
+                    command.Parameters.AddWithValue("@Address", patient.Address.FullAddress);
+                    
                     connection.Open();
-                    command.ExecuteNonQuery();
+                    Debug.WriteLine(command.ExecuteNonQuery());
                 }
                 catch (Exception ex)
                 {
@@ -1033,10 +1140,13 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public static void PatientRegFunc(PatientModel patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string allergy, string medication)
+        public static void PatientRegFunc(PatientModel patient, string username, double height, double weight, double bmi, string bloodType, string preCon, string treatment, string prevSurg, string allergy, string medication, ModalMode mode)
         {
-            string query =
-                            @"INSERT INTO tb_patientinfo 
+            string query;
+
+            if (mode == ModalMode.Add)
+            {
+                query = @"INSERT INTO tb_patientinfo 
                         (P_Height, P_Weight, P_BMI, P_Blood_Type, P_Precondition, P_Treatment, P_PrevSurgery, P_Username, P_Alergy, P_Medication)
                         VALUES 
                         (@Height, @Weight, @BMI, @BloodType, @PreCon, @Treatment, @PrevSurg, @Username, @Allergy, @Medication)
@@ -1049,39 +1159,74 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                         P_Treatment = IFNULL(@Treatment, P_Treatment),
                         P_PrevSurgery = IFNULL(@PrevSurg, P_PrevSurgery),
                         P_Alergy = IFNULL(@Allergy, P_Alergy),
-                        P_Medication = IFNULL(@Medication, P_Medication);";
+                        P_Medication = IFNULL(@Medication, P_Medication)";
+            } else
+            {
+                query = @"UPDATE tb_patientinfo 
+                        SET  
+                        P_Height = @Height,
+                        P_Weight = @Weight,
+                        P_BMI = @BMI,
+                        P_Blood_Type = @BloodType,
+                        P_Precondition = @PreCon,
+                        P_Treatment = @Treatment,
+                        P_PrevSurgery = @PrevSurg,
+                        P_Alergy = @Allergy,
+                        P_Medication = @Medication WHERE P_username = @Username";
+            }
+            
 
             using (var connection = GetConnection())
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                cmd.Parameters.AddWithValue("@Height", height > 0 ? height : (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Weight", weight > 0 ? weight : (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@BMI", bmi > 0 ? bmi : (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@BloodType", string.IsNullOrEmpty(bloodType) ? DBNull.Value : bloodType);
-                cmd.Parameters.AddWithValue("@PreCon", string.IsNullOrEmpty(preCon) ? DBNull.Value : preCon);
-                cmd.Parameters.AddWithValue("@Treatment", string.IsNullOrEmpty(treatment) ? DBNull.Value : treatment);
-                cmd.Parameters.AddWithValue("@PrevSurg", string.IsNullOrEmpty(prevSurg) ? DBNull.Value : prevSurg);
-                cmd.Parameters.AddWithValue("@Allergy", string.IsNullOrEmpty(allergy) ? DBNull.Value : allergy);
-                cmd.Parameters.AddWithValue("@Medication", string.IsNullOrEmpty(medication) ? DBNull.Value : medication);
-                cmd.Parameters.AddWithValue("@Username", username);
+                if (mode == ModalMode.Add) 
+                {
+                    cmd.Parameters.AddWithValue("@Height", height > 0 ? height : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Weight", weight > 0 ? weight : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@BMI", bmi > 0 ? bmi : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@BloodType", string.IsNullOrEmpty(bloodType) ? DBNull.Value : bloodType);
+                    cmd.Parameters.AddWithValue("@PreCon", string.IsNullOrEmpty(preCon) ? DBNull.Value : preCon);
+                    cmd.Parameters.AddWithValue("@Treatment", string.IsNullOrEmpty(treatment) ? DBNull.Value : treatment);
+                    cmd.Parameters.AddWithValue("@PrevSurg", string.IsNullOrEmpty(prevSurg) ? DBNull.Value : prevSurg);
+                    cmd.Parameters.AddWithValue("@Allergy", string.IsNullOrEmpty(allergy) ? DBNull.Value : allergy);
+                    cmd.Parameters.AddWithValue("@Medication", string.IsNullOrEmpty(medication) ? DBNull.Value : medication);
+                    cmd.Parameters.AddWithValue("@Username", username);
+                } else
+                {
+                    cmd.Parameters.AddWithValue("@Height", patient.HealthInfo.Height);
+                    cmd.Parameters.AddWithValue("@Weight", patient.HealthInfo.Weight);
 
-                try
-                {
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@BMI", patient.HealthInfo.BMI);
+                    cmd.Parameters.AddWithValue("@BloodType", patient.HealthInfo.BloodType);
+                    cmd.Parameters.AddWithValue("@PreCon", patient.HealthInfo.PreCon);
+                    cmd.Parameters.AddWithValue("@Treatment", patient.HealthInfo.Treatment);
+                    cmd.Parameters.AddWithValue("@PrevSurg", patient.HealthInfo.PrevSurg);
+                    cmd.Parameters.AddWithValue("@Allergy", patient.HealthInfo.Alergy);
+                    cmd.Parameters.AddWithValue("@Medication", patient.HealthInfo.Medication);
+                    cmd.Parameters.AddWithValue("@Username", patient.UserName);
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error updating or inserting patient data: " + ex.Message);
-                }
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                //try
+                //{
+                    
+                //}
+                //catch (Exception ex)
+                //{
+                //    throw new Exception("Error updating or inserting patient data: " + ex.Message);
+                //}
             }
         }
 
-        public static void PatientRegFunc(EmergencyContactModel Emergency, string username, string firstName, string lastName, string middleName, string suffix, int houseNo, string street, string barangay, string city, int zipCode, int zone)
+        public static void PatientRegFunc(EmergencyContactModel Emergency, string username, string firstName, string lastName, string middleName, string suffix, int houseNo, string street, string barangay, string city, int zipCode, int zone, ModalMode mode)
         {
+            string query;
 
-            string query = @"
+            if (mode == ModalMode.Add)
+            {
+                query = @"
                 INSERT INTO tb_patientinfo 
                 (P_username, Eme_Firstname, Eme_Middlename, Eme_Lastname, Eme_Suffix, Eme_Address)
                 VALUES 
@@ -1092,6 +1237,21 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                 Eme_Lastname = @Eme_Lastname,
                 Eme_Suffix = @Eme_Suffix,
                 Eme_Address = @Eme_Address;";
+            } 
+
+            else
+            {
+                query = @"
+                UPDATE tb_patientinfo 
+                SET
+                Eme_Firstname = @Eme_Firstname,
+                Eme_Middlename = @Eme_Middlename,
+                Eme_Lastname = @Eme_Lastname,
+                Eme_Suffix = @Eme_Suffix,
+                Eme_Address = @Eme_Address WHERE P_username = @P_username";
+            }
+
+             
 
 
             using (var connection = GetConnection())

@@ -10,23 +10,24 @@ namespace Infocare_Project
     public partial class PatientBasicInformationForm : Form
     {
         PatientModel patient;
+        ModalMode mode;
 
-        public PatientBasicInformationForm(PatientModel patient)
+        public PatientBasicInformationForm(PatientModel patient, ModalMode mode)
         {
             InitializeComponent();
+            this.mode = mode;
             this.patient = patient;
             HeightTextBox.TextChanged += HeightOrWeightTextChanged;
             WeightTextBox.TextChanged += HeightOrWeightTextChanged;
-        }
+            
+            string[] bloodtypes = { "Select BloodType", "A+", "A", "B+", "O+", "O", "O", "AB", "AB.", "AB-" };
+            BloodTypeComboBox.DataSource = bloodtypes;
 
-        private void PatientBasicInformationForm_Load(object sender, EventArgs e)
-        {
-            LoadPatientName();
         }
 
         private void LoadPatientName()
         {
-   
+
             string fullName = Database.GetPatientName(patient);
 
             if (!string.IsNullOrEmpty(fullName))
@@ -49,17 +50,17 @@ namespace Infocare_Project
                 if (heightCm > 0 && weight > 0)
                 {
                     double heightInMeters = heightCm;
-                    double bmi = weight / (heightCm * heightCm); 
-                    BmiTextBox.Text = bmi.ToString("F2"); 
+                    double bmi = weight / (heightCm * heightCm);
+                    BmiTextBox.Text = bmi.ToString("F2");
                 }
                 else
                 {
-                    BmiTextBox.Clear(); 
+                    BmiTextBox.Clear();
                 }
             }
             catch (Exception ex)
             {
-                
+
                 MessageBox.Show("Error calculating BMI: " + ex.Message);
             }
         }
@@ -118,8 +119,7 @@ namespace Infocare_Project
                 return;
             }
 
-            try
-            {
+          
                 double height = string.IsNullOrWhiteSpace(HeightTextBox.Text) ? 0 : Convert.ToDouble(HeightTextBox.Text);
                 double weight = string.IsNullOrWhiteSpace(WeightTextBox.Text) ? 0 : Convert.ToDouble(WeightTextBox.Text);
                 double bmi = string.IsNullOrWhiteSpace(BmiTextBox.Text) ? 0 : Convert.ToDouble(BmiTextBox.Text);
@@ -145,29 +145,47 @@ namespace Infocare_Project
 
                 patient.HealthInfo = healthInfo;
 
+                PatientModel editedInfo = SetupInfo();
+
+                Database.PatientRegFunc(mode == ModalMode.Add ? patient : editedInfo, patient.UserName, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication, mode);
+
                 
-
-                Database.PatientRegFunc(patient, patient.UserName, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication);
-
-                var emergencyRegistration = new EmergencyRegistration(patient);
+                var emergencyRegistration = new EmergencyRegistration(patient, mode);
                 emergencyRegistration.Show();
                 this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+            
 
 
             //VALIDATION
 
-            
+
+
+        }
+
+
+        public PatientModel SetupInfo()
+        {
+            PatientModel editedInfo = patient;
+            HealthInfoModel healthInfo = new HealthInfoModel();
+
+            healthInfo.Weight = double.Parse(WeightTextBox.Text);
+            healthInfo.Height = double.Parse(HeightTextBox.Text);
+            healthInfo.BMI = double.Parse(BmiTextBox.Text);
+            healthInfo.BloodType = BloodTypeComboBox.SelectedItem.ToString();
+            healthInfo.Alergy = AlergyTextbox.Text;
+            healthInfo.Medication = MedicationTxtbox.Text;
+            healthInfo.PrevSurg = PreviousSurgeryTextBox.Text;
+            healthInfo.PreCon = preConditionTextBox.Text;
+            healthInfo.Treatment = TreatmentTextBox.Text;
+
+            return editedInfo;
+
 
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
+            PatientRegisterForm patientRegisterForm = new PatientRegisterForm(mode);
             patientRegisterForm.Show();
         }
 
@@ -183,10 +201,10 @@ namespace Infocare_Project
             {
                 try
                 {
-                  
+
                     Database.DeletePatientReg1Data(patient);
 
-                    var patientInfoForm = new PatientRegisterForm();
+                    var patientInfoForm = new PatientRegisterForm(mode);
                     patientInfoForm.Show();
                     this.Hide();
                 }
@@ -194,6 +212,29 @@ namespace Infocare_Project
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
+            }
+        }
+
+        public void FillUpFields()
+        {
+            HeightTextBox.Text = patient.HealthInfo.Height.ToString();
+            WeightTextBox.Text = patient.HealthInfo.Weight.ToString();
+            BmiTextBox.Text = patient.HealthInfo.BMI.ToString();
+            BloodTypeComboBox.SelectedItem = patient.HealthInfo.BloodType == "" ? "Select BloodType" : patient.HealthInfo.BloodType;
+            AlergyTextbox.Text = patient.HealthInfo.Alergy;
+            MedicationTxtbox.Text = patient.HealthInfo.Medication;
+            PreviousSurgeryTextBox.Text = patient.HealthInfo.PrevSurg;
+            preConditionTextBox.Text = patient.HealthInfo.PreCon;
+            TreatmentTextBox.Text = patient.HealthInfo.Treatment;
+        }
+
+        private void PatientBasicInformationForm_Load_1(object sender, EventArgs e)
+        {
+            LoadPatientName();
+
+            if (mode == ModalMode.Edit)
+            {
+                FillUpFields();
             }
         }
     }

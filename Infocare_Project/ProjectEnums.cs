@@ -25,7 +25,15 @@ namespace Infocare_Project_1
     {
         Admin,
         Staff,
-        Doctor
+        Doctor,
+        Patient
     }
+
+    public enum ModalMode 
+    {
+        Add,
+        Edit
+    }
+
 
 }

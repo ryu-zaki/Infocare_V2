@@ -28,7 +28,9 @@ namespace Infocare_Project_1
         {
             LoadSpecializations();
             AppointmentDatePicker.MinDate = DateTime.Today; 
-            AppointmentDatePicker.MaxDate = DateTime.Today.AddMonths(5); 
+            AppointmentDatePicker.MaxDate = DateTime.Today.AddMonths(5);
+
+            pd_BookAppointment_Click(this, EventArgs.Empty);
 
         }
 
@@ -475,7 +477,7 @@ namespace Infocare_Project_1
             DialogResult confirm = MessageBox.Show("Are you sure you want to Register a Patient?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
-                PatientRegisterForm patientRegisterForm = new PatientRegisterForm();
+                PatientRegisterForm patientRegisterForm = new PatientRegisterForm(ModalMode.Add);
                 patientRegisterForm.Show();
             }
 

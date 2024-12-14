@@ -18,7 +18,7 @@ namespace Infocare_Project_1.Object_Models
         public HealthInfoModel HealthInfo { get; set; }
         public EmergencyContactModel EmergencyContact { get; set; }
         public DateTime BirthDate { get; set; }
-        public Sex sex { get; set; }
+        public string sex { get; set; }
         public string Suffix { get; set; }
 
         public AddressModel Address { get; set; }

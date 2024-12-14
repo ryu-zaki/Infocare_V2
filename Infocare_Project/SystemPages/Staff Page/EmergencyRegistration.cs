@@ -20,13 +20,13 @@ namespace Infocare_Project
     {
         private PlaceHolderHandler _placeHolderHandler;
         PatientModel patient;
-        public EmergencyRegistration(PatientModel patient)
+        ModalMode mode;
+        public EmergencyRegistration(PatientModel patient, ModalMode mode)
         {
             InitializeComponent();
+            this.mode = mode;
             _placeHolderHandler = new PlaceHolderHandler();
-           
             NameLabel.Text = $"{patient.LastName}, {patient.FirstName}";
-
             this.patient = patient;
         }
 
@@ -74,6 +74,33 @@ namespace Infocare_Project
             }
         }
 
+        public EmergencyContactModel SetupInfo()
+        {
+            AddressModel addressInfo = new AddressModel() 
+            {
+                HouseNo = int.Parse(HouseNoTxtbox.Text),
+                ZipCode = int.Parse(ZipCodeTxtbox.Text),
+                Zone = int.Parse(ZoneTxtbox.Text),
+                Barangay = BarangayTxtbox.Text,
+                City = CityTxtbox.Text,
+                Street = StreetTxtbox.Text
+            };
+
+
+            EmergencyContactModel info = new EmergencyContactModel()
+            {
+                FirstName = FirstnameTxtbox.Text,
+                LastName = LastNameTxtbox.Text,
+                MiddleName = MiddleNameTxtbox.Text,
+                Suffix = SuffixTxtbox.Text,
+                address = addressInfo
+               
+            };
+
+            return info;
+
+        }
+
         private void RegisterButton_Click_1(object sender, EventArgs e)
         {
             //VALIDATION
@@ -110,8 +137,6 @@ namespace Infocare_Project
                 return;
             }
 
-
-
             int zipCode;
             int Zone;
 
@@ -141,7 +166,15 @@ namespace Infocare_Project
                 int zipcode = string.IsNullOrWhiteSpace(ZipCodeTxtbox.Text) ? 0 : Convert.ToInt32(ZipCodeTxtbox.Text);
                 int zone = string.IsNullOrWhiteSpace(ZoneTxtbox.Text) ? 0 : Convert.ToInt32(ZoneTxtbox.Text);
 
-                AddressModel address = new AddressModel(housenum, street, barangay, city, zipCode, zone);
+                AddressModel address = new AddressModel()
+                {
+                    HouseNo = housenum,
+                    Street = street,
+                    Barangay = barangay,
+                    City = city,
+                    ZipCode = zipCode,
+                    Zone = zone
+                };
 
                 EmergencyContactModel emergencyContact = new EmergencyContactModel()
                 {
@@ -158,8 +191,8 @@ namespace Infocare_Project
                 if (YesNO == DialogResult.Yes)
                 {
                     try
-                    { 
-                        Database.PatientRegFunc(emergencyContact, patient.UserName, firstname, lastname, middlename, suffix, housenum, street, barangay, city, zipcode, zone);
+                    {
+                        Database.PatientRegFunc(emergencyContact, patient.UserName, firstname, lastname, middlename, suffix, housenum, street, barangay, city, zipcode, zone, mode);
 
                         MessageBox.Show("Submit Succesfully");
                         this.Hide();
@@ -254,7 +287,7 @@ namespace Infocare_Project
                 {
                     Database.NullPatientReg2Data(patient.UserName);
 
-                    PatientBasicInformationForm patientInfoForm = new PatientBasicInformationForm(patient);
+                    PatientBasicInformationForm patientInfoForm = new PatientBasicInformationForm(patient, mode);
                     patientInfoForm.Show();
                     this.Hide();
                 }
@@ -285,6 +318,29 @@ namespace Infocare_Project
                 {
                     this.Close();
                 }
+            }
+        }
+
+        private void FillUpFields()
+        {
+            FirstnameTxtbox.Text = patient.EmergencyContact.FirstName;
+            LastNameTxtbox.Text = patient.EmergencyContact.LastName;
+            MiddleNameTxtbox.Text = patient.EmergencyContact.MiddleName;
+            SuffixTxtbox.Text = patient.EmergencyContact.Suffix;
+            
+            //Address
+            HouseNoTxtbox.Text = patient.EmergencyContact.address.HouseNo.ToString();
+            ZipCodeTxtbox.Text = patient.EmergencyContact.address.ZipCode.ToString();
+            ZoneTxtbox.Text = patient.EmergencyContact.address.Zone.ToString();
+            BarangayTxtbox.Text = patient.EmergencyContact.address.Barangay;
+            CityTxtbox.Text = patient.EmergencyContact.address.City;
+        }
+
+        private void EmergencyRegistration_Load_1(object sender, EventArgs e)
+        {
+            if (mode == ModalMode.Edit)
+            {
+                FillUpFields();
             }
         }
     }

@@ -1,7 +1,9 @@
 ﻿using Guna.UI2.WinForms;
 using Infocare_Project.NewFolder;
+using Infocare_Project_1;
 using Infocare_Project_1.Classes;
 using Infocare_Project_1.Object_Models;
+using Microsoft.AspNetCore.SignalR.Protocol;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,15 +24,85 @@ namespace Infocare_Project
         int houseNo;
         int zipCode;
         int zone;
-        public PatientRegisterForm()
+        ModalMode mode;
+        int AccountID;
+
+        PatientModel extractedInfo;
+        public PatientRegisterForm(ModalMode mode, int AccountId = 0)
         {
             InitializeComponent();
+            this.mode = mode;
+            this.AccountID = AccountId;
             _placeHolderHandler = new PlaceHolderHandler();
+            PageTitle.Text = mode == ModalMode.Edit ? "Patient Information" : "Patient Registration";
         }
 
         private void PatientRegisterForm_Load(object sender, EventArgs e)
         {
-            BdayDateTimePicker.MaxDate = DateTime.Today;
+            if (mode == ModalMode.Add)
+            {
+                BdayDateTimePicker.MaxDate = DateTime.Today;
+            } else
+            {
+                //Edit
+                extractedInfo = Database.GetPatientInfo(AccountID);
+                FillUpFields(extractedInfo); 
+            }
+            
+        }
+
+        public void FillUpFields(PatientModel info)
+        {
+            FirstnameTxtbox.Text = info.FirstName;
+            LastNameTxtbox.Text = info.LastName;
+            MiddleNameTxtbox.Text = info.MiddleName;
+            SuffixTxtbox.Text = info.Suffix;
+            EmailTxtbox.Text = info.Email;
+            ContactNumberTxtbox.Text = info.ContactNumber.ToString();
+
+            BdayDateTimePicker.Value = info.BirthDate;
+
+            SexCombobox.SelectedItem = info.sex;
+            //return $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
+
+            
+            HouseNoTxtbox.Text = info.Address.HouseNo.ToString();
+            ZipCodeTxtbox.Text = info.Address.ZipCode.ToString();
+            ZoneTxtbox.Text = info.Address.Zone.ToString();
+            StreetTxtbox.Text = info.Address.Street;
+            BarangayTxtbox.Text = info.Address.Barangay;
+            CityTxtbox.Text = info.Address.City;
+        }
+
+        public PatientModel SetupObj()
+        {
+            PatientModel patient = new PatientModel()
+            {
+                FirstName = FirstnameTxtbox.Text,
+                LastName = LastNameTxtbox.Text,
+                UserName = extractedInfo.UserName,
+                MiddleName = MiddleNameTxtbox.Text,
+                BirthDate = BdayDateTimePicker.Value,
+                Suffix = SuffixTxtbox.Text,
+                Email = EmailTxtbox.Text,
+                ContactNumber = ContactNumberTxtbox.Text,
+                sex = SexCombobox.SelectedItem.ToString()
+            };
+
+            AddressModel address = new AddressModel()
+            {
+                HouseNo = int.Parse(HouseNoTxtbox.Text),
+                ZipCode = int.Parse(ZipCodeTxtbox.Text),
+                City = CityTxtbox.Text,
+                Zone = int.Parse(ZoneTxtbox.Text),
+                Street = StreetTxtbox.Text,
+                Barangay = BarangayTxtbox.Text,
+            };
+
+            patient.Address = address;
+
+
+            return patient;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -99,9 +171,6 @@ namespace Infocare_Project
                 return;
             }
 
-
-           
-
             int ZipCode;
             int Zone;
 
@@ -117,57 +186,62 @@ namespace Infocare_Project
                 return;
             }
             
-            if (Database.IsUsernameExists(UsernameTxtbox.Text))
+            if (Database.IsUsernameExists(EmailTxtbox.Text))
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.");
                 return;
             }
 
-            AddressModel address = new AddressModel(houseNo, StreetTxtbox.Text, BarangayTxtbox.Text, CityTxtbox.Text, zipCode, zone);
-
-            PatientModel newPatient = new PatientModel
-            {
-                FirstName = FirstnameTxtbox.Text,
-                LastName = LastNameTxtbox.Text,
-                MiddleName = MiddleNameTxtbox.Text,
-                ContactNumber = ContactNumberTxtbox.Text,
-                UserName = UsernameTxtbox.Text,
-                Address = address
-            };
-
-
-            try
-            {
-                
-                Database.PatientRegFunc(newPatient);
-
-                var patientInfoForm = new PatientBasicInformationForm(newPatient);
-
-
-                patientInfoForm.Show();
-
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
             Guna2TextBox[] requiredTextBoxes = {
                 FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
-                ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, UsernameTxtbox
+                ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, EmailTxtbox
             };
 
             if (!InputValidator.ValidateAllFieldsFilled(requiredTextBoxes, "Please fill out all fields."))
             {
                 return;
             }
+
+            AddressModel address = new AddressModel()
+            {
+                HouseNo = houseNo,
+                Street = StreetTxtbox.Text,
+                Barangay = BarangayTxtbox.Text,
+                City = CityTxtbox.Text,
+                ZipCode = zipCode,
+                Zone = zone
+            }; 
+
+            PatientModel newPatient = new PatientModel
+            {
+                UserName = extractedInfo.UserName,
+                FirstName = FirstnameTxtbox.Text,
+                LastName = LastNameTxtbox.Text,
+                MiddleName = MiddleNameTxtbox.Text,
+                ContactNumber = ContactNumberTxtbox.Text,
+                Email = EmailTxtbox.Text,
+                Address = address,
+                sex = SexCombobox.SelectedItem.ToString()
+            };
+
+                this.Cursor = Cursors.WaitCursor;
+                PatientModel editedInfo = SetupObj();
+                PatientModel ProperModel = mode == ModalMode.Add ? newPatient : extractedInfo;
+
+                Database.PatientRegFunc(editedInfo, mode);
+
+                this.Cursor = Cursors.Default;
+                var patientInfoForm = new PatientBasicInformationForm(ProperModel, mode);
+
+                patientInfoForm.Show();
+                this.Hide();
+            
            
         }
 
         private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
         {
-            _placeHolderHandler.HandleTextBoxPlaceholder(UsernameTxtbox, UserNameLabel, "Email");
+            _placeHolderHandler.HandleTextBoxPlaceholder(EmailTxtbox, UserNameLabel, "Email");
         }
 
         private void ContactNumberTxtbox_TextChanged(object sender, EventArgs e)
@@ -231,7 +305,7 @@ namespace Infocare_Project
         private void BackButton_Click(object sender, EventArgs e)
         {
             Control[] textBoxes = {
-                                    UsernameTxtbox, FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
+                                    EmailTxtbox, FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
                                     ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox
                                   };
 

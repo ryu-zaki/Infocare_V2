@@ -1,8 +1,10 @@
 ﻿using Infocare_Project;
+using Infocare_Project_1.Object_Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,7 @@ namespace Infocare_Project_1
 
         private void AdminDashboard2_Load(object sender, EventArgs e)
         {
+            ShowPatientTab();
         }
 
         private void ad_PatientList_Click(object sender, EventArgs e)
@@ -71,7 +74,8 @@ namespace Infocare_Project_1
 
             ShowDoctorList();
         }
-        private void ad_patientBtn_Click(object sender, EventArgs e)
+
+        private void ShowPatientTab()
         {
             SearchPanel4.Visible = false;
             SearchPanel2.Visible = false;
@@ -91,6 +95,11 @@ namespace Infocare_Project_1
 
 
             ShowPatientList();
+        }
+
+        private void ad_patientBtn_Click(object sender, EventArgs e)
+        {
+            ShowPatientTab();
 
         }
 
@@ -848,7 +857,24 @@ namespace Infocare_Project_1
             {
                 MessageBox.Show($"Error while resetting filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
+
+        }
+
+        private void PatientDataGridViewList2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = PatientDataGridViewList2.Rows[e.RowIndex];
+
+                int patientID = int.Parse(selectedRow.Cells[0].Value.ToString());
+
+                this.Cursor = Cursors.WaitCursor;
+                PatientRegisterForm regForm = new PatientRegisterForm(ModalMode.Edit, patientID);
+                regForm.ShowDialog();
+
+                this.Cursor = Cursors.Default;
+
+            }
         }
     }
 

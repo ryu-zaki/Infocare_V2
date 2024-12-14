@@ -420,7 +420,6 @@
             BloodTypeComboBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             BloodTypeComboBox.ForeColor = Color.FromArgb(68, 88, 112);
             BloodTypeComboBox.ItemHeight = 30;
-            BloodTypeComboBox.Items.AddRange(new object[] { "A+", "A", "B+", "B", "O+", "O", "AB", "AB. " });
             BloodTypeComboBox.Location = new Point(452, 223);
             BloodTypeComboBox.Name = "BloodTypeComboBox";
             BloodTypeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges30;
@@ -791,6 +790,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "PatientBasicInformationForm";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += PatientBasicInformationForm_Load_1;
             guna2CustomGradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();

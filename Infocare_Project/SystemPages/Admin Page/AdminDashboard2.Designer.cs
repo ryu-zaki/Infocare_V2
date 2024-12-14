@@ -863,6 +863,7 @@
             PatientDataGridViewList2.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
             PatientDataGridViewList2.Visible = false;
             PatientDataGridViewList2.CellBeginEdit += PatientDataGridViewList2_CellBeginEdit;
+            PatientDataGridViewList2.CellDoubleClick += PatientDataGridViewList2_CellDoubleClick;
             PatientDataGridViewList2.CellValueChanged += PatientDataGridViewList2_CellValueChanged;
             PatientDataGridViewList2.CurrentCellDirtyStateChanged += PatientDataGridViewList2_CurrentCellDirtyStateChanged;
             // 

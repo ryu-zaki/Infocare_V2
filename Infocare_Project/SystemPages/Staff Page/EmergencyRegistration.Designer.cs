@@ -827,6 +827,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "EmergencyRegistration";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += EmergencyRegistration_Load_1;
             guna2CustomGradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();

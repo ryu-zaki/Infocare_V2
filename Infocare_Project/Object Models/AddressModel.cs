@@ -17,27 +17,20 @@ namespace Infocare_Project_1.Object_Models
         public int ZipCode { get; set; }
         public int Zone { get; set; }
 
+        string fullAddress;
+
         public string FullAddress
         {
             get
             {
-                return $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
+                fullAddress = $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
+                return fullAddress;
             }
 
             set
             {
-                FullAddress = value;
+                fullAddress = value;
             }
-        }
-
-        public AddressModel(int HouseNo, string Street, string Barangay, string City, int ZipCode, int Zone)
-        {
-            this.HouseNo = HouseNo;
-            this.Street = Street;
-            this.Barangay = Barangay;
-            this.City = City;
-            this.ZipCode = ZipCode;
-            this.Zone = Zone;
         }
     }
 }
