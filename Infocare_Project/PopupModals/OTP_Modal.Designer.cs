@@ -46,6 +46,7 @@
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             verifyBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             verifyBox2 = new Guna.UI2.WinForms.Guna2TextBox();
             verifyBox3 = new Guna.UI2.WinForms.Guna2TextBox();
@@ -76,11 +77,22 @@
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            guna2HtmlLabel2.Location = new Point(75, 95);
+            guna2HtmlLabel2.Location = new Point(102, 89);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(424, 23);
+            guna2HtmlLabel2.Size = new Size(366, 23);
             guna2HtmlLabel2.TabIndex = 1;
-            guna2HtmlLabel2.Text = "Enter your OTP (One Time Password) that we sent to account";
+            guna2HtmlLabel2.Text = "Enter your OTP (One Time Password) that we sent to";
+            // 
+            // guna2HtmlLabel3
+            // 
+            guna2HtmlLabel3.BackColor = Color.Transparent;
+            guna2HtmlLabel3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel3.ForeColor = Color.MidnightBlue;
+            guna2HtmlLabel3.Location = new Point(179, 118);
+            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            guna2HtmlLabel3.Size = new Size(199, 23);
+            guna2HtmlLabel3.TabIndex = 2;
+            guna2HtmlLabel3.Text = "jmjmtuba0987@gmail.com";
             // 
             // verifyBox1
             // 
@@ -254,7 +266,7 @@
             submitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             submitBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             submitBtn.Enabled = false;
-            submitBtn.FillColor = Color.FromArgb(13, 41, 80);
+            submitBtn.FillColor = Color.MidnightBlue;
             submitBtn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             submitBtn.ForeColor = Color.White;
             submitBtn.Location = new Point(179, 277);
@@ -277,6 +289,7 @@
             Controls.Add(verifyBox3);
             Controls.Add(verifyBox2);
             Controls.Add(verifyBox1);
+            Controls.Add(guna2HtmlLabel3);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(guna2HtmlLabel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -292,6 +305,7 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2TextBox verifyBox6;
         private Guna.UI2.WinForms.Guna2TextBox verifyBox5;
         private Guna.UI2.WinForms.Guna2TextBox verifyBox4;

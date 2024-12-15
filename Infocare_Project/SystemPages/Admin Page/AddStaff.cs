@@ -36,10 +36,9 @@ namespace Infocare_Project_1
                 passValidatorMsg.Visible = false;
                 PLabel.Visible = false;
                 CPLabel.Visible = false;
+                
 
-
-            }
-            else
+            } else
             {
                 DeleteStaff.Visible = false;
             }
@@ -62,37 +61,24 @@ namespace Infocare_Project_1
         {
             string contactNumber = ConatactNumberTextbox.Text;
 
-            if (!EmailTextbox.Text.EndsWith("@gmail.com"))
-            {
-                MessageBox.Show("Invalid email. The email must end with '@gmail.com'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))
             {
                 MessageBox.Show("Invalid number. The contact number must start with '09' and be exactly 11 digits.", "Invalid Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (Regex.IsMatch(FirstNameTextBox.Text, @"[^a-zA-Z\s]"))
+            if (!FirstNameTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(FirstNameTextBox.Text))
             {
                 MessageBox.Show("First name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
 
             }
-            if (Regex.IsMatch(LastNameTextbox.Text, @"[^a-zA-Z\s]"))
+
+            if (!UserNameTextBox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(UserNameTextBox.Text))
             {
-                MessageBox.Show("Last name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Username must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
-            if (Regex.IsMatch(MiddleNameTextbox.Text, @"[^a-zA-Z\s]"))
-            {
-                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-
-            }
-
 
             if (Database.UsernameExistsStaff(UserNameTextBox.Text) && mode == ModalMode.Add)
             {
@@ -112,6 +98,12 @@ namespace Infocare_Project_1
 
 
 
+            if (!LastNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTextbox.Text))
+            {
+                MessageBox.Show("Last name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
 
             if (!ProcessMethods.ValidateEmail(EmailTextbox.Text))
             {
@@ -119,21 +111,26 @@ namespace Infocare_Project_1
                 return;
             }
 
+            if (!MiddleNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
+            {
+                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
 
+            }
 
             Guna2TextBox[] requiredTextBoxes;
 
             if (mode == ModalMode.Add)
             {
                 Guna2TextBox[] addFields = {
-                    FirstNameTextBox, LastNameTextbox, UserNameTextBox, PasswordTextBox, ConfirmPasswordTextBox, ConatactNumberTextbox };
+                    FirstNameTextBox, LastNameTextbox, MiddleNameTextbox, UserNameTextBox, PasswordTextBox, ConfirmPasswordTextBox, ConatactNumberTextbox };
 
                 requiredTextBoxes = addFields;
             }
             else
             {
                 Guna2TextBox[] editFields = {
-                    FirstNameTextBox, LastNameTextbox, UserNameTextBox, ConatactNumberTextbox };
+                    FirstNameTextBox, LastNameTextbox, MiddleNameTextbox, UserNameTextBox, ConatactNumberTextbox };
 
                 requiredTextBoxes = editFields;
             }
@@ -274,33 +271,11 @@ namespace Infocare_Project_1
                 Database.DeleteStaffById(accountId);
                 ReloadStaffs.Invoke();
 
-
+               
 
                 MessageBox.Show("Staff Deleted", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-            }
-        }
-
-        private void admin_showpass_CheckedChanged(object sender, EventArgs e)
-        {
-            if (staff_showpass.Checked)
-            {
-                PasswordTextBox.PasswordChar = '\0';
-                PasswordTextBox.UseSystemPasswordChar = false;
-
-                ConfirmPasswordTextBox.PasswordChar = '\0';
-                ConfirmPasswordTextBox.UseSystemPasswordChar = false;
-
-            }
-            else
-            {
-                ConfirmPasswordTextBox.PasswordChar = '●';
-                ConfirmPasswordTextBox.UseSystemPasswordChar = true;
-
-                PasswordTextBox.PasswordChar = '●';
-                PasswordTextBox.UseSystemPasswordChar = true;
-
-            }
+            } 
         }
     }
 }
