@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
-using MySql.Data.MySqlClient;
-using Microsoft.VisualBasic.Logging;
-using System.Drawing;
-using Microsoft.VisualBasic.ApplicationServices;
-using Infocare_Project.NewFolder;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Collections;
-using Infocare_Project_1;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using System.Configuration;
-using Infocare_Project_1.Classes;
+﻿using Infocare_Project_1;
 using Infocare_Project_1.Object_Models;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using System.Data;
 using System.Diagnostics;
 
 namespace Infocare_Project
@@ -52,6 +38,55 @@ namespace Infocare_Project
             return new MySqlConnection(connectionString);
         }
 
+        public static DoctorModel GetDoctorInfo(int AccountId)
+        {
+            using (var connection = GetConnection())
+            {
+                DoctorModel doctor = new DoctorModel();
+                string query = @"SELECT * FROM tb_doctorinfo WHERE id = @ID";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ID", AccountId);
+                    connection.Open();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string[] skills = (reader.IsDBNull(reader.GetOrdinal("specialization")) ? "" : reader.GetString("specialization")).Split(',');
+
+                            List<string> specializations = new List<string>();
+
+                            foreach(string skill in skills)
+                            {
+                                specializations.Add(skill);
+                            }
+
+                            doctor = new DoctorModel()
+                            {
+                                FirstName = reader.IsDBNull(reader.GetOrdinal("firstname")) ? "" : reader.GetString("Firstname"),
+                                LastName = reader.IsDBNull(reader.GetOrdinal("lastname")) ? "" : reader.GetString("Lastname"),
+                                MiddleName = reader.IsDBNull(reader.GetOrdinal("middlename")) ? "" : reader.GetString("middlename"),
+                                UserName = reader.IsDBNull(reader.GetOrdinal("username")) ? "" : reader.GetString("username"),
+                              
+                                ContactNumber = reader.IsDBNull(reader.GetOrdinal("contactNumber")) ? "" : reader.GetString("contactNumber"),
+                                Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email"),
+                                ConsultationFee = reader.IsDBNull(reader.GetOrdinal("consultationfee")) ? 0 : reader.GetDecimal("consultationfee"),
+
+                                StartTime = reader.IsDBNull(reader.GetOrdinal("start_time")) ? new TimeSpan(0) : reader.GetTimeSpan("start_time"),
+                                EndTime = reader.IsDBNull(reader.GetOrdinal("end_time")) ? new TimeSpan(0) : reader.GetTimeSpan("end_time"),
+                                Specialty = specializations,
+                                DayAvailability = reader.IsDBNull(reader.GetOrdinal("day_availability")) ? "" : reader.GetString("day_availability")
+                            };
+
+                        }
+
+                        return doctor;
+                    }
+                }
+            }
+            }
 
         public static StaffModel GetStaffInfo(int accountID)
         {

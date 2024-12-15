@@ -878,7 +878,7 @@ namespace Infocare_Project_1
             }
         }
 
-       
+
 
         private void StaffDataGridViewList2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -892,6 +892,26 @@ namespace Infocare_Project_1
 
                 AddStaff staffForm = new AddStaff(ModalMode.Edit, patientID);
                 staffForm.ReloadStaffs += ShowStaffList;
+                staffForm.ShowDialog();
+
+                this.Cursor = Cursors.Default;
+
+            }
+        }
+
+        private void DoctorDataGridViewList2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = DoctorDataGridViewList2.Rows[e.RowIndex];
+
+                int DoctorID = int.Parse(selectedRow.Cells[0].Value.ToString());
+
+                this.Cursor = Cursors.WaitCursor;
+
+                AdminAddDoctor staffForm = new AdminAddDoctor(ModalMode.Edit, DoctorID);
+
+               // staffForm.ReloadStaffs += ShowStaffList;
                 staffForm.ShowDialog();
 
                 this.Cursor = Cursors.Default;

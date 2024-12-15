@@ -18,12 +18,49 @@ namespace Infocare_Project
     {
         private PlaceHolderHandler _placeHolderHandler;
 
+        ModalMode mode;
+        int AccountId;
+        DoctorModel doctor;
 
-
-        public AdminAddDoctor()
+        public AdminAddDoctor(ModalMode mode = ModalMode.Add, int AccountID = 0)
         {
             InitializeComponent();
             _placeHolderHandler = new PlaceHolderHandler();
+
+            this.mode = mode;
+            this.AccountId = AccountID;
+
+            if (mode == ModalMode.Edit)
+            {
+                RegisterButton.Text = "Update";
+                guna2HtmlLabel2.Text = "Update Doctor";
+
+            }
+        }
+
+        public void FillUpFields(DoctorModel doctor)
+        {
+            FirstNameTextBox.Text = doctor.FirstName;
+
+            LastNameTextbox.Text = doctor.LastName;
+            MiddleNameTextbox.Text = doctor.MiddleName;
+            DayAvailabilityCombobox.DataSource = doctor.DayAvailability.Split(',');
+            UserNameTextBox.Text = doctor.UserName;
+            emailTextBox.Text = doctor.Email;
+            ContactNumberTextbox.Text = doctor.ContactNumber;
+
+            TimeCombobox();
+
+
+            flowLayoutPanel1.Controls.Clear();
+            foreach (string skill in doctor.Specialty)
+            {
+                Guna2TextBox label = new Guna2TextBox();
+                label.Text = skill;
+                
+                flowLayoutPanel1.Controls.Add(label);
+            }
+
 
         }
 
@@ -31,6 +68,11 @@ namespace Infocare_Project
         {
             TimeCombobox();
             DayAvComboBox();
+
+            doctor = Database.GetDoctorInfo(AccountId);
+
+
+            FillUpFields(doctor);
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -208,13 +250,13 @@ namespace Infocare_Project
 
 
 
-        private void TimeCombobox()
+        private void TimeCombobox(ModalMode mode = ModalMode.Add)
         {
             TimeComboBox.Items.Clear();
             TimeComboBox.Items.Add("Select a time slot");
 
-            TimeSpan startTime = TimeSpan.FromHours(8);
-            TimeSpan endTime = TimeSpan.FromHours(20);
+            TimeSpan startTime = mode == ModalMode.Add ? TimeSpan.FromHours(8) : doctor.StartTime;
+            TimeSpan endTime = mode == ModalMode.Add ? TimeSpan.FromHours(20) : doctor.EndTime;
             TimeSpan interval = TimeSpan.FromHours(4);
 
             for (TimeSpan time = startTime; time < endTime; time += interval)

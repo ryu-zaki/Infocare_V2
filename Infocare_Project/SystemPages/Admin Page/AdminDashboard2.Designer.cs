@@ -729,6 +729,7 @@
             DoctorDataGridViewList2.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
             DoctorDataGridViewList2.Visible = false;
             DoctorDataGridViewList2.CellBeginEdit += DoctorDataGridViewList2_CellBeginEdit;
+            DoctorDataGridViewList2.CellDoubleClick += DoctorDataGridViewList2_CellDoubleClick;
             DoctorDataGridViewList2.CellValueChanged += DoctorDataGridViewList2_CellValueChanged;
             DoctorDataGridViewList2.CurrentCellDirtyStateChanged += DoctorDataGridViewList2_CurrentCellDirtyStateChanged;
             // 
