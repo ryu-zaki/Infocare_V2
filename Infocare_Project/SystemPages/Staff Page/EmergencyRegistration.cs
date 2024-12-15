@@ -34,6 +34,11 @@ namespace Infocare_Project
             if (mode == ModalMode.Edit)
             {
                 DeleteBtn.Visible = true;
+                RegisterButton.Text = "Update";
+            } else
+            {
+                DeleteBtn.Visible = false;
+                RegisterButton.Text = "Register";
             }
         }
 

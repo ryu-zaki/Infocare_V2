@@ -17,9 +17,44 @@ namespace Infocare_Project_1
 {
     public partial class AddStaff : Form
     {
-        public AddStaff()
+        ModalMode mode;
+        int accountId;
+        public Action ReloadStaffs;
+        StaffModel staff;
+        public AddStaff(ModalMode mode = ModalMode.Add, int accountId = 0)
         {
             InitializeComponent();
+            this.mode = mode;
+            this.accountId = accountId;
+
+            if (mode == ModalMode.Edit)
+            {
+                EnterButton.Text = "Update";
+                guna2HtmlLabel2.Text = "Update Staff";
+                PasswordTextBox.Visible = false;
+                ConfirmPasswordTextBox.Visible = false;
+                passValidatorMsg.Visible = false;
+                PLabel.Visible = false;
+                CPLabel.Visible = false;
+                
+
+            } else
+            {
+                DeleteStaff.Visible = false;
+            }
+
+        }
+
+        public void FillupFields(StaffModel staff)
+        {
+            FirstNameTextBox.Text = staff.FirstName;
+            LastNameTextbox.Text = staff.LastName;
+            MiddleNameTextbox.Text = staff.MiddleName;
+            SuffixTextbox.Text = staff.Suffix;
+            UserNameTextBox.Text = staff.UserName;
+
+            ConatactNumberTextbox.Text = staff.ContactNumber;
+            EmailTextbox.Text = staff.Email;
         }
 
         private void EnterButton_Click(object sender, EventArgs e)
@@ -45,7 +80,7 @@ namespace Infocare_Project_1
                 return;
             }
 
-            if (Database.UsernameExistsStaff(UserNameTextBox.Text))
+            if (Database.UsernameExistsStaff(UserNameTextBox.Text) && mode == ModalMode.Add)
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -53,10 +88,15 @@ namespace Infocare_Project_1
 
             string password = PasswordTextBox.Text;
 
-            if (!ProcessMethods.ValidatePassword(password))
+            if (mode == ModalMode.Add)
             {
-                return;
+                if (!ProcessMethods.ValidatePassword(password))
+                {
+                    return;
+                }
             }
+
+
 
             if (!LastNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTextbox.Text))
             {
@@ -78,9 +118,23 @@ namespace Infocare_Project_1
 
             }
 
-            Guna2TextBox[] requiredTextBoxes = {
-                FirstNameTextBox, LastNameTextbox, MiddleNameTextbox, UserNameTextBox, PasswordTextBox, ConfirmPasswordTextBox
-            };
+            Guna2TextBox[] requiredTextBoxes;
+
+            if (mode == ModalMode.Add)
+            {
+                Guna2TextBox[] addFields = {
+                    FirstNameTextBox, LastNameTextbox, MiddleNameTextbox, UserNameTextBox, PasswordTextBox, ConfirmPasswordTextBox, ConatactNumberTextbox };
+
+                requiredTextBoxes = addFields;
+            }
+            else
+            {
+                Guna2TextBox[] editFields = {
+                    FirstNameTextBox, LastNameTextbox, MiddleNameTextbox, UserNameTextBox, ConatactNumberTextbox };
+
+                requiredTextBoxes = editFields;
+            }
+
 
             if (!InputValidator.ValidateAllFieldsFilled(requiredTextBoxes, "Please fill out all fields."))
             {
@@ -123,8 +177,18 @@ namespace Infocare_Project_1
 
             try
             {
-                Database.AddStaff(newStaff);
-                MessageBox.Show("Staff added successfully!");
+                newStaff.AccountID = accountId;
+                Database.AddStaff(newStaff, mode);
+                if (mode == ModalMode.Add)
+                {
+                    MessageBox.Show("Staff added successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Staff successfully updated!");
+
+                }
+                ReloadStaffs.Invoke();
                 this.Hide();
             }
             catch (Exception ex)
@@ -135,7 +199,8 @@ namespace Infocare_Project_1
 
         private void AddStaff_Load(object sender, EventArgs e)
         {
-
+            staff = Database.GetStaffInfo(accountId);
+            FillupFields(staff);
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -168,17 +233,17 @@ namespace Infocare_Project_1
 
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
 
             Guna2TextBox? textBox = sender as Guna2TextBox;
 
             string msg =
                 !Regex.IsMatch(textBox.Text, @"[A-Z]") ? "Must contain atleast one uppercase letter" :
-                !Regex.IsMatch(textBox.Text, @"[^a-zA-Z0-9\s]") ? "Must have At least one special character" : !Regex.IsMatch(textBox.Text, @"[^a-zA-Z0-9\s]") ? "Must have At least one number" : !Regex.IsMatch(textBox.Text, @".{8,}") ? "Must be at least 8 characters long" :  "";
+                !Regex.IsMatch(textBox.Text, @"[^a-zA-Z0-9\s]") ? "Must have At least one special character" : !Regex.IsMatch(textBox.Text, @"[^a-zA-Z0-9\s]") ? "Must have At least one number" : !Regex.IsMatch(textBox.Text, @".{8,}") ? "Must be at least 8 characters long" : "";
             passValidatorMsg.Visible = true;
             if (msg == "")
             {
-               
+
                 passValidatorMsg.Text = "Strong Enough";
                 passValidatorMsg.ForeColor = Color.Green;
             }
@@ -190,6 +255,27 @@ namespace Infocare_Project_1
             }
 
 
+        }
+
+        private void MiddleNameTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteStaff_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this staff?", "Staff Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Database.DeleteStaffById(accountId);
+                ReloadStaffs.Invoke();
+
+               
+
+                MessageBox.Show("Staff Deleted", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            } 
         }
     }
 }

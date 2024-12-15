@@ -12,7 +12,8 @@ namespace Infocare_Project_1.Object_Models
     /// </summary>
     public class StaffModel : UserModel
     {
-        public string Suffix { get; set; }
-        public string Email { get; set; }
+        public string Suffix { get; set; } 
+        public int AccountID { get; set; }
+       
     }
 }

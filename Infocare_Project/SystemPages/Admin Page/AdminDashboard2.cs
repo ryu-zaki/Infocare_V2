@@ -877,6 +877,27 @@ namespace Infocare_Project_1
 
             }
         }
+
+       
+
+        private void StaffDataGridViewList2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = StaffDataGridViewList2.Rows[e.RowIndex];
+
+                int patientID = int.Parse(selectedRow.Cells[0].Value.ToString());
+
+                this.Cursor = Cursors.WaitCursor;
+
+                AddStaff staffForm = new AddStaff(ModalMode.Edit, patientID);
+                staffForm.ReloadStaffs += ShowStaffList;
+                staffForm.ShowDialog();
+
+                this.Cursor = Cursors.Default;
+
+            }
+        }
     }
 
 

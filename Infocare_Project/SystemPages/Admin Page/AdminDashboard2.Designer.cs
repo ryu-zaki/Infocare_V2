@@ -554,6 +554,7 @@
             StaffDataGridViewList2.Visible = false;
             StaffDataGridViewList2.CellBeginEdit += StaffDataGridViewList2_CellBeginEdit;
             StaffDataGridViewList2.CellClick += StaffDataGridViewList2_CellClick;
+            StaffDataGridViewList2.CellDoubleClick += StaffDataGridViewList2_CellDoubleClick;
             StaffDataGridViewList2.CellValueChanged += StaffDataGridViewList2_CellValueChanged;
             StaffDataGridViewList2.CurrentCellDirtyStateChanged += StaffDataGridViewList2_CurrentCellDirtyStateChanged;
             StaffDataGridViewList2.RowValidated += StaffDataGridViewList2_RowValidated;

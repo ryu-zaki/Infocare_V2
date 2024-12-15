@@ -52,6 +52,41 @@ namespace Infocare_Project
             return new MySqlConnection(connectionString);
         }
 
+
+        public static StaffModel GetStaffInfo(int accountID)
+        {
+            using (var connection = GetConnection())
+            {
+                StaffModel staff = new StaffModel();
+                string query = @"SELECT * FROM tb_staffinfo WHERE id = @ID";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ID", accountID);
+                    connection.Open();
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            staff = new StaffModel()
+                            {
+                                FirstName = reader.IsDBNull(reader.GetOrdinal("s_Firstname")) ? "" : reader.GetString("s_Firstname"),
+                                LastName = reader.IsDBNull(reader.GetOrdinal("s_Lastname")) ? "" : reader.GetString("s_Lastname"),
+                                MiddleName = reader.IsDBNull(reader.GetOrdinal("s_middlename")) ? "" : reader.GetString("s_middlename"),
+                                UserName = reader.IsDBNull(reader.GetOrdinal("username")) ? "" : reader.GetString("username"),
+                                Suffix = reader.IsDBNull(reader.GetOrdinal("s_Suffix")) ? "n/a" : reader.GetString("s_Suffix"),
+                                ContactNumber = reader.IsDBNull(reader.GetOrdinal("s_contactNumber")) ? "" : reader.GetString("s_contactNumber"),
+                                Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email")
+                            };
+
+                        }
+
+                        return staff;
+                    }
+                    }
+            }
+        }
+
         public static PatientModel GetPatientInfo(int accountID)
         {
             using (var connection = GetConnection())
@@ -1281,14 +1316,30 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
         }
 
-        public static void AddStaff(StaffModel staff)
+        public static void AddStaff(StaffModel staff, ModalMode mode)
         {
             using (var connection = GetConnection())
             {
                 try
                 {
-                    string query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, username, s_Password, s_suffix, s_contactNumber, email) " +
+                    string query;
+                    if (mode == ModalMode.Add)
+                    {
+                       query = @"INSERT INTO tb_staffinfo (s_FirstName, s_LastName, s_MiddleName, username, s_Password, s_suffix, s_contactNumber, email) " +
                                    "VALUES (@FirstName, @LastName, @MiddleName, @Username, @Password, @suffix, @ContactNumber, @email)";
+                    } else
+                    {
+                        query = @"UPDATE tb_staffinfo SET 
+                                   s_Firstname = @FirstName,
+                                   s_middlename = @MiddleName,
+                                   s_Lastname = @LastName,
+                                   username = @UserName,
+                                   
+                                   s_suffix = @suffix,
+                                   s_contactNumber = @ContactNumber,
+                                   email = @Email WHERE id = @ID";
+                    }
+                    
 
                     string hashPassword = ProcessMethods.HashCharacter(staff.Password);
 
@@ -1298,6 +1349,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     command.Parameters.AddWithValue("@LastName", staff.LastName);
                     command.Parameters.AddWithValue("@MiddleName", staff.MiddleName);
                     command.Parameters.AddWithValue("@Username", staff.UserName);
+                    command.Parameters.AddWithValue("@ID", staff.AccountID);
 
                     command.Parameters.AddWithValue("@Password", hashPassword);
                     command.Parameters.AddWithValue("@suffix", staff.Suffix);
@@ -1722,6 +1774,31 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         #region Delete Functions
 
+        public static void DeleteStaffById(int accountId)
+        {
+            string query = "DELETE FROM tb_staffinfo WHERE id = @ID";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@ID", accountId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No row found to delete.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error deleting patient record: " + ex.Message);
+                }
+            }
+        }
         public static void DeletePatientByUsername(string username)
         {
             string query = "DELETE FROM tb_patientinfo WHERE P_Username = @Username";
