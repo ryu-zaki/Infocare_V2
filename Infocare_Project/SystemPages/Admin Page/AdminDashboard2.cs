@@ -144,6 +144,7 @@ namespace Infocare_Project_1
         private void BackButton_Click_1(object sender, EventArgs e)
         {
             AddStaff addstaff = new AddStaff();
+            addstaff.ReloadStaffs += ShowStaffList;
             addstaff.Show();
         }
 
@@ -277,6 +278,7 @@ namespace Infocare_Project_1
         private void AddDoctor_Click_1(object sender, EventArgs e)
         {
             AdminAddDoctor adminAddDoctor = new AdminAddDoctor();
+            adminAddDoctor.ReloadResults += ShowDoctorList;
             adminAddDoctor.Show();
         }
 
@@ -911,12 +913,19 @@ namespace Infocare_Project_1
 
                 AdminAddDoctor staffForm = new AdminAddDoctor(ModalMode.Edit, DoctorID);
 
-               // staffForm.ReloadStaffs += ShowStaffList;
+                staffForm.ReloadResults += ShowDoctorList;
                 staffForm.ShowDialog();
 
                 this.Cursor = Cursors.Default;
 
+
+
             }
+        }
+
+        private void SearchPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

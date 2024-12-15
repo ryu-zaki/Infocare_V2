@@ -125,6 +125,12 @@ namespace Infocare_Project
         }
         private void EnterButton_Click(object sender, EventArgs e)
         {
+            if (!EmailTxtbox.Text.EndsWith("@gmail.com"))
+            {
+                MessageBox.Show("Invalid email. The email must end with '@gmail.com'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string contactNumber = ContactNumberTxtbox.Text;
 
             if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))

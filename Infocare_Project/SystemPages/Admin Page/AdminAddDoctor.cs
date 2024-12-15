@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Numerics;
 using System.Reflection.Emit;
 using System.Security.Policy;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Infocare_Project.NewFolder;
@@ -17,7 +18,7 @@ namespace Infocare_Project
     public partial class AdminAddDoctor : Form
     {
         private PlaceHolderHandler _placeHolderHandler;
-
+        public Action ReloadResults;
         ModalMode mode;
         int AccountId;
         DoctorModel doctor;
@@ -57,7 +58,7 @@ namespace Infocare_Project
             {
                 Guna2TextBox label = new Guna2TextBox();
                 label.Text = skill;
-                
+
                 flowLayoutPanel1.Controls.Add(label);
             }
 
@@ -69,10 +70,12 @@ namespace Infocare_Project
             TimeCombobox();
             DayAvComboBox();
 
-            doctor = Database.GetDoctorInfo(AccountId);
-
-
-            FillUpFields(doctor);
+            if (mode == ModalMode.Edit)
+            {
+                doctor = Database.GetDoctorInfo(AccountId);
+                FillUpFields(doctor);
+            }
+           
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -84,6 +87,12 @@ namespace Infocare_Project
         {
             // Validate required fields
 
+            if (!emailTextBox.Text.EndsWith("@gmail.com"))
+            {
+                MessageBox.Show("Invalid email. The email must end with '@gmail.com'.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string contactNumber = ContactNumberTextbox.Text;
 
             if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))
@@ -92,26 +101,26 @@ namespace Infocare_Project
                 return;
             }
 
-            if (!FirstNameTextBox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(FirstNameTextBox.Text))
+            if (Regex.IsMatch(MiddleNameTextbox.Text, @"[^a-zA-Z\s]"))
+            {
+                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+            if (Regex.IsMatch(FirstNameTextBox.Text, @"[^a-zA-Z\s]"))
             {
                 MessageBox.Show("First name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
 
             }
-
-            if (!LastNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTextbox.Text))
+            if (Regex.IsMatch(LastNameTextbox.Text, @"[^a-zA-Z\s]"))
             {
                 MessageBox.Show("Last name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
 
             }
 
-            if (!MiddleNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
-            {
-                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
 
-            }
 
             if (Database.UsernameExistsDoctor(UserNameTextBox.Text))
             {
@@ -132,7 +141,7 @@ namespace Infocare_Project
                 MessageBox.Show("Please enter a valid email.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-           
+
 
             if (!LastNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(LastNameTextbox.Text))
             {
@@ -364,9 +373,46 @@ namespace Infocare_Project
                 WordWrap = true,
                 Multiline = false,
                 TextAlign = HorizontalAlignment.Left,
-            }; 
+            };
 
             flowLayoutPanel1.Controls.Add(newSpecializationTextBox);
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this account?", "Account Delete", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                Database.DeleteDoctorById(AccountId);
+                ReloadResults.Invoke();
+
+                this.Close();
+            }
+
+        }
+
+        private void admin_showpass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (doctor_showpass.Checked)
+            {
+                PasswordTextBox.PasswordChar = '\0';
+                PasswordTextBox.UseSystemPasswordChar = false;
+
+                ConfirmPasswordTextBox.PasswordChar = '\0';
+                ConfirmPasswordTextBox.UseSystemPasswordChar = false;
+
+            }
+            else
+            {
+                ConfirmPasswordTextBox.PasswordChar = '●';
+                ConfirmPasswordTextBox.UseSystemPasswordChar = true;
+
+                PasswordTextBox.PasswordChar = '●';
+                PasswordTextBox.UseSystemPasswordChar = true;
+
+            }
         }
     }
 }

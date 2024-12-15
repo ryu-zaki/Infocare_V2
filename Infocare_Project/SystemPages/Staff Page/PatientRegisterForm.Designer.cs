@@ -287,7 +287,7 @@
             EmailTxtbox.Name = "EmailTxtbox";
             EmailTxtbox.PasswordChar = '\0';
             EmailTxtbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            EmailTxtbox.PlaceholderText = "Email";
+            EmailTxtbox.PlaceholderText = "Gmail";
             EmailTxtbox.SelectedText = "";
             EmailTxtbox.ShadowDecoration.CustomizableEdges = customizableEdges10;
             EmailTxtbox.Size = new Size(177, 46);
@@ -625,9 +625,9 @@
             UserNameLabel.Location = new Point(100, 327);
             UserNameLabel.Margin = new Padding(3, 2, 3, 2);
             UserNameLabel.Name = "UserNameLabel";
-            UserNameLabel.Size = new Size(31, 15);
+            UserNameLabel.Size = new Size(33, 15);
             UserNameLabel.TabIndex = 111;
-            UserNameLabel.Text = "Email";
+            UserNameLabel.Text = "Gmail";
             UserNameLabel.Visible = false;
             // 
             // ContactNumberLabel

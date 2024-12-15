@@ -10,7 +10,7 @@ namespace Infocare_Project
     static class Database
     {
 
-        private static string dbms = "Workbench";
+        private static string dbms = "Xampp";
         public static string connectionString = ConfigurationManager.ConnectionStrings[dbms].ConnectionString;
 
         public static void ExecuteQuery(string query, Dictionary<string, object> parameters)
@@ -637,7 +637,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable PatientList()
         {
-            string query = @"SELECT id as 'Patient ID', p_Firstname AS 'First Name', p_middleName AS 'Middle Name', P_lastname AS 'Last Name', p_suffix AS 'Suffix', p_sex AS 'Sex', P_bdate AS 'Birth Date', p_address AS 'Full Address' FROM tb_patientinfo";
+            string query = @"SELECT id as 'Patient ID', p_Firstname AS 'First Name', p_middleName AS 'Middle Name', P_lastname AS 'Last Name', p_suffix AS 'Suffix', p_sex AS 'Sex', P_bdate AS 'Birth Date' FROM tb_patientinfo";
 
             DataTable PatientTable = new DataTable();
 
@@ -1808,6 +1808,32 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         #endregion
 
         #region Delete Functions
+
+        public static void DeleteDoctorById(int accountId)
+        {
+            string query = "DELETE FROM tb_doctor_specializations WHERE doctor_id = @ID; DELETE FROM tb_doctorinfo where id = @ID";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@ID", accountId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No row found to delete.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error deleting patient record: " + ex.Message);
+                }
+            }
+        }
 
         public static void DeleteStaffById(int accountId)
         {

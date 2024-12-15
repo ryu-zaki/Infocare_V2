@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -75,7 +75,7 @@
             // 
             newpassTextbox.BorderColor = SystemColors.ControlDarkDark;
             newpassTextbox.BorderRadius = 5;
-            newpassTextbox.CustomizableEdges = customizableEdges11;
+            newpassTextbox.CustomizableEdges = customizableEdges5;
             newpassTextbox.DefaultText = "";
             newpassTextbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             newpassTextbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -91,7 +91,7 @@
             newpassTextbox.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
             newpassTextbox.PlaceholderText = "New Password";
             newpassTextbox.SelectedText = "";
-            newpassTextbox.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            newpassTextbox.ShadowDecoration.CustomizableEdges = customizableEdges6;
             newpassTextbox.Size = new Size(336, 42);
             newpassTextbox.TabIndex = 2;
             // 
@@ -99,7 +99,7 @@
             // 
             confirmpassTextbox.BorderColor = SystemColors.ControlDarkDark;
             confirmpassTextbox.BorderRadius = 5;
-            confirmpassTextbox.CustomizableEdges = customizableEdges9;
+            confirmpassTextbox.CustomizableEdges = customizableEdges3;
             confirmpassTextbox.DefaultText = "";
             confirmpassTextbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             confirmpassTextbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -115,7 +115,7 @@
             confirmpassTextbox.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
             confirmpassTextbox.PlaceholderText = "Confirm Password";
             confirmpassTextbox.SelectedText = "";
-            confirmpassTextbox.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            confirmpassTextbox.ShadowDecoration.CustomizableEdges = customizableEdges4;
             confirmpassTextbox.Size = new Size(336, 42);
             confirmpassTextbox.TabIndex = 3;
             // 
@@ -123,17 +123,17 @@
             // 
             savePassBtn.BackColor = Color.Transparent;
             savePassBtn.BorderRadius = 5;
-            savePassBtn.CustomizableEdges = customizableEdges7;
+            savePassBtn.CustomizableEdges = customizableEdges1;
             savePassBtn.DisabledState.BorderColor = Color.DarkGray;
             savePassBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             savePassBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             savePassBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            savePassBtn.FillColor = Color.MidnightBlue;
+            savePassBtn.FillColor = Color.FromArgb(13, 41, 80);
             savePassBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             savePassBtn.ForeColor = Color.White;
             savePassBtn.Location = new Point(160, 289);
             savePassBtn.Name = "savePassBtn";
-            savePassBtn.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            savePassBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
             savePassBtn.Size = new Size(180, 45);
             savePassBtn.TabIndex = 4;
             savePassBtn.Text = "Save Password";

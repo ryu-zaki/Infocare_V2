@@ -120,7 +120,7 @@
             submitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             submitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             submitBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            submitBtn.FillColor = Color.MidnightBlue;
+            submitBtn.FillColor = Color.FromArgb(13, 41, 80);
             submitBtn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             submitBtn.ForeColor = Color.White;
             submitBtn.Location = new Point(113, 242);
