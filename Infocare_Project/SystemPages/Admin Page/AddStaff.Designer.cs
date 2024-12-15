@@ -365,7 +365,7 @@
             PasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             PasswordTextBox.Location = new Point(266, 332);
             PasswordTextBox.Name = "PasswordTextBox";
-            PasswordTextBox.PasswordChar = '\0';
+            PasswordTextBox.PasswordChar = '●';
             PasswordTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             PasswordTextBox.PlaceholderText = "Password";
             PasswordTextBox.SelectedText = "";

@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Infocare_Project
 {
-    static class Database
+    public static class Database
     {
 
         private static string dbms = "Workbench";
@@ -37,6 +37,8 @@ namespace Infocare_Project
         {
             return new MySqlConnection(connectionString);
         }
+
+
 
         public static DoctorModel GetDoctorInfo(int AccountId)
         {
@@ -122,7 +124,7 @@ namespace Infocare_Project
             }
         }
 
-        public static PatientModel GetPatientInfo(int accountID)
+        public static PatientModel GetPatientInfo(string username, string password)
         {
             using (var connection = GetConnection())
             {
@@ -133,14 +135,17 @@ namespace Infocare_Project
                 AddressModel eme_address = new AddressModel();
 
                 connection.Open();
-                string query = $"Select * from tb_patientinfo WHERE id = @ID";
+                string query = $"Select * from tb_patientinfo WHERE P_username = @Username && P_Password = @Password";
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@ID", accountID);
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Password", ProcessMethods.HashCharacter(password));
+
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
+                            user.AccountID = reader.GetInt32("id");
                             user.FirstName = reader.GetString("P_Firstname");
                             user.LastName = reader.GetString("P_lastname");
                             user.MiddleName = reader.GetString("P_Middlename");
@@ -236,11 +241,11 @@ namespace Infocare_Project
 
                     string tableColumn =
                         
-                         role == Role.Admin ? "A_" : role == Role.Staff ? "S_" : "";
+                         role == Role.Admin ? "A_" : role == Role.Staff ? "S_" : role == Role.Patient ? "P_" : "";
                           
 
 
-                    string query = $"SELECT COUNT(*) FROM {tableName} WHERE {(role == Role.Staff ? "" : tableColumn)}Username = @Username AND {tableColumn}Password = @Password";
+                    string query = $"SELECT COUNT(*) FROM {tableName} WHERE {(role == Role.Staff ? "" : tableColumn)}Username = @Username AND {tableColumn}Password = @Password;";
 
                     MySqlCommand command = new MySqlCommand(query, connection);
                     string hashhPassword = ProcessMethods.HashCharacter(password);
@@ -881,6 +886,36 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             return AppointmentTable;
         }
 
+
+        public static DataTable ViewPatientAppointments(string patientName)
+        {
+            DataTable AppointmentTable = new DataTable();
+            string query = @"SELECT id as 'Transaction ID', ah_status as 'Status', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+             WHERE ah_Patient_Name = @PatientName AND ( ah_status = 'Completed' || ah_status = 'Pending' )";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PatientName", patientName);
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(AppointmentTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving appointment list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return AppointmentTable;
+        }
+
         public static DataTable ViewCompletedAppointments(string doctorFullName)
         {
             string query = @"SELECT id, ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
@@ -988,9 +1023,14 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
 
 
-        public static bool UsernameExistsStaff(string username)
+        public static bool UsernameExists(string username, Role role)
         {
-            string query = "SELECT COUNT(*) FROM tb_staffinfo WHERE username = @Username";
+            string tblname = role == Role.Staff ? "tb_staffinfo" :
+                             role == Role.Patient ? "tb_patientinfo" :
+                              "tb_doctorinfo";
+
+            string colname = role == Role.Patient ? "P_" : "";
+            string query = $"SELECT COUNT(*) FROM {tblname} WHERE {colname}username = @Username";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -1190,7 +1230,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     command.Parameters.AddWithValue("@MiddleName", patient.MiddleName);
                     command.Parameters.AddWithValue("@Suffix", patient.Suffix);
                     command.Parameters.AddWithValue("@Username", patient.UserName);
-                    command.Parameters.AddWithValue("@Password", patient.Password);
+                    command.Parameters.AddWithValue("@Password", ProcessMethods.HashCharacter(patient.Password));
                     command.Parameters.AddWithValue("@ContactNumber", patient.ContactNumber);
 
                     command.Parameters.AddWithValue("@Bdate", patient.BirthDate.ToString("dd-MM-yyyy"));

@@ -134,7 +134,7 @@
             // closeBtn
             // 
             closeBtn.BackColor = Color.Transparent;
-            closeBtn.BackgroundImage = Properties.Resources.cross_dark;
+            closeBtn.BackgroundImage = AdminDoctor_Panel.Properties.Resources.cross_dark;
             closeBtn.BackgroundImageLayout = ImageLayout.Stretch;
             closeBtn.Cursor = Cursors.Hand;
             closeBtn.CustomizableEdges = customizableEdges1;

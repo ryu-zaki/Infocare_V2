@@ -80,7 +80,7 @@ namespace Infocare_Project_1
                 return;
             }
 
-            if (Database.UsernameExistsStaff(UserNameTextBox.Text) && mode == ModalMode.Add)
+            if (Database.UsernameExists(UserNameTextBox.Text, Role.Staff) && mode == ModalMode.Add)
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

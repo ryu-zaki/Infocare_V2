@@ -81,7 +81,7 @@ namespace Infocare_Project_1
             string tableName =
                       role == Role.Staff ? "tb_staffinfo" :
                        role == Role.Admin ? "tb_adminlogin" :
-                          role == Role.Doctor ? "tb_doctorinfo" : "";
+                          role == Role.Doctor ? "tb_doctorinfo" : "tb_patientinfo";
             return tableName;
         }
 

@@ -209,7 +209,8 @@ namespace Infocare_Project
                         this.Hide();
 
                         //Refresh the patient list
-                        ReloadResults.Invoke();
+                       
+                        //ReloadResults.Invoke();
 
                     }
                     catch (Exception ex)

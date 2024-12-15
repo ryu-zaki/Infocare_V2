@@ -11,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -20,6 +21,7 @@ namespace Infocare_Project
 {
     public partial class PatientRegisterForm : Form
     {
+        bool passShow = true;
         private PlaceHolderHandler _placeHolderHandler;
         public Action ReloadResults;
         int houseNo;
@@ -52,7 +54,8 @@ namespace Infocare_Project
             else
             {
                 //Edit
-                extractedInfo = Database.GetPatientInfo(AccountID);
+                //extractedInfo = Database.GetPatientInfo(AccountID);
+                extractedInfo.AccountID = AccountID;
                 FillUpFields(extractedInfo);
             }
 
@@ -87,7 +90,8 @@ namespace Infocare_Project
             {
                 FirstName = FirstnameTxtbox.Text,
                 LastName = LastNameTxtbox.Text,
-                UserName = extractedInfo.UserName,
+                UserName = UsernameTextbox.Text,
+                Password = PasswordTextBox.Text,
                 MiddleName = MiddleNameTxtbox.Text,
                 BirthDate = BdayDateTimePicker.Value,
                 Suffix = SuffixTxtbox.Text,
@@ -114,10 +118,10 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            
+
             DialogResult confirm = MessageBox.Show($"Are you sure to cancel {(mode == ModalMode.Add ? "cancel registration" : "close")}?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-                if (confirm == DialogResult.Yes)
+            if (confirm == DialogResult.Yes)
 
             {
                 this.Close();
@@ -152,11 +156,33 @@ namespace Infocare_Project
                 return;
             }
 
+            if (Database.UsernameExists(UsernameTextbox.Text, Role.Patient) && mode == ModalMode.Add)
+            {
+                MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string password = PasswordTextBox.Text;
+
+            if (mode == ModalMode.Add)
+            {
+                if (!ProcessMethods.ValidatePassword(password))
+                {
+                    return;
+                }
+            }
+
 
             if (!InputValidator.ValidateAlphabetic(FirstnameTxtbox, "First name must contain only letters. ex. (Juan)") ||
                 !InputValidator.ValidateAlphabetic(LastNameTxtbox, "Last name must contain only letters. ex. (Dela Cruz)") ||
                 !InputValidator.ValidateAlphabetic(CityTxtbox, "City must contain only letters. ex. (Caloocan)"))
             {
+                return;
+            }
+
+            if (!UsernameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(UsernameTextbox.Text))
+            {
+                MessageBox.Show("Username must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -166,6 +192,8 @@ namespace Infocare_Project
             {
                 return;
             }
+
+
 
 
             string[] validSuffixes = { "Jr.", "Sr.", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "Jr", "Sr", "N/A" };
@@ -221,16 +249,18 @@ namespace Infocare_Project
 
             PatientModel newPatient = new PatientModel
             {
-                UserName = extractedInfo.UserName,
+                UserName = UsernameTextbox.Text,
                 FirstName = FirstnameTxtbox.Text,
                 LastName = LastNameTxtbox.Text,
                 MiddleName = MiddleNameTxtbox.Text,
+                Password = PasswordTextBox.Text,
                 ContactNumber = ContactNumberTxtbox.Text,
                 Email = EmailTxtbox.Text,
                 Address = address,
                 sex = SexCombobox.SelectedItem.ToString()
             };
-            extractedInfo.AccountID = AccountID;
+            
+            
             this.Cursor = Cursors.WaitCursor;
             PatientModel editedInfo = SetupObj();
             PatientModel ProperModel = mode == ModalMode.Add ? newPatient : extractedInfo;
@@ -250,7 +280,7 @@ namespace Infocare_Project
 
         private void UsernameTxtbox_TextChanged(object sender, EventArgs e)
         {
-            _placeHolderHandler.HandleTextBoxPlaceholder(EmailTxtbox, UserNameLabel, "Email");
+            _placeHolderHandler.HandleTextBoxPlaceholder(EmailTxtbox, EmailLabel, "Email");
         }
 
         private void ContactNumberTxtbox_TextChanged(object sender, EventArgs e)
@@ -347,11 +377,11 @@ namespace Infocare_Project
 
         private void DeletePatientAndReload()
         {
-            
+
 
             Database.DeletePatientByUsername(extractedInfo.UserName);
             ReloadResults.Invoke();
-           
+
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -362,6 +392,50 @@ namespace Infocare_Project
             DeletePatientAndReload();
             this.Hide();
 
+        }
+
+        private void PasswordTextBox_IconRightClick(object sender, EventArgs e)
+        {
+            if (passShow)
+            {
+                PasswordTextBox.PasswordChar = '\0';
+                PasswordTextBox.IconRight = AdminDoctor_Panel.Properties.Resources.hide_password_logo;
+                passShow = false;
+            }
+            else
+            {
+                PasswordTextBox.PasswordChar = '●';
+                PasswordTextBox.IconRight = AdminDoctor_Panel.Properties.Resources.show_password_logo;
+                passShow = true;
+            }
+        }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (PasswordTextBox.Text.Trim() == "")
+            {
+                passValidatorMsg.Visible = false;
+            } else
+            {
+                passValidatorMsg.Visible = true;
+                string msg =
+                !Regex.IsMatch(PasswordTextBox.Text, @"[A-Z]") ? "Add at least one uppercase letter" :
+                !Regex.IsMatch(PasswordTextBox.Text, @"[^a-zA-Z0-9\s]") ? "Add At least one special character" : !Regex.IsMatch(PasswordTextBox.Text, @"[\d]") ? "Add At least one number" : !Regex.IsMatch(PasswordTextBox.Text, @".{8,}") ? "Must have at least 8 characters long" : "";
+                
+                if (msg == "")
+                {
+
+                    passValidatorMsg.Text = "*Strong Enough";
+                    passValidatorMsg.ForeColor = Color.Green;
+                }
+                else
+                {
+                    passValidatorMsg.Text = "*" + msg;
+                    passValidatorMsg.ForeColor = Color.Red;
+
+                }
+
+            }
         }
     }
 }
