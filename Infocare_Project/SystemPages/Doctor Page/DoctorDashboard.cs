@@ -455,7 +455,6 @@ namespace Infocare_Project_1
             }
             else
             {
-                // The form is already open, bring it to the front
                 _doctorBillingInvoice.BringToFront();
             }
         }
