@@ -29,7 +29,7 @@ namespace Infocare_Project_1
             AppointmentDatePicker.MaxDate = DateTime.Today.AddMonths(5);
 
             pd_BookAppointment_Click(this, EventArgs.Empty);
-
+            InvoicePanel.Visible = false;
         }
 
         void HomeDisplay()
@@ -448,6 +448,7 @@ namespace Infocare_Project_1
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+            InvoicePanel.Visible = false;
             SearchPanel.Visible = true;
             ViewButton.Visible = true;
             DeleteButton.Visible = true;

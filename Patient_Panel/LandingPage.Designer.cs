@@ -54,11 +54,11 @@
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Inter ExtraBold", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel1.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2HtmlLabel1.ForeColor = SystemColors.ControlLightLight;
             guna2HtmlLabel1.Location = new Point(97, 115);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(500, 70);
+            guna2HtmlLabel1.Size = new Size(462, 57);
             guna2HtmlLabel1.TabIndex = 0;
             guna2HtmlLabel1.Text = "Welcome to Infocare";
             // 
@@ -73,11 +73,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Inter", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlLightLight;
             label1.Location = new Point(220, 200);
             label1.Name = "label1";
-            label1.Size = new Size(248, 27);
+            label1.Size = new Size(248, 24);
             label1.TabIndex = 2;
             label1.Text = "Your Health is our Priority";
             // 
@@ -86,6 +86,7 @@
             guna2Button1.BackColor = Color.Transparent;
             guna2Button1.BorderColor = Color.RosyBrown;
             guna2Button1.BorderRadius = 30;
+            guna2Button1.Cursor = Cursors.Hand;
             guna2Button1.CustomizableEdges = customizableEdges4;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -94,7 +95,7 @@
             guna2Button1.FillColor = Color.FromArgb(110, 177, 247);
             guna2Button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button1.ForeColor = Color.White;
-            guna2Button1.Location = new Point(246, 289);
+            guna2Button1.Location = new Point(246, 273);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges5;
             guna2Button1.Size = new Size(180, 59);
@@ -104,7 +105,7 @@
             // 
             // MinimizeButton
             // 
-            MinimizeButton.BackColor = Color.Silver;
+            MinimizeButton.BackColor = Color.FromArgb(13, 41, 80);
             MinimizeButton.CheckedState.ImageSize = new Size(64, 64);
             MinimizeButton.Cursor = Cursors.Hand;
             MinimizeButton.HoverState.ImageSize = new Size(20, 30);
@@ -129,7 +130,7 @@
             ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
             ExitButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             ExitButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            ExitButton.FillColor = Color.Silver;
+            ExitButton.FillColor = Color.FromArgb(13, 41, 80);
             ExitButton.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
             ExitButton.ForeColor = Color.White;
             ExitButton.Location = new Point(669, 1);

@@ -1,6 +1,7 @@
 ﻿using Infocare_Project_1;
 using Infocare_Project_1.Classes;
 using Infocare_Project_1.Object_Models;
+using Patient_Panel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,7 +100,7 @@ namespace Infocare_Project
             DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
-                HomeForm homeForm = new HomeForm();
+                Form1 homeForm = new Form1();
                 homeForm.Show();
                 this.Hide();
             }

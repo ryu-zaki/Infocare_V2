@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Printing;
 
 namespace Patient_Panel
 {
@@ -101,7 +103,7 @@ namespace Patient_Panel
             pbilling_DateTextbox.Text = appointment.Date.ToString("d");
             pbilling_TimeTextbox.Text = appointment.Time.ToString("hh\\:mm");
             guna2TextBox1.Text = appointment.confineDays.ToString();
-            total += (appointment.confineDays * 250);
+            total += (appointment.confineDays * 250 + appointment.ConsultationFee);
 
             pbilling_TotalLabel.Text = $"₱{total}";
         }
@@ -114,6 +116,76 @@ namespace Patient_Panel
         private void pbilling_MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void pbilling_PrintButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to Print this form?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                Print(this.PrintablePanel);
+            }
+        }
+
+        private void pbilling_CreatePDFButton_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Are you sure you want to make PDF of form?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+                    PrintToPDF(this.PrintablePanel, filePath);
+                }
+            }
+        }
+
+        private void PrintToPDF(Panel printPanel, string filePath)
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+            printDocument.PrintPage += (sender, e) =>
+            {
+                Bitmap memorying = new Bitmap(printPanel.Width, printPanel.Height);
+                printPanel.DrawToBitmap(memorying, new Rectangle(0, 0, printPanel.Width, printPanel.Height));
+
+
+                e.Graphics.DrawImage(memorying, 0, 0);
+            };
+
+            printDocument.PrintController = new StandardPrintController();
+            printDocument.Print();
+        }
+
+        private void Print(Panel PrintPanel)
+        {
+
+            PrinterSettings ps = new PrinterSettings();
+            PrintPanel = PrintablePanel;
+            getprintarea(PrintPanel);
+            printPreviewDialog1.Document = printDocument1;
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private Bitmap memorying;
+
+        private void getprintarea(Panel PrintPanel)
+        {
+            memorying = new Bitmap(PrintPanel.Width, PrintPanel.Height);
+            PrintPanel.DrawToBitmap(memorying, new Rectangle(0, 0, PrintPanel.Width, PrintPanel.Height));
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Rectangle pagearea = e.PageBounds;
+            float scaleWidth = (float)pagearea.Width / PrintablePanel.Width;
+            float scaleHeight = (float)pagearea.Height / PrintablePanel.Height;
+            float scale = Math.Min(scaleWidth, scaleHeight);
+
+            e.Graphics.DrawImage(memorying, 0, 0, PrintablePanel.Width * scale, PrintablePanel.Height * scale);
         }
     }
 }

@@ -30,6 +30,8 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
@@ -75,9 +77,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             PrintablePanel = new Guna.UI2.WinForms.Guna2Panel();
+            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pbilling_TotalLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pbilling_Total = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel5 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
@@ -107,8 +109,8 @@
             pbilling_CreatePDFButton = new Guna.UI2.WinForms.Guna2Button();
             pbilling_ExitButton = new Guna.UI2.WinForms.Guna2Button();
             pbilling_PrintButton = new Guna.UI2.WinForms.Guna2Button();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
+            printPreviewDialog1 = new PrintPreviewDialog();
             PrintablePanel.SuspendLayout();
             guna2CustomGradientPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbilling_DataGridView3).BeginInit();
@@ -150,12 +152,43 @@
             PrintablePanel.Size = new Size(699, 738);
             PrintablePanel.TabIndex = 1;
             // 
+            // guna2TextBox1
+            // 
+            guna2TextBox1.CustomizableEdges = customizableEdges1;
+            guna2TextBox1.DefaultText = "";
+            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            guna2TextBox1.Font = new Font("Segoe UI", 9F);
+            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            guna2TextBox1.Location = new Point(557, 41);
+            guna2TextBox1.Name = "guna2TextBox1";
+            guna2TextBox1.PasswordChar = '\0';
+            guna2TextBox1.PlaceholderText = "";
+            guna2TextBox1.SelectedText = "";
+            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2TextBox1.Size = new Size(46, 38);
+            guna2TextBox1.TabIndex = 176;
+            guna2TextBox1.TextAlign = HorizontalAlignment.Center;
+            // 
+            // guna2HtmlLabel2
+            // 
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel2.Location = new Point(402, 47);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(144, 23);
+            guna2HtmlLabel2.TabIndex = 175;
+            guna2HtmlLabel2.Text = "Confinement Days";
+            // 
             // pbilling_TotalLabel
             // 
             pbilling_TotalLabel.BackColor = Color.Transparent;
             pbilling_TotalLabel.Font = new Font("Nirmala UI", 12F, FontStyle.Bold);
             pbilling_TotalLabel.ForeColor = Color.Black;
-            pbilling_TotalLabel.Location = new Point(629, 692);
+            pbilling_TotalLabel.Location = new Point(624, 692);
             pbilling_TotalLabel.Name = "pbilling_TotalLabel";
             pbilling_TotalLabel.Size = new Size(39, 23);
             pbilling_TotalLabel.TabIndex = 174;
@@ -166,7 +199,7 @@
             pbilling_Total.BackColor = Color.Transparent;
             pbilling_Total.Font = new Font("Nirmala UI", 12F, FontStyle.Bold);
             pbilling_Total.ForeColor = Color.Black;
-            pbilling_Total.Location = new Point(557, 692);
+            pbilling_Total.Location = new Point(551, 692);
             pbilling_Total.Name = "pbilling_Total";
             pbilling_Total.Size = new Size(56, 23);
             pbilling_Total.TabIndex = 173;
@@ -661,6 +694,7 @@
             pbilling_CreatePDFButton.Size = new Size(91, 35);
             pbilling_CreatePDFButton.TabIndex = 171;
             pbilling_CreatePDFButton.Text = "Create PDF";
+            pbilling_CreatePDFButton.Click += pbilling_CreatePDFButton_Click;
             // 
             // pbilling_ExitButton
             // 
@@ -700,37 +734,21 @@
             pbilling_PrintButton.Size = new Size(91, 34);
             pbilling_PrintButton.TabIndex = 169;
             pbilling_PrintButton.Text = "Print";
+            pbilling_PrintButton.Click += pbilling_PrintButton_Click;
             // 
-            // guna2HtmlLabel2
+            // printDocument1
             // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel2.Location = new Point(402, 47);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(144, 23);
-            guna2HtmlLabel2.TabIndex = 175;
-            guna2HtmlLabel2.Text = "Confinement Days";
+            printDocument1.PrintPage += printDocument1_PrintPage;
             // 
-            // guna2TextBox1
+            // printPreviewDialog1
             // 
-            guna2TextBox1.CustomizableEdges = customizableEdges1;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(557, 41);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PasswordChar = '\0';
-            guna2TextBox1.PlaceholderText = "";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2TextBox1.Size = new Size(46, 38);
-            guna2TextBox1.TabIndex = 176;
-            guna2TextBox1.TextAlign = HorizontalAlignment.Center;
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
             // 
             // PatientBillingInvoice
             // 
@@ -806,5 +824,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel pbilling_Total;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private PrintPreviewDialog printPreviewDialog1;
     }
 }
