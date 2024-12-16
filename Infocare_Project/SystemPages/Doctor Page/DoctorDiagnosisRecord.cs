@@ -61,7 +61,7 @@ namespace Infocare_Project_1
         {
             Dictionary<string, decimal> list = new Dictionary<string, decimal>();
 
-            foreach(Control control in panel.Controls)
+            foreach (Control control in panel.Controls)
             {
                 if (control is DescPrice desc)
                 {
@@ -69,62 +69,60 @@ namespace Infocare_Project_1
                 }
             }
 
-            return string.Join(", ", list.Select(vp => $"{vp.Key} {vp.Value}" ));
-           
+            return string.Join(", ", list.Select(vp => $"{vp.Key} {vp.Value}"));
+
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            try
+
+            string diagnosis = DiagnosisTextBox.Text.Trim();
+
+            string doctorOrder = GetValueFromFlowLayout(DoctorOrdersFlowLayoutPanel);
+            string additionalNote = AdditionalNoteTextBox.Text.Trim();
+            string prescription = GetValueFromFlowLayout(prescritionFlowLayoutPanel);
+            string patientName = PatientNameLabel.Text;
+            int confinementDays = int.Parse(ConfineDaysTextbox.Text.Trim());
+
+            if (string.IsNullOrEmpty(patientName))
             {
-                string diagnosis = DiagnosisTextBox.Text.Trim();
+                MessageBox.Show("Patient name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                string doctorOrder = GetValueFromFlowLayout(DoctorOrdersFlowLayoutPanel);
-                string additionalNote = AdditionalNoteTextBox.Text.Trim();
-                string prescription = GetValueFromFlowLayout(prescritionFlowLayoutPanel);
-                string patientName = PatientNameLabel.Text;
-
-                if (string.IsNullOrEmpty(patientName))
-                {
-                    MessageBox.Show("Patient name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                string query = @"UPDATE tb_AppointmentHistory SET 
+            string query = @"UPDATE tb_AppointmentHistory SET 
                             d_diagnosis = @Diagnosis,
                             d_doctoroder = @DoctorOrder,
                             d_additionalnotes = @AdditionalNote,
                             d_prescription = @Prescription,
-                            ah_Status = @Status
+                            ah_Status = @Status,
+                            confinement_days = @ConfinementDays 
                          WHERE ah_Patient_Name = @PatientName and ah_status = 'Accepted'";
 
-                Dictionary<string, object> parameters = new()
+            Dictionary<string, object> parameters = new()
         {
             { "@Diagnosis", string.IsNullOrEmpty(diagnosis) ? DBNull.Value : diagnosis },
             { "@DoctorOrder", string.IsNullOrEmpty(doctorOrder) ? DBNull.Value : doctorOrder },
             { "@AdditionalNote", string.IsNullOrEmpty(additionalNote) ? DBNull.Value : additionalNote },
+            { "@ConfinementDays", string.IsNullOrEmpty(ConfineDaysTextbox.Text) ? DBNull.Value : confinementDays },
             { "@Prescription", string.IsNullOrEmpty(prescription) ? DBNull.Value : prescription },
             { "@Status", string.IsNullOrEmpty(prescription) ? DBNull.Value : "Completed" },
             { "@PatientName", patientName }
         };
 
-                Database.ExecuteQuery(query, parameters);
+            Database.ExecuteQuery(query, parameters);
 
-                MessageBox.Show("Appointment details saved successfully and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Appointment details saved successfully and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                this.Close();
-                prevForm.Close();
-
-
-                LoadAppointmentsList.Invoke();
+            this.Close();
+            prevForm.Close();
 
 
+            LoadAppointmentsList.Invoke();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+
+
         }
 
 
@@ -205,6 +203,7 @@ namespace Infocare_Project_1
         private void AddSpecialization_Click(object sender, EventArgs e)
         {
             DescPrice descPriceTile = new DescPrice();
+            descPriceTile.RemoveTile += DeleteDoctorOrder;
 
             DoctorOrdersFlowLayoutPanel.Controls.Add(descPriceTile);
 
@@ -213,8 +212,31 @@ namespace Infocare_Project_1
         private void addPrescription_Click(object sender, EventArgs e)
         {
             DescPrice descPriceTile = new DescPrice();
-
+            descPriceTile.RemoveTile += DeletePrescrip;
             prescritionFlowLayoutPanel.Controls.Add(descPriceTile);
+        }
+
+        public void DeleteDoctorOrder(DescPrice descPriceTile)
+        {
+            DoctorOrdersFlowLayoutPanel.Controls.Remove(descPriceTile);
+        }
+
+        public void DeletePrescrip(DescPrice descPriceTile)
+        {
+            prescritionFlowLayoutPanel.Controls.Remove(descPriceTile);
+        }
+
+        private void ConfineDaysTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfineDaysTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }    
