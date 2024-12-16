@@ -23,6 +23,7 @@ namespace Infocare_Project_1.Object_Models
 
         public HealthInfoModel healthInfo { get; set; }
         public DiagnosisModel Diagnosis { get; set; }
+        public int confineDays { get; set; }
 
 
     }

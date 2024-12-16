@@ -1,5 +1,6 @@
 ﻿using Infocare_Project;
 using Infocare_Project_1.Object_Models;
+using Patient_Panel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -231,6 +232,7 @@ namespace Infocare_Project_1
             DialogResult result = MessageBox.Show($"You selected '{selectedpatient}' as the patient. Would you like to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+
                 SelectPatientPanel.Visible = false;
                 SpecPanel.Visible = true;
                 BookAppPanel.Visible = true;
@@ -709,7 +711,81 @@ namespace Infocare_Project_1
         private void RefreshAppointmentList()
         {
             string patientName = $"{patient.LastName}, {patient.FirstName}";
-            AppointmentDataGridViewList2.DataSource = Database.ViewPatientAppointments(patientName); 
+            AppointmentDataGridViewList2.DataSource = Database.ViewPatientAppointments(patientName);
+        }
+
+        void LoadInvoiceData()
+        {
+            string fullName = $"{patient.LastName}, {patient.FirstName}";
+            DataTable data = Database.GetInvoiceList(fullName);
+
+            InvoiceDataGridView.DataSource = data;
+        }
+
+        private void guna2Button5_Click(object sender, EventArgs e)
+        {
+            SearchPanel.Visible = true;
+            ViewButton.Visible = false;
+            DeleteButton.Visible = false;
+            SpecPanel.Visible = false;
+            BookAppPanel.Visible = false;
+
+            InvoicePanel.Visible = true;
+            InvoiceBtn.Visible = true;
+            InvoiceDataGridView.Visible = true;
+            InvoiceHeadTitle.Visible = true;
+
+            ViewAppointmentPanel.Visible = false;
+            LoadInvoiceData();
+
+        }
+
+        private void AppointmentDataGridViewList2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void BookingPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        
+
+        private void InvoiceDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                bool isChecked = (bool)InvoiceDataGridView.Rows[e.RowIndex].Cells[0].Value;
+
+                if (isChecked)
+                {
+                    foreach (DataGridViewRow row in InvoiceDataGridView.Rows)
+                    {
+                        if (row.Index != e.RowIndex)
+                        {
+                            DataGridViewCheckBoxCell checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                            if (checkBoxCell != null)
+                            {
+                                checkBoxCell.Value = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void InvoiceBtn_Click(object sender, EventArgs e)
+        {
+            int appointmentId = Convert.ToInt32(InvoiceDataGridView.SelectedRows[0].Cells["ID"].Value);
+
+            Appointment appointment = Database.GetAppointmentById(appointmentId);
+
+            PatientBillingInvoice bill = new PatientBillingInvoice(appointment);
+            bill.ShowDialog();
+
+
+        
         }
     }
 }

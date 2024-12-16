@@ -11,7 +11,7 @@ namespace Infocare_Project
     public static class Database
     {
 
-        private static string dbms = "Xampp";
+        private static string dbms = "Workbench";
         public static string connectionString = ConfigurationManager.ConnectionStrings[dbms].ConnectionString;
 
         public static void ExecuteQuery(string query, Dictionary<string, object> parameters)
@@ -39,6 +39,75 @@ namespace Infocare_Project
             return new MySqlConnection(connectionString);
         }
 
+
+        public static Appointment GetAppointmentById(int id)
+        {
+            string query = "SELECT * FROM tb_appointmenthistory WHERE id = @ID";
+
+            Appointment appoint = new Appointment();
+
+            using (var con = GetConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    con.Open();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            appoint.PatientName = reader.GetString("ah_Patient_Name");
+                            appoint.DoctorName = reader.GetString("ah_Doctor_Name");
+                            appoint.ConsultationFee = reader.GetDecimal("ah_consfee");
+                            appoint.Time = TimeSpan.Parse(reader.GetString("ah_time"));
+                            appoint.Date = reader.GetDateTime("ah_date");
+                            appoint.Specialization = reader.GetString("ah_specialization");
+                            appoint.confineDays = reader.GetInt32("confinement_days");
+
+                            appoint.Diagnosis = new DiagnosisModel()
+                            {
+                                DoctorOrders = reader.GetString("d_doctoroder"),
+                                Prescription = reader.GetString("d_prescription")
+                            };
+                           
+                        }
+                    }
+
+                }
+
+                return appoint;
+            }
+        }
+
+        public static DataTable GetInvoiceList(string fullName)
+        {
+            string query = @"SELECT id as 'ID', ah_Patient_Name AS 'Patient Name', ah_specialization AS 'Specialization', ah_Doctor_Name AS 'Doctor Name', ah_Time AS 'Time', ah_date AS 'Date', ah_status AS 'Status' FROM tb_appointmenthistory WHERE ah_Patient_Name = @FullName AND (ah_status = 'Completed' || ah_status = 'InvoiceChecked')";
+
+            DataTable invoiceTable = new DataTable();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@FullName", fullName);
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(invoiceTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving staff list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return invoiceTable;
+        }
 
 
         public static DoctorModel GetDoctorInfo(int AccountId)
