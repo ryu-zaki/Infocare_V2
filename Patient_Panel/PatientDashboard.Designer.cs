@@ -103,10 +103,15 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges69 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges70 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges71 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges72 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges69 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges70 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges73 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges74 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges75 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -116,6 +121,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges79 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges80 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges81 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges82 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges83 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges84 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges85 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             MyProfileTabBtn = new Guna.UI2.WinForms.Guna2Button();
@@ -167,9 +176,14 @@
             ViewAppointmentPanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             DeleteButton = new Guna.UI2.WinForms.Guna2Button();
             ViewButton = new Guna.UI2.WinForms.Guna2Button();
+            AppointmentLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             AppointmentDataGridViewList2 = new Guna.UI2.WinForms.Guna2DataGridView();
             checkboxcolumn = new DataGridViewCheckBoxColumn();
-            AppointmentLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            InvoicePanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            InvoiceBtn = new Guna.UI2.WinForms.Guna2Button();
+            InvoiceHeadTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            InvoiceDataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
+            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
             ResetTransactionFilterButton = new Guna.UI2.WinForms.Guna2Button();
             SearchTransactionButton = new Guna.UI2.WinForms.Guna2Button();
             TransactionIdTextBox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -193,6 +207,8 @@
             guna2CustomGradientPanel5.SuspendLayout();
             ViewAppointmentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AppointmentDataGridViewList2).BeginInit();
+            InvoicePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)InvoiceDataGridView).BeginInit();
             SearchPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -246,6 +262,7 @@
             guna2Button5.TabIndex = 148;
             guna2Button5.Text = "Invoice";
             guna2Button5.TextOffset = new Point(5, 0);
+            guna2Button5.Click += guna2Button5_Click;
             // 
             // MyProfileTabBtn
             // 
@@ -652,6 +669,7 @@
             BookingPanel.Size = new Size(655, 365);
             BookingPanel.TabIndex = 140;
             BookingPanel.Visible = false;
+            BookingPanel.Paint += BookingPanel_Paint;
             // 
             // AppointmentDatePicker
             // 
@@ -986,14 +1004,14 @@
             // 
             ViewAppointmentPanel.Controls.Add(DeleteButton);
             ViewAppointmentPanel.Controls.Add(ViewButton);
-            ViewAppointmentPanel.Controls.Add(AppointmentDataGridViewList2);
             ViewAppointmentPanel.Controls.Add(AppointmentLabel);
+            ViewAppointmentPanel.Controls.Add(AppointmentDataGridViewList2);
             ViewAppointmentPanel.CustomizableEdges = customizableEdges67;
             ViewAppointmentPanel.FillColor = Color.FromArgb(13, 41, 80);
             ViewAppointmentPanel.FillColor2 = Color.FromArgb(13, 41, 80);
             ViewAppointmentPanel.FillColor3 = Color.FromArgb(13, 41, 80);
             ViewAppointmentPanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            ViewAppointmentPanel.Location = new Point(224, 100);
+            ViewAppointmentPanel.Location = new Point(207, 92);
             ViewAppointmentPanel.Name = "ViewAppointmentPanel";
             ViewAppointmentPanel.ShadowDecoration.CustomizableEdges = customizableEdges68;
             ViewAppointmentPanel.Size = new Size(674, 438);
@@ -1051,6 +1069,18 @@
             ViewButton.TextFormatNoPrefix = true;
             ViewButton.Visible = false;
             ViewButton.Click += ViewButton_Click;
+            // 
+            // AppointmentLabel
+            // 
+            AppointmentLabel.BackColor = Color.Transparent;
+            AppointmentLabel.Font = new Font("Tahoma", 15.25F, FontStyle.Bold);
+            AppointmentLabel.ForeColor = SystemColors.Control;
+            AppointmentLabel.Location = new Point(23, 15);
+            AppointmentLabel.Margin = new Padding(3, 2, 3, 2);
+            AppointmentLabel.Name = "AppointmentLabel";
+            AppointmentLabel.Size = new Size(253, 26);
+            AppointmentLabel.TabIndex = 177;
+            AppointmentLabel.Text = "Appointment History List";
             // 
             // AppointmentDataGridViewList2
             // 
@@ -1124,6 +1154,7 @@
             AppointmentDataGridViewList2.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
             AppointmentDataGridViewList2.Visible = false;
             AppointmentDataGridViewList2.CellBeginEdit += AppointmentDataGridViewList2_CellBeginEdit;
+            AppointmentDataGridViewList2.CellContentClick += AppointmentDataGridViewList2_CellContentClick;
             AppointmentDataGridViewList2.CellValueChanged += AppointmentDataGridViewList2_CellValueChanged;
             AppointmentDataGridViewList2.CurrentCellDirtyStateChanged += AppointmentDataGridViewList2_CurrentCellDirtyStateChanged;
             // 
@@ -1137,17 +1168,143 @@
             checkboxcolumn.Name = "checkboxcolumn";
             checkboxcolumn.Resizable = DataGridViewTriState.False;
             // 
-            // AppointmentLabel
+            // InvoicePanel
             // 
-            AppointmentLabel.BackColor = Color.Transparent;
-            AppointmentLabel.Font = new Font("Tahoma", 15.25F, FontStyle.Bold);
-            AppointmentLabel.ForeColor = SystemColors.Control;
-            AppointmentLabel.Location = new Point(23, 15);
-            AppointmentLabel.Margin = new Padding(3, 2, 3, 2);
-            AppointmentLabel.Name = "AppointmentLabel";
-            AppointmentLabel.Size = new Size(253, 26);
-            AppointmentLabel.TabIndex = 177;
-            AppointmentLabel.Text = "Appointment History List";
+            InvoicePanel.Controls.Add(InvoiceBtn);
+            InvoicePanel.Controls.Add(InvoiceHeadTitle);
+            InvoicePanel.Controls.Add(InvoiceDataGridView);
+            InvoicePanel.CustomizableEdges = customizableEdges71;
+            InvoicePanel.FillColor = Color.FromArgb(13, 41, 80);
+            InvoicePanel.FillColor2 = Color.FromArgb(13, 41, 80);
+            InvoicePanel.FillColor3 = Color.FromArgb(13, 41, 80);
+            InvoicePanel.FillColor4 = Color.FromArgb(110, 177, 247);
+            InvoicePanel.Location = new Point(198, 107);
+            InvoicePanel.Name = "InvoicePanel";
+            InvoicePanel.ShadowDecoration.CustomizableEdges = customizableEdges72;
+            InvoicePanel.Size = new Size(674, 438);
+            InvoicePanel.TabIndex = 219;
+            InvoicePanel.Visible = false;
+            // 
+            // InvoiceBtn
+            // 
+            InvoiceBtn.BackColor = Color.Transparent;
+            InvoiceBtn.BorderRadius = 15;
+            InvoiceBtn.CustomizableEdges = customizableEdges69;
+            InvoiceBtn.DisabledState.BorderColor = Color.DarkGray;
+            InvoiceBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            InvoiceBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            InvoiceBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            InvoiceBtn.FillColor = SystemColors.ButtonFace;
+            InvoiceBtn.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold);
+            InvoiceBtn.ForeColor = Color.Black;
+            InvoiceBtn.ImageAlign = HorizontalAlignment.Left;
+            InvoiceBtn.ImageOffset = new Point(2, 0);
+            InvoiceBtn.ImageSize = new Size(40, 40);
+            InvoiceBtn.Location = new Point(522, 6);
+            InvoiceBtn.Margin = new Padding(3, 2, 3, 2);
+            InvoiceBtn.Name = "InvoiceBtn";
+            InvoiceBtn.ShadowDecoration.CustomizableEdges = customizableEdges70;
+            InvoiceBtn.Size = new Size(143, 33);
+            InvoiceBtn.TabIndex = 217;
+            InvoiceBtn.Text = "Invoice";
+            InvoiceBtn.TextFormatNoPrefix = true;
+            InvoiceBtn.Visible = false;
+            InvoiceBtn.Click += InvoiceBtn_Click;
+            // 
+            // InvoiceHeadTitle
+            // 
+            InvoiceHeadTitle.BackColor = Color.Transparent;
+            InvoiceHeadTitle.Font = new Font("Tahoma", 15.25F, FontStyle.Bold);
+            InvoiceHeadTitle.ForeColor = SystemColors.Control;
+            InvoiceHeadTitle.Location = new Point(23, 15);
+            InvoiceHeadTitle.Margin = new Padding(3, 2, 3, 2);
+            InvoiceHeadTitle.Name = "InvoiceHeadTitle";
+            InvoiceHeadTitle.Size = new Size(230, 26);
+            InvoiceHeadTitle.TabIndex = 177;
+            InvoiceHeadTitle.Text = "Completed History List";
+            // 
+            // InvoiceDataGridView
+            // 
+            InvoiceDataGridView.AllowUserToAddRows = false;
+            InvoiceDataGridView.AllowUserToResizeColumns = false;
+            InvoiceDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(160, 160, 160);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            InvoiceDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            InvoiceDataGridView.BackgroundColor = Color.FromArgb(240, 240, 240);
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle7.Font = new Font("Tahoma", 9.75F);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(13, 41, 80);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            InvoiceDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            InvoiceDataGridView.ColumnHeadersHeight = 39;
+            InvoiceDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            InvoiceDataGridView.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn1 });
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(240, 240, 240);
+            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 9F);
+            dataGridViewCellStyle9.ForeColor = Color.Transparent;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
+            InvoiceDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
+            InvoiceDataGridView.GridColor = Color.FromArgb(179, 230, 251);
+            InvoiceDataGridView.Location = new Point(11, 47);
+            InvoiceDataGridView.Name = "InvoiceDataGridView";
+            InvoiceDataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(240, 240, 240);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(240, 240, 240);
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            InvoiceDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            InvoiceDataGridView.RowHeadersVisible = false;
+            InvoiceDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            InvoiceDataGridView.RowTemplate.Height = 35;
+            InvoiceDataGridView.Size = new Size(649, 379);
+            InvoiceDataGridView.TabIndex = 216;
+            InvoiceDataGridView.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightBlue;
+            InvoiceDataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(160, 160, 160);
+            InvoiceDataGridView.ThemeStyle.AlternatingRowsStyle.Font = new Font("Segoe UI", 9F);
+            InvoiceDataGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = SystemColors.ControlText;
+            InvoiceDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            InvoiceDataGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Black;
+            InvoiceDataGridView.ThemeStyle.BackColor = Color.FromArgb(240, 240, 240);
+            InvoiceDataGridView.ThemeStyle.GridColor = Color.FromArgb(179, 230, 251);
+            InvoiceDataGridView.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(13, 41, 80);
+            InvoiceDataGridView.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            InvoiceDataGridView.ThemeStyle.HeaderStyle.Font = new Font("Tahoma", 9.75F);
+            InvoiceDataGridView.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            InvoiceDataGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            InvoiceDataGridView.ThemeStyle.HeaderStyle.Height = 39;
+            InvoiceDataGridView.ThemeStyle.ReadOnly = false;
+            InvoiceDataGridView.ThemeStyle.RowsStyle.BackColor = Color.FromArgb(240, 240, 240);
+            InvoiceDataGridView.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            InvoiceDataGridView.ThemeStyle.RowsStyle.Font = new Font("Microsoft Sans Serif", 9F);
+            InvoiceDataGridView.ThemeStyle.RowsStyle.ForeColor = Color.Transparent;
+            InvoiceDataGridView.ThemeStyle.RowsStyle.Height = 35;
+            InvoiceDataGridView.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            InvoiceDataGridView.ThemeStyle.RowsStyle.SelectionForeColor = Color.Black;
+            InvoiceDataGridView.Visible = false;
+            InvoiceDataGridView.CellValueChanged += InvoiceDataGridView_CellValueChanged;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            dataGridViewCheckBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle8.NullValue = false;
+            dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCheckBoxColumn1.HeaderText = "Select";
+            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            dataGridViewCheckBoxColumn1.Resizable = DataGridViewTriState.False;
             // 
             // ResetTransactionFilterButton
             // 
@@ -1156,7 +1313,7 @@
             ResetTransactionFilterButton.BorderRadius = 15;
             ResetTransactionFilterButton.Cursor = Cursors.Hand;
             ResetTransactionFilterButton.CustomBorderColor = Color.Cyan;
-            ResetTransactionFilterButton.CustomizableEdges = customizableEdges69;
+            ResetTransactionFilterButton.CustomizableEdges = customizableEdges73;
             ResetTransactionFilterButton.DisabledState.BorderColor = Color.DarkGray;
             ResetTransactionFilterButton.DisabledState.CustomBorderColor = Color.DarkGray;
             ResetTransactionFilterButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1170,7 +1327,7 @@
             ResetTransactionFilterButton.Location = new Point(357, 5);
             ResetTransactionFilterButton.Margin = new Padding(3, 2, 3, 2);
             ResetTransactionFilterButton.Name = "ResetTransactionFilterButton";
-            ResetTransactionFilterButton.ShadowDecoration.CustomizableEdges = customizableEdges70;
+            ResetTransactionFilterButton.ShadowDecoration.CustomizableEdges = customizableEdges74;
             ResetTransactionFilterButton.Size = new Size(74, 33);
             ResetTransactionFilterButton.TabIndex = 219;
             ResetTransactionFilterButton.Text = "Reset";
@@ -1184,7 +1341,7 @@
             SearchTransactionButton.BorderRadius = 15;
             SearchTransactionButton.Cursor = Cursors.Hand;
             SearchTransactionButton.CustomBorderColor = Color.Cyan;
-            SearchTransactionButton.CustomizableEdges = customizableEdges71;
+            SearchTransactionButton.CustomizableEdges = customizableEdges75;
             SearchTransactionButton.DisabledState.BorderColor = Color.DarkGray;
             SearchTransactionButton.DisabledState.CustomBorderColor = Color.DarkGray;
             SearchTransactionButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1198,7 +1355,7 @@
             SearchTransactionButton.Location = new Point(277, 5);
             SearchTransactionButton.Margin = new Padding(3, 2, 3, 2);
             SearchTransactionButton.Name = "SearchTransactionButton";
-            SearchTransactionButton.ShadowDecoration.CustomizableEdges = customizableEdges72;
+            SearchTransactionButton.ShadowDecoration.CustomizableEdges = customizableEdges76;
             SearchTransactionButton.Size = new Size(74, 33);
             SearchTransactionButton.TabIndex = 218;
             SearchTransactionButton.Text = "Search";
@@ -1212,7 +1369,7 @@
             TransactionIdTextBox.BorderRadius = 8;
             TransactionIdTextBox.BorderThickness = 0;
             TransactionIdTextBox.Cursor = Cursors.IBeam;
-            TransactionIdTextBox.CustomizableEdges = customizableEdges73;
+            TransactionIdTextBox.CustomizableEdges = customizableEdges77;
             TransactionIdTextBox.DefaultText = "";
             TransactionIdTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             TransactionIdTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -1228,7 +1385,7 @@
             TransactionIdTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             TransactionIdTextBox.PlaceholderText = "ID";
             TransactionIdTextBox.SelectedText = "";
-            TransactionIdTextBox.ShadowDecoration.CustomizableEdges = customizableEdges74;
+            TransactionIdTextBox.ShadowDecoration.CustomizableEdges = customizableEdges78;
             TransactionIdTextBox.Size = new Size(51, 33);
             TransactionIdTextBox.TabIndex = 213;
             // 
@@ -1246,7 +1403,7 @@
             Staff_MinimizeButton.Margin = new Padding(3, 2, 3, 2);
             Staff_MinimizeButton.Name = "Staff_MinimizeButton";
             Staff_MinimizeButton.PressedState.ImageSize = new Size(20, 30);
-            Staff_MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges75;
+            Staff_MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges79;
             Staff_MinimizeButton.Size = new Size(43, 26);
             Staff_MinimizeButton.TabIndex = 212;
             Staff_MinimizeButton.Click += Staff_MinimizeButton_Click;
@@ -1255,7 +1412,7 @@
             // 
             Staff_ExitButton.BackColor = Color.FromArgb(13, 41, 80);
             Staff_ExitButton.Cursor = Cursors.Hand;
-            Staff_ExitButton.CustomizableEdges = customizableEdges76;
+            Staff_ExitButton.CustomizableEdges = customizableEdges80;
             Staff_ExitButton.DisabledState.BorderColor = Color.DarkGray;
             Staff_ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
             Staff_ExitButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1266,7 +1423,7 @@
             Staff_ExitButton.Location = new Point(851, 0);
             Staff_ExitButton.Margin = new Padding(3, 2, 3, 2);
             Staff_ExitButton.Name = "Staff_ExitButton";
-            Staff_ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges77;
+            Staff_ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges81;
             Staff_ExitButton.Size = new Size(43, 26);
             Staff_ExitButton.TabIndex = 211;
             Staff_ExitButton.Text = "X";
@@ -1287,7 +1444,7 @@
             NameTextBox.BorderRadius = 8;
             NameTextBox.BorderThickness = 0;
             NameTextBox.Cursor = Cursors.IBeam;
-            NameTextBox.CustomizableEdges = customizableEdges78;
+            NameTextBox.CustomizableEdges = customizableEdges82;
             NameTextBox.DefaultText = "";
             NameTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             NameTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -1304,7 +1461,7 @@
             NameTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             NameTextBox.PlaceholderText = "Name";
             NameTextBox.SelectedText = "";
-            NameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges79;
+            NameTextBox.ShadowDecoration.CustomizableEdges = customizableEdges83;
             NameTextBox.Size = new Size(170, 33);
             NameTextBox.TabIndex = 218;
             // 
@@ -1329,14 +1486,14 @@
             SearchPanel.Controls.Add(NameTextBox);
             SearchPanel.Controls.Add(SearchTransactionButton);
             SearchPanel.Controls.Add(TransactionIdTextBox);
-            SearchPanel.CustomizableEdges = customizableEdges80;
+            SearchPanel.CustomizableEdges = customizableEdges84;
             SearchPanel.FillColor = Color.FromArgb(13, 41, 80);
             SearchPanel.FillColor2 = Color.FromArgb(13, 41, 80);
             SearchPanel.FillColor3 = Color.FromArgb(13, 41, 80);
             SearchPanel.FillColor4 = Color.FromArgb(110, 177, 247);
             SearchPanel.Location = new Point(436, 42);
             SearchPanel.Name = "SearchPanel";
-            SearchPanel.ShadowDecoration.CustomizableEdges = customizableEdges81;
+            SearchPanel.ShadowDecoration.CustomizableEdges = customizableEdges85;
             SearchPanel.Size = new Size(441, 44);
             SearchPanel.TabIndex = 221;
             SearchPanel.Visible = false;
@@ -1348,6 +1505,7 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(894, 574);
             ControlBox = false;
+            Controls.Add(InvoicePanel);
             Controls.Add(ViewAppointmentPanel);
             Controls.Add(BookAppPanel);
             Controls.Add(Staff_MinimizeButton);
@@ -1386,6 +1544,9 @@
             ViewAppointmentPanel.ResumeLayout(false);
             ViewAppointmentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AppointmentDataGridViewList2).EndInit();
+            InvoicePanel.ResumeLayout(false);
+            InvoicePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)InvoiceDataGridView).EndInit();
             SearchPanel.ResumeLayout(false);
             SearchPanel.PerformLayout();
             ResumeLayout(false);
@@ -1457,5 +1618,11 @@
         private Guna.UI2.WinForms.Guna2Button MyProfileTabBtn;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
         private Guna.UI2.WinForms.Guna2Button DeleteButton;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel InvoicePanel;
+        private Guna.UI2.WinForms.Guna2Button guna2Button6;
+        private Guna.UI2.WinForms.Guna2Button InvoiceBtn;
+        private Guna.UI2.WinForms.Guna2HtmlLabel InvoiceHeadTitle;
+        private Guna.UI2.WinForms.Guna2DataGridView InvoiceDataGridView;
+        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
     }
 }
