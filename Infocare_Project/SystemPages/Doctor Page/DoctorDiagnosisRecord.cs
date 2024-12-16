@@ -1,4 +1,5 @@
-﻿using Infocare_Project;
+﻿using AdminDoctor_Panel.SystemPages.Doctor_Page;
+using Infocare_Project;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -56,14 +57,31 @@ namespace Infocare_Project_1
             }
         }
 
+        string GetValueFromFlowLayout(FlowLayoutPanel panel)
+        {
+            Dictionary<string, decimal> list = new Dictionary<string, decimal>();
+
+            foreach(Control control in panel.Controls)
+            {
+                if (control is DescPrice desc)
+                {
+                    list.Add(desc.Desc, desc.Price);
+                }
+            }
+
+            return string.Join(", ", list.Select(vp => $"{vp.Key} {vp.Value}" ));
+           
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             try
             {
                 string diagnosis = DiagnosisTextBox.Text.Trim();
-                string doctorOrder = DoctorOrderTextBox.Text.Trim();
+
+                string doctorOrder = GetValueFromFlowLayout(DoctorOrdersFlowLayoutPanel);
                 string additionalNote = AdditionalNoteTextBox.Text.Trim();
-                string prescription = PrescriptionTextBox.Text.Trim();
+                string prescription = GetValueFromFlowLayout(prescritionFlowLayoutPanel);
                 string patientName = PatientNameLabel.Text;
 
                 if (string.IsNullOrEmpty(patientName))
@@ -171,6 +189,32 @@ namespace Infocare_Project_1
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void guna2HtmlLabel4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+
+        }
+
+        private void AddSpecialization_Click(object sender, EventArgs e)
+        {
+            DescPrice descPriceTile = new DescPrice();
+
+            DoctorOrdersFlowLayoutPanel.Controls.Add(descPriceTile);
+
+        }
+
+        private void addPrescription_Click(object sender, EventArgs e)
+        {
+            DescPrice descPriceTile = new DescPrice();
+
+            prescritionFlowLayoutPanel.Controls.Add(descPriceTile);
         }
     }
 }    

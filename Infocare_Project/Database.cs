@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Infocare_Project
 {
@@ -124,10 +125,12 @@ namespace Infocare_Project
             }
         }
 
+       
+
         public static PatientModel GetPatientInfo(string username, string password)
         {
             using (var connection = GetConnection())
-            {
+            { 
                 PatientModel user = new PatientModel();
                 HealthInfoModel health = new HealthInfoModel();
                 EmergencyContactModel emergency = new EmergencyContactModel();
@@ -139,7 +142,7 @@ namespace Infocare_Project
                 using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", ProcessMethods.HashCharacter(password));
+                    cmd.Parameters.AddWithValue("@Password", password);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -148,10 +151,11 @@ namespace Infocare_Project
                             user.AccountID = reader.GetInt32("id");
                             user.FirstName = reader.GetString("P_Firstname");
                             user.LastName = reader.GetString("P_lastname");
+                            user.Password = reader.GetString("P_Password");
                             user.MiddleName = reader.GetString("P_Middlename");
                             user.UserName = reader.GetString("P_username");
                             user.ContactNumber = reader.GetString("P_ContactNumber");
-                            user.BirthDate = DateTime.Parse(reader.GetString("P_Bdate"));
+                            user.BirthDate = DateTime.ParseExact(reader.GetString("P_Bdate"), "dd-MM-yyyy", CultureInfo.InvariantCulture);
                             user.sex = reader.GetString("P_Sex");
                             user.Suffix = reader.IsDBNull(reader.GetOrdinal("P_Suffix")) ? "n/a" : reader.GetString("P_Suffix");
                             user.Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email");
@@ -179,7 +183,7 @@ namespace Infocare_Project
 
                             //return $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
 
-                            health.Alergy = reader.IsDBNull(reader.GetOrdinal("P_Alergy")) ? "" : reader.GetString("P_Alergy"); 
+                            health.Alergy = reader.IsDBNull(reader.GetOrdinal("P_Alergy")) ? "" : reader.GetString("P_Alergy");
                             health.Medication = reader.IsDBNull(reader.GetOrdinal("P_Medication")) ? "" : reader.GetString("P_Medication");
 
                             emergency.FirstName = reader.IsDBNull(reader.GetOrdinal("Eme_Firstname")) ? "" : reader.GetString("Eme_Firstname");
@@ -187,7 +191,7 @@ namespace Infocare_Project
                             emergency.MiddleName = reader.IsDBNull(reader.GetOrdinal("Eme_Middlename")) ? "" : reader.GetString("Eme_Middlename");
                             emergency.Suffix = reader.IsDBNull(reader.GetOrdinal("Eme_Suffix")) ? "" : reader.GetString("Eme_Suffix");
 
-        
+
 
                             string[] eme_addressArr = (reader.IsDBNull(reader.GetOrdinal("Eme_Address")) ? ",,,,," : reader.GetString("Eme_Address")).Split(",");
 
@@ -209,7 +213,7 @@ namespace Infocare_Project
 
                 return user;
             }
-        } 
+        }
 
         public static bool IsEmailExisted(Role role, UserModel user)
         {
@@ -1213,7 +1217,6 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                                       p_MiddleName = @MiddleName, 
                                       p_Suffix = @Suffix, 
                                       p_username = @Username, 
-                                      P_Password = @Password, 
                                       P_ContactNumber = @ContactNumber, 
                                       P_Bdate = @Bdate, 
                                       P_Sex = @Sex, 

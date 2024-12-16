@@ -30,6 +30,9 @@ namespace Infocare_Project
         ModalMode mode;
         int AccountID;
 
+        public string username;
+        public string password;
+
         PatientModel extractedInfo;
         public PatientRegisterForm(ModalMode mode, int AccountId = 0)
         {
@@ -42,6 +45,7 @@ namespace Infocare_Project
             if (mode == ModalMode.Edit)
             {
                 DeleteBtn.Visible = true;
+                PasswordTextBox.Visible = false;
             }
         }
 
@@ -54,7 +58,7 @@ namespace Infocare_Project
             else
             {
                 //Edit
-                //extractedInfo = Database.GetPatientInfo(AccountID);
+                extractedInfo = Database.GetPatientInfo(username, password);
                 extractedInfo.AccountID = AccountID;
                 FillUpFields(extractedInfo);
             }
@@ -65,10 +69,11 @@ namespace Infocare_Project
         {
             FirstnameTxtbox.Text = info.FirstName;
             LastNameTxtbox.Text = info.LastName;
+            UsernameTextbox.Text = username;
             MiddleNameTxtbox.Text = info.MiddleName;
             SuffixTxtbox.Text = info.Suffix;
             EmailTxtbox.Text = info.Email;
-            ContactNumberTxtbox.Text = info.ContactNumber.ToString();
+            ContactNumberTxtbox.Text = info.ContactNumber;
 
             BdayDateTimePicker.Value = info.BirthDate;
 
@@ -263,6 +268,7 @@ namespace Infocare_Project
             
             this.Cursor = Cursors.WaitCursor;
             PatientModel editedInfo = SetupObj();
+          
             PatientModel ProperModel = mode == ModalMode.Add ? newPatient : extractedInfo;
 
             Database.PatientRegFunc(editedInfo, mode);
@@ -271,7 +277,7 @@ namespace Infocare_Project
             var patientInfoForm = new PatientBasicInformationForm(ProperModel, mode);
             patientInfoForm.ReloadResults += ReloadResults;
             patientInfoForm.DeletePatientAndReload += DeletePatientAndReload;
-            patientInfoForm.TopMost = true;
+          //  patientInfoForm.TopMost = true;
             patientInfoForm.Show();
             this.Hide();
 

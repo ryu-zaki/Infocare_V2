@@ -17,6 +17,7 @@ namespace Infocare_Project
     public partial class AdminAddDoctor : Form
     {
         private PlaceHolderHandler _placeHolderHandler;
+        public Action ShowDoctorList;
 
         ModalMode mode;
         int AccountId;
@@ -69,10 +70,12 @@ namespace Infocare_Project
             TimeCombobox();
             DayAvComboBox();
 
-            doctor = Database.GetDoctorInfo(AccountId);
-
-
-            FillUpFields(doctor);
+            if (mode == ModalMode.Edit)
+            {
+                doctor = Database.GetDoctorInfo(AccountId);
+                FillUpFields(doctor);
+            }
+            
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -237,8 +240,10 @@ namespace Infocare_Project
                     Database.AddSpecialization(doctorId, specialization);
                 }
 
+
                 MessageBox.Show("Doctor added successfully!");
                 this.Hide();
+                ShowDoctorList.Invoke();
 
             }
             catch (Exception ex)

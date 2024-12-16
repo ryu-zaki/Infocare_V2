@@ -3,6 +3,7 @@ using Infocare_Project_1.Classes;
 using Infocare_Project_1.Object_Models;
 using MySql.Data.MySqlClient;
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Infocare_Project
@@ -227,9 +228,14 @@ namespace Infocare_Project
                     {
                         Database.DeletePatientReg1Data(patient);
                     }
-                    
 
-                    var patientInfoForm = new PatientRegisterForm(mode, patient.AccountID);
+                   
+                    var patientInfoForm = new PatientRegisterForm(mode, patient.AccountID)
+                    {
+                        username = patient.UserName, password = patient.Password
+                    };
+                 
+
                     patientInfoForm.Show();
                     this.Hide();
                 }

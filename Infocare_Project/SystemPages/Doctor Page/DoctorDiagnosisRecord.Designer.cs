@@ -29,30 +29,26 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorDiagnosisRecord));
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorDiagnosisRecord));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel21 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             SaveButton = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            DoctorOrderTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            PrescriptionTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             AdditionalNoteTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -70,6 +66,10 @@
             guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorDateLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
             DoctorTimeLabel = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            addDoctorOrder = new Guna.UI2.WinForms.Guna2ImageButton();
+            DoctorOrdersFlowLayoutPanel = new FlowLayoutPanel();
+            prescritionFlowLayoutPanel = new FlowLayoutPanel();
+            addPrescription = new Guna.UI2.WinForms.Guna2ImageButton();
             guna2CustomGradientPanel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -90,14 +90,14 @@
             guna2CustomGradientPanel2.BackColor = Color.Transparent;
             guna2CustomGradientPanel2.BorderRadius = 15;
             guna2CustomGradientPanel2.Controls.Add(SaveButton);
-            guna2CustomGradientPanel2.CustomizableEdges = customizableEdges3;
+            guna2CustomGradientPanel2.CustomizableEdges = customizableEdges17;
             guna2CustomGradientPanel2.FillColor = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor2 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor3 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.FillColor4 = Color.FromArgb(53, 93, 134);
             guna2CustomGradientPanel2.Location = new Point(372, 402);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges18;
             guna2CustomGradientPanel2.Size = new Size(118, 44);
             guna2CustomGradientPanel2.TabIndex = 187;
             // 
@@ -106,7 +106,7 @@
             SaveButton.BackColor = Color.Transparent;
             SaveButton.BorderRadius = 15;
             SaveButton.Cursor = Cursors.Hand;
-            SaveButton.CustomizableEdges = customizableEdges1;
+            SaveButton.CustomizableEdges = customizableEdges15;
             SaveButton.DisabledState.BorderColor = Color.DarkGray;
             SaveButton.DisabledState.CustomBorderColor = Color.DarkGray;
             SaveButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -117,7 +117,7 @@
             SaveButton.Location = new Point(-1, 0);
             SaveButton.Margin = new Padding(3, 2, 3, 2);
             SaveButton.Name = "SaveButton";
-            SaveButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            SaveButton.ShadowDecoration.CustomizableEdges = customizableEdges16;
             SaveButton.Size = new Size(115, 42);
             SaveButton.TabIndex = 3;
             SaveButton.Text = "Save";
@@ -128,74 +128,25 @@
             guna2HtmlLabel5.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel5.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel5.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel5.Location = new Point(482, 129);
+            guna2HtmlLabel5.Location = new Point(477, 118);
             guna2HtmlLabel5.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             guna2HtmlLabel5.Size = new Size(78, 15);
             guna2HtmlLabel5.TabIndex = 186;
             guna2HtmlLabel5.Text = "Doctor's Order";
             // 
-            // DoctorOrderTextBox
-            // 
-            DoctorOrderTextBox.BorderColor = Color.FromArgb(93, 202, 209);
-            DoctorOrderTextBox.BorderRadius = 8;
-            DoctorOrderTextBox.CustomizableEdges = customizableEdges5;
-            DoctorOrderTextBox.DefaultText = "";
-            DoctorOrderTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            DoctorOrderTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            DoctorOrderTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            DoctorOrderTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            DoctorOrderTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            DoctorOrderTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DoctorOrderTextBox.ForeColor = Color.FromArgb(47, 89, 114);
-            DoctorOrderTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            DoctorOrderTextBox.Location = new Point(482, 149);
-            DoctorOrderTextBox.Multiline = true;
-            DoctorOrderTextBox.Name = "DoctorOrderTextBox";
-            DoctorOrderTextBox.PasswordChar = '\0';
-            DoctorOrderTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            DoctorOrderTextBox.PlaceholderText = "";
-            DoctorOrderTextBox.SelectedText = "";
-            DoctorOrderTextBox.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            DoctorOrderTextBox.Size = new Size(326, 80);
-            DoctorOrderTextBox.TabIndex = 185;
-            // 
             // guna2HtmlLabel4
             // 
             guna2HtmlLabel4.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel4.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel4.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel4.Location = new Point(482, 246);
+            guna2HtmlLabel4.Location = new Point(481, 287);
             guna2HtmlLabel4.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             guna2HtmlLabel4.Size = new Size(65, 15);
             guna2HtmlLabel4.TabIndex = 184;
             guna2HtmlLabel4.Text = "Prescription";
-            // 
-            // PrescriptionTextBox
-            // 
-            PrescriptionTextBox.BorderColor = Color.FromArgb(93, 202, 209);
-            PrescriptionTextBox.BorderRadius = 8;
-            PrescriptionTextBox.CustomizableEdges = customizableEdges7;
-            PrescriptionTextBox.DefaultText = "";
-            PrescriptionTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            PrescriptionTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            PrescriptionTextBox.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            PrescriptionTextBox.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            PrescriptionTextBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            PrescriptionTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            PrescriptionTextBox.ForeColor = Color.FromArgb(47, 89, 114);
-            PrescriptionTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            PrescriptionTextBox.Location = new Point(482, 266);
-            PrescriptionTextBox.Multiline = true;
-            PrescriptionTextBox.Name = "PrescriptionTextBox";
-            PrescriptionTextBox.PasswordChar = '\0';
-            PrescriptionTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
-            PrescriptionTextBox.PlaceholderText = "";
-            PrescriptionTextBox.SelectedText = "";
-            PrescriptionTextBox.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            PrescriptionTextBox.Size = new Size(326, 112);
-            PrescriptionTextBox.TabIndex = 183;
+            guna2HtmlLabel4.Click += guna2HtmlLabel4_Click;
             // 
             // guna2HtmlLabel2
             // 
@@ -213,7 +164,7 @@
             // 
             AdditionalNoteTextBox.BorderColor = Color.FromArgb(93, 202, 209);
             AdditionalNoteTextBox.BorderRadius = 8;
-            AdditionalNoteTextBox.CustomizableEdges = customizableEdges9;
+            AdditionalNoteTextBox.CustomizableEdges = customizableEdges19;
             AdditionalNoteTextBox.DefaultText = "";
             AdditionalNoteTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             AdditionalNoteTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -230,7 +181,7 @@
             AdditionalNoteTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             AdditionalNoteTextBox.PlaceholderText = "";
             AdditionalNoteTextBox.SelectedText = "";
-            AdditionalNoteTextBox.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            AdditionalNoteTextBox.ShadowDecoration.CustomizableEdges = customizableEdges20;
             AdditionalNoteTextBox.Size = new Size(418, 64);
             AdditionalNoteTextBox.TabIndex = 181;
             // 
@@ -250,7 +201,7 @@
             // 
             DiagnosisTextBox.BorderColor = Color.FromArgb(93, 202, 209);
             DiagnosisTextBox.BorderRadius = 8;
-            DiagnosisTextBox.CustomizableEdges = customizableEdges11;
+            DiagnosisTextBox.CustomizableEdges = customizableEdges21;
             DiagnosisTextBox.DefaultText = "";
             DiagnosisTextBox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             DiagnosisTextBox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -267,7 +218,7 @@
             DiagnosisTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             DiagnosisTextBox.PlaceholderText = "";
             DiagnosisTextBox.SelectedText = "";
-            DiagnosisTextBox.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            DiagnosisTextBox.ShadowDecoration.CustomizableEdges = customizableEdges22;
             DiagnosisTextBox.Size = new Size(418, 74);
             DiagnosisTextBox.TabIndex = 175;
             // 
@@ -295,7 +246,7 @@
             BackButton.Location = new Point(3, 2);
             BackButton.Name = "BackButton";
             BackButton.PressedState.ImageSize = new Size(64, 64);
-            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            BackButton.ShadowDecoration.CustomizableEdges = customizableEdges23;
             BackButton.Size = new Size(66, 45);
             BackButton.TabIndex = 190;
             BackButton.Click += BackButton_Click;
@@ -326,7 +277,7 @@
             doctor_MinimizeButton.Margin = new Padding(3, 2, 3, 2);
             doctor_MinimizeButton.Name = "doctor_MinimizeButton";
             doctor_MinimizeButton.PressedState.ImageSize = new Size(20, 30);
-            doctor_MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            doctor_MinimizeButton.ShadowDecoration.CustomizableEdges = customizableEdges24;
             doctor_MinimizeButton.Size = new Size(43, 26);
             doctor_MinimizeButton.TabIndex = 210;
             doctor_MinimizeButton.Click += doctor_MinimizeButton_Click;
@@ -335,7 +286,7 @@
             // 
             doctor_ExitButton.BackColor = Color.FromArgb(110, 177, 247);
             doctor_ExitButton.Cursor = Cursors.Hand;
-            doctor_ExitButton.CustomizableEdges = customizableEdges15;
+            doctor_ExitButton.CustomizableEdges = customizableEdges25;
             doctor_ExitButton.DisabledState.BorderColor = Color.DarkGray;
             doctor_ExitButton.DisabledState.CustomBorderColor = Color.DarkGray;
             doctor_ExitButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -346,7 +297,7 @@
             doctor_ExitButton.Location = new Point(802, 0);
             doctor_ExitButton.Margin = new Padding(3, 2, 3, 2);
             doctor_ExitButton.Name = "doctor_ExitButton";
-            doctor_ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            doctor_ExitButton.ShadowDecoration.CustomizableEdges = customizableEdges26;
             doctor_ExitButton.Size = new Size(43, 26);
             doctor_ExitButton.TabIndex = 209;
             doctor_ExitButton.Text = "X";
@@ -444,6 +395,65 @@
             DoctorTimeLabel.TabIndex = 225;
             DoctorTimeLabel.Text = "AH_TIME";
             // 
+            // addDoctorOrder
+            // 
+            addDoctorOrder.BackColor = Color.FromArgb(110, 177, 247);
+            addDoctorOrder.BackgroundImageLayout = ImageLayout.Stretch;
+            addDoctorOrder.CheckedState.ImageSize = new Size(64, 64);
+            addDoctorOrder.Cursor = Cursors.Hand;
+            addDoctorOrder.HoverState.ImageSize = new Size(64, 64);
+            addDoctorOrder.Image = (Image)resources.GetObject("addDoctorOrder.Image");
+            addDoctorOrder.ImageOffset = new Point(0, 0);
+            addDoctorOrder.ImageRotate = 0F;
+            addDoctorOrder.ImageSize = new Size(40, 45);
+            addDoctorOrder.Location = new Point(469, 138);
+            addDoctorOrder.Name = "addDoctorOrder";
+            addDoctorOrder.PressedState.ImageSize = new Size(64, 64);
+            addDoctorOrder.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            addDoctorOrder.Size = new Size(44, 46);
+            addDoctorOrder.TabIndex = 228;
+            addDoctorOrder.Click += AddSpecialization_Click;
+            // 
+            // DoctorOrdersFlowLayoutPanel
+            // 
+            DoctorOrdersFlowLayoutPanel.AutoScroll = true;
+            DoctorOrdersFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            DoctorOrdersFlowLayoutPanel.Location = new Point(513, 145);
+            DoctorOrdersFlowLayoutPanel.Name = "DoctorOrdersFlowLayoutPanel";
+            DoctorOrdersFlowLayoutPanel.Size = new Size(308, 130);
+            DoctorOrdersFlowLayoutPanel.TabIndex = 229;
+            DoctorOrdersFlowLayoutPanel.WrapContents = false;
+            DoctorOrdersFlowLayoutPanel.Paint += flowLayoutPanel1_Paint;
+            // 
+            // prescritionFlowLayoutPanel
+            // 
+            prescritionFlowLayoutPanel.AutoScroll = true;
+            prescritionFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            prescritionFlowLayoutPanel.Location = new Point(513, 317);
+            prescritionFlowLayoutPanel.Name = "prescritionFlowLayoutPanel";
+            prescritionFlowLayoutPanel.Size = new Size(308, 130);
+            prescritionFlowLayoutPanel.TabIndex = 231;
+            prescritionFlowLayoutPanel.WrapContents = false;
+            // 
+            // addPrescription
+            // 
+            addPrescription.BackColor = Color.FromArgb(110, 177, 247);
+            addPrescription.BackgroundImageLayout = ImageLayout.Stretch;
+            addPrescription.CheckedState.ImageSize = new Size(64, 64);
+            addPrescription.Cursor = Cursors.Hand;
+            addPrescription.HoverState.ImageSize = new Size(64, 64);
+            addPrescription.Image = (Image)resources.GetObject("addPrescription.Image");
+            addPrescription.ImageOffset = new Point(0, 0);
+            addPrescription.ImageRotate = 0F;
+            addPrescription.ImageSize = new Size(40, 45);
+            addPrescription.Location = new Point(470, 310);
+            addPrescription.Name = "addPrescription";
+            addPrescription.PressedState.ImageSize = new Size(64, 64);
+            addPrescription.ShadowDecoration.CustomizableEdges = customizableEdges27;
+            addPrescription.Size = new Size(41, 46);
+            addPrescription.TabIndex = 230;
+            addPrescription.Click += addPrescription_Click;
+            // 
             // DoctorDiagnosisRecord
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -451,6 +461,10 @@
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(845, 464);
             ControlBox = false;
+            Controls.Add(prescritionFlowLayoutPanel);
+            Controls.Add(addPrescription);
+            Controls.Add(DoctorOrdersFlowLayoutPanel);
+            Controls.Add(addDoctorOrder);
             Controls.Add(DoctorDateLabel);
             Controls.Add(DoctorTimeLabel);
             Controls.Add(DoctorConsultationFeeLabel);
@@ -465,9 +479,7 @@
             Controls.Add(guna2HtmlLabel21);
             Controls.Add(guna2CustomGradientPanel2);
             Controls.Add(guna2HtmlLabel5);
-            Controls.Add(DoctorOrderTextBox);
             Controls.Add(guna2HtmlLabel4);
-            Controls.Add(PrescriptionTextBox);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(AdditionalNoteTextBox);
             Controls.Add(guna2HtmlLabel3);
@@ -488,14 +500,11 @@
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
         private Guna.UI2.WinForms.Guna2Button SaveButton;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
-        private Guna.UI2.WinForms.Guna2TextBox DoctorOrderTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
-        private Guna.UI2.WinForms.Guna2TextBox PrescriptionTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2TextBox AdditionalNoteTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2TextBox DiagnosisTextBox;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private Guna.UI2.WinForms.Guna2TextBox FirstNameTextBox;
         private Guna.UI2.WinForms.Guna2HtmlLabel PatientNameLabel;
         private Guna.UI2.WinForms.Guna2ImageButton BackButton;
@@ -510,5 +519,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorDateLabel;
         private Guna.UI2.WinForms.Guna2HtmlLabel DoctorTimeLabel;
+        private Guna.UI2.WinForms.Guna2ImageButton addDoctorOrder;
+        private FlowLayoutPanel prescritionFlowLayoutPanel;
+        private Guna.UI2.WinForms.Guna2ImageButton addPrescription;
+        private FlowLayoutPanel DoctorOrdersFlowLayoutPanel;
     }
 }

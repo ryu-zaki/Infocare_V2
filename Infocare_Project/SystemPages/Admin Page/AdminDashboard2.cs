@@ -128,6 +128,7 @@ namespace Infocare_Project_1
         private void AddDoctor_Click(object sender, EventArgs e)
         {
             AdminAddDoctor adminAddDoctor = new AdminAddDoctor();
+            adminAddDoctor.ShowDoctorList += ShowDoctorList;
             adminAddDoctor.Show();
         }
 
@@ -277,6 +278,7 @@ namespace Infocare_Project_1
         private void AddDoctor_Click_1(object sender, EventArgs e)
         {
             AdminAddDoctor adminAddDoctor = new AdminAddDoctor();
+            adminAddDoctor.ShowDoctorList += ShowDoctorList;
             adminAddDoctor.Show();
         }
 

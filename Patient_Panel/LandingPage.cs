@@ -1,4 +1,6 @@
 using Infocare_Project;
+using Infocare_Project_1;
+using System.Diagnostics;
 
 namespace Patient_Panel
 {
@@ -7,6 +9,7 @@ namespace Patient_Panel
         public Form1()
         {
             InitializeComponent();
+            //Debug.WriteLine(ProcessMethods.HashCharacter("Jhonwell22@")); 
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)

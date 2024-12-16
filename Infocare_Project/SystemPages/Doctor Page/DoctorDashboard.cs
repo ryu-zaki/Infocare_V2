@@ -85,6 +85,7 @@ namespace Infocare_Project_1
 
         private void AppointmentListButton_Click(object sender, EventArgs e)
         {
+           
             DataGridViewList.DataSource = null;
 
             ReconsiderButton.Visible = false;

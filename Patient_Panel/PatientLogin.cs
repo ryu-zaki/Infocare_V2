@@ -56,7 +56,7 @@ namespace Infocare_Project
 
             if (validStaff)
             {
-                PatientModel patient = Database.GetPatientInfo(username, password);
+                PatientModel patient = Database.GetPatientInfo(username, ProcessMethods.HashCharacter(password));
 
                 MessageBox.Show("Log in Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
