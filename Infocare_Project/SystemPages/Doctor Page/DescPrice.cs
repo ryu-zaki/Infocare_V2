@@ -10,9 +10,10 @@ using System.Windows.Forms;
 
 namespace AdminDoctor_Panel.SystemPages.Doctor_Page
 {
-   
+
     public partial class DescPrice : UserControl
     {
+        public Action<DescPrice> RemoveTile;
         public DescPrice()
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace AdminDoctor_Panel.SystemPages.Doctor_Page
 
         private void DescPrice_Load(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -40,6 +41,11 @@ namespace AdminDoctor_Panel.SystemPages.Doctor_Page
             {
                 e.Handled = true;
             }
+        }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
+        {
+            RemoveTile.Invoke(this);
         }
     }
 }

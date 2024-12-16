@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             descTextbox = new Guna.UI2.WinForms.Guna2TextBox();
             priceTextbox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -58,7 +58,7 @@
             // descTextbox
             // 
             descTextbox.BorderRadius = 5;
-            descTextbox.CustomizableEdges = customizableEdges7;
+            descTextbox.CustomizableEdges = customizableEdges1;
             descTextbox.DefaultText = "";
             descTextbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             descTextbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -72,14 +72,14 @@
             descTextbox.PasswordChar = '\0';
             descTextbox.PlaceholderText = "";
             descTextbox.SelectedText = "";
-            descTextbox.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            descTextbox.ShadowDecoration.CustomizableEdges = customizableEdges2;
             descTextbox.Size = new Size(130, 36);
             descTextbox.TabIndex = 1;
             // 
             // priceTextbox
             // 
             priceTextbox.BorderRadius = 5;
-            priceTextbox.CustomizableEdges = customizableEdges9;
+            priceTextbox.CustomizableEdges = customizableEdges3;
             priceTextbox.DefaultText = "";
             priceTextbox.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             priceTextbox.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -93,7 +93,7 @@
             priceTextbox.PasswordChar = '\0';
             priceTextbox.PlaceholderText = "";
             priceTextbox.SelectedText = "";
-            priceTextbox.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            priceTextbox.ShadowDecoration.CustomizableEdges = customizableEdges4;
             priceTextbox.Size = new Size(105, 36);
             priceTextbox.TabIndex = 2;
             priceTextbox.KeyPress += guna2TextBox2_KeyPress;
@@ -102,15 +102,16 @@
             // 
             guna2PictureBox1.BackgroundImage = Properties.Resources.icons8_cross_48;
             guna2PictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            guna2PictureBox1.CustomizableEdges = customizableEdges11;
+            guna2PictureBox1.CustomizableEdges = customizableEdges5;
             guna2PictureBox1.FillColor = Color.Transparent;
             guna2PictureBox1.ImageRotate = 0F;
             guna2PictureBox1.Location = new Point(249, 12);
             guna2PictureBox1.Name = "guna2PictureBox1";
-            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2PictureBox1.Size = new Size(20, 20);
             guna2PictureBox1.TabIndex = 3;
             guna2PictureBox1.TabStop = false;
+            guna2PictureBox1.Click += guna2PictureBox1_Click;
             // 
             // DescPrice
             // 
