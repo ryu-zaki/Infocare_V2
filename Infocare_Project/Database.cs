@@ -727,7 +727,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                         command.Parameters.AddWithValue("@PatientName", patientName);
 
                         int count = Convert.ToInt32(command.ExecuteScalar());
-                        return count > 0;
+                        return count > 5;
                     }
                 }
             }
@@ -895,7 +895,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         {
             DataTable AppointmentTable = new DataTable();
             string query = @"SELECT id as 'Transaction ID', ah_status as 'Status', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
-             WHERE ah_Patient_Name = @PatientName AND ( ah_status = 'Completed' || ah_status = 'Pending' )";
+             WHERE ah_Patient_Name = @PatientName AND ( ah_status = 'Accepted' || ah_status = 'Pending' || ah_status = 'Declined' )";
 
             try
             {
@@ -1879,7 +1879,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         }
         public static void DeletePatientByUsername(string username)
         {
-            string query = "DELETE FROM tb_patientinfo WHERE P_Username = @Username";
+            string query = "DELETE FROM tb_patientinfo WHERE P_Username = @Username and ";
 
             using (var connection = GetConnection())
             {
@@ -1931,6 +1931,38 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                 }
             }
         }
+
+        public static bool DeleteAppointmentByPatient(int accountId)
+        {
+            string query = "DELETE FROM tb_appointmenthistory WHERE id = @ID and ah_status = 'Pending' or ah_status = 'Declined'";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@ID", accountId);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        Console.WriteLine("No record found with the specified ID.");
+                        return false; 
+                    }
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error deleting appointment: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
+
 
 
         #endregion

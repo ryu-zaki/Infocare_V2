@@ -39,6 +39,7 @@ namespace Infocare_Project_1
             pd_DoctorPanel.Visible = false;
             BookingPanel.Visible = false;
 
+
             LoadSpecializations();
         }
 
@@ -447,6 +448,7 @@ namespace Infocare_Project_1
         {
             SearchPanel.Visible = true;
             ViewButton.Visible = true;
+            DeleteButton.Visible = true;
             AppointmentLabel.Text = "My Appointments";
             SelectPatientPanel.Visible = false;
             SpecPanel.Visible = false;
@@ -658,15 +660,56 @@ namespace Infocare_Project_1
         {
 
         }
-         
+
         private void MyProfileTabBtn_Click(object sender, EventArgs e)
         {
             PatientRegisterForm form = new PatientRegisterForm(ModalMode.Edit, patient.AccountID)
             {
-                username = patient.UserName, password = patient.Password
+                username = patient.UserName,
+                password = patient.Password
             };
-            
+
             form.ShowDialog();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (AppointmentDataGridViewList2.SelectedRows.Count > 0)
+            {
+                int appointmentId = Convert.ToInt32(AppointmentDataGridViewList2.SelectedRows[0].Cells["Transaction ID"].Value);
+
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to delete this appointment?",
+                    "Delete Appointment",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    bool isDeleted = Database.DeleteAppointmentByPatient(appointmentId);
+
+                    if (isDeleted)
+                    {
+                        MessageBox.Show("Appointment successfully deleted.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        RefreshAppointmentList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You can delete Pending and Declined appointment only. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void RefreshAppointmentList()
+        {
+            string patientName = $"{patient.LastName}, {patient.FirstName}";
+            AppointmentDataGridViewList2.DataSource = Database.ViewPatientAppointments(patientName); 
         }
     }
 }
