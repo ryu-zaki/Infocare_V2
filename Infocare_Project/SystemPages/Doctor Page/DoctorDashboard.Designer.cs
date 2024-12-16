@@ -42,13 +42,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -73,7 +73,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ad_docpanel = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            ReconsiderButton = new Guna.UI2.WinForms.Guna2Button();
             InvoiceButton = new Guna.UI2.WinForms.Guna2Button();
             CheckOutButton = new Guna.UI2.WinForms.Guna2Button();
             ViewButton = new Guna.UI2.WinForms.Guna2Button();
@@ -82,6 +81,7 @@
             AcceptButton = new Guna.UI2.WinForms.Guna2Button();
             DataGridViewList = new Guna.UI2.WinForms.Guna2DataGridView();
             checkboxcolumn = new DataGridViewCheckBoxColumn();
+            ReconsiderButton = new Guna.UI2.WinForms.Guna2Button();
             RejectedRequestsButton = new Guna.UI2.WinForms.Guna2Button();
             AppointmentListButton = new Guna.UI2.WinForms.Guna2Button();
             ad_guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -113,7 +113,6 @@
             // ad_docpanel
             // 
             ad_docpanel.BackColor = Color.FromArgb(13, 41, 80);
-            ad_docpanel.Controls.Add(ReconsiderButton);
             ad_docpanel.Controls.Add(InvoiceButton);
             ad_docpanel.Controls.Add(CheckOutButton);
             ad_docpanel.Controls.Add(ViewButton);
@@ -121,6 +120,7 @@
             ad_docpanel.Controls.Add(DeclineButton);
             ad_docpanel.Controls.Add(AcceptButton);
             ad_docpanel.Controls.Add(DataGridViewList);
+            ad_docpanel.Controls.Add(ReconsiderButton);
             ad_docpanel.CustomizableEdges = customizableEdges15;
             ad_docpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_docpanel.FillColor2 = Color.FromArgb(13, 41, 80);
@@ -132,38 +132,12 @@
             ad_docpanel.Size = new Size(662, 448);
             ad_docpanel.TabIndex = 143;
             // 
-            // ReconsiderButton
-            // 
-            ReconsiderButton.BackColor = Color.Transparent;
-            ReconsiderButton.BorderRadius = 15;
-            ReconsiderButton.Cursor = Cursors.Hand;
-            ReconsiderButton.CustomizableEdges = customizableEdges1;
-            ReconsiderButton.DisabledState.BorderColor = Color.DarkGray;
-            ReconsiderButton.DisabledState.CustomBorderColor = Color.DarkGray;
-            ReconsiderButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            ReconsiderButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            ReconsiderButton.FillColor = SystemColors.ButtonFace;
-            ReconsiderButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            ReconsiderButton.ForeColor = Color.Black;
-            ReconsiderButton.ImageAlign = HorizontalAlignment.Left;
-            ReconsiderButton.ImageSize = new Size(40, 40);
-            ReconsiderButton.Location = new Point(549, 8);
-            ReconsiderButton.Margin = new Padding(3, 2, 3, 2);
-            ReconsiderButton.Name = "ReconsiderButton";
-            ReconsiderButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            ReconsiderButton.Size = new Size(103, 31);
-            ReconsiderButton.TabIndex = 153;
-            ReconsiderButton.Text = "Reconsider";
-            ReconsiderButton.TextFormatNoPrefix = true;
-            ReconsiderButton.Visible = false;
-            ReconsiderButton.Click += ReconsiderButton_Click;
-            // 
             // InvoiceButton
             // 
             InvoiceButton.BackColor = Color.Transparent;
             InvoiceButton.BorderRadius = 15;
             InvoiceButton.Cursor = Cursors.Hand;
-            InvoiceButton.CustomizableEdges = customizableEdges3;
+            InvoiceButton.CustomizableEdges = customizableEdges1;
             InvoiceButton.DisabledState.BorderColor = Color.DarkGray;
             InvoiceButton.DisabledState.CustomBorderColor = Color.DarkGray;
             InvoiceButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -177,7 +151,7 @@
             InvoiceButton.Location = new Point(546, 8);
             InvoiceButton.Margin = new Padding(3, 2, 3, 2);
             InvoiceButton.Name = "InvoiceButton";
-            InvoiceButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            InvoiceButton.ShadowDecoration.CustomizableEdges = customizableEdges2;
             InvoiceButton.Size = new Size(114, 33);
             InvoiceButton.TabIndex = 152;
             InvoiceButton.Text = "Invoice";
@@ -190,7 +164,7 @@
             CheckOutButton.BackColor = Color.Transparent;
             CheckOutButton.BorderRadius = 15;
             CheckOutButton.Cursor = Cursors.Hand;
-            CheckOutButton.CustomizableEdges = customizableEdges5;
+            CheckOutButton.CustomizableEdges = customizableEdges3;
             CheckOutButton.DisabledState.BorderColor = Color.DarkGray;
             CheckOutButton.DisabledState.CustomBorderColor = Color.DarkGray;
             CheckOutButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -204,7 +178,7 @@
             CheckOutButton.Location = new Point(168, 8);
             CheckOutButton.Margin = new Padding(3, 2, 3, 2);
             CheckOutButton.Name = "CheckOutButton";
-            CheckOutButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            CheckOutButton.ShadowDecoration.CustomizableEdges = customizableEdges4;
             CheckOutButton.Size = new Size(114, 33);
             CheckOutButton.TabIndex = 151;
             CheckOutButton.Text = "Checkout";
@@ -217,7 +191,7 @@
             ViewButton.BackColor = Color.Transparent;
             ViewButton.BorderRadius = 15;
             ViewButton.Cursor = Cursors.Hand;
-            ViewButton.CustomizableEdges = customizableEdges7;
+            ViewButton.CustomizableEdges = customizableEdges5;
             ViewButton.DisabledState.BorderColor = Color.DarkGray;
             ViewButton.DisabledState.CustomBorderColor = Color.DarkGray;
             ViewButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -231,7 +205,7 @@
             ViewButton.Location = new Point(19, 8);
             ViewButton.Margin = new Padding(3, 2, 3, 2);
             ViewButton.Name = "ViewButton";
-            ViewButton.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            ViewButton.ShadowDecoration.CustomizableEdges = customizableEdges6;
             ViewButton.Size = new Size(143, 33);
             ViewButton.TabIndex = 150;
             ViewButton.Text = "View Document";
@@ -243,7 +217,7 @@
             // 
             CreateDiagnosisButton.BackColor = Color.Transparent;
             CreateDiagnosisButton.BorderRadius = 15;
-            CreateDiagnosisButton.CustomizableEdges = customizableEdges9;
+            CreateDiagnosisButton.CustomizableEdges = customizableEdges7;
             CreateDiagnosisButton.DisabledState.BorderColor = Color.DarkGray;
             CreateDiagnosisButton.DisabledState.CustomBorderColor = Color.DarkGray;
             CreateDiagnosisButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -257,7 +231,7 @@
             CreateDiagnosisButton.Location = new Point(19, 8);
             CreateDiagnosisButton.Margin = new Padding(3, 2, 3, 2);
             CreateDiagnosisButton.Name = "CreateDiagnosisButton";
-            CreateDiagnosisButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            CreateDiagnosisButton.ShadowDecoration.CustomizableEdges = customizableEdges8;
             CreateDiagnosisButton.Size = new Size(143, 33);
             CreateDiagnosisButton.TabIndex = 143;
             CreateDiagnosisButton.Text = "Create Diagnosis";
@@ -269,7 +243,7 @@
             // 
             DeclineButton.BackColor = Color.Transparent;
             DeclineButton.BorderRadius = 15;
-            DeclineButton.CustomizableEdges = customizableEdges11;
+            DeclineButton.CustomizableEdges = customizableEdges9;
             DeclineButton.DisabledState.BorderColor = Color.DarkGray;
             DeclineButton.DisabledState.CustomBorderColor = Color.DarkGray;
             DeclineButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -282,7 +256,7 @@
             DeclineButton.Location = new Point(549, 8);
             DeclineButton.Margin = new Padding(3, 2, 3, 2);
             DeclineButton.Name = "DeclineButton";
-            DeclineButton.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            DeclineButton.ShadowDecoration.CustomizableEdges = customizableEdges10;
             DeclineButton.Size = new Size(103, 31);
             DeclineButton.TabIndex = 147;
             DeclineButton.Text = "Decline";
@@ -295,7 +269,7 @@
             AcceptButton.BackColor = Color.Transparent;
             AcceptButton.BorderRadius = 15;
             AcceptButton.Cursor = Cursors.Hand;
-            AcceptButton.CustomizableEdges = customizableEdges13;
+            AcceptButton.CustomizableEdges = customizableEdges11;
             AcceptButton.DisabledState.BorderColor = Color.DarkGray;
             AcceptButton.DisabledState.CustomBorderColor = Color.DarkGray;
             AcceptButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -308,7 +282,7 @@
             AcceptButton.Location = new Point(440, 8);
             AcceptButton.Margin = new Padding(3, 2, 3, 2);
             AcceptButton.Name = "AcceptButton";
-            AcceptButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            AcceptButton.ShadowDecoration.CustomizableEdges = customizableEdges12;
             AcceptButton.Size = new Size(103, 31);
             AcceptButton.TabIndex = 146;
             AcceptButton.Text = "Accept";
@@ -399,6 +373,32 @@
             checkboxcolumn.HeaderText = "Select";
             checkboxcolumn.Name = "checkboxcolumn";
             checkboxcolumn.Resizable = DataGridViewTriState.False;
+            // 
+            // ReconsiderButton
+            // 
+            ReconsiderButton.BackColor = Color.Transparent;
+            ReconsiderButton.BorderRadius = 15;
+            ReconsiderButton.Cursor = Cursors.Hand;
+            ReconsiderButton.CustomizableEdges = customizableEdges13;
+            ReconsiderButton.DisabledState.BorderColor = Color.DarkGray;
+            ReconsiderButton.DisabledState.CustomBorderColor = Color.DarkGray;
+            ReconsiderButton.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            ReconsiderButton.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            ReconsiderButton.FillColor = SystemColors.ButtonFace;
+            ReconsiderButton.Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            ReconsiderButton.ForeColor = Color.Black;
+            ReconsiderButton.ImageAlign = HorizontalAlignment.Left;
+            ReconsiderButton.ImageSize = new Size(40, 40);
+            ReconsiderButton.Location = new Point(549, 8);
+            ReconsiderButton.Margin = new Padding(3, 2, 3, 2);
+            ReconsiderButton.Name = "ReconsiderButton";
+            ReconsiderButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            ReconsiderButton.Size = new Size(103, 31);
+            ReconsiderButton.TabIndex = 153;
+            ReconsiderButton.Text = "Reconsider";
+            ReconsiderButton.TextFormatNoPrefix = true;
+            ReconsiderButton.Visible = false;
+            ReconsiderButton.Click += ReconsiderButton_Click;
             // 
             // RejectedRequestsButton
             // 
