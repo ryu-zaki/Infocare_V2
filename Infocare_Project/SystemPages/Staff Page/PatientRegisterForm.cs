@@ -136,6 +136,7 @@ namespace Infocare_Project
         {
             string contactNumber = ContactNumberTxtbox.Text;
 
+
             if (contactNumber.Length > 0 && (contactNumber.Length != 11 || !contactNumber.StartsWith("09") || !contactNumber.All(char.IsDigit)))
             {
                 MessageBox.Show("Invalid number. The contact number must start with '09' and be exactly 11 digits.", "Invalid Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -148,16 +149,15 @@ namespace Infocare_Project
                 return;
             }
 
-
-            if (!MiddleNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTxtbox.Text))
+            if (!LastNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTxtbox.Text))
             {
-                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("First name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!LastNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTxtbox.Text))
+            if (!MiddleNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '/') && !string.IsNullOrEmpty(MiddleNameTxtbox.Text))
             {
-                MessageBox.Show("Last name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Middle name must contain only letters, spaces, and the '/' character.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -166,6 +166,12 @@ namespace Infocare_Project
                 MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (!ProcessMethods.ValidateEmail(EmailTxtbox.Text))
+            {
+                MessageBox.Show("Please enter a valid email.", "Invalid error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             string password = PasswordTextBox.Text;
 
@@ -193,7 +199,8 @@ namespace Infocare_Project
 
             if (!InputValidator.ValidateNumeric(ContactNumberTxtbox, "Contact number must contain only numbers. ex.(09777864220)") ||
                 !InputValidator.ValidateNumeric(ZipCodeTxtbox, "Zip Code must contain only numbers. ex. (1400)") ||
-                !InputValidator.ValidateNumeric(ZoneTxtbox, "Zone must contain only numbers. ex. (1)"))
+                !InputValidator.ValidateNumeric(ZoneTxtbox, "Zone must contain only numbers. ex. (1)") ||
+                !InputValidator.ValidateNumeric(HouseNoTxtbox, "House Np must contain only numbers. ex. (14)"))
             {
                 return;
             }

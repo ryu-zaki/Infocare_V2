@@ -46,7 +46,6 @@ namespace Infocare_Project
 
                 MessageBox.Show("Credentials are empty", "Empty FIelds", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                this.Hide();
                 return;
 
             }
