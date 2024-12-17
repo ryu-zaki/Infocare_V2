@@ -99,22 +99,20 @@ namespace Infocare_Project
             {
                 MessageBox.Show("First name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
 
             if (!LastNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(LastNameTextbox.Text))
             {
-                MessageBox.Show("Last name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("First name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
 
-            if (!MiddleNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
+            if (!MiddleNameTextbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '/') && !string.IsNullOrEmpty(MiddleNameTextbox.Text))
             {
-                MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Middle name must contain only letters, spaces, and the '/' character.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-
             }
+
 
             if (Database.UsernameExistsDoctor(UserNameTextBox.Text))
             {
@@ -137,11 +135,7 @@ namespace Infocare_Project
             }
            
 
-            if (!LastNameTextbox.Text.All(char.IsLetter) && !string.IsNullOrEmpty(LastNameTextbox.Text))
-            {
-                MessageBox.Show("Last name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            
             if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(LastNameTextbox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(UserNameTextBox.Text.Trim()) ||
