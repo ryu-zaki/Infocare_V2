@@ -200,20 +200,25 @@ namespace Infocare_Project
                     address = address
                 };
 
-
-                DialogResult YesNO = MessageBox.Show("Are you sure to submit?", "Submit information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                string category = mode == ModalMode.Add ? "submit" : "update";
+                DialogResult YesNO = MessageBox.Show($"Are you sure to {category}?", $"{category} information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (YesNO == DialogResult.Yes)
                 {
                     try
                     {
                         Database.PatientRegFunc(emergencyContact, patient.UserName, firstname, lastname, middlename, suffix, housenum, street, barangay, city, zipcode, zone, mode);
-                        MessageBox.Show("Submit Succesfully");
+                        
+                      
+                        MessageBox.Show(mode == ModalMode.Add ? "Submit Succesfully" : "Information Updated");
                         this.Hide();
 
                         //Refresh the patient list
-                       
-                        //ReloadResults.Invoke();
+                        if (mode == ModalMode.Edit)
+                        {
+                            ReloadResults.Invoke();
+                        }
+                        
 
                     }
                     catch (Exception ex)

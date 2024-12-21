@@ -295,7 +295,7 @@ namespace Infocare_Project
             var patientInfoForm = new PatientBasicInformationForm(ProperModel, mode, panelMode);
             patientInfoForm.ReloadResults += ReloadResults;
             patientInfoForm.DeletePatientAndReload += DeletePatientAndReload;
-          //  patientInfoForm.TopMost = true;
+            patientInfoForm.TopMost = true;
             patientInfoForm.Show();
             this.Hide();
 
