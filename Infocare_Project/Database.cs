@@ -13,7 +13,7 @@ namespace Infocare_Project
     public static class Database
     {
 
-        private static string dbms = "Workbench";
+        private static string dbms = "Xampp";
         public static string connectionString = ConfigurationManager.ConnectionStrings[dbms].ConnectionString;
 
         public static void ExecuteQuery(string query, Dictionary<string, object> parameters)
@@ -31,8 +31,6 @@ namespace Infocare_Project
                 }
             }
         }
-
-        //Other Functions are seperated here by region
 
         #region Get Functions
 
@@ -913,7 +911,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable PendingAppointmentList(string doctorFullName)
         {
-            string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
+            string query = @"SELECT ah_Patient_Name AS 'Patient Name', id AS 'Transaction ID', ah_Specialization AS 'Doctor Specialization', ah_time AS 'Appointment Time', ah_date AS 'Appointment Date', ah_consfee AS 'Consultation Fee' FROM tb_appointmenthistory 
                      WHERE ah_status = 'Pending' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable appointmentTable = new DataTable();
@@ -974,7 +972,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable ViewAppointments(string doctorFullName)
         {
-            string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee FROM tb_appointmenthistory 
+            string query = @"SELECT ah_Patient_Name AS 'Patient Name', id, ah_Specialization AS 'Doctor Specialization', ah_time AS 'Appointment Time', ah_date AS 'Appointment Date', ah_consfee AS 'Consultation Fee' FROM tb_appointmenthistory 
                      WHERE ah_status = 'Accepted' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable AppointmentTable = new DataTable();
@@ -1064,7 +1062,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable DeclinedAppointments(string doctorFullName)
         {
-            string query = @"SELECT ah_Patient_Name, id, ah_Specialization, ah_doctor_name, ah_time, ah_date, ah_consfee  FROM tb_appointmenthistory 
+            string query = @"SELECT ah_Patient_Name AS 'Patient Name', id AS 'Transaction ID', ah_Specialization AS 'Doctor Specialization', ah_time AS 'Appointment Time', ah_date AS 'Appointment Date', ah_consfee AS 'Consultation Fee'  FROM tb_appointmenthistory 
                      WHERE ah_status = 'Declined' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable AppointmentTable = new DataTable();
@@ -1095,7 +1093,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable ViewCompletedppointments()
         {
-            string query = @"SELECT id as 'Transaction ID', ah_Patient_Name as 'Patient Name', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+            string query = @"SELECT id as 'Transaction ID', ah_Patient_Name as 'Patient Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
              WHERE ah_status = 'Completed'";
             DataTable AppointmentTable = new DataTable();
 
@@ -1434,14 +1432,6 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
-                //try
-                //{
-                    
-                //}
-                //catch (Exception ex)
-                //{
-                //    throw new Exception("Error updating or inserting patient data: " + ex.Message);
-                //}
             }
         }
 
