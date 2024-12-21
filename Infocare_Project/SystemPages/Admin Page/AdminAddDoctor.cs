@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Numerics;
 using System.Reflection.Emit;
 using System.Security.Policy;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Infocare_Project.NewFolder;
@@ -18,7 +19,7 @@ namespace Infocare_Project
     {
         private PlaceHolderHandler _placeHolderHandler;
         public Action ShowDoctorList;
-
+        bool passShow;
         ModalMode mode;
         int AccountId;
         DoctorModel doctor;
@@ -38,6 +39,7 @@ namespace Infocare_Project
                 PasswordTextBox.Visible = false;
                 ConfirmPasswordTextBox.Visible = false;
                 removeDoctor.Visible = true;
+                passValidatorMsg.Visible = false;
             }
         }
 
@@ -251,7 +253,7 @@ namespace Infocare_Project
                 }
 
 
-                MessageBox.Show("Doctor added successfully!");
+                MessageBox.Show($"Doctor {(mode == ModalMode.Add ? "Added" : "Info Updated")} successfully!");
                 this.Hide();
                 ShowDoctorList.Invoke();
 
@@ -322,6 +324,33 @@ namespace Infocare_Project
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
             _placeHolderHandler.HandleTextBoxPlaceholder(PasswordTextBox, PLabel, "Password");
+
+
+            if (PasswordTextBox.Text.Trim() == "")
+            {
+                passValidatorMsg.Visible = false;
+            }
+            else
+            {
+                passValidatorMsg.Visible = true;
+                string msg =
+                !Regex.IsMatch(PasswordTextBox.Text, @"[A-Z]") ? "Add at least one uppercase letter" :
+                !Regex.IsMatch(PasswordTextBox.Text, @"[^a-zA-Z0-9\s]") ? "Add At least one special character" : !Regex.IsMatch(PasswordTextBox.Text, @"[\d]") ? "Add At least one number" : !Regex.IsMatch(PasswordTextBox.Text, @".{8,}") ? "Must have at least 8 characters long" : "";
+
+                if (msg == "")
+                {
+
+                    passValidatorMsg.Text = "*Strong Enough";
+                    passValidatorMsg.ForeColor = Color.Green;
+                }
+                else
+                {
+                    passValidatorMsg.Text = "*" + msg;
+                    passValidatorMsg.ForeColor = Color.Red;
+
+                }
+
+            }
         }
 
         private void ConfirmPasswordTextBox_TextChanged(object sender, EventArgs e)
@@ -395,7 +424,7 @@ namespace Infocare_Project
         private void removeDoctor_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to delete this doctor?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            
+
             if (result == DialogResult.Yes)
             {
 
@@ -405,7 +434,27 @@ namespace Infocare_Project
                 this.Close();
 
             }
-        
+
+        }
+
+        private void PasswordTextBox_IconRightClick(object sender, EventArgs e)
+        {
+            if (passShow)
+            {
+                PasswordTextBox.PasswordChar = '\0';
+                ConfirmPasswordTextBox.PasswordChar = '\0';
+                PasswordTextBox.IconRight = AdminDoctor_Panel.Properties.Resources.hide_password_logo;
+                passShow = false;
+
+
+            }
+            else
+            {
+                PasswordTextBox.PasswordChar = '●';
+                ConfirmPasswordTextBox.PasswordChar = '●';
+                PasswordTextBox.IconRight = AdminDoctor_Panel.Properties.Resources.show_password_logo;
+                passShow = true;
+            }
         }
     }
 }

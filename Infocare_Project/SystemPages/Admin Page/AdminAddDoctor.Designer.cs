@@ -105,6 +105,8 @@
             guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             emailTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             removeDoctor = new Guna.UI2.WinForms.Guna2Button();
+            passValidatorMsg = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox4).BeginInit();
             guna2CustomGradientPanel2.SuspendLayout();
             SuspendLayout();
@@ -221,7 +223,7 @@
             ConfirmPasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             ConfirmPasswordTextBox.Location = new Point(478, 257);
             ConfirmPasswordTextBox.Name = "ConfirmPasswordTextBox";
-            ConfirmPasswordTextBox.PasswordChar = '\0';
+            ConfirmPasswordTextBox.PasswordChar = '●';
             ConfirmPasswordTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             ConfirmPasswordTextBox.PlaceholderText = "Confirm Password";
             ConfirmPasswordTextBox.SelectedText = "";
@@ -244,15 +246,19 @@
             PasswordTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             PasswordTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             PasswordTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            PasswordTextBox.IconRight = AdminDoctor_Panel.Properties.Resources.show_password_logo;
+            PasswordTextBox.IconRightOffset = new Point(5, 0);
+            PasswordTextBox.IconRightSize = new Size(20, 15);
             PasswordTextBox.Location = new Point(261, 257);
             PasswordTextBox.Name = "PasswordTextBox";
-            PasswordTextBox.PasswordChar = '\0';
+            PasswordTextBox.PasswordChar = '●';
             PasswordTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
             PasswordTextBox.PlaceholderText = "Password";
             PasswordTextBox.SelectedText = "";
             PasswordTextBox.ShadowDecoration.CustomizableEdges = customizableEdges29;
             PasswordTextBox.Size = new Size(194, 46);
             PasswordTextBox.TabIndex = 97;
+            PasswordTextBox.IconRightClick += PasswordTextBox_IconRightClick;
             PasswordTextBox.TextChanged += PasswordTextBox_TextChanged;
             // 
             // TimeComboBox
@@ -267,7 +273,7 @@
             TimeComboBox.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             TimeComboBox.ForeColor = Color.FromArgb(68, 88, 112);
             TimeComboBox.ItemHeight = 30;
-            TimeComboBox.Location = new Point(261, 339);
+            TimeComboBox.Location = new Point(261, 348);
             TimeComboBox.Name = "TimeComboBox";
             TimeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges25;
             TimeComboBox.Size = new Size(194, 36);
@@ -290,7 +296,7 @@
             TALabel.BackColor = Color.FromArgb(110, 177, 247);
             TALabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             TALabel.ForeColor = Color.FromArgb(13, 41, 80);
-            TALabel.Location = new Point(263, 319);
+            TALabel.Location = new Point(263, 328);
             TALabel.Margin = new Padding(3, 2, 3, 2);
             TALabel.Name = "TALabel";
             TALabel.Size = new Size(87, 15);
@@ -465,7 +471,7 @@
             guna2HtmlLabel8.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel8.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             guna2HtmlLabel8.ForeColor = SystemColors.Control;
-            guna2HtmlLabel8.Location = new Point(366, 206);
+            guna2HtmlLabel8.Location = new Point(366, 216);
             guna2HtmlLabel8.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel8.Name = "guna2HtmlLabel8";
             guna2HtmlLabel8.Size = new Size(348, 15);
@@ -477,7 +483,7 @@
             guna2HtmlLabel11.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel11.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
             guna2HtmlLabel11.ForeColor = SystemColors.Control;
-            guna2HtmlLabel11.Location = new Point(23, 206);
+            guna2HtmlLabel11.Location = new Point(23, 216);
             guna2HtmlLabel11.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel11.Name = "guna2HtmlLabel11";
             guna2HtmlLabel11.Size = new Size(348, 15);
@@ -518,7 +524,7 @@
             DayAvailabilityLabel.BackColor = Color.FromArgb(110, 177, 247);
             DayAvailabilityLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             DayAvailabilityLabel.ForeColor = Color.FromArgb(13, 41, 80);
-            DayAvailabilityLabel.Location = new Point(478, 319);
+            DayAvailabilityLabel.Location = new Point(478, 328);
             DayAvailabilityLabel.Margin = new Padding(3, 2, 3, 2);
             DayAvailabilityLabel.Name = "DayAvailabilityLabel";
             DayAvailabilityLabel.Size = new Size(82, 15);
@@ -538,7 +544,7 @@
             DayAvailabilityCombobox.ForeColor = Color.FromArgb(68, 88, 112);
             DayAvailabilityCombobox.ItemHeight = 30;
             DayAvailabilityCombobox.Items.AddRange(new object[] { "" });
-            DayAvailabilityCombobox.Location = new Point(478, 339);
+            DayAvailabilityCombobox.Location = new Point(478, 348);
             DayAvailabilityCombobox.Name = "DayAvailabilityCombobox";
             DayAvailabilityCombobox.ShadowDecoration.CustomizableEdges = customizableEdges14;
             DayAvailabilityCombobox.Size = new Size(231, 36);
@@ -548,7 +554,7 @@
             // 
             guna2HtmlLabel5.BackColor = Color.Transparent;
             guna2HtmlLabel5.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel5.Location = new Point(258, 400);
+            guna2HtmlLabel5.Location = new Point(259, 409);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             guna2HtmlLabel5.Size = new Size(70, 15);
             guna2HtmlLabel5.TabIndex = 157;
@@ -558,7 +564,7 @@
             // 
             guna2HtmlLabel6.BackColor = Color.Transparent;
             guna2HtmlLabel6.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel6.Location = new Point(271, 420);
+            guna2HtmlLabel6.Location = new Point(272, 429);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             guna2HtmlLabel6.Size = new Size(21, 15);
             guna2HtmlLabel6.TabIndex = 159;
@@ -578,7 +584,7 @@
             ConsultationFeeTextBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ConsultationFeeTextBox.ForeColor = Color.FromArgb(47, 89, 114);
             ConsultationFeeTextBox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ConsultationFeeTextBox.Location = new Point(366, 400);
+            ConsultationFeeTextBox.Location = new Point(367, 409);
             ConsultationFeeTextBox.Name = "ConsultationFeeTextBox";
             ConsultationFeeTextBox.PasswordChar = '\0';
             ConsultationFeeTextBox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -592,7 +598,7 @@
             // 
             guna2HtmlLabel7.BackColor = Color.Transparent;
             guna2HtmlLabel7.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
-            guna2HtmlLabel7.Location = new Point(339, 410);
+            guna2HtmlLabel7.Location = new Point(340, 419);
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             guna2HtmlLabel7.Size = new Size(25, 15);
             guna2HtmlLabel7.TabIndex = 163;
@@ -678,7 +684,7 @@
             ContactNumberTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             ContactNumberTextbox.ForeColor = Color.FromArgb(47, 89, 114);
             ContactNumberTextbox.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            ContactNumberTextbox.Location = new Point(478, 400);
+            ContactNumberTextbox.Location = new Point(479, 424);
             ContactNumberTextbox.Name = "ContactNumberTextbox";
             ContactNumberTextbox.PasswordChar = '\0';
             ContactNumberTextbox.PlaceholderForeColor = Color.FromArgb(47, 89, 114);
@@ -693,7 +699,7 @@
             guna2HtmlLabel9.BackColor = Color.FromArgb(110, 177, 247);
             guna2HtmlLabel9.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             guna2HtmlLabel9.ForeColor = Color.FromArgb(13, 41, 80);
-            guna2HtmlLabel9.Location = new Point(478, 383);
+            guna2HtmlLabel9.Location = new Point(479, 407);
             guna2HtmlLabel9.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel9.Name = "guna2HtmlLabel9";
             guna2HtmlLabel9.Size = new Size(89, 15);
@@ -760,6 +766,32 @@
             removeDoctor.Visible = false;
             removeDoctor.Click += removeDoctor_Click;
             // 
+            // passValidatorMsg
+            // 
+            passValidatorMsg.BackColor = Color.FromArgb(110, 177, 247);
+            passValidatorMsg.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            passValidatorMsg.ForeColor = Color.Red;
+            passValidatorMsg.Location = new Point(263, 305);
+            passValidatorMsg.Margin = new Padding(3, 2, 3, 2);
+            passValidatorMsg.Name = "passValidatorMsg";
+            passValidatorMsg.Size = new Size(138, 15);
+            passValidatorMsg.TabIndex = 195;
+            passValidatorMsg.Text = "*At least 8 characters long";
+            passValidatorMsg.Visible = false;
+            // 
+            // guna2HtmlLabel12
+            // 
+            guna2HtmlLabel12.BackColor = Color.FromArgb(110, 177, 247);
+            guna2HtmlLabel12.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel12.ForeColor = Color.FromArgb(13, 41, 80);
+            guna2HtmlLabel12.Location = new Point(263, 206);
+            guna2HtmlLabel12.Margin = new Padding(3, 2, 3, 2);
+            guna2HtmlLabel12.Name = "guna2HtmlLabel12";
+            guna2HtmlLabel12.Size = new Size(110, 15);
+            guna2HtmlLabel12.TabIndex = 196;
+            guna2HtmlLabel12.Text = "*Leave blank if none";
+            guna2HtmlLabel12.Visible = false;
+            // 
             // AdminAddDoctor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -767,6 +799,8 @@
             BackColor = Color.FromArgb(110, 177, 247);
             ClientSize = new Size(739, 586);
             ControlBox = false;
+            Controls.Add(guna2HtmlLabel12);
+            Controls.Add(passValidatorMsg);
             Controls.Add(removeDoctor);
             Controls.Add(guna2HtmlLabel10);
             Controls.Add(emailTextBox);
@@ -857,5 +891,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
         private Guna.UI2.WinForms.Guna2TextBox emailTextBox;
         private Guna.UI2.WinForms.Guna2Button removeDoctor;
+        private Guna.UI2.WinForms.Guna2HtmlLabel passValidatorMsg;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
     }
 }
