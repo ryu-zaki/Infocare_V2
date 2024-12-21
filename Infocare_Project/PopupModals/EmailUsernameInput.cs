@@ -74,7 +74,7 @@ namespace Infocare_Project_1.PopupModals
 
             //Generating an OTP
             var secretKey = KeyGeneration.GenerateRandomKey(20);
-            Totp totp = new Totp(secretKey, step: 600);
+            Totp totp = new Totp(secretKey, step: 1800);
 
             string otp = ProcessMethods.GenerateOTP(totp);
 
