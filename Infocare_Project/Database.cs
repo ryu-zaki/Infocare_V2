@@ -911,7 +911,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable PendingAppointmentList(string doctorFullName)
         {
-            string query = @"SELECT ah_Patient_Name AS 'Patient Name', id AS 'Transaction ID', ah_Specialization AS 'Doctor Specialization', ah_time AS 'Appointment Time', ah_date AS 'Appointment Date', ah_consfee AS 'Consultation Fee' FROM tb_appointmenthistory 
+            string query = @"SELECT ah_Patient_Name AS 'Patient Name', id , ah_Specialization AS 'Doctor Specialization', ah_time AS 'Appointment Time', ah_date AS 'Appointment Date', ah_consfee AS 'Consultation Fee' FROM tb_appointmenthistory 
                      WHERE ah_status = 'Pending' AND ah_Doctor_Name = @DoctorFullName";
 
             DataTable appointmentTable = new DataTable();
@@ -1004,7 +1004,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         public static DataTable ViewPatientAppointments(string patientName)
         {
             DataTable AppointmentTable = new DataTable();
-            string query = @"SELECT id as 'Transaction ID', ah_status as 'Status', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
+            string query = @"SELECT id, ah_status as 'Status', ah_doctor_name as 'Doctor Name', ah_specialization as 'Specialization', ah_time as 'Appointment Time', ah_date as 'Appointment Date', ah_consfee as 'Consultation Fee' FROM tb_appointmenthistory 
              WHERE ah_Patient_Name = @PatientName AND ( ah_status = 'Accepted' || ah_status = 'Pending' || ah_status = 'Declined' )";
 
             try
@@ -1277,7 +1277,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable ChecOutList()
         {
-            string query = @"SELECT ah_patient_name, ah_Consfee, ah_time, ah_date from tb_appointmenthistory where ah_status = 'CheckOut'";
+            string query = @"SELECT ah_patient_name AS 'Patient Name', ah_Consfee AS 'Consultation Fee', ah_time AS 'Appointment Time, ah_date AS 'Appointment Date' from tb_appointmenthistory where ah_status = 'CheckOut'";
 
             DataTable CheckoutTable = new DataTable();
 
