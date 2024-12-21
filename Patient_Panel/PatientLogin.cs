@@ -122,7 +122,7 @@ namespace Infocare_Project
 
         private void forgotPassBtn_Click_1(object sender, EventArgs e)
         {
-            ProcessMethods.viewForgotPass(Role.Staff);
+            ProcessMethods.viewForgotPass(Role.Patient);
         }
 
         private void RegisterBtn_Click(object sender, EventArgs e)

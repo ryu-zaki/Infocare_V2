@@ -330,7 +330,7 @@ namespace Infocare_Project
                 connection.Open();
                 string tablename = ProcessMethods.GetTablenameByRole(role);
 
-                string query = $"SELECT COUNT(*) FROM {tablename} WHERE email = @Email AND username = @Username";
+                string query = $"SELECT COUNT(*) FROM {tablename} WHERE email = @Email AND {(role == Role.Patient ? "P_" : "")}username = @Username";
                 MySqlCommand command = new MySqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@Email", user.Email);
@@ -1802,7 +1802,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
                 try
                 {
-                    string query = $"UPDATE {tblName} SET {(role == Role.Staff ? "s_" : "")}password = @Password WHERE email = @Email AND username = @UserName";
+                    string query = $"UPDATE {tblName} SET {(role == Role.Patient ? "P_" : "")}password = @Password WHERE email = @Email AND {(role == Role.Patient ? "P_" : "")}username = @UserName";
                     MySqlCommand cmd = new MySqlCommand(query, connection);
 
                     cmd.Parameters.AddWithValue("@Password", user.Password);
