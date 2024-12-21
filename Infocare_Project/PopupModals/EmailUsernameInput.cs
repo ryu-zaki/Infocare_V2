@@ -85,7 +85,7 @@ namespace Infocare_Project_1.PopupModals
             submitBtn.Enabled = true;
             this.Cursor = Cursors.Default;
 
-            OTP_Modal otpModal = new OTP_Modal(totp, this);
+            OTP_Modal otpModal = new OTP_Modal(totp, this, user.Email);
             otpModal.SavePass += SavePass;
             otpModal.ShowDialog();
 

@@ -19,13 +19,14 @@ namespace Infocare_Project_1.PopupModals
         public Action<string> SavePass;
         string otp;
         Totp totp;
+        string email;
 
         Guna2TextBox[] verifyBoxes;
 
         string[] rawOTP = new string[6];
         Form emailInput;
 
-        public OTP_Modal(Totp totp, Form emailInput)
+        public OTP_Modal(Totp totp, Form emailInput, string email)
         {
             this.totp = totp;
             this.emailInput = emailInput;
@@ -34,6 +35,7 @@ namespace Infocare_Project_1.PopupModals
 
             Guna2TextBox[] verifyBoxes = { verifyBox1, verifyBox2, verifyBox3, verifyBox4, verifyBox5, verifyBox6 };
             this.verifyBoxes = verifyBoxes;
+            this.email = email;
         }
 
         private void SubscribeTextChanged()
@@ -48,7 +50,7 @@ namespace Infocare_Project_1.PopupModals
 
         private void guna2TextBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
 
 
         }
@@ -78,10 +80,15 @@ namespace Infocare_Project_1.PopupModals
                 resetModal.SavePass += SavePass;
                 resetModal.ShowDialog();
             }
-            
+
 
             //ResetPassword resetPass = new ResetPassword();
             //resetPass.SavePass += SavePass;
+        }
+
+        private void OTP_Modal_Load(object sender, EventArgs e)
+        {
+            EmailTextBasis.Text = email;
         }
     }
 }

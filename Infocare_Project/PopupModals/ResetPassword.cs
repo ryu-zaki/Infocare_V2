@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -55,7 +56,10 @@ namespace Infocare_Project_1.Object_Models
                 return;
             }
 
-            if (!ProcessMethods.ValidatePassword(newpassTextbox.Text)) return;
+            if (!ProcessMethods.ValidatePassword(newpassTextbox.Text))
+            {
+                return;
+            }
 
             this.Cursor = Cursors.WaitCursor;
             SavePass.Invoke(newpassTextbox.Text);
@@ -68,7 +72,7 @@ namespace Infocare_Project_1.Object_Models
 
         private void showPass_CheckedChanged(object sender, EventArgs e)
         {
-            if ( sender is Guna2CheckBox checkBox )
+            if (sender is Guna2CheckBox checkBox)
             {
                 if (checkBox.Checked)
                 {
@@ -87,6 +91,35 @@ namespace Infocare_Project_1.Object_Models
                     confirmpassTextbox.PasswordChar = '●';
                     confirmpassTextbox.UseSystemPasswordChar = true;
                 }
+            }
+        }
+
+        private void newpassTextbox_TextChanged(object sender, EventArgs e)
+        {
+            if (newpassTextbox.Text.Trim() == "")
+            {
+                passValidatorMsg.Visible = false;
+            }
+            else
+            {
+                passValidatorMsg.Visible = true;
+                string msg =
+                !Regex.IsMatch(newpassTextbox.Text, @"[A-Z]") ? "Add at least one uppercase letter" :
+                !Regex.IsMatch(newpassTextbox.Text, @"[^a-zA-Z0-9\s]") ? "Add At least one special character" : !Regex.IsMatch(newpassTextbox.Text, @"[\d]") ? "Add At least one number" : !Regex.IsMatch(newpassTextbox.Text, @".{8,}") ? "Must have at least 8 characters long" : "";
+
+                if (msg == "")
+                {
+
+                    passValidatorMsg.Text = "*Strong Enough";
+                    passValidatorMsg.ForeColor = Color.Green;
+                }
+                else
+                {
+                    passValidatorMsg.Text = "*" + msg;
+                    passValidatorMsg.ForeColor = Color.Red;
+
+                }
+
             }
         }
     }
