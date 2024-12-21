@@ -434,7 +434,7 @@ namespace Infocare_Project_1
             DialogResult confirm = MessageBox.Show("Are you sure you want to Log Out?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
-                StaffLogin patientLoginForm = new StaffLogin();
+                PatientLogin patientLoginForm = new PatientLogin();
                 patientLoginForm.Show();
                 this.Hide();
             }
@@ -666,11 +666,7 @@ namespace Infocare_Project_1
 
         private void MyProfileTabBtn_Click(object sender, EventArgs e)
         {
-            PatientRegisterForm form = new PatientRegisterForm(ModalMode.Edit, patient.AccountID)
-            {
-                username = patient.UserName,
-                password = patient.Password
-            };
+            PatientRegisterForm form = new PatientRegisterForm(ModalMode.Edit, patient.AccountID, PanelMode.Patient);
 
             form.ShowDialog();
         }

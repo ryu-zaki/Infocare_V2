@@ -23,17 +23,20 @@ namespace Infocare_Project
         public Action DeletePatientAndReload;
         PatientModel patient;
         ModalMode mode;
-        public EmergencyRegistration(PatientModel patient, ModalMode mode)
+        PanelMode panelMode;
+        public EmergencyRegistration(PatientModel patient, ModalMode mode, PanelMode panelMode)
         {
             InitializeComponent();
             this.mode = mode;
+
+            this.panelMode = panelMode;
             _placeHolderHandler = new PlaceHolderHandler();
             NameLabel.Text = $"{patient.LastName}, {patient.FirstName}";
             this.patient = patient;
 
             if (mode == ModalMode.Edit)
             {
-                DeleteBtn.Visible = true;
+                DeleteBtn.Visible = panelMode == PanelMode.AdminDoc;
                 RegisterButton.Text = "Update";
             } else
             {
@@ -131,7 +134,7 @@ namespace Infocare_Project
 
             }
 
-            if (!MiddleNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)) && !string.IsNullOrEmpty(MiddleNameTxtbox.Text))
+            if (!MiddleNameTxtbox.Text.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || c == '/' && !string.IsNullOrEmpty(MiddleNameTxtbox.Text)))
             {
                 MessageBox.Show("Middle name must contain only letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -311,7 +314,7 @@ namespace Infocare_Project
                     }
                     
 
-                    PatientBasicInformationForm patientInfoForm = new PatientBasicInformationForm(patient, mode);
+                    PatientBasicInformationForm patientInfoForm = new PatientBasicInformationForm(patient, mode, panelMode);
                     patientInfoForm.Show();
                     this.Hide();
                 }

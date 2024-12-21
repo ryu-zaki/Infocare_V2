@@ -32,7 +32,14 @@ namespace Infocare_Project_1
     public enum ModalMode 
     {
         Add,
-        Edit
+        Edit,
+        PreserveInfo
+    }
+
+    public enum PanelMode
+    {
+        AdminDoc,
+        Patient
     }
 
 

@@ -18,6 +18,7 @@ namespace Infocare_Project_1
         public AdminDashboard2()
         {
             InitializeComponent();
+
             ad_staffpanel.Visible = false;
             ad_docpanel.Visible = false;
             ad_patientpanel.Visible = false;
@@ -109,6 +110,7 @@ namespace Infocare_Project_1
             SearchPanel4.Visible = true;
             SearchPanel2.Visible = false;
             SearchPanel1.Visible = false;
+
             ad_AppointmentPanel.Visible = true;
             ad_patientpanel.Visible = false;
             ad_docpanel.Visible = false;
@@ -119,8 +121,8 @@ namespace Infocare_Project_1
             StaffDataGridViewList2.Visible = false;
             DoctorDataGridViewList2.Visible = false;
 
-
-
+            
+           
             ShowAppointmentList();
         }
 
@@ -216,9 +218,11 @@ namespace Infocare_Project_1
             try
             {
                 DataTable AppointmentData = Database.AppointmentList();
+
                 if (AppointmentData.Rows.Count > 0)
                 {
                     AppointmentDataGridViewList2.DataSource = AppointmentData;
+                    
                 }
                 else
                 {
@@ -876,7 +880,6 @@ namespace Infocare_Project_1
                 regForm.ShowDialog();
 
                 this.Cursor = Cursors.Default;
-
             }
         }
 
@@ -911,10 +914,10 @@ namespace Infocare_Project_1
 
                 this.Cursor = Cursors.WaitCursor;
 
-                AdminAddDoctor staffForm = new AdminAddDoctor(ModalMode.Edit, DoctorID);
+                AdminAddDoctor doctorForm = new AdminAddDoctor(ModalMode.Edit, DoctorID);
 
-               // staffForm.ReloadStaffs += ShowStaffList;
-                staffForm.ShowDialog();
+                doctorForm.ShowDoctorList += ShowDoctorList;
+                doctorForm.ShowDialog();
 
                 this.Cursor = Cursors.Default;
 

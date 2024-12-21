@@ -14,11 +14,13 @@ namespace Infocare_Project
         ModalMode mode;
         public Action ReloadResults;
         public Action DeletePatientAndReload;
-        public PatientBasicInformationForm(PatientModel patient, ModalMode mode)
+        PanelMode panelMode;
+        public PatientBasicInformationForm(PatientModel patient, ModalMode mode, PanelMode panelMode)
         {
             InitializeComponent();
             this.mode = mode;
             this.patient = patient;
+            this.panelMode = panelMode;
             HeightTextBox.TextChanged += HeightOrWeightTextChanged;
             WeightTextBox.TextChanged += HeightOrWeightTextChanged;
 
@@ -27,7 +29,7 @@ namespace Infocare_Project
 
             if (mode == ModalMode.Edit)
             {
-                DeleteBtn.Visible = true;
+                DeleteBtn.Visible = panelMode == PanelMode.AdminDoc;
             }
 
         }
@@ -164,7 +166,7 @@ namespace Infocare_Project
             Database.PatientRegFunc(mode == ModalMode.Add ? patient : editedInfo, patient.UserName, height, weight, bmi, bloodType, preCon, treatment, prevSurg, alergy, medication, mode);
 
 
-            var emergencyRegistration = new EmergencyRegistration(patient, mode);
+            var emergencyRegistration = new EmergencyRegistration(patient, mode, panelMode);
             emergencyRegistration.ReloadResults += ReloadResults;
             emergencyRegistration.DeletePatientAndReload += DeletePatientAndReload;
             emergencyRegistration.TopMost = true;
@@ -229,11 +231,9 @@ namespace Infocare_Project
                         Database.DeletePatientReg1Data(patient);
                     }
 
-                   
-                    var patientInfoForm = new PatientRegisterForm(mode, patient.AccountID)
-                    {
-                        username = patient.UserName, password = patient.Password
-                    };
+
+                    var patientInfoForm = new PatientRegisterForm(mode, patient.AccountID, panelMode);
+                  
                  
 
                     patientInfoForm.Show();

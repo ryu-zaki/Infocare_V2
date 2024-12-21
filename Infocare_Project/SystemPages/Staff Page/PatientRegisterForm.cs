@@ -29,23 +29,28 @@ namespace Infocare_Project
         int zone;
         ModalMode mode;
         int AccountID;
-
+        PanelMode panelMode;
         public string username;
         public string password;
 
         PatientModel extractedInfo;
-        public PatientRegisterForm(ModalMode mode, int AccountId = 0)
+
+
+        public PatientRegisterForm(ModalMode mode, int AccountId = 00, PanelMode panelMode = PanelMode.AdminDoc)
         {
             InitializeComponent();
             this.mode = mode;
+            this.panelMode = panelMode;
+
             this.AccountID = AccountId;
             _placeHolderHandler = new PlaceHolderHandler();
             PageTitle.Text = mode == ModalMode.Edit ? "Patient Information" : "Patient Registration";
 
             if (mode == ModalMode.Edit)
             {
-                DeleteBtn.Visible = true;
+                DeleteBtn.Visible = panelMode == PanelMode.AdminDoc;
                 PasswordTextBox.Visible = false;
+                passValidatorMsg.Visible = false;
             }
         }
 
@@ -58,8 +63,7 @@ namespace Infocare_Project
             else
             {
                 //Edit
-                extractedInfo = Database.GetPatientInfo(username, password);
-                extractedInfo.AccountID = AccountID;
+                extractedInfo = Database.GetPatientInfoById(AccountID);
                 FillUpFields(extractedInfo);
             }
 
@@ -69,12 +73,12 @@ namespace Infocare_Project
         {
             FirstnameTxtbox.Text = info.FirstName;
             LastNameTxtbox.Text = info.LastName;
-            UsernameTextbox.Text = username;
+            UsernameTextbox.Text = info.UserName;
             MiddleNameTxtbox.Text = info.MiddleName;
             SuffixTxtbox.Text = info.Suffix;
             EmailTxtbox.Text = info.Email;
             ContactNumberTxtbox.Text = info.ContactNumber;
-
+            PasswordTextBox.Text = info.Password;
             BdayDateTimePicker.Value = info.BirthDate;
 
             SexCombobox.SelectedItem = info.sex;
@@ -129,6 +133,7 @@ namespace Infocare_Project
             if (confirm == DialogResult.Yes)
 
             {
+
                 this.Close();
             }
         }
@@ -239,6 +244,12 @@ namespace Infocare_Project
                 return;
             }
 
+            if (SexCombobox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select your gender");
+                return;
+            }
+
             Guna2TextBox[] requiredTextBoxes = {
                 FirstnameTxtbox, LastNameTxtbox, MiddleNameTxtbox, SuffixTxtbox, CityTxtbox,
                 ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox, EmailTxtbox
@@ -281,7 +292,7 @@ namespace Infocare_Project
             Database.PatientRegFunc(editedInfo, mode);
 
             this.Cursor = Cursors.Default;
-            var patientInfoForm = new PatientBasicInformationForm(ProperModel, mode);
+            var patientInfoForm = new PatientBasicInformationForm(ProperModel, mode, panelMode);
             patientInfoForm.ReloadResults += ReloadResults;
             patientInfoForm.DeletePatientAndReload += DeletePatientAndReload;
           //  patientInfoForm.TopMost = true;
@@ -361,25 +372,26 @@ namespace Infocare_Project
                                     ContactNumberTxtbox, ZipCodeTxtbox, ZoneTxtbox, StreetTxtbox, BarangayTxtbox
                                   };
 
-            if (textBoxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)))
+            DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
             {
-                DialogResult confirm = MessageBox.Show("Are you sure you want to go back?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirm == DialogResult.Yes)
-                {
-                    this.Hide();
-                }
+                this.Hide();
             }
-            else if (textBoxes.Any(tb => !string.IsNullOrWhiteSpace(tb.Text)))
-            {
-                DialogResult confirm = MessageBox.Show("Some fields are filled. Are you sure you want to go back? Unsaved changes may be lost.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (confirm == DialogResult.Yes)
-                {
-                    StaffLogin patientLoginForm = new StaffLogin();
-                    patientLoginForm.Show();
-                    this.Hide();
 
-                }
-            }
+            //if (textBoxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)) || mode == ModalMode.Edit)
+            //{
+
+            //}
+            //else if (textBoxes.Any(tb => !string.IsNullOrWhiteSpace(tb.Text)))
+            //{
+            //    DialogResult confirm = MessageBox.Show("Some fields are filled. Are you sure you want to go back? Unsaved changes may be lost.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //    if (confirm == DialogResult.Yes)
+            //    {
+
+            //        this.Hide();
+
+            //    }
+            //}
         }
 
         private void MinimizeButton_Click(object sender, EventArgs e)

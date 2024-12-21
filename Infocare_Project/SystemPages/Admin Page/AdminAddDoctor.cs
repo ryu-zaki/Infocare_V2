@@ -35,30 +35,43 @@ namespace Infocare_Project
             {
                 RegisterButton.Text = "Update";
                 guna2HtmlLabel2.Text = "Update Doctor";
-
+                PasswordTextBox.Visible = false;
+                ConfirmPasswordTextBox.Visible = false;
+                removeDoctor.Visible = true;
             }
+        }
+
+        public String ConcatenateTimeSpan(TimeSpan startTime, TimeSpan endTime)
+        {
+            DateTime start = DateTime.Today.Add(startTime);
+            DateTime end = DateTime.Today.Add(endTime);
+
+            return $"{start.ToString("hh:mm tt")} - {end.ToString("hh:mm tt")}";
         }
 
         public void FillUpFields(DoctorModel doctor)
         {
             FirstNameTextBox.Text = doctor.FirstName;
-
+            ConsultationFeeTextBox.Text = doctor.ConsultationFee.ToString();
             LastNameTextbox.Text = doctor.LastName;
             MiddleNameTextbox.Text = doctor.MiddleName;
-            DayAvailabilityCombobox.DataSource = doctor.DayAvailability.Split(',');
+            DayAvailabilityCombobox.SelectedItem = doctor.DayAvailability;
+
             UserNameTextBox.Text = doctor.UserName;
             emailTextBox.Text = doctor.Email;
             ContactNumberTextbox.Text = doctor.ContactNumber;
 
-            TimeCombobox();
 
+
+            TimeCombobox();
+            TimeComboBox.SelectedItem = ConcatenateTimeSpan(doctor.StartTime, doctor.EndTime);
 
             flowLayoutPanel1.Controls.Clear();
             foreach (string skill in doctor.Specialty)
             {
                 Guna2TextBox label = new Guna2TextBox();
                 label.Text = skill;
-                
+
                 flowLayoutPanel1.Controls.Add(label);
             }
 
@@ -75,7 +88,7 @@ namespace Infocare_Project
                 doctor = Database.GetDoctorInfo(AccountId);
                 FillUpFields(doctor);
             }
-            
+
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -114,7 +127,7 @@ namespace Infocare_Project
             }
 
 
-            if (Database.UsernameExistsDoctor(UserNameTextBox.Text))
+            if (Database.UsernameExistsDoctor(UserNameTextBox.Text) && mode == ModalMode.Add)
             {
                 MessageBox.Show("The username is already in use. Please choose a different username.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -122,9 +135,12 @@ namespace Infocare_Project
 
             string password = PasswordTextBox.Text;
 
-            if (!ProcessMethods.ValidatePassword(password))
+            if (mode == ModalMode.Add)
             {
-                return;
+                if (!ProcessMethods.ValidatePassword(password))
+                {
+                    return;
+                }
             }
 
 
@@ -133,14 +149,14 @@ namespace Infocare_Project
                 MessageBox.Show("Please enter a valid email.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-           
 
-            
+
+
             if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(LastNameTextbox.Text.Trim()) ||
                 string.IsNullOrWhiteSpace(UserNameTextBox.Text.Trim()) ||
-                string.IsNullOrWhiteSpace(PasswordTextBox.Text.Trim()) ||
-                string.IsNullOrWhiteSpace(ConfirmPasswordTextBox.Text.Trim()) ||
+                (string.IsNullOrWhiteSpace(PasswordTextBox.Text.Trim()) && mode == ModalMode.Add) ||
+                (string.IsNullOrWhiteSpace(ConfirmPasswordTextBox.Text.Trim()) && mode == ModalMode.Add) ||
                 string.IsNullOrWhiteSpace(ConsultationFeeTextBox.Text.Trim()) ||
                 TimeComboBox.SelectedIndex == 0 ||
                 DayAvailabilityCombobox.SelectedIndex == 0)
@@ -166,26 +182,26 @@ namespace Infocare_Project
                 MessageBox.Show("Please enter at least one specialization.");
                 return;
             }
-            int Contact;
+            decimal Contact;
 
-            if (!int.TryParse(ConsultationFeeTextBox.Text, out Contact))
+            if (!decimal.TryParse(ConsultationFeeTextBox.Text, out Contact))
             {
                 MessageBox.Show("Please enter a valid Consultation Fee.");
                 return;
             }
 
-            DoctorModel newDoctor = new DoctorModel
+            DoctorModel newDoctorInfo = new DoctorModel
             {
-
+                AccountID = mode == ModalMode.Edit ? doctor.AccountID : 0,
                 FirstName = FirstNameTextBox.Text.Trim(),
                 LastName = LastNameTextbox.Text.Trim(),
                 MiddleName = MiddleNameTextbox.Text.Trim(),
                 ContactNumber = ContactNumberTextbox.Text.Trim(),
                 UserName = UserNameTextBox.Text.Trim(),
-                Password = PasswordTextBox.Text.Trim(),
+                Password = mode == ModalMode.Edit ? doctor.Password : PasswordTextBox.Text.Trim(),
                 Email = emailTextBox.Text,
 
-                ConsultationFee = int.TryParse(ConsultationFeeTextBox.Text, out int consultationFee) ? consultationFee : 0,
+                ConsultationFee = decimal.TryParse(ConsultationFeeTextBox.Text, out decimal consultationFee) ? consultationFee : 0,
                 Specialty = specializations,
             };
 
@@ -201,8 +217,8 @@ namespace Infocare_Project
                     if (DateTime.TryParseExact(startTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime startTime) &&
                         DateTime.TryParseExact(endTimeString, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime endTime))
                     {
-                        newDoctor.StartTime = startTime.TimeOfDay;
-                        newDoctor.EndTime = endTime.TimeOfDay;
+                        newDoctorInfo.StartTime = startTime.TimeOfDay;
+                        newDoctorInfo.EndTime = endTime.TimeOfDay;
                     }
                     else
                     {
@@ -217,7 +233,7 @@ namespace Infocare_Project
                 }
             }
 
-            newDoctor.DayAvailability = DayAvailabilityCombobox.SelectedItem?.ToString() ?? string.Empty;
+            newDoctorInfo.DayAvailability = DayAvailabilityCombobox.SelectedItem?.ToString() ?? string.Empty;
 
             if (PasswordTextBox.Text.Trim() != ConfirmPasswordTextBox.Text.Trim())
             {
@@ -227,7 +243,7 @@ namespace Infocare_Project
 
             try
             {
-                int doctorId = Database.AddDoctor1(newDoctor);
+                int doctorId = Database.AddUpdateDoctor1(newDoctorInfo, mode);
 
                 foreach (string specialization in specializations)
                 {
@@ -315,13 +331,21 @@ namespace Infocare_Project
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (confirm == DialogResult.Yes)
-
+            if (mode == ModalMode.Add)
             {
-                this.Close();
+                DialogResult confirm = MessageBox.Show("Are you sure to cancel registration?", "Cancel registraion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+
+                {
+                    this.Close();
+                }
+
+                return;
             }
+
+            this.Close();
+
         }
 
         private void MinimizeButton_Click(object sender, EventArgs e)
@@ -363,9 +387,25 @@ namespace Infocare_Project
                 WordWrap = true,
                 Multiline = false,
                 TextAlign = HorizontalAlignment.Left,
-            }; 
+            };
 
             flowLayoutPanel1.Controls.Add(newSpecializationTextBox);
+        }
+
+        private void removeDoctor_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this doctor?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if (result == DialogResult.Yes)
+            {
+
+                Database.DeleteDoctorById(doctor.AccountID);
+
+                ShowDoctorList.Invoke();
+                this.Close();
+
+            }
+        
         }
     }
 }

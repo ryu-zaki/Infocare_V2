@@ -1,17 +1,19 @@
 ﻿using Infocare_Project_1;
 using Infocare_Project_1.Object_Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Infocare_Project
 {
     public static class Database
     {
 
-        private static string dbms = "Xampp";
+        private static string dbms = "Workbench";
         public static string connectionString = ConfigurationManager.ConnectionStrings[dbms].ConnectionString;
 
         public static void ExecuteQuery(string query, Dictionary<string, object> parameters)
@@ -137,11 +139,12 @@ namespace Infocare_Project
 
                             doctor = new DoctorModel()
                             {
+                                AccountID = reader.IsDBNull(reader.GetOrdinal("id")) ? 0 : reader.GetInt32("id"),
                                 FirstName = reader.IsDBNull(reader.GetOrdinal("firstname")) ? "" : reader.GetString("Firstname"),
                                 LastName = reader.IsDBNull(reader.GetOrdinal("lastname")) ? "" : reader.GetString("Lastname"),
                                 MiddleName = reader.IsDBNull(reader.GetOrdinal("middlename")) ? "" : reader.GetString("middlename"),
                                 UserName = reader.IsDBNull(reader.GetOrdinal("username")) ? "" : reader.GetString("username"),
-                              
+                                Password = reader.IsDBNull(reader.GetOrdinal("password")) ? "" : reader.GetString("Password"),
                                 ContactNumber = reader.IsDBNull(reader.GetOrdinal("contactNumber")) ? "" : reader.GetString("contactNumber"),
                                 Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email"),
                                 ConsultationFee = reader.IsDBNull(reader.GetOrdinal("consultationfee")) ? 0 : reader.GetDecimal("consultationfee"),
@@ -194,7 +197,101 @@ namespace Infocare_Project
             }
         }
 
-       
+        public static void PatientInfoFetcher(
+            MySqlCommand cmd, PatientModel user, HealthInfoModel health,
+            AddressModel user_address, EmergencyContactModel emergency, AddressModel eme_address)
+        {
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    user.AccountID = reader.GetInt32("id");
+                    user.FirstName = reader.GetString("P_Firstname");
+                    user.LastName = reader.GetString("P_lastname");
+                    user.Password = reader.IsDBNull(reader.GetOrdinal("P_Password")) ? "" : 
+                        reader.GetString("P_Password");
+                    user.MiddleName = reader.GetString("P_Middlename");
+                    user.UserName = reader.GetString("P_username");
+                    user.ContactNumber = reader.GetString("P_ContactNumber");
+                    user.BirthDate = DateTime.ParseExact(reader.GetString("P_Bdate"), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                    user.sex = reader.GetString("P_Sex");
+                    user.Suffix = reader.IsDBNull(reader.GetOrdinal("P_Suffix")) ? "n/a" : reader.GetString("P_Suffix");
+                    user.Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email");
+
+                    health.Height = reader.IsDBNull(reader.GetOrdinal("P_Height")) ? 0 : reader.GetDouble("P_Height");
+
+                    health.Weight = reader.IsDBNull(reader.GetOrdinal("P_Weight")) ? 0 : reader.GetDouble("P_Weight");
+
+                    health.BMI = reader.IsDBNull(reader.GetOrdinal("P_BMI")) ? 0 : reader.GetDouble("P_Weight"); ;
+                    health.BloodType = reader.IsDBNull(reader.GetOrdinal("P_Blood_Type")) ? "" : reader.GetString("P_Blood_Type");
+
+                    health.PreCon = reader.IsDBNull(reader.GetOrdinal("P_Precondition")) ? "" : reader.GetString("P_Precondition");
+                    health.Treatment = reader.IsDBNull(reader.GetOrdinal("P_Treatment")) ? "" : reader.GetString("P_Treatment");
+
+                    health.PrevSurg = reader.IsDBNull(reader.GetOrdinal("P_PrevSurgery")) ? "" : reader.GetString("P_PrevSurgery");
+
+                    string[] addressArr = (reader.IsDBNull(reader.GetOrdinal("P_Address")) ? ",,,,," : reader.GetString("P_Address")).Split(",");
+
+                    user_address.HouseNo = int.Parse(addressArr[0]);
+                    user_address.ZipCode = int.Parse(addressArr[1]);
+                    user_address.Zone = int.Parse(addressArr[2]);
+                    user_address.Street = addressArr[3];
+                    user_address.Barangay = addressArr[4];
+                    user_address.City = addressArr[5];
+
+                    //return $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
+
+                    health.Alergy = reader.IsDBNull(reader.GetOrdinal("P_Alergy")) ? "" : reader.GetString("P_Alergy");
+                    health.Medication = reader.IsDBNull(reader.GetOrdinal("P_Medication")) ? "" : reader.GetString("P_Medication");
+
+                    emergency.FirstName = reader.IsDBNull(reader.GetOrdinal("Eme_Firstname")) ? "" : reader.GetString("Eme_Firstname");
+                    emergency.LastName = reader.IsDBNull(reader.GetOrdinal("Eme_Lastname")) ? "" : reader.GetString("Eme_Lastname"); ;
+                    emergency.MiddleName = reader.IsDBNull(reader.GetOrdinal("Eme_Middlename")) ? "" : reader.GetString("Eme_Middlename");
+                    emergency.Suffix = reader.IsDBNull(reader.GetOrdinal("Eme_Suffix")) ? "" : reader.GetString("Eme_Suffix");
+
+
+
+                    string[] eme_addressArr = (reader.IsDBNull(reader.GetOrdinal("Eme_Address")) ? "0,0,0,0,0,0" : reader.GetString("Eme_Address")).Split(",");
+
+                    eme_address.HouseNo = int.Parse(eme_addressArr[0]);
+                    eme_address.ZipCode = int.Parse(eme_addressArr[1]);
+                    eme_address.Zone = int.Parse(eme_addressArr[2]);
+                    eme_address.Street = eme_addressArr[3];
+                    eme_address.Barangay = eme_addressArr[4];
+                    eme_address.City = eme_addressArr[5];
+                }
+            }
+        }
+
+
+        public static PatientModel GetPatientInfoById(int id)
+        {
+            using (var connection = GetConnection())
+            {
+                PatientModel user = new PatientModel();
+                HealthInfoModel health = new HealthInfoModel();
+                EmergencyContactModel emergency = new EmergencyContactModel();
+                AddressModel user_address = new AddressModel();
+                AddressModel eme_address = new AddressModel();
+
+                connection.Open();
+                string query = $"Select * from tb_patientinfo WHERE id = @ID";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    PatientInfoFetcher(cmd, user, health, user_address, emergency, eme_address);
+                }
+
+                user.HealthInfo = health;
+                user.Address = user_address;
+
+                emergency.address = eme_address;
+                user.EmergencyContact = emergency;
+
+                return user;
+            }
+        }
 
         public static PatientModel GetPatientInfo(string username, string password)
         {
@@ -213,65 +310,7 @@ namespace Infocare_Project
                     cmd.Parameters.AddWithValue("@Username", username);
                     cmd.Parameters.AddWithValue("@Password", password);
 
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            user.AccountID = reader.GetInt32("id");
-                            user.FirstName = reader.GetString("P_Firstname");
-                            user.LastName = reader.GetString("P_lastname");
-                            user.Password = reader.GetString("P_Password");
-                            user.MiddleName = reader.GetString("P_Middlename");
-                            user.UserName = reader.GetString("P_username");
-                            user.ContactNumber = reader.GetString("P_ContactNumber");
-                            user.BirthDate = DateTime.ParseExact(reader.GetString("P_Bdate"), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                            user.sex = reader.GetString("P_Sex");
-                            user.Suffix = reader.IsDBNull(reader.GetOrdinal("P_Suffix")) ? "n/a" : reader.GetString("P_Suffix");
-                            user.Email = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader.GetString("email");
-
-                            health.Height = reader.IsDBNull(reader.GetOrdinal("P_Height")) ? 0 : reader.GetDouble("P_Height");
-
-                            health.Weight = reader.IsDBNull(reader.GetOrdinal("P_Weight")) ? 0 : reader.GetDouble("P_Weight");
-
-                            health.BMI = reader.IsDBNull(reader.GetOrdinal("P_BMI")) ? 0 : reader.GetDouble("P_Weight"); ;
-                            health.BloodType = reader.IsDBNull(reader.GetOrdinal("P_Blood_Type")) ? "" : reader.GetString("P_Blood_Type");
-
-                            health.PreCon = reader.IsDBNull(reader.GetOrdinal("P_Precondition")) ? "" : reader.GetString("P_Precondition");
-                            health.Treatment = reader.IsDBNull(reader.GetOrdinal("P_Treatment")) ? "" : reader.GetString("P_Treatment");
-
-                            health.PrevSurg = reader.IsDBNull(reader.GetOrdinal("P_PrevSurgery")) ? "" : reader.GetString("P_PrevSurgery");
-
-                            string[] addressArr = (reader.IsDBNull(reader.GetOrdinal("P_Address")) ? ",,,,," : reader.GetString("P_Address")).Split(",");
-
-                            user_address.HouseNo = int.Parse(addressArr[0]);
-                            user_address.ZipCode = int.Parse(addressArr[1]);
-                            user_address.Zone = int.Parse(addressArr[2]);
-                            user_address.Street = addressArr[3];
-                            user_address.Barangay = addressArr[4];
-                            user_address.City = addressArr[5];
-
-                            //return $"{HouseNo},{ZipCode}, {Zone}, {Street} street, Brgy. {Barangay}, {City}";
-
-                            health.Alergy = reader.IsDBNull(reader.GetOrdinal("P_Alergy")) ? "" : reader.GetString("P_Alergy");
-                            health.Medication = reader.IsDBNull(reader.GetOrdinal("P_Medication")) ? "" : reader.GetString("P_Medication");
-
-                            emergency.FirstName = reader.IsDBNull(reader.GetOrdinal("Eme_Firstname")) ? "" : reader.GetString("Eme_Firstname");
-                            emergency.LastName = reader.IsDBNull(reader.GetOrdinal("Eme_Lastname")) ? "" : reader.GetString("Eme_Lastname"); ;
-                            emergency.MiddleName = reader.IsDBNull(reader.GetOrdinal("Eme_Middlename")) ? "" : reader.GetString("Eme_Middlename");
-                            emergency.Suffix = reader.IsDBNull(reader.GetOrdinal("Eme_Suffix")) ? "" : reader.GetString("Eme_Suffix");
-
-
-
-                            string[] eme_addressArr = (reader.IsDBNull(reader.GetOrdinal("Eme_Address")) ? ",,,,," : reader.GetString("Eme_Address")).Split(",");
-
-                            eme_address.HouseNo = int.Parse(eme_addressArr[0]);
-                            eme_address.ZipCode = int.Parse(eme_addressArr[1]);
-                            eme_address.Zone = int.Parse(eme_addressArr[2]);
-                            eme_address.Street = eme_addressArr[3];
-                            eme_address.Barangay = eme_addressArr[4];
-                            eme_address.City = eme_addressArr[5];
-                        }
-                    }
+                    PatientInfoFetcher(cmd, user, health, user_address, emergency, eme_address);
                 }
 
                 user.HealthInfo = health;
@@ -842,12 +881,12 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
 
         public static DataTable AppointmentList()
         {
-            string query = @"select id as 'Transaction ID', ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee' From tb_appointmenthistory";
-
             DataTable AppointmentTable = new DataTable();
-
             try
             {
+                string query = @"select id as 'Transaction ID', ah_patient_name AS 'Patient Name', ah_doctor_name AS 'Doctor Name',ah_Specialization AS 'Specialization', ah_time AS 'Time Slot', ah_date AS 'Date', ah_consfee AS 'Consultation Fee' From tb_appointmenthistory";
+
+               
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
@@ -859,6 +898,8 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                         }
                     }
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -866,6 +907,8 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
             }
 
             return AppointmentTable;
+
+
         }
 
         public static DataTable PendingAppointmentList(string doctorFullName)
@@ -1649,7 +1692,7 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         }
 
 
-        public static int AddDoctor1(DoctorModel doctor)
+        public static int AddUpdateDoctor1(DoctorModel doctor, ModalMode mode)
         {
             using (var connection = GetConnection())
             {
@@ -1660,9 +1703,24 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                    string query = @"INSERT INTO tb_doctorinfo 
+                    string query;
+
+                    if (mode == ModalMode.Add)
+                    {
+                        query = @"INSERT INTO tb_doctorinfo 
                      (firstname, middlename, lastname, username, password, consultationfee, start_time, end_time, day_availability, contactnumber, email) 
                      VALUES (@FirstName, @MiddleName, @LastName, @Username, @Password, @ConsultationFee, @StartTime, @EndTime, @DayAvailability, @ContactNumber, @Email)";
+                    } else
+                    {
+                        query = @"UPDATE tb_doctorinfo 
+                            SET firstname = @FirstName, lastname = @LastName, 
+                                middlename = @MiddleName, username = @Username,
+                                consultationfee = @ConsultationFee, start_time = @StartTime, 
+                                end_time = @EndTime, day_availability = @DayAvailability, contactnumber = @ContactNumber,
+                                email = @Email WHERE id = @AccountID";
+                    }
+
+                    
                     MySqlCommand command = new MySqlCommand(query, connection, transaction);
 
                     string hashPassword = ProcessMethods.HashCharacter(doctor.Password);
@@ -1677,9 +1735,11 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
                     command.Parameters.AddWithValue("@DayAvailability", doctor.DayAvailability);
                     command.Parameters.AddWithValue("@ContactNumber", doctor.ContactNumber);
                     command.Parameters.AddWithValue("@Email", doctor.Email);
+                    command.Parameters.AddWithValue("@AccountID", doctor.AccountID);
 
                     command.ExecuteNonQuery();
-                    int doctorId = (int)command.LastInsertedId;
+                   
+                    int doctorId = mode == ModalMode.Add ? (int)command.LastInsertedId : doctor.AccountID;
 
                     List<string> specializationsList = new List<string>();
 
@@ -1920,6 +1980,33 @@ WHERE CONCAT('Dr. ', Lastname, ', ', Firstname) = @DoctorName";
         #endregion
 
         #region Delete Functions
+
+        public static void DeleteDoctorById(int AccountID)
+        {
+            string query = @"DELETE FROM tb_doctor_specializations WHERE doctor_id = @ID;
+                 DELETE FROM tb_doctorinfo WHERE id = @ID";
+
+            using (var connection = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@ID", AccountID);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        throw new Exception("No row found to delete.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error deleting patient record: " + ex.Message);
+                }
+            }
+        }
 
         public static void DeleteStaffById(int accountId)
         {

@@ -60,18 +60,18 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
@@ -727,15 +727,14 @@
             ad_patientpanel.BackColor = Color.FromArgb(13, 41, 80);
             ad_patientpanel.Controls.Add(guna2HtmlLabel6);
             ad_patientpanel.Controls.Add(guna2CustomGradientPanel3);
-            ad_patientpanel.Controls.Add(ad_AppointmentPanel);
-            ad_patientpanel.CustomizableEdges = customizableEdges29;
+            ad_patientpanel.CustomizableEdges = customizableEdges25;
             ad_patientpanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_patientpanel.FillColor2 = Color.FromArgb(13, 41, 80);
             ad_patientpanel.FillColor3 = Color.FromArgb(13, 41, 80);
             ad_patientpanel.FillColor4 = Color.FromArgb(110, 177, 247);
             ad_patientpanel.Location = new Point(220, 108);
             ad_patientpanel.Name = "ad_patientpanel";
-            ad_patientpanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            ad_patientpanel.ShadowDecoration.CustomizableEdges = customizableEdges26;
             ad_patientpanel.Size = new Size(662, 448);
             ad_patientpanel.TabIndex = 178;
             // 
@@ -846,14 +845,14 @@
             ad_AppointmentPanel.BackColor = Color.FromArgb(13, 41, 80);
             ad_AppointmentPanel.Controls.Add(guna2HtmlLabel5);
             ad_AppointmentPanel.Controls.Add(guna2CustomGradientPanel5);
-            ad_AppointmentPanel.CustomizableEdges = customizableEdges27;
+            ad_AppointmentPanel.CustomizableEdges = customizableEdges29;
             ad_AppointmentPanel.FillColor = Color.FromArgb(13, 41, 80);
             ad_AppointmentPanel.FillColor2 = Color.FromArgb(13, 41, 80);
             ad_AppointmentPanel.FillColor3 = Color.FromArgb(13, 41, 80);
             ad_AppointmentPanel.FillColor4 = Color.FromArgb(110, 177, 247);
-            ad_AppointmentPanel.Location = new Point(0, 0);
+            ad_AppointmentPanel.Location = new Point(220, 96);
             ad_AppointmentPanel.Name = "ad_AppointmentPanel";
-            ad_AppointmentPanel.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            ad_AppointmentPanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
             ad_AppointmentPanel.Size = new Size(662, 448);
             ad_AppointmentPanel.TabIndex = 179;
             // 
@@ -873,14 +872,14 @@
             // 
             guna2CustomGradientPanel5.BackColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel5.Controls.Add(AppointmentDataGridViewList2);
-            guna2CustomGradientPanel5.CustomizableEdges = customizableEdges25;
+            guna2CustomGradientPanel5.CustomizableEdges = customizableEdges27;
             guna2CustomGradientPanel5.FillColor = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel5.FillColor2 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel5.FillColor3 = Color.FromArgb(13, 41, 80);
             guna2CustomGradientPanel5.FillColor4 = Color.FromArgb(110, 177, 247);
             guna2CustomGradientPanel5.Location = new Point(3, 42);
             guna2CustomGradientPanel5.Name = "guna2CustomGradientPanel5";
-            guna2CustomGradientPanel5.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2CustomGradientPanel5.ShadowDecoration.CustomizableEdges = customizableEdges28;
             guna2CustomGradientPanel5.Size = new Size(662, 448);
             guna2CustomGradientPanel5.TabIndex = 142;
             // 
@@ -1581,6 +1580,7 @@
             ControlBox = false;
             Controls.Add(SearchPanel4);
             Controls.Add(SearchPanel2);
+            Controls.Add(ad_AppointmentPanel);
             Controls.Add(SearchPanel1);
             Controls.Add(MinimizeButton);
             Controls.Add(ExitButton);

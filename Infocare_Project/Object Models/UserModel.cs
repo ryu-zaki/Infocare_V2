@@ -15,6 +15,7 @@ namespace Infocare_Project_1.Object_Models
 
     public class UserModel : IPerson
     {
+        public int AccountID { get; set; }
        public string FirstName { get; set; }
        public string LastName { get; set; }
        public string UserName { get; set; }
